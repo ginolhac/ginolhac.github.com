@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Diy on ginolhac</title>
+    <link>/tags/diy/</link>
+    <description>Recent content in Diy on ginolhac</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2018 Ginolhac</copyright>
+    <lastBuildDate>Sat, 27 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/diy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DIY raspberry monitored via telegram</title>
+      <link>/posts/diy-raspberry-monitored-via-telegram/</link>
+      <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/diy-raspberry-monitored-via-telegram/</guid>
+      <description>Rationale The raspberry pi has always been appealing to me, but I needed a project to really get involved. After discussing with Eric Koncina who made several great applications with Pis, I decided to go for a home surveillance system.
+The main objective was to see how often the neighbor cats are coming to our garden, because they are scaring our cat. It&amp;rsquo;s not a big deal, rather a justification for the pi project.</description>
+    </item>
+    
+  </channel>
+</rss>

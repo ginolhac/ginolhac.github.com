@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/posts/diy-raspberry-monitored-via-telegram/</loc>
+    <lastmod>2018-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/teething/</loc>
+    <lastmod>2016-07-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
+    <lastmod>2016-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/winter-is-coming/</loc>
+    <lastmod>2015-01-25T14:38:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/karate/</loc>
+    <lastmod>2014-07-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/bike/</loc>
+    <lastmod>2015-01-25T14:38:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/diy/</loc>
+    <lastmod>2018-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/pi/</loc>
+    <lastmod>2018-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2018-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2016-07-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2015-01-25T14:38:35+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2018-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
