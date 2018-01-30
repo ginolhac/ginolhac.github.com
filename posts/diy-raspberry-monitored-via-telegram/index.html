@@ -6,15 +6,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		
-		<meta name="description" content="ginolhac&#39; blog about computer stuff">
+		
 		<meta name="generator" content="Hugo 0.34" />
-		<title>DIY raspberry monitored via telegram &middot; ginolhac</title>
-		<link rel="shortcut icon" href="../../images/favicon.ico">
-		<link rel="stylesheet" href="../../css/style.css">
-		<link rel="stylesheet" href="../../css/highlight.css">
+		<title>home surveillance monitored via telegram &middot; Aurélien&#39; blog</title>
+		<link rel="shortcut icon" href="https://ginolhac.github.com/images/favicon.ico">
+		<link rel="stylesheet" href="https://ginolhac.github.com/css/style.css">
+		<link rel="stylesheet" href="https://ginolhac.github.com/css/highlight.css">
 
 		
-		<link rel="stylesheet" href="../../css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://ginolhac.github.com/css/font-awesome.min.css">
 		
 
 		
@@ -26,12 +26,12 @@
        <nav class="main-nav">
 	
 	
-		<a href='../../'> <span class="arrow">←</span>Home</a>
+		<a href='https://ginolhac.github.com/'> <span class="arrow">←</span>Home</a>
 	
-	<a href='../../posts'>Archive</a>
-	<a href='../../karate'>Karate</a>
-	<a href='../../tags'>Tags</a>
-	<a href='../../about'>About</a>
+	<a href='https://ginolhac.github.com/posts'>Archive</a>
+	<a href='https://ginolhac.github.com/karate'>Karate</a>
+	<a href='https://ginolhac.github.com/tags'>Tags</a>
+	<a href='https://ginolhac.github.com/about'>About</a>
 
 	
 
@@ -43,19 +43,19 @@
             <article>
                 <header>
                     <h1>
-                        DIY raspberry monitored via telegram
+                        home surveillance monitored via telegram
                     </h1>
                     <h2 class="headline">
                     Jan 27, 2018 00:00
-                    · 986 words
-                    · 5 minute read
+                    · 1545 words
+                    · 8 minute read
                       <span class="tags">
                       
                       
                           
-                              <a href="../../tags/diy">DIY</a>
+                              <a href="https://ginolhac.github.com/tags/diy">DIY</a>
                           
-                              <a href="../../tags/pi">pi</a>
+                              <a href="https://ginolhac.github.com/tags/pi">pi</a>
                           
                       
                       
@@ -88,10 +88,14 @@ great applications with Pis, I decided to go for a home surveillance system.</p>
 <p>Additionally, I purchased:</p>
 
 <ul>
-<li>[Pi camera NoIR]()</li>
+<li><a href="https://www.raspberrypi.org/products/pi-noir-camera-v2/">Pi camera NoIR</a></li>
 </ul>
 
-<p>Was hoping to get some decent pictures / videos with low light. Turned out that IR leds are needed. That goes in the <a href="#todo">TODO</a> section.</p>
+<p>Was hoping to get some decent pictures / videos with low light. Turned out that IR leds are needed. That goes in the <a href="#TODO">TODO</a> section.</p>
+
+<p>Here is an example of picture with low interior light. Colors are off, but quality is fine to me</p>
+
+<p><img src="../../images/cam_noIR.jpg" alt="" /></p>
 
 <h2 id="setting-up-the-pi">Setting-up the pi</h2>
 
@@ -99,7 +103,7 @@ great applications with Pis, I decided to go for a home surveillance system.</p>
 
 <h3 id="download-raspbian-lite">download raspbian lite</h3>
 
-<p>Since I have no screen, no keyboard and the pi comes with a wifi controler, the <strong>stretch lite</strong> is sufficient. Image can be found at <a href="https://www.raspberrypi.org/downloads/raspbian/">raspberrypi.org</a></p>
+<p>Since I have no screen, no keyboard and the pi comes with a WiFi controller, the <strong>stretch lite</strong> is sufficient. Image can be found at <a href="https://www.raspberrypi.org/downloads/raspbian/">raspberrypi.org</a></p>
 
 <h3 id="format-sd-card">format SD card</h3>
 
@@ -109,7 +113,7 @@ great applications with Pis, I decided to go for a home surveillance system.</p>
 
 <p>Ensure your SD card is the second disk (<code>/dev/disk2</code>), otherwise <strong>do</strong> adapt to the correct one!</p>
 
-<pre><code>unzip 2017-11-29-raspbian-stretch-lite.zip
+<pre><code class="language-bash">unzip 2017-11-29-raspbian-stretch-lite.zip
 sudo dd bs=1m if=2017-11-29-raspbian-stretch-lite.img of=/dev/rdisk2
 </code></pre>
 
@@ -117,7 +121,7 @@ sudo dd bs=1m if=2017-11-29-raspbian-stretch-lite.img of=/dev/rdisk2
 
 <p>Once copied, you can enable <strong>ssh</strong> by creating an empty file at the SD card root</p>
 
-<pre><code>cd /Volumes/boot/
+<pre><code class="language-bash">cd /Volumes/boot/
 touch ssh
 </code></pre>
 
@@ -127,16 +131,16 @@ touch ssh
 
 <p>which contains:</p>
 
-<pre><code>network={
+<pre><code class="language-bash">network={
         ssid=&quot;your_network_ssid&quot;
         psk=&quot;xxx&quot;
         key_mgmt=WPA-PSK
 }
 </code></pre>
 
-<p>Of note, I recently acquired a pi <strong>zeroWH</strong>, for which I had to add 3 lines ([SO question]()).</p>
+<p>Of note, I recently acquired a pi <strong>zeroWH</strong>, for which I had to add 3 lines (<a href="https://raspberrypi.stackexchange.com/questions/75039/can-t-get-auto-wifi-connection-to-work-on-pi-zero-w-on-boot">StackExchange question</a>).</p>
 
-<pre><code>ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+<pre><code class="language-bash">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=FR
 network={
@@ -150,12 +154,12 @@ network={
 
 <p>once the raspberrypi booted, try to find its IP</p>
 
-<pre><code>nmap -sn 192.168.1.0/24
+<pre><code class="language-bash">nmap -sn 192.168.1.0/24
 </code></pre>
 
 <p>which gives:</p>
 
-<pre><code>Starting Nmap 7.60 ( https://nmap.org ) at 2017-12-08 22:44 CET
+<pre><code class="language-bash">Starting Nmap 7.60 ( https://nmap.org ) at 2017-12-08 22:44 CET
 Nmap scan report for 192.168.1.27
 Host is up (0.0071s latency).
 Nmap scan report for 192.168.1.254
@@ -177,7 +181,7 @@ Nmap done: 256 IP addresses (2 hosts up) scanned in 11.71 seconds
 <li>run <code>sudo raspi-config</code> to activate the camera</li>
 <li>change password for the <code>pi</code> user</li>
 <li>set up <code>locales</code> and timezone</li>
-<li>update &amp;&amp; upgrade raspbian strech</li>
+<li>update &amp;&amp; upgrade raspbian stretch</li>
 <li>add public <code>ssh</code> key to <code>.ssh/authorized_keys</code> for password less connection</li>
 </ul>
 
@@ -193,7 +197,7 @@ Nmap done: 256 IP addresses (2 hosts up) scanned in 11.71 seconds
 
 <p>see from here <a href="https://motion-project.github.io/motion_build.html">https://motion-project.github.io/motion_build.html</a></p>
 
-<pre><code>wget https://github.com/Motion-Project/motion/releases/download/release-4.1.1/pi_stretch_motion_4.1.1-1_armhf.deb
+<pre><code class="language-bash">wget https://github.com/Motion-Project/motion/releases/download/release-4.1.1/pi_stretch_motion_4.1.1-1_armhf.deb
 sudo apt-get install gdebi-core
 sudo gdebi pi_stretch_motion_4.1.1-1_armhf.deb
 </code></pre>
@@ -220,7 +224,25 @@ sudo gdebi pi_stretch_motion_4.1.1-1_armhf.deb
 auto_brightness on
 </code></pre>
 
-<h2 id="communication-between-motion-via-telegram">Communication between motion <em>via</em> telegram</h2>
+<h3 id="see-live-streaming">see live streaming</h3>
+
+<p>with this configuration, you should see the live streaming from this URL: <a href="http://192.168.1.27:8081">http://192.168.1.27:8081</a></p>
+
+<p>the web control on port <strong>8080</strong> is disabled apart outside the pi, since we&rsquo;ll use telegram to control <em>motion</em></p>
+
+<h3 id="detection">detection</h3>
+
+<p>Here is an example of my kid being detected. The red rectangle works nicely</p>
+
+<p><img src="../../images/kid_catch.jpg" alt="" /></p>
+
+<p>But of course, there are false alarms, such as when the light comes in/out suddenly</p>
+
+<p><img src="../../images/light_false_alarm.jpg" alt="" /></p>
+
+<p>the parameter <code>lighswitch 80</code> reduced the issue but it still exists.</p>
+
+<h2 id="communication-with-motion-via-telegram">Communication with motion <em>via</em> telegram</h2>
 
 <p>Now comes the fun part. Receiving the motion detection by emails is fine, but it can be done via <strong>Telegram</strong> and the awesome API <a href="http://telepot.readthedocs.io"><code>telepot</code></a>. <strong>Eric</strong> told me about telegram <strong>bots</strong> and it looked promising.
 Actually, you can even <em>send</em> commands to your pi using your phone using those telegram <strong>bots</strong>.</p>
@@ -229,7 +251,7 @@ Actually, you can even <em>send</em> commands to your pi using your phone using 
 
 <ul>
 <li><strong>alerts</strong>. A motion is detected. Send the best picture to your telegram account.</li>
-<li><strong>pause</strong> / <strong>resume</strong> motion detection. Imagine you are away and for some reason (shadows, your own cat) you keep receiving alerts, you may want to remotely <em>pause</em> the dectection. And of course, being able to <em>resume</em> it. Those commands are already in <code>motion</code>, we just need to talk to it.</li>
+<li><strong>pause</strong> / <strong>resume</strong> motion detection. Imagine you are away and for some reason (shadows, your own cat) you keep receiving alerts, you may want to remotely <em>pause</em> the detection. And of course, being able to <em>resume</em> it. Those commands are already in <code>motion</code>, we just need to talk to it.</li>
 <li><strong>status</strong>. You haven&rsquo;t received alerts, is the system running smoothly? You can ask for a confirmation that detection is on. Also, check if the camera is on.</li>
 <li><strong>snapshot</strong>. No alerts, but you&rsquo;d like to get a snapshot at any time.</li>
 <li><strong>video</strong>. Maybe the nicest feature IMHO. Sending picture to your phone for every detection is fine, but not all videos. Based on the picture you see, you&rsquo;d like to get the video of the detection. Once again, by a command to a telegram bot, you receive the last video recorded.</li>
@@ -247,10 +269,12 @@ Actually, you can even <em>send</em> commands to your pi using your phone using 
 
 <p>back on the pi, install <code>telepot</code> with <code>pip</code>, assuming you installed <code>python</code> and <code>pip</code>.</p>
 
-<pre><code>pip install telepot
+<pre><code class="language-bash">pip install telepot
 </code></pre>
 
 <h3 id="test-sending-message">test sending message</h3>
+
+<h4 id="get-the-bot-id">get the bot id</h4>
 
 <pre><code class="language-python">import telepot
 bot = telepot.Bot('your-token')
@@ -259,17 +283,17 @@ bot.getMe()
 
 <p>returns <code>{u'username': u'mybot', u'first_name': u'cat tracker', u'is_bot': True, u'id': 00000008}</code></p>
 
-<p>to get your telegram id:</p>
+<h4 id="get-your-telegram-id">get your telegram id:</h4>
 
 <ul>
 <li>send a messages from telegram to <code>mybot</code></li>
-<li>fetch your message on the pi
-<code>
-from pprint import pprint
+<li>fetch your message on the pi</li>
+</ul>
+
+<pre><code>from pprint import pprint
 response = bot.getUpdates()
 pprint(response)
-</code></li>
-</ul>
+</code></pre>
 
 <p>your id appears, such as: <strong>u&rsquo;id&rsquo;: 00000004</strong></p>
 
@@ -287,19 +311,9 @@ pprint(response)
 
 <p><code>bot.sendPhoto(00000004, photo=open('/home/pi/motion/detected/07-2018-01-06_205746-13.jpg', 'rb'), caption='motion detected')</code></p>
 
-<ul>
-<li><p>take snapshot on command</p></li>
+<h4 id="create-commands-for-the-bot">create commands for the bot</h4>
 
-<li><p>in <code>bash</code>:
-<code>curl -s http://localhost:8080/0/action/snapshot &gt; /dev/null</code></p></li>
-
-<li><p>in python:
-<code>import requests; requests.get('http://localhost:8080/0/action/snapshot')</code></p></li>
-
-<li><p>disable the join group with botfather</p></li>
-
-<li><p>Commands, after sending <code>/setcommands</code> to the <code>BotFather</code></p></li>
-</ul>
+<p>After sending <code>/setcommands</code> to the <code>BotFather</code>:</p>
 
 <pre><code>time - Returns current time on pi
 check - Returns status of the camera
@@ -310,46 +324,140 @@ snapshot - Returns current image
 video - Returns last recorded video
 </code></pre>
 
-<h3 id="run-at-startup">run at startup</h3>
+<p>Of note, it doesn&rsquo;t prevent the bot to receive other commands, it just helps to display commands and select them in telegram.</p>
+
+<h4 id="python-script-that-listen">python script that listen</h4>
+
+<p>here the script <code>listen_bot.py</code>, derived from the telepot documentation.</p>
+
+<p>Some comments:
+- the last video when requested is fetched from the sub-folder <code>vids</code>. If we use the main folder of detection,
+the last video could be an incomplete one form a newer detection. Hence, the command in <code>motion.conf</code> to move a finished video to the <code>vids</code> folder.
+- I failed to restrict the bot to communicate only with me. Might not be a big deal, but the code <code>if chat_id != 00000008</code> is not working.
+- the webcontrol was set in the <em>RAW</em> mode. Then the retrieved text can be directly send to your telegram account</p>
+
+<pre><code class="language-python">#!/usr/bin/python2.7
+
+import datetime
+import telepot
+import time
+import requests
+import os
+import glob
+from telepot.loop import MessageLoop
+
+def webcontrol(chat_id, type, cmd):
+    req = 'http://localhost:8080/0/'+type+'/'+cmd
+    res = requests.get(req)
+    bot.sendMessage(chat_id, res.text)
+
+def handle(msg):
+    chat_id = msg['chat']['id']
+    command = msg['text']
+    #FIXME does not work
+    #if chat_id != 00000008:
+    #    bot.sendMessage(chat_id, &quot;Sorry this is a personal bot. Access Denied!&quot;)
+    #    continue
+
+    print 'Got command: %s' % command
+
+    if command == '/snapshot':
+        requests.get('http://localhost:8080/0/action/snapshot')
+    elif command == '/status':
+        webcontrol(chat_id, 'detection', 'status')
+    elif command == '/pause':
+        webcontrol(chat_id, 'detection', 'pause')
+    elif command == '/resume':
+        webcontrol(chat_id, 'detection', 'start')
+    elif command == '/check':
+        webcontrol(chat_id, 'detection', 'connection')
+    elif command == '/time':
+        bot.sendMessage(chat_id, 'now is '+str(datetime.datetime.now()))
+    elif command == '/video':
+        # the most recent video in this particular folder of complete vids
+        video = max(glob.iglob('/home/pi/motion/detected/vids/*.mp4'), key=os.path.getctime)
+        # send video, adapt the the first argument to your own telegram id
+        bot.sendVideo(00000008, video=open(video, 'rb'), caption='last video')
+    else:
+        bot.sendMessage(chat_id, &quot;sorry, I don't know the command &quot;+command)
+# adapt the following to the bot_id:bot_token
+bot = telepot.Bot('0000000004:bot_token')
+
+MessageLoop(bot, handle).run_as_thread()
+print 'I am listening ...'
+
+while 1:
+    time.sleep(10)
+</code></pre>
+
+<p>Now if the both <code>listen_bot.py</code> and <code>motion -c ~/motion/motion.conf</code> are running, the system should work.</p>
+
+<h4 id="run-scripts-at-startup">run scripts at startup</h4>
+
+<p>Here, the following is working, but I am sure this is the right way to do, so use we care.</p>
 
 <p>in <code>/etc/rc.local</code></p>
 
 <p>add the following lines</p>
 
-<pre><code># start listening to picatbot
+<pre><code class="language-bash"># start listening to picatbot
 /home/pi/motion/telegrambot.sh &amp;
 # start motion
 motion -c /home/pi/motion/motion.conf
 </code></pre>
 
-<h3 id="todo">TODO</h3>
+<p>with <code>telegrambot.sh</code> being</p>
+
+<pre><code class="language-bash">#!/bin/sh
+sleep 10
+sudo /home/pi/motion/listen_bot.py
+</code></pre>
+
+<h4 id="screenshots">Screenshots</h4>
+
+<p>Here are some examples of the telegram window</p>
 
 <ul>
-<li>change the command line arg of <code>send*py</code> scripts with <code>argparse</code></li>
-<li>remove pics/videos older than <em>xx</em> days to save space</li>
-<li>run the 2 services as a user without sudo</li>
-<li>look into better settings for NoIR using <a href="https://raspberrypi.stackexchange.com/questions/13818/auto-brightness-bypass-whilst-using-motion">this thread</a></li>
+<li>received a notification and later on, <code>/check</code> if connection is still on.</li>
 </ul>
+
+<p><img src="../../images/check.png" alt="" /></p>
+
+<ul>
+<li>received notification and ask for the corresponding video</li>
+</ul>
+
+<p><img src="../../images/last_video.png" alt="" /></p>
+
+<p>this video works as a GIF directly in the window, here is the <a href="../../videos/cat_video.mp4">mp4 file</a></p>
+
+<ul>
+<li><strong>pause</strong> the detection, and since no motion can be detected, ask for a <strong>snapshot</strong></li>
+</ul>
+
+<p><img src="../../images/pause.png" alt="" /></p>
+
+<h3 id="todo">TODO</h3>
+
+<p>Despite a functional system, some improvements I&rsquo;d like to achieve:</p>
+
+<ul>
+<li>restrict the bot to one user</li>
+<li>remove pics/videos older than <em>xx</em> days to save space</li>
+<li>run the 2 services as a user without <code>sudo</code> rights</li>
+<li>look into better settings for NoIR camera using <a href="https://raspberrypi.stackexchange.com/questions/13818/auto-brightness-bypass-whilst-using-motion">this thread</a></li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Beyond the initial goal, catch the neighbor cats coming in, which actually I don&rsquo;t care about, it was fun to set-up the whole thing. Moreover, <strong>telegram</strong> offers a great service and offers a great interface for many applications. I knew about the <a href="XX">TeleR</a> bot, that is actually easy to set-up.</p>
+
+<p>Don&rsquo;t hesitate to leave a comment below for any remarks or improvements that I overseen.</p>
 
                 </section>
             </article>
 
             
-
-            
-                <div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'ginolhac'; 
-
-     
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
 
             
 
@@ -390,9 +498,9 @@ motion -c /home/pi/motion/motion.conf
 
         </section>
 
-        <script src="../../js/jquery-2.2.4.min.js"></script>
-<script src="../../js/main.js"></script>
-<script src="../../js/highlight.min.js"></script>
+        <script src="https://ginolhac.github.com/js/jquery-2.2.4.min.js"></script>
+<script src="https://ginolhac.github.com/js/main.js"></script>
+<script src="https://ginolhac.github.com/js/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 

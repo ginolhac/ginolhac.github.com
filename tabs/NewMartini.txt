@@ -1,9 +1,9 @@
-Band   : Karate 
-Album  : In Place Of Real Insight 
-Song   : New Martini 
+Band : Karate 
+Album: In Place Of Real Insight 
+Song : New Martini 
 Tab By : EeYoRe 
-Url    : www.geocities.com/fatstaremo 
-Icq    : 111838101 
+Url: www.geocities.com/fatstaremo 
+Icq: 111838101 
 
 intro 
 

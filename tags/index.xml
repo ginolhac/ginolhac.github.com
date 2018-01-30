@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on ginolhac</title>
-    <link>/tags/</link>
-    <description>Recent content in Tags on ginolhac</description>
+    <title>Tags on Aurélien&#39; blog</title>
+    <link>https://ginolhac.github.com/tags/</link>
+    <description>Recent content in Tags on Aurélien&#39; blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2018 Ginolhac</copyright>
     <lastBuildDate>Sun, 25 Jan 2015 14:38:35 +0100</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ginolhac.github.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Bike</title>
-      <link>/tags/bike/</link>
+      <link>https://ginolhac.github.com/tags/bike/</link>
       <pubDate>Sun, 25 Jan 2015 14:38:35 +0100</pubDate>
       
-      <guid>/tags/bike/</guid>
+      <guid>https://ginolhac.github.com/tags/bike/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Diy</title>
-      <link>/tags/diy/</link>
+      <link>https://ginolhac.github.com/tags/diy/</link>
       <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/diy/</guid>
+      <guid>https://ginolhac.github.com/tags/diy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pi</title>
-      <link>/tags/pi/</link>
+      <link>https://ginolhac.github.com/tags/pi/</link>
       <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/pi/</guid>
+      <guid>https://ginolhac.github.com/tags/pi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>/tags/r/</link>
+      <link>https://ginolhac.github.com/tags/r/</link>
       <pubDate>Sun, 31 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/r/</guid>
+      <guid>https://ginolhac.github.com/tags/r/</guid>
       <description></description>
     </item>
     
