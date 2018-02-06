@@ -7,7 +7,7 @@
 		
 		
 		
-		<meta name="generator" content="Hugo 0.34" />
+		<meta name="generator" content="Hugo 0.35" />
 		<title>home surveillance monitored via telegram &middot; Aurélien&#39; blog</title>
 		<link rel="shortcut icon" href="https://ginolhac.github.com/images/favicon.ico">
 		<link rel="stylesheet" href="https://ginolhac.github.com/css/style.css">
@@ -47,8 +47,8 @@
                     </h1>
                     <h2 class="headline">
                     Jan 27, 2018 00:00
-                    · 1545 words
-                    · 8 minute read
+                    · 1976 words
+                    · 10 minute read
                       <span class="tags">
                       
                       
@@ -216,13 +216,106 @@ sudo gdebi pi_stretch_motion_4.1.1-1_armhf.deb
 
 <h3 id="tweaks-to-the-initial-tutorial">tweaks to the initial tutorial</h3>
 
-<p>I choose to get the videos</p>
+<p>I choose to get the videos and several other changes that are reported below.</p>
 
-<p><code>gdiff /etc/motion/motion.conf ~/motion/motion.conf</code></p>
+<p>In red the initial values, in green: the replaced ones</p>
 
-<pre><code>lighswitch 80
-auto_brightness on
-</code></pre>
+<!-- git diff -U1 --color-words --no-index motion.conf.orig motion.conf -->
+
+<pre>
+<span class="bold">diff --git a/motion.conf.orig b/motion.conf</span>
+<span class="bold">index a03faf0..8101ff5 100644</span>
+<span class="bold">--- a/motion.conf.orig</span>
+<span class="bold">+++ b/motion.conf</span>
+<span class="f6">@@ -78,6 +78,6 @@</span> flip_axis none
+# Image width (pixels). Valid range: Camera dependent, default: 320
+width <span class="f1">320</span><span class="f2">640</span>
+
+# Image height (pixels). Valid range: Camera dependent, default: 240
+height <span class="f1">240</span><span class="f2">480</span>
+
+<span class="f6">@@ -85,3 +85,3 @@</span> height 240
+# Valid range: 2-100. Default: 100 (almost no limit).
+framerate <span class="f1">2</span><span class="f2">20</span>
+
+<span class="f6">@@ -120,3 +120,3 @@</span> rtsp_uses_tcp on
+# Default: Not defined
+<span class="f1">;</span>mmalcam_name vc.ril.camera
+
+<span class="f6">@@ -224,3 +224,3 @@</span> pre_capture 0
+# Number of frames to capture after motion is no longer detected (default: 0)
+post_capture <span class="f1">0</span><span class="f2">5</span>
+
+<span class="f6">@@ -236,3 +236,3 @@</span> event_gap 60
+# When value is exceeded a new movie file is created. (Default: 0 = infinite)
+max_movie_time <span class="f1">0</span><span class="f2">30</span>
+
+<span class="f6">@@ -252,3 +252,3 @@</span> emulate_motion off
+# Can be used as preview shot for the corresponding movie.
+output_pictures <span class="f1">off</span><span class="f2">best</span>
+
+<span class="f6">@@ -258,3 +258,3 @@</span> output_debug_pictures off
+# The quality (in percent) to be used by the jpeg and webp compression (default: 75)
+quality <span class="f1">75</span><span class="f2">80</span>
+
+<span class="f6">@@ -267,3 +267,3 @@</span> picture_type jpeg
+# Use ffmpeg to encode videos of motion (default: off)
+ffmpeg_output_movies <span class="f1">on</span><span class="f2">off</span>
+
+<span class="f6">@@ -345,3 +345,3 @@</span> snapshot_interval 0
+# Set to 'preview' will only draw a box in preview_shot pictures.
+locate_motion_mode <span class="f1">off</span><span class="f2">preview</span>
+
+<span class="f6">@@ -353,3 +353,3 @@</span> locate_motion_mode off
+# Set to 'redcross' will draw a little red cross to mark center.
+locate_motion_style <span class="f1">box</span><span class="f2">redbox</span>
+
+<span class="f6">@@ -368,3 +368,3 @@</span> text_right %Y-%m-%d\n%T-%q
+# Text is placed in upper right corner
+text_changes <span class="f1">off</span><span class="f2">on</span>
+
+<span class="f6">@@ -376,3 +376,3 @@</span> text_changes off
+# a unique identifier for each event.
+text_event <span class="f1">%Y%m%d%H%M%S</span><span class="f2">%Y/%m/%d-%H:%M:%S</span>
+
+<span class="f6">@@ -403,3 +403,3 @@</span> text_double off
+# Recommended to use absolute path. (Default: current working directory)
+<span class="f1">#target_dir /tmp/motion</span><span class="f2">target_dir /home/pi/motion/detected</span>
+
+<span class="f6">@@ -412,3 +412,3 @@</span> text_double off
+# point to the latest snapshot, unless snapshot_filename is exactly 'lastsnap'
+snapshot_filename <span class="f1">%v-%Y%m%d%H%M%S-snapshot</span><span class="f2">%v-%Y-%m-%d_%H%M%S-snapshot</span>
+
+<span class="f6">@@ -421,3 +421,3 @@</span> snapshot_filename %v-%Y%m%d%H%M%S-snapshot
+# convention for preview shots. See motion guide for details
+picture_filename <span class="f1">%v-%Y%m%d%H%M%S-%q</span><span class="f2">%v-%Y-%m-%d_%H%M%S-%q</span>
+
+<span class="f6">@@ -426,3 +426,3 @@</span> picture_filename %v-%Y%m%d%H%M%S-%q
+# File extensions(.mpg .avi) are automatically added so do not include them
+movie_filename <span class="f1">%v-%Y%m%d%H%M%S</span><span class="f2">%v-%Y-%m-%d_%H%M%S</span>
+
+<span class="f6">@@ -431,3 +431,3 @@</span> movie_filename %v-%Y%m%d%H%M%S
+# File extensions(.mpg .avi) are automatically added so do not include them
+timelapse_filename <span class="f1">%Y%m%d-timelapse</span><span class="f2">%Y-%m-%d-timelapse</span>
+
+<span class="f6">@@ -454,9 +454,9 @@</span> stream_quality 50
+# rate given by stream_maxrate when motion is detected (default: off)
+stream_motion <span class="f1">off</span><span class="f2">on</span>
+
+# Maximum framerate for stream streams (default: 1)
+stream_maxrate <span class="f1">1</span><span class="f2">10</span>
+
+# Restrict stream connections to localhost only (default: on)
+stream_localhost <span class="f1">on</span><span class="f2">off</span>
+
+<span class="f6">@@ -494,3 +494,3 @@</span> webcontrol_port 8080
+# Restrict control connections to localhost only (default: on)
+webcontrol_localhost <span class="f1">on</span><span class="f2">off</span>
+
+<span class="f6">@@ -608,3 +608,3 @@</span> quiet on
+# To give the filename as an argument to a command append it with %f
+<span class="f1">;</span>on_picture_save <span class="f1">value</span><span class="f2">/home/pi/motion/send_detection.py %f</span>
+</pre>
 
 <h3 id="see-live-streaming">see live streaming</h3>
 
@@ -429,7 +522,13 @@ sudo /home/pi/motion/listen_bot.py
 
 <p><img src="../../images/last_video.png" alt="" /></p>
 
-<p>this video works as a GIF directly in the window, here is the <a href="../../videos/cat_video.mp4">mp4 file</a></p>
+<p>this video works as a GIF directly in the window:</p>
+
+<p><img src="../../videos/cat_video.gif" alt="gif file" /></p>
+
+<!-- ffmpeg -i videos/cat_video.mp4 -r 10 -f image2pipe -vf scale=320:-1 -vcodec ppm - | \
+  convert -delay 5 -loop 0 - cat_video.gif
+-->
 
 <ul>
 <li><strong>pause</strong> the detection, and since no motion can be detected, ask for a <strong>snapshot</strong></li>
@@ -458,6 +557,21 @@ sudo /home/pi/motion/listen_bot.py
             </article>
 
             
+
+            
+                <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = ''; 
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
 
             
 

@@ -42,5 +42,15 @@ teeth &amp;lt;- data.frame(stringsAsFactors = FALSE, kid = c(&amp;quot;Anouk&amp
       <description>Snow during winter time. How unexpected this could be?</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://ginolhac.github.com/posts/2018-01-27-diy-raspberry-monitored-via-telegram/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ginolhac.github.com/posts/2018-01-27-diy-raspberry-monitored-via-telegram/</guid>
+      <description>0.1 Rationale The raspberry pi has always been appealing to me, but I needed a project to really get involved. After discussing with Eric Koncina who made several great applications with Pis, I decided to go for a home surveillance system.
+The main objective was to see how often the neighbor cats are coming to our garden, because they are scaring our cat. It’s not a big deal, rather a justification for the pi project.</description>
+    </item>
+    
   </channel>
 </rss>
