@@ -8,7 +8,7 @@
 		
 		
 		<meta name="generator" content="Hugo 0.35" />
-		<title>à propos &middot; Aurélien&#39; blog</title>
+		<title>Tweening a Poisson distribution &middot; Aurélien&#39; blog</title>
 		<link rel="shortcut icon" href="https://ginolhac.github.com/images/favicon.ico">
 		<link rel="stylesheet" href="https://ginolhac.github.com/css/style.css">
 		<link rel="stylesheet" href="https://ginolhac.github.com/css/highlight.css">
@@ -22,8 +22,8 @@
 		
 	</head>
 
-<body>
-<nav class="main-nav">
+    <body>
+       <nav class="main-nav">
 	
 	
 		<a href='https://ginolhac.github.com/'> <span class="arrow">←</span>Home</a>
@@ -38,30 +38,65 @@
 	
 </nav>
 
-<div class="profile">
-    <section id="wrapper">
-        <header id="header">
-            <a href='https://ginolhac.github.com/about'>
-                <img id="avatar" class="2x" src="https://ginolhac.github.com/images/avatar.png"/>
-            </a>
-            <h1>Aurélien&#39; blog</h1>
-            <h2>bioinformatic and data science</h2>
-        </header>
-    </section>
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        Tweening a Poisson distribution
+                    </h1>
+                    <h2 class="headline">
+                    Dec 8, 2016 00:00
+                    · 103 words
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://ginolhac.github.com/tags/r">R</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    <div id="with-gganimate-and-tweenr" class="section level1">
+<h1>with <code>gganimate</code> and <code>tweenr</code></h1>
+<p>using <span class="math inline">\(\lambda\)</span> from 5 to 55 with a step of 5.</p>
+<pre class="r"><code>library(tidyverse)
+library(gganimate)
+library(tweenr) # devtools::install_github(&quot;thomasp85/tweenr&quot;)
+
+crossing(tibble(x = 1:50),
+         tibble(lambda = c(2, seq(5, 55, 5)))) %&gt;%
+  mutate(dpoi = dpois(x, lambda = lambda)) -&gt; poi_df
+
+my_list &lt;- map(unique(poi_df$lambda), ~ filter(poi_df, lambda == .x) %&gt;% as.data.frame())
+
+tween_states(my_list, tweenlength = 7, statelength = 1, ease = &quot;cubic-in-out&quot;, nframes = 50) %&gt;%
+  
+  ggplot(aes(x, dpoi, frame = .frame)) + 
+  geom_col(position = &quot;dodge&quot;, width = 2.0) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(x = NULL) +
+  theme_classic(16) -&gt; p
+
+gganimate(p, title_frame = FALSE, ani.width = 600, ani.height = 450, interval = 0.1, filename = &quot;poisson.gif&quot;)</code></pre>
+<div class="figure">
+<img src="../../images/poisson.gif" />
+
+</div>
 </div>
 
+                </section>
+            </article>
 
-<section id="wrapper" class="home">
-    <p>Hi, I am a bioinfomatician at the <a href="http://wwwen.uni.lu/recherche/fstc/life_sciences_research_unit/people/aurelien_ginolhac">Life Sciences Research Unit</a> at the <a href="http://wwwen.uni.lu/">University of Luxembourg</a>.</p>
+            
 
-<p>I am mostly interested in R, data science, bike commuting and geeky stuffs such as raspberry pis. I live in France, father of two.</p>
-
-<p>This blog was built using the <a href="https://bookdown.org/yihui/blogdown/">blogdown</a> package and <a href="https://www.rstudio.com/products/RStudio/">rstudio</a>. The <a href="http://www.gohugo.io/">hugo</a> theme <code>cactus-plus</code> was designed by <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>, thanks to <a href="https://www.data-imaginist.com/">Thomas Pedersen</a> for chosing it, was a good one.</p>
-
-
-    
-        
-            <div id="disqus_thread"></div>
+            
+                <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'ginolhac'; 
 
@@ -75,10 +110,11 @@
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
 
-        
-    
+            
 
-    <footer id="footer">
+            
+
+            <footer id="footer">
     
         <div id="social">
 
@@ -111,9 +147,9 @@
     </p>
 </footer>
 
-</section>
+        </section>
 
-<script src="https://ginolhac.github.com/js/jquery-2.2.4.min.js"></script>
+        <script src="https://ginolhac.github.com/js/jquery-2.2.4.min.js"></script>
 <script src="https://ginolhac.github.com/js/main.js"></script>
 <script src="https://ginolhac.github.com/js/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
@@ -136,4 +172,5 @@ ga('send', 'pageview');
 
 
 
-</body>
+    </body>
+</html>

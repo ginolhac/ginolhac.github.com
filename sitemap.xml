@@ -8,7 +8,12 @@
   </url>
   
   <url>
-    <loc>https://ginolhac.github.com/posts/teething/</loc>
+    <loc>https://ginolhac.github.com/posts/tweening-a-poisson-distribution/</loc>
+    <lastmod>2016-12-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ginolhac.github.com/posts/teething-process/</loc>
     <lastmod>2016-07-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -68,7 +73,7 @@
   
   <url>
     <loc>https://ginolhac.github.com/tags/r/</loc>
-    <lastmod>2016-07-31T00:00:00+00:00</lastmod>
+    <lastmod>2016-12-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

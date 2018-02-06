@@ -7,17 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2018 Ginolhac</copyright>
-    <lastBuildDate>Sun, 31 Jul 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Dec 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://ginolhac.github.com/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Tweening a Poisson distribution</title>
+      <link>https://ginolhac.github.com/posts/tweening-a-poisson-distribution/</link>
+      <pubDate>Thu, 08 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ginolhac.github.com/posts/tweening-a-poisson-distribution/</guid>
+      <description>with gganimate and tweenr using \(\lambda\) from 5 to 55 with a step of 5.
+library(tidyverse) library(gganimate) library(tweenr) # devtools::install_github(&amp;quot;thomasp85/tweenr&amp;quot;) crossing(tibble(x = 1:50), tibble(lambda = c(2, seq(5, 55, 5)))) %&amp;gt;% mutate(dpoi = dpois(x, lambda = lambda)) -&amp;gt; poi_df my_list &amp;lt;- map(unique(poi_df$lambda), ~ filter(poi_df, lambda == .x) %&amp;gt;% as.data.frame()) tween_states(my_list, tweenlength = 7, statelength = 1, ease = &amp;quot;cubic-in-out&amp;quot;, nframes = 50) %&amp;gt;% ggplot(aes(x, dpoi, frame = .frame)) + geom_col(position = &amp;quot;dodge&amp;quot;, width = 2.</description>
+    </item>
+    
+    <item>
       <title>teething</title>
-      <link>https://ginolhac.github.com/posts/teething/</link>
+      <link>https://ginolhac.github.com/posts/teething-process/</link>
       <pubDate>Sun, 31 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://ginolhac.github.com/posts/teething/</guid>
+      <guid>https://ginolhac.github.com/posts/teething-process/</guid>
       <description>Teething can be tough for kids, and so for the parents. For our first kid, it was actually pretty painful. Then, I wanted to see how synchronize the second kid would be with the first one.
 Input data This was an old input, now I would use the datapasta rstudio addin by Miles Mc Bain to get a tribble from any spreadsheet.
 teeth &amp;lt;- data.frame(stringsAsFactors = FALSE, kid = c(&amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Anouk&amp;quot;, &amp;quot;Irène&amp;quot;, &amp;quot;Irène&amp;quot;, &amp;quot;Irène&amp;quot;, &amp;quot;Irène&amp;quot;), date = c(&amp;quot;2014-03-31&amp;quot;, &amp;quot;2014-04-18&amp;quot;, &amp;quot;2014-07-02&amp;quot;, &amp;quot;2014-06-09&amp;quot;, &amp;quot;2014-07-03&amp;quot;, &amp;quot;2014-07-26&amp;quot;, &amp;quot;2014-08-12&amp;quot;, &amp;quot;2014-10-12&amp;quot;, &amp;quot;2015-01-11&amp;quot;, &amp;quot;2015-01-11&amp;quot;, &amp;quot;2015-01-04&amp;quot;, &amp;quot;2015-02-01&amp;quot;, &amp;quot;2015-02-01&amp;quot;, &amp;quot;2015-02-12&amp;quot;, &amp;quot;2015-03-28&amp;quot;, &amp;quot;2015-10-15&amp;quot;, &amp;quot;2015-10-15&amp;quot;, &amp;quot;2015-12-21&amp;quot;, &amp;quot;2016-03-01&amp;quot;, &amp;quot;2017-05-11&amp;quot;, &amp;quot;2017-05-18&amp;quot;, &amp;quot;2017-07-11&amp;quot;, &amp;quot;2017-07-27&amp;quot;), teeth = c(&amp;quot;incisive inf cent D&amp;quot;, &amp;quot;incisive inf cent G&amp;quot;, &amp;quot;incisive sup cent D&amp;quot;, &amp;quot;incisive sup cent G&amp;quot;, &amp;quot;incisive sup lat G&amp;quot;, &amp;quot;incisive sup lat D&amp;quot;, &amp;quot;incisive inf lat D&amp;quot;, &amp;quot;incisive inf lat G&amp;quot;, &amp;quot;prem 1 sup G&amp;quot;, &amp;quot;prem 1 inf D&amp;quot;, &amp;quot;prem 1 sup D&amp;quot;, &amp;quot;prem 1 sup D&amp;quot;, &amp;quot;canine sup G&amp;quot;, &amp;quot;canine sup D&amp;quot;, &amp;quot;canine inf D&amp;quot;, &amp;quot;prem 2 inf G&amp;quot;, &amp;quot;prem 2 inf D&amp;quot;, &amp;quot;prem 2 sup D&amp;quot;, &amp;quot;prem 2 sup G&amp;quot;, &amp;quot;incisive inf cent D&amp;quot;, &amp;quot;incisive inf cent G&amp;quot;, &amp;quot;incisive sup cent D&amp;quot;, &amp;quot;incisive sup cent G&amp;quot;) ) https://en.</description>
