@@ -9,12 +9,12 @@
 		
 		<meta name="generator" content="Hugo 0.35" />
 		<title>home surveillance monitored via telegram &middot; Aurélien&#39; blog</title>
-		<link rel="shortcut icon" href="https://ginolhac.github.com/images/favicon.ico">
-		<link rel="stylesheet" href="https://ginolhac.github.com/css/style.css">
-		<link rel="stylesheet" href="https://ginolhac.github.com/css/highlight.css">
+		<link rel="shortcut icon" href="http://ginolhac.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="http://ginolhac.github.io/css/style.css">
+		<link rel="stylesheet" href="http://ginolhac.github.io/css/highlight.css">
 
 		
-		<link rel="stylesheet" href="https://ginolhac.github.com/css/font-awesome.min.css">
+		<link rel="stylesheet" href="http://ginolhac.github.io/css/font-awesome.min.css">
 		
 
 		
@@ -26,12 +26,12 @@
        <nav class="main-nav">
 	
 	
-		<a href='https://ginolhac.github.com/'> <span class="arrow">←</span>Home</a>
+		<a href='http://ginolhac.github.io/'> <span class="arrow">←</span>Home</a>
 	
-	<a href='https://ginolhac.github.com/posts'>Archive</a>
-	<a href='https://ginolhac.github.com/karate'>Karate</a>
-	<a href='https://ginolhac.github.com/tags'>Tags</a>
-	<a href='https://ginolhac.github.com/about'>About</a>
+	<a href='http://ginolhac.github.io/posts'>Archive</a>
+	<a href='http://ginolhac.github.io/karate'>Karate</a>
+	<a href='http://ginolhac.github.io/tags'>Tags</a>
+	<a href='http://ginolhac.github.io/about'>About</a>
 
 	
 
@@ -53,9 +53,9 @@
                       
                       
                           
-                              <a href="https://ginolhac.github.com/tags/diy">DIY</a>
+                              <a href="http://ginolhac.github.io/tags/diy">DIY</a>
                           
-                              <a href="https://ginolhac.github.com/tags/pi">pi</a>
+                              <a href="http://ginolhac.github.io/tags/pi">pi</a>
                           
                       
                       
@@ -95,7 +95,7 @@ great applications with Pis, I decided to go for a home surveillance system.</p>
 
 <p>Here is an example of picture with low interior light. Colors are off, but quality is fine to me</p>
 
-<p><img src="/images/cam_noIR.jpg" alt="" /></p>
+<p><img src="../../images/cam_noIR.jpg" alt="" /></p>
 
 <h2 id="setting-up-the-pi">Setting-up the pi</h2>
 
@@ -216,7 +216,7 @@ sudo gdebi pi_stretch_motion_4.1.1-1_armhf.deb
 
 <h3 id="tweaks-to-the-initial-tutorial">tweaks to the initial tutorial</h3>
 
-<p>I choose to get the videos and several other changes made to the <code>motion</code> version <strong>4.1.1.</strong> and are reported in the complete <a href="/data/motion_diff.html"><strong>diff</strong></a>.</p>
+<p>I choose to get the videos and several other changes made to the <code>motion</code> version <strong>4.1.1.</strong> and are reported in the complete <a href="../../data/motion_diff.html"><strong>diff</strong></a>.</p>
 
 <p>The initial values are reported in red, in green: the new ones.</p>
 
@@ -234,11 +234,11 @@ diff2html -i file ../public/motion.diff -F test.html
 
 <p>Here is an example of my kid being detected. The red rectangle works nicely</p>
 
-<p><img src="/images/kid_catch.jpg" alt="" /></p>
+<p><img src="../../images/kid_catch.jpg" alt="" /></p>
 
 <p>But of course, there are false alarms, such as when the light comes in/out suddenly</p>
 
-<p><img src="/images/light_false_alarm.jpg" alt="" /></p>
+<p><img src="../../images/light_false_alarm.jpg" alt="" /></p>
 
 <p>the parameter <code>lighswitch 80</code> reduced the issue but it still exists.</p>
 
@@ -421,17 +421,17 @@ sudo /home/pi/motion/listen_bot.py
 <li>received a notification and later on, <code>/check</code> if connection is still on.</li>
 </ul>
 
-<p><img src="/images/check.png" alt="" /></p>
+<p><img src="../../images/check.png" alt="" /></p>
 
 <ul>
 <li>received notification and ask for the corresponding video</li>
 </ul>
 
-<p><img src="/images/last_video.png" alt="" /></p>
+<p><img src="../../images/last_video.png" alt="" /></p>
 
 <p>this video works as a GIF directly in the window:</p>
 
-<p><img src="/videos/cat_video.gif" alt="gif file" /></p>
+<p><img src="../../videos/cat_video.gif" alt="gif file" /></p>
 
 <!-- ffmpeg -i videos/cat_video.mp4 -r 10 -f image2pipe -vf scale=320:-1 -vcodec ppm - | \
   convert -delay 5 -loop 0 - cat_video.gif
@@ -441,7 +441,7 @@ sudo /home/pi/motion/listen_bot.py
 <li><strong>pause</strong> the detection, and since no motion can be detected, ask for a <strong>snapshot</strong></li>
 </ul>
 
-<p><img src="/images/pause.png" alt="" /></p>
+<p><img src="../../images/pause.png" alt="" /></p>
 
 <h3 id="todo">TODO</h3>
 
@@ -519,9 +519,9 @@ sudo /home/pi/motion/listen_bot.py
 
         </section>
 
-        <script src="https://ginolhac.github.com/js/jquery-2.2.4.min.js"></script>
-<script src="https://ginolhac.github.com/js/main.js"></script>
-<script src="https://ginolhac.github.com/js/highlight.min.js"></script>
+        <script src="http://ginolhac.github.io/js/jquery-2.2.4.min.js"></script>
+<script src="http://ginolhac.github.io/js/main.js"></script>
+<script src="http://ginolhac.github.io/js/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 
