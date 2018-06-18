@@ -1,20 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata');
 
 code {
-    background: #fff;
-    font-size: 16px;
-    font-weight: bold;
+    background:  #1d1f21;
+    color: #c5c8c6;
+    font-size: 14px;
+    /*font-weight: bold;*/
     /*font-weight: 100;*/
+    border-radius: 4px;
     padding: 4px;
     border: none;
-    box-shadow: inset 0 0 0 1px #E4EBF2;
+    /*box-shadow: inset 0 0 0 1px #E4EBF2;*/
     padding: 1px 4px 4px 4px;
     overflow: scroll;
     font-family: 'Inconsolata', 'Menlo', 'Monaco', Courier, monospace;
 }
 
 code.hljs {
-  font-size: 12px;
+  font-size: 14px;
   display: block;
   white-space: pre;
   overflow-x: auto;
