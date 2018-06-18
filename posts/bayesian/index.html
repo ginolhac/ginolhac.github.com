@@ -8,7 +8,7 @@
 		<meta name="author" content="Ginolhac">
 		
 		<meta name="generator" content="Hugo 0.42.1" />
-		<title>tweening a Poisson distribution &middot; Aurélien&#39; blog</title>
+		<title>MCM &middot; Aurélien&#39; blog</title>
 		<link rel="shortcut icon" href="../../images/favicon.ico">
 		<link rel="stylesheet" href="../../css/style.css">
 		<link rel="stylesheet" href="../../css/highlight.css">
@@ -43,12 +43,12 @@
             <article>
                 <header>
                     <h1>
-                        tweening a Poisson distribution
+                        MCM
                     </h1>
                     <h2 class="headline">
-                    Dec 8, 2016
-                    · 103 words
-                    · 1 minute read
+                    Mar 30, 2018
+                    · 264 words
+                    · 2 minute read
                       <span class="tags">
                       
                       
@@ -64,30 +64,63 @@
                   
                 
                 <section id="post-body">
-                    <div id="with-gganimate-and-tweenr" class="section level1">
-<h1>with gganimate and tweenr</h1>
-<p>using <span class="math inline">\(\lambda\)</span> from 5 to 55 with a step of 5.</p>
-<pre class="r"><code>library(tidyverse)
-library(gganimate)
-library(tweenr) # devtools::install_github(&quot;thomasp85/tweenr&quot;)
+                    <p>From <a href="http://mathsci.ucd.ie/~parnell_a/">Andrew Parnell</a>, <a href="https://github.com/andrewcparnell/bhm_course/blob/master/practicals/MCMC_game.R">MCMC game</a></p>
+<pre class="r"><code># MCMC game
 
-crossing(tibble(x = 1:50),
-         tibble(lambda = c(2, seq(5, 55, 5)))) %&gt;%
-  mutate(dpoi = dpois(x, lambda = lambda)) -&gt; poi_df
+# Likelihood is:
+# y[i] ~ normal(alpha, sigma^2)
+# Priors are:
+# alpha ~ normal(0, 2)
+# sigma ~ uniform(0, 5)
 
-my_list &lt;- map(unique(poi_df$lambda), ~ filter(poi_df, lambda == .x) %&gt;% as.data.frame())
+rnorm(1, mean = 0, sd = 2)
+runif(1, 0, 5)
 
-tween_states(my_list, tweenlength = 7, statelength = 1, ease = &quot;cubic-in-out&quot;, nframes = 50) %&gt;%
+
+# Data:
+y = c(4.7, 2.1, 5.2, 0.7)
+
+# Likelihood score
+alpha = 2
+sigma = 1
+dnorm(y, mean = alpha, sd = sigma)
+prod(dnorm(y, mean = alpha, sd = sigma))
+dnorm(y, mean = alpha, sd = sigma, log = TRUE)
+sum(dnorm(y, mean = alpha, sd = sigma, log = TRUE))
+exp(sum(dnorm(y, mean = alpha, sd = sigma, log = TRUE)))
+
+# Prior score
+dnorm(alpha, 0, 2, log=TRUE) + dunif(sigma, 0, 5, log=TRUE)
+
+# Total log posterior score
+sum(dnorm(y, mean = alpha, sd = sigma, log = TRUE)) + dnorm(alpha, 0, 2, log=TRUE) + dunif(sigma, 0, 5, log=TRUE)
+
+# Proper MCMC version
+iter = 1000
+alpha = 1
+sigma = 2
+par(mar=c(3,3,2,1), mgp=c(2,.7,0), tck=-.01,las=1)
+plot(1,alpha,xlim=c(1,iter), ylim = c(-2,10), col = &#39;blue&#39;, ylab = &#39;Parameter value&#39;, xlab = &#39;Iterations&#39;)
+points(1,sigma, col = &#39;red&#39;)
+legend(&#39;topleft&#39;, pch = 1, legend = c(&#39;alpha&#39;,&#39;sigma&#39;), col = c(&#39;blue&#39;,&#39;red&#39;), bty = &#39;n&#39;)
+
+for(i in 1:iter) {
+  alpha_new = rnorm(1, 0, 1)
+  sigma_new = runif(1, 0, 5)
   
-  ggplot(aes(x, dpoi, frame = .frame)) + 
-  geom_col(position = &quot;dodge&quot;, width = 2.0) +
-  scale_y_continuous(expand = c(0, 0)) +
-  labs(x = NULL) +
-  theme_classic(16) -&gt; p
+  post_score_new = sum(dnorm(y, mean = alpha_new, sd = sigma_new, log = TRUE)) + dnorm(alpha, 0, 2, log=TRUE) + dunif(sigma, 0, 5, log=TRUE)
+  post_score_old = sum(dnorm(y, mean = alpha, sd = sigma, log = TRUE)) + dnorm(alpha, 0, 2, log=TRUE) + dunif(sigma, 0, 5, log=TRUE)
+  
+  U = runif(1)
+  if(U &lt; exp(post_score_new - post_score_old)) {
+    alpha = alpha_new
+    sigma = sigma_new
+  }
+  points(i,alpha, col=&#39;blue&#39;)
+  points(i,sigma, col=&#39;red&#39;)
+  Sys.sleep(0.2)
 
-gganimate(p, title_frame = FALSE, ani.width = 600, ani.height = 450, interval = 0.1, filename = &quot;poisson.gif&quot;)</code></pre>
-<p><img src="../../images/poisson.gif" /></p>
-</div>
+}</code></pre>
 
                 </section>
             </article>

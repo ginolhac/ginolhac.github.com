@@ -8,7 +8,7 @@
 		<meta name="author" content="Ginolhac">
 		
 		<meta name="generator" content="Hugo 0.42.1" />
-		<title>tweening a Poisson distribution &middot; Aurélien&#39; blog</title>
+		<title>LaTex modern CV &middot; Aurélien&#39; blog</title>
 		<link rel="shortcut icon" href="../../images/favicon.ico">
 		<link rel="stylesheet" href="../../css/style.css">
 		<link rel="stylesheet" href="../../css/highlight.css">
@@ -43,51 +43,89 @@
             <article>
                 <header>
                     <h1>
-                        tweening a Poisson distribution
+                        LaTex modern CV
                     </h1>
                     <h2 class="headline">
-                    Dec 8, 2016
-                    · 103 words
+                    Mar 26, 2018
+                    · 170 words
                     · 1 minute read
                       <span class="tags">
-                      
-                      
-                          
-                              <a href="../../tags/r">R</a>
-                          
-                      
                       
                       </span>
                     </h2>
                 </header>
                 
                   
+                    <div id="toc">
+                      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#tlmgr-and-tinytex">tlmgr and tinytex</a></li>
+<li><a href="#install-missing-packages">install missing packages</a></li>
+<li><a href="#issue-with-fontawesome">issue with <code>fontawesome</code></a></li>
+<li><a href="#solve-issue-of-nfss-corrupted">solve issue of NFSS corrupted</a></li>
+<li><a href="#workflow">Workflow</a></li>
+</ul></li>
+</ul>
+</nav>
+                    </div>
+                  
                 
                 <section id="post-body">
-                    <div id="with-gganimate-and-tweenr" class="section level1">
-<h1>with gganimate and tweenr</h1>
-<p>using <span class="math inline">\(\lambda\)</span> from 5 to 55 with a step of 5.</p>
-<pre class="r"><code>library(tidyverse)
-library(gganimate)
-library(tweenr) # devtools::install_github(&quot;thomasp85/tweenr&quot;)
+                    
 
-crossing(tibble(x = 1:50),
-         tibble(lambda = c(2, seq(5, 55, 5)))) %&gt;%
-  mutate(dpoi = dpois(x, lambda = lambda)) -&gt; poi_df
+<h2 id="tlmgr-and-tinytex">tlmgr and tinytex</h2>
 
-my_list &lt;- map(unique(poi_df$lambda), ~ filter(poi_df, lambda == .x) %&gt;% as.data.frame())
+<h2 id="install-missing-packages">install missing packages</h2>
 
-tween_states(my_list, tweenlength = 7, statelength = 1, ease = &quot;cubic-in-out&quot;, nframes = 50) %&gt;%
-  
-  ggplot(aes(x, dpoi, frame = .frame)) + 
-  geom_col(position = &quot;dodge&quot;, width = 2.0) +
-  scale_y_continuous(expand = c(0, 0)) +
-  labs(x = NULL) +
-  theme_classic(16) -&gt; p
+<pre><code>tlmgr install moderncv
+tlmgr install xcolor
+tlmgr install colortbl
+tlmgr install fancyhdr
+tlmgr install microtype
+tlmgr install pgf # to install tikz
+tlmgr install textgreek
+tlmgr install fontawesome
+tlmgr install lastpage
+tlmgr install marvosym 
+tlmgr install greek-fontenc
+tlmgr install babel-greek
+</code></pre>
 
-gganimate(p, title_frame = FALSE, ani.width = 600, ani.height = 450, interval = 0.1, filename = &quot;poisson.gif&quot;)</code></pre>
-<p><img src="../../images/poisson.gif" /></p>
-</div>
+<pre><code>tlmgr update --self --all
+tlmgr path add
+</code></pre>
+
+<h2 id="issue-with-fontawesome">issue with <code>fontawesome</code></h2>
+
+<ul>
+<li>reload / install fonts <code>fmtutil-sys --all</code></li>
+</ul>
+
+<p>side effect, the <code>Roboto condensed</code> for <a href="https://github.com/hrbrmstr/hrbrthemes">Robert Rudis, ggplot2 theme</a> is now working nicely!</p>
+
+<h2 id="solve-issue-of-nfss-corrupted">solve issue of NFSS corrupted</h2>
+
+<p>following <a href="https://tex.stackexchange.com/a/304354/159133">this answer</a>:</p>
+
+<p>the error was completed with <em>For encoding scheme LGR the defaults cmr/m/n do not form a valid font shape</em></p>
+
+<pre><code>tlmgr install cbfonts
+</code></pre>
+
+<p>allows to get the Greek letters working. Why the <code>greek-fontenc</code> and <code>babel-greek</code> was not sufficient? I don&rsquo;t know</p>
+
+<h2 id="workflow">Workflow</h2>
+
+<ul>
+<li>bibliography from pubmed to <code>.bib</code> using <a href="http://www.bioinformatics.org/texmed/">http://www.bioinformatics.org/texmed/</a> as <code>biblio.bib</code></li>
+<li>fix gamma character <code>{I}{F}{N}γ responses</code> to <code>{I}{F}{N}{$\gamma$} responses</code></li>
+<li>first compilation, generate <code>biblio.aux</code></li>
+<li>in <code>plainyr_rev.bst</code>, specify <code>&quot;Ginolhac, A&quot;</code> so my name gets underlined and bolded</li>
+<li>run <code>bibtex biblio</code> to generate <code>biblio.bbl</code></li>
+<li>second compilation to generate the pdf</li>
+</ul>
 
                 </section>
             </article>

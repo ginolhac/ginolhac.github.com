@@ -1,15 +1,25 @@
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
 
 code {
     background: #fff;
-    font-size: 11px;
+    font-size: 16px;
+    font-weight: bold;
     /*font-weight: 100;*/
     padding: 4px;
     border: none;
     box-shadow: inset 0 0 0 1px #E4EBF2;
-    border-radius: 4px;
+    padding: 1px 4px 4px 4px;
     overflow: scroll;
-    font-family: 'Menlo', 'Monaco', Courier, monospace;
+    font-family: 'Inconsolata', 'Menlo', 'Monaco', Courier, monospace;
+}
+
+code.hljs {
+  font-size: 12px;
+  display: block;
+  white-space: pre;
+  overflow-x: auto;
+  word-wrap: normal;
+  font-weight: normal;
 }
 
 pre code {
@@ -24,14 +34,21 @@ pre code {
     background: #fff;
     border: none;
     box-shadow: inset 0 0 0 1px #E4EBF2;
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: auto;
 }
 
-/* Tomorrow Comment */
-.hljs-comment,
-.hljs-quote {
-  color: #8e908c;
+/* Tomorrow Night Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  background: #1d1f21;
+  color: #c5c8c6;
 }
 
 /* Tomorrow Red */
@@ -43,24 +60,12 @@ pre code {
 .hljs-selector-class,
 .hljs-regexp,
 .hljs-deletion {
-  color: #c82829;
-}
-
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-  color: #f5871f;
+  color: #cc6666;
 }
 
 /* Tomorrow Yellow */
 .hljs-attribute {
-  color: #eab700;
+  color: #f0c674;
 }
 
 /* Tomorrow Green */
@@ -68,26 +73,13 @@ pre code {
 .hljs-symbol,
 .hljs-bullet,
 .hljs-addition {
-  color: #718c00;
+  color: #b5bd68;
 }
 
 /* Tomorrow Blue */
 .hljs-title,
 .hljs-section {
-  color: #4271ae;
-}
-
-/* Tomorrow Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-  color: #8959a8;
-}
-
-code.hljs {
-  display: block;
-  white-space: pre;
-  overflow-x: auto;
-  word-wrap: normal;
+  color: #81a2be;
 }
 
 .hljs-emphasis {
@@ -96,4 +88,29 @@ code.hljs {
 
 .hljs-strong {
   font-weight: bold;
+}
+
+/* Mixed with Railcast by Thomas Lin Pedersen */
+
+.hljs-comment,
+.hljs-quote {
+  color: #bc9458;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #c26230;
+}
+
+/* Color from Railcast symbol etc */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #6d9cbe;
 }

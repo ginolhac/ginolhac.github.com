@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Karate tabs on Aurélien&#39; blog</title>
-    <link>http://ginolhac.github.io/karate/</link>
+    <link>/karate/</link>
     <description>Recent content in Karate tabs on Aurélien&#39; blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 26 Jul 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://ginolhac.github.io/karate/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/karate/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

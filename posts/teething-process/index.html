@@ -7,14 +7,14 @@
 		
 		<meta name="author" content="Ginolhac">
 		
-		<meta name="generator" content="Hugo 0.35" />
+		<meta name="generator" content="Hugo 0.42.1" />
 		<title>teething &middot; Aurélien&#39; blog</title>
-		<link rel="shortcut icon" href="http://ginolhac.github.io/images/favicon.ico">
-		<link rel="stylesheet" href="http://ginolhac.github.io/css/style.css">
-		<link rel="stylesheet" href="http://ginolhac.github.io/css/highlight.css">
+		<link rel="shortcut icon" href="../../images/favicon.ico">
+		<link rel="stylesheet" href="../../css/style.css">
+		<link rel="stylesheet" href="../../css/highlight.css">
     <link href="//ginolhac.github.io/styles/github.min.css" rel="stylesheet">
 		
-		<link rel="stylesheet" href="http://ginolhac.github.io/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../css/font-awesome.min.css">
 		
 
 		
@@ -26,12 +26,12 @@
        <nav class="main-nav">
 	
 	
-		<a href='http://ginolhac.github.io/'> <span class="arrow">←</span>Home</a>
+		<a href='../../'> <span class="arrow">←</span>Home</a>
 	
-	<a href='http://ginolhac.github.io/posts'>Archive</a>
-	<a href='http://ginolhac.github.io/karate'>Karate</a>
-	<a href='http://ginolhac.github.io/tags'>Tags</a>
-	<a href='http://ginolhac.github.io/about'>About</a>
+	<a href='../../posts'>Archive</a>
+	<a href='../../karate'>Karate</a>
+	<a href='../../tags'>Tags</a>
+	<a href='../../about'>About</a>
 
 	
 
@@ -47,13 +47,13 @@
                     </h1>
                     <h2 class="headline">
                     Jul 31, 2016
-                    · 342 words
-                    · 2 minute read
+                    · 518 words
+                    · 3 minute read
                       <span class="tags">
                       
                       
                           
-                              <a href="http://ginolhac.github.io/tags/r">R</a>
+                              <a href="../../tags/r">R</a>
                           
                       
                       
@@ -68,33 +68,61 @@
 <ul>
 <li><a href="#input-data">Input data</a></li>
 <li><a href="#plotting">Plotting</a></li>
+<li><a href="#animate">Animate</a></li>
 </ul>
 </div>
 
-<p>Teething can be tough for kids, and so for the parents. For our first kid, it was actually pretty painful. Then, I wanted to see how synchronize the second kid would be with the first one.</p>
+<p>Teething can be tough for kids, and so for the parents. For our first kid, it was actually pretty painful.
+Then, I wanted to see how synchronize the second kid would be with the first one.</p>
 <div id="input-data" class="section level2">
 <h2>Input data</h2>
 <p>This was an old input, now I would use the <a href="https://github.com/milesmcbain/datapasta">datapasta</a> rstudio addin by Miles Mc Bain to get a <code>tribble</code> from any spreadsheet.</p>
-<pre class="r"><code>teeth &lt;- data.frame(stringsAsFactors = FALSE,
-         kid = c(&quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;,
-                 &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;,
-                 &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Anouk&quot;, &quot;Irène&quot;, &quot;Irène&quot;,
-                 &quot;Irène&quot;, &quot;Irène&quot;),
-        date = c(&quot;2014-03-31&quot;, &quot;2014-04-18&quot;, &quot;2014-07-02&quot;, &quot;2014-06-09&quot;,
-                 &quot;2014-07-03&quot;, &quot;2014-07-26&quot;, &quot;2014-08-12&quot;, &quot;2014-10-12&quot;,
-                 &quot;2015-01-11&quot;, &quot;2015-01-11&quot;, &quot;2015-01-04&quot;, &quot;2015-02-01&quot;, &quot;2015-02-01&quot;,
-                 &quot;2015-02-12&quot;, &quot;2015-03-28&quot;, &quot;2015-10-15&quot;, &quot;2015-10-15&quot;,
-                 &quot;2015-12-21&quot;, &quot;2016-03-01&quot;, &quot;2017-05-11&quot;, &quot;2017-05-18&quot;, &quot;2017-07-11&quot;,
-                 &quot;2017-07-27&quot;),
-       teeth = c(&quot;incisive inf cent D&quot;, &quot;incisive inf cent G&quot;,
-                 &quot;incisive sup cent D&quot;, &quot;incisive sup cent G&quot;,
-                 &quot;incisive sup lat G&quot;, &quot;incisive sup lat D&quot;, &quot;incisive inf lat D&quot;,
-                 &quot;incisive inf lat G&quot;, &quot;prem 1 sup G&quot;, &quot;prem 1 inf D&quot;, &quot;prem 1 sup D&quot;,
-                 &quot;prem 1 sup D&quot;, &quot;canine sup G&quot;, &quot;canine sup D&quot;, &quot;canine inf D&quot;,
-                 &quot;prem 2 inf G&quot;, &quot;prem 2 inf D&quot;, &quot;prem 2 sup D&quot;, &quot;prem 2 sup G&quot;,
-                 &quot;incisive inf cent D&quot;, &quot;incisive inf cent G&quot;, &quot;incisive sup cent D&quot;,
-                 &quot;incisive sup cent G&quot;)
-)</code></pre>
+<pre class="r"><code>tibble::tribble(
+      ~kid,        ~date,                ~teeth,
+   &quot;Anouk&quot;, &quot;2014-03-31&quot;, &quot;incisive inf cent D&quot;,
+   &quot;Anouk&quot;, &quot;2014-04-18&quot;, &quot;incisive inf cent G&quot;,
+   &quot;Anouk&quot;, &quot;2014-07-02&quot;, &quot;incisive sup cent D&quot;,
+   &quot;Anouk&quot;, &quot;2014-06-09&quot;, &quot;incisive sup cent G&quot;,
+   &quot;Anouk&quot;, &quot;2014-07-03&quot;,  &quot;incisive sup lat G&quot;,
+   &quot;Anouk&quot;, &quot;2014-07-26&quot;,  &quot;incisive sup lat D&quot;,
+   &quot;Anouk&quot;, &quot;2014-08-12&quot;,  &quot;incisive inf lat D&quot;,
+   &quot;Anouk&quot;, &quot;2014-10-12&quot;,  &quot;incisive inf lat G&quot;,
+   &quot;Anouk&quot;, &quot;2015-01-04&quot;,        &quot;prem 1 sup G&quot;,
+   &quot;Anouk&quot;, &quot;2015-01-11&quot;,        &quot;prem 1 sup G&quot;,
+   &quot;Anouk&quot;, &quot;2015-01-11&quot;,        &quot;prem 1 inf D&quot;,
+   &quot;Anouk&quot;, &quot;2015-02-01&quot;,        &quot;prem 1 inf D&quot;,
+   &quot;Anouk&quot;, &quot;2015-02-01&quot;,        &quot;canine sup G&quot;,
+   &quot;Anouk&quot;, &quot;2015-02-12&quot;,        &quot;canine sup D&quot;,
+   &quot;Anouk&quot;, &quot;2015-03-28&quot;,        &quot;canine inf D&quot;,
+   &quot;Anouk&quot;, &quot;2015-04-04&quot;,        &quot;canine inf G&quot;, # imputed data
+   &quot;Anouk&quot;, &quot;2015-10-15&quot;,        &quot;prem 2 inf G&quot;,
+   &quot;Anouk&quot;, &quot;2015-10-15&quot;,        &quot;prem 2 inf D&quot;,
+   &quot;Anouk&quot;, &quot;2015-12-21&quot;,        &quot;prem 2 sup D&quot;,
+   &quot;Anouk&quot;, &quot;2016-03-01&quot;,        &quot;prem 2 sup G&quot;,
+   &quot;Irène&quot;, &quot;2017-05-11&quot;, &quot;incisive inf cent D&quot;,
+   &quot;Irène&quot;, &quot;2017-05-18&quot;, &quot;incisive inf cent G&quot;,
+   &quot;Irène&quot;, &quot;2017-07-11&quot;, &quot;incisive sup cent D&quot;,
+   &quot;Irène&quot;, &quot;2017-07-25&quot;, &quot;incisive sup cent G&quot;,
+   &quot;Irène&quot;, &quot;2017-08-03&quot;, &quot;incisive sup lat D&quot;,
+   &quot;Irène&quot;, &quot;2017-08-04&quot;, &quot;incisive inf lat D&quot;,
+   &quot;Irène&quot;, &quot;2017-08-04&quot;, &quot;incisive inf lat G&quot;,
+   &quot;Irène&quot;, &quot;2017-08-23&quot;, &quot;incisive sup lat G&quot;,
+   &quot;Irène&quot;, &quot;2017-09-30&quot;,        &quot;prem 1 inf D&quot;,
+   &quot;Irène&quot;, &quot;2017-09-20&quot;,        &quot;prem 1 inf G&quot;,
+   &quot;Irène&quot;, &quot;2017-10-22&quot;,        &quot;prem 1 sup D&quot;,
+   &quot;Irène&quot;, &quot;2017-10-20&quot;,        &quot;prem 1 sup G&quot;,
+   &quot;Irène&quot;, &quot;2018-04-04&quot;,        &quot;canine sup D&quot;,
+   &quot;Irène&quot;, &quot;2018-04-28&quot;,        &quot;canine inf D&quot;,
+   &quot;Irène&quot;, &quot;2018-05-15&quot;,        &quot;canine sup G&quot;,
+   &quot;Irène&quot;, &quot;2018-05-25&quot;,        &quot;prem 2 inf G&quot;,
+   &quot;Irène&quot;, &quot;2018-06-01&quot;,        &quot;canine inf G&quot;,
+   &quot;Irène&quot;, &quot;2018-06-07&quot;,        &quot;prem 2 inf D&quot;) -&gt; teeth</code></pre>
+<pre class="r"><code>count(teeth, kid)</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   kid       n
+##   &lt;chr&gt; &lt;int&gt;
+## 1 Anouk    20
+## 2 Irène    18</code></pre>
 <p><a href="https://en.wikipedia.org/wiki/Dental_notation" class="uri">https://en.wikipedia.org/wiki/Dental_notation</a></p>
 <pre><code>Primary Dentition
         upper right - 5             upper left - 6
@@ -112,21 +140,43 @@
 <h2>Plotting</h2>
 <pre class="r"><code>teeth %&gt;%
   mutate(date = parse_date(date),
+         t_teeth = word(teeth, 1),
          age = case_when(kid == &quot;Anouk&quot; ~ date - ymd(&quot;20130828&quot;),
-                        kid == &quot;Irène&quot; ~ date - ymd(&quot;20160922&quot;)),
-         age2 = as.numeric(age) / 365) %&gt;%
+                         kid == &quot;Irène&quot; ~ date - ymd(&quot;20160922&quot;)),
+         age2 = as.numeric(age) / 365) -&gt; teeth_tp
+teeth_tp %&gt;%
   group_by(kid) %&gt;%
   arrange(age) %&gt;%
   mutate(n_teeth = row_number()) %&gt;% 
   ggplot(aes(x = age2, y = n_teeth, colour = kid), width = 20) +
   geom_step() +
-  geom_point() +
+  geom_point(aes(shape = t_teeth)) +
   scale_y_continuous(breaks = c(1, seq(5, 20, 5))) +
-  scale_color_manual(values = wesanderson::wes_palette(&quot;GrandBudapest&quot;)[3:4]) + 
+  scale_color_manual(values = wesanderson::wes_palette(&quot;GrandBudapest1&quot;)[3:4]) + 
   theme_bw(14) +
   labs(x = &quot;age (years)&quot;,
-       y = &quot;# teeth&quot;)</code></pre>
-<p><img src="../../posts/2017-07-30-teething_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+       y = &quot;# teeth&quot;,
+       shape = &quot;type&quot;)</code></pre>
+<p><img src="../../posts/2017-07-30-teething_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="animate" class="section level2">
+<h2>Animate</h2>
+<pre class="r"><code>library(gganimate)
+teeth_tp %&gt;%
+   group_by(kid) %&gt;%
+   arrange(age) %&gt;%
+   mutate(n_teeth = row_number()) %&gt;% 
+   ggplot(aes(x = age2, y = n_teeth, colour = kid), width = 20) +
+   geom_step() +
+   transition_time(n_teeth) +
+   shadow_trail()+
+   geom_point(aes(shape = t_teeth)) +
+   scale_y_continuous(breaks = c(1, seq(5, 20, 5))) +
+   scale_color_manual(values = wesanderson::wes_palette(&quot;GrandBudapest1&quot;)[3:4]) + 
+   theme_bw(14) +
+   labs(x = &quot;age (years)&quot;,
+        y = &quot;# teeth&quot;,
+        shape = &quot;type&quot;)</code></pre>
 </div>
 
                 </section>
@@ -199,9 +249,9 @@
 
         </section>
 
-        <script src="http://ginolhac.github.io/js/jquery-2.2.4.min.js"></script>
-<script src="http://ginolhac.github.io/js/main.js"></script>
-<script src="http://ginolhac.github.io/js/highlight.min.js"></script>
+        <script src="../../js/jquery-2.2.4.min.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 
@@ -209,13 +259,16 @@
 
   
 <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-29962051-1', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-29962051-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
 

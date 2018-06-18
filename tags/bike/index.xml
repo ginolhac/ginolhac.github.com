@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bike on Aurélien&#39; blog</title>
-    <link>http://ginolhac.github.io/tags/bike/</link>
+    <link>/tags/bike/</link>
     <description>Recent content in Bike on Aurélien&#39; blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 25 Jan 2015 14:38:35 +0100</lastBuildDate>
     
-	<atom:link href="http://ginolhac.github.io/tags/bike/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/bike/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>winter is coming</title>
-      <link>http://ginolhac.github.io/posts/winter-is-coming/</link>
+      <link>/posts/winter-is-coming/</link>
       <pubDate>Sun, 25 Jan 2015 14:38:35 +0100</pubDate>
       
-      <guid>http://ginolhac.github.io/posts/winter-is-coming/</guid>
+      <guid>/posts/winter-is-coming/</guid>
       <description>Snow during winter time. How unexpected this could be?</description>
     </item>
     
