@@ -9,12 +9,12 @@
 		
 		<meta name="generator" content="Hugo 0.42.1" />
 		<title>home surveillance monitored via telegram &middot; Aurélien&#39; blog</title>
-		<link rel="shortcut icon" href="../../images/favicon.ico">
-		<link rel="stylesheet" href="../../css/style.css">
-		<link rel="stylesheet" href="../../css/highlight.css">
+		<link rel="shortcut icon" href="http://ginolhac.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="http://ginolhac.github.io/css/style.css">
+		<link rel="stylesheet" href="http://ginolhac.github.io/css/highlight.css">
     <link href="//ginolhac.github.io/styles/github.min.css" rel="stylesheet">
 		
-		<link rel="stylesheet" href="../../css/font-awesome.min.css">
+		<link rel="stylesheet" href="http://ginolhac.github.io/css/font-awesome.min.css">
 		
 
 		
@@ -26,12 +26,12 @@
        <nav class="main-nav">
 	
 	
-		<a href='../../'> <span class="arrow">←</span>Home</a>
+		<a href='http://ginolhac.github.io/'> <span class="arrow">←</span>Home</a>
 	
-	<a href='../../posts'>Archive</a>
-	<a href='../../karate'>Karate</a>
-	<a href='../../tags'>Tags</a>
-	<a href='../../about'>About</a>
+	<a href='http://ginolhac.github.io/posts'>Archive</a>
+	<a href='http://ginolhac.github.io/karate'>Karate</a>
+	<a href='http://ginolhac.github.io/tags'>Tags</a>
+	<a href='http://ginolhac.github.io/about'>About</a>
 
 	
 
@@ -47,15 +47,15 @@
                     </h1>
                     <h2 class="headline">
                     Jan 27, 2018
-                    · 1568 words
-                    · 8 minute read
+                    · 1821 words
+                    · 9 minute read
                       <span class="tags">
                       
                       
                           
-                              <a href="../../tags/diy">DIY</a>
+                              <a href="http://ginolhac.github.io/tags/diy">DIY</a>
                           
-                              <a href="../../tags/pi">pi</a>
+                              <a href="http://ginolhac.github.io/tags/pi">pi</a>
                           
                       
                       
@@ -103,7 +103,12 @@
 <li><a href="#basic-tests">basic tests</a></li>
 <li><a href="#create-commands-for-the-bot">create commands for the bot</a></li>
 <li><a href="#python-script-that-listen">python script that listen</a></li>
-<li><a href="#run-scripts-at-startup">run scripts at startup</a></li>
+<li><a href="#sending-scripts">sending scripts</a></li>
+<li><a href="#run-scripts-at-startup">run scripts at startup</a>
+<ul>
+<li><a href="#for-listening">for listening</a></li>
+<li><a href="#for-motion">For motion</a></li>
+</ul></li>
 <li><a href="#screenshots">Screenshots</a></li>
 </ul></li>
 <li><a href="#todo">TODO</a></li>
@@ -294,7 +299,7 @@ diff2html -i file ../public/motion.diff -F test.html
 
 <p><img src="../../images/light_false_alarm.jpg" alt="" /></p>
 
-<p>the parameter <code>lighswitch 80</code> reduced the issue but it still exists.</p>
+<p>the parameter <code>lightswitch 80</code> reduced the issue but it still exists.</p>
 
 <h2 id="communication-with-motion-via-telegram">Communication with motion <em>via</em> telegram</h2>
 
@@ -446,25 +451,107 @@ while 1:
 
 <p>Now if the both <code>listen_bot.py</code> and <code>motion -c ~/motion/motion.conf</code> are running, the system should work.</p>
 
+<h4 id="sending-scripts">sending scripts</h4>
+
+<p>they are called in the <code>motion.conf</code> file.</p>
+
+<p>first, <code>send_detection.py</code></p>
+
+<pre><code class="language-python">#!/usr/bin/python2.7
+
+import telepot
+import sys
+
+bot = telepot.Bot('***REMOVED***')
+
+pic = sys.argv[1]
+
+# change caption if it is a snapshot or motion
+if pic.endswith(&quot;snapshot.jpg&quot;):
+    cap = 'snapshot'
+else:
+    cap = 'motion detected'
+
+bot.sendPhoto(***REMOVED***, photo=open(pic, 'rb'), caption=cap)
+
+exit(0)
+</code></pre>
+
+<p>second, <code>send_message.py</code></p>
+
+<pre><code class="language-python">#!/usr/bin/python2.7
+
+import telepot
+import sys
+
+bot = telepot.Bot('***REMOVED***')
+
+text = sys.argv[1]
+
+bot.sendMessage(***REMOVED***, text)
+</code></pre>
+
 <h4 id="run-scripts-at-startup">run scripts at startup</h4>
+
+<p><strong>Edit 2018-06-19</strong></p>
+
+<h5 id="for-listening">for listening</h5>
+
+<p>I am now using <code>systemd</code>. Cleaner and safer.</p>
 
 <p>Here, the following is working, but I am sure this is the right way to do, so use we care.</p>
 
-<p>in <code>/etc/rc.local</code></p>
+<p>add the file <code>listen.service</code> in the folder <code>/etc/systemd/system</code>:</p>
 
-<p>add the following lines</p>
+<pre><code class="language-bash">[Unit]
+Description=Listen to foo telegram bot
+After=network.target
 
-<pre><code class="language-bash"># start listening to picatbot
-/home/pi/motion/telegrambot.sh &amp;
-# start motion
-motion -c /home/pi/motion/motion.conf
+[Service]
+ExecStart=/usr/bin/python2.7 -u listen_bot.py
+WorkingDirectory=/home/pi/motion/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=motion
+
+[Install]
+WantedBy=multi-user.target
 </code></pre>
 
-<p>with <code>telegrambot.sh</code> being</p>
+<p>now as example, you can check the <strong>status</strong> of this new service <code>listen</code></p>
 
-<pre><code class="language-bash">#!/bin/sh
-sleep 10
-sudo /home/pi/motion/listen_bot.py
+<pre><code>pi@raspberrypi:/etc/systemd/system $ service listen status
+● listen.service - Listen to foo telegram bot
+   Loaded: loaded (/etc/systemd/system/listen.service; enabled; vendor preset: enabled)
+   Active: active (running) since Sun 2018-05-13 21:51:50 CEST; 1 months 6 days ago
+ Main PID: 502 (python2.7)
+   CGroup: /system.slice/listen.service
+           └─502 /usr/bin/python2.7 -u listen_bot.py
+
+May 13 21:51:50 raspberrypi systemd[1]: Started Listen to foo telegram bot.
+May 13 21:51:51 raspberrypi python2.7[502]: I am listening ...
+Jun 19 20:52:17 raspberrypi python2.7[502]: Got command: /time
+</code></pre>
+
+<p>And, safer since both <code>motion</code> and <code>listen</code> are running as the user <code>motion</code> who does not have <code>sudo</code> rights.</p>
+
+<h5 id="for-motion">For motion</h5>
+
+<p>I am now using the <strong>daemon</strong> mode to only benefit from <code>systemd</code></p>
+
+<ul>
+<li>point the usual conf file towards the tweaked version in your home</li>
+</ul>
+
+<pre><code class="language-bash">cd /etc/motion
+mv motion.conf motion.conf.bak
+ln -s /home/pi/motion/motion.conf .
+</code></pre>
+
+<p>be sure to have the correct smblink</p>
+
+<pre><code class="language-bash">motion.conf -&gt; /home/pi/motion/motion.conf
 </code></pre>
 
 <h4 id="screenshots">Screenshots</h4>
@@ -502,9 +589,11 @@ sudo /home/pi/motion/listen_bot.py
 <p>Despite a functional system, some improvements I&rsquo;d like to achieve:</p>
 
 <ul>
-<li>restrict the bot to one user</li>
+<li>restrict the bot to one user: see Winston recommendation in comments, seems to work nicely</li>
+<li>add gracefull stop for <code>listen</code> service</li>
+<li>I bought a IP camera, and <code>motion</code> should work with both. Haven&rsquo;t spent enough time configuring it</li>
 <li>remove pics/videos older than <em>xx</em> days to save space</li>
-<li>run the 2 services as a user without <code>sudo</code> rights</li>
+<li><del>run the 2 services as a user without <code>sudo</code> rights</del></li>
 <li>look into better settings for NoIR camera using <a href="https://raspberrypi.stackexchange.com/questions/13818/auto-brightness-bypass-whilst-using-motion">this thread</a></li>
 </ul>
 
@@ -584,9 +673,9 @@ sudo /home/pi/motion/listen_bot.py
 
         </section>
 
-        <script src="../../js/jquery-3.3.1.min.js"></script>
-<script src="../../js/main.js"></script>
-<script src="../../js/highlight.min.js"></script>
+        <script src="http://ginolhac.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="http://ginolhac.github.io/js/main.js"></script>
+<script src="http://ginolhac.github.io/js/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 

@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Aurélien&#39; blog</title>
-    <link>/tags/</link>
+    <link>http://ginolhac.github.io/tags/</link>
     <description>Recent content in Tags on Aurélien&#39; blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 25 Jan 2015 14:38:35 +0100</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://ginolhac.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Bike</title>
-      <link>/tags/bike/</link>
+      <link>http://ginolhac.github.io/tags/bike/</link>
       <pubDate>Sun, 25 Jan 2015 14:38:35 +0100</pubDate>
       
-      <guid>/tags/bike/</guid>
+      <guid>http://ginolhac.github.io/tags/bike/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Diy</title>
-      <link>/tags/diy/</link>
+      <link>http://ginolhac.github.io/tags/diy/</link>
       <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/diy/</guid>
+      <guid>http://ginolhac.github.io/tags/diy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pi</title>
-      <link>/tags/pi/</link>
+      <link>http://ginolhac.github.io/tags/pi/</link>
       <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/pi/</guid>
+      <guid>http://ginolhac.github.io/tags/pi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>/tags/r/</link>
-      <pubDate>Fri, 30 Mar 2018 00:00:00 +0000</pubDate>
+      <link>http://ginolhac.github.io/tags/r/</link>
+      <pubDate>Thu, 08 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/r/</guid>
+      <guid>http://ginolhac.github.io/tags/r/</guid>
       <description></description>
     </item>
     
