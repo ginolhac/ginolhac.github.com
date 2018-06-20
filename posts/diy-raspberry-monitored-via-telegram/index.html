@@ -413,10 +413,10 @@ def webcontrol(chat_id, type, cmd):
 def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
-    #FIXME does not work
-    #if chat_id != 00000008:
-    #    bot.sendMessage(chat_id, &quot;Sorry this is a personal bot. Access Denied!&quot;)
-    #    continue
+    #should work thanks to Winston
+    if msg['from']['id'] != 00000008:
+        bot.sendMessage(chat_id, &quot;Sorry this is a personal bot. Access Denied!&quot;)
+        exit(1)
 
     print 'Got command: %s' % command
 
@@ -462,7 +462,7 @@ while 1:
 import telepot
 import sys
 
-bot = telepot.Bot('***REMOVED***')
+bot = telepot.Bot('0000000004:bot_token')
 
 pic = sys.argv[1]
 
@@ -472,7 +472,7 @@ if pic.endswith(&quot;snapshot.jpg&quot;):
 else:
     cap = 'motion detected'
 
-bot.sendPhoto(***REMOVED***, photo=open(pic, 'rb'), caption=cap)
+bot.sendPhoto(00000004, photo=open(pic, 'rb'), caption=cap)
 
 exit(0)
 </code></pre>
@@ -484,11 +484,11 @@ exit(0)
 import telepot
 import sys
 
-bot = telepot.Bot('***REMOVED***')
+bot = telepot.Bot('0000000004:bot_token')
 
 text = sys.argv[1]
 
-bot.sendMessage(***REMOVED***, text)
+bot.sendMessage(00000004, text)
 </code></pre>
 
 <h4 id="run-scripts-at-startup">run scripts at startup</h4>
@@ -589,7 +589,7 @@ ln -s /home/pi/motion/motion.conf .
 <p>Despite a functional system, some improvements I&rsquo;d like to achieve:</p>
 
 <ul>
-<li>restrict the bot to one user: see Winston recommendation in comments, seems to work nicely</li>
+<li>restrict the bot to one user: see <strong>Winston Smith</strong> recommendation in comments, seems to work nicely</li>
 <li>add gracefull stop for <code>listen</code> service</li>
 <li>I bought a IP camera, and <code>motion</code> should work with both. Haven&rsquo;t spent enough time configuring it</li>
 <li>remove pics/videos older than <em>xx</em> days to save space</li>
