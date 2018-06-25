@@ -47,7 +47,7 @@
                     </h1>
                     <h2 class="headline">
                     Jan 27, 2018
-                    · 1821 words
+                    · 1818 words
                     · 9 minute read
                       <span class="tags">
                       
@@ -389,11 +389,14 @@ video - Returns last recorded video
 
 <p>here the script <code>listen_bot.py</code>, derived from the telepot documentation.</p>
 
-<p>Some comments:
-- the last video when requested is fetched from the sub-folder <code>vids</code>. If we use the main folder of detection,
-the last video could be an incomplete one form a newer detection. Hence, the command in <code>motion.conf</code> to move a finished video to the <code>vids</code> folder.
-- I failed to restrict the bot to communicate only with me. Might not be a big deal, but the code <code>if chat_id != 00000008</code> is not working.
-- the webcontrol was set in the <em>RAW</em> mode. Then the retrieved text can be directly send to your telegram account</p>
+<p>Some comments:</p>
+
+<ul>
+<li>the last video when requested is fetched from the sub-folder <code>vids</code>. If we use the main folder of detection,
+the last video could be an incomplete one form a newer detection. Hence, the command in <code>motion.conf</code> to move a finished video to the <code>vids</code> folder.</li>
+<li>I failed to restrict the bot to communicate only with me. Might not be a big deal, but the code <code>if chat_id != 00000008</code> is not working.</li>
+<li>the webcontrol was set in the <em>RAW</em> mode. Then the retrieved text can be directly send to your telegram account</li>
+</ul>
 
 <pre><code class="language-python">#!/usr/bin/python2.7
 
