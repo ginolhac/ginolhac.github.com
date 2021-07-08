@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="//www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Aurélien&#39; blog</title>
-    <link>http://ginolhac.github.io/tags/</link>
+    <link>//ginolhac.github.io/tags/</link>
     <description>Recent content in Tags on Aurélien&#39; blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 25 Jan 2015 14:38:35 +0100</lastBuildDate>
     
-	<atom:link href="http://ginolhac.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//ginolhac.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Bike</title>
-      <link>http://ginolhac.github.io/tags/bike/</link>
+      <link>//ginolhac.github.io/tags/bike/</link>
       <pubDate>Sun, 25 Jan 2015 14:38:35 +0100</pubDate>
       
-      <guid>http://ginolhac.github.io/tags/bike/</guid>
+      <guid>//ginolhac.github.io/tags/bike/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Diy</title>
-      <link>http://ginolhac.github.io/tags/diy/</link>
+      <link>//ginolhac.github.io/tags/diy/</link>
       <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://ginolhac.github.io/tags/diy/</guid>
+      <guid>//ginolhac.github.io/tags/diy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pi</title>
-      <link>http://ginolhac.github.io/tags/pi/</link>
+      <link>//ginolhac.github.io/tags/pi/</link>
       <pubDate>Sat, 27 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://ginolhac.github.io/tags/pi/</guid>
+      <guid>//ginolhac.github.io/tags/pi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>http://ginolhac.github.io/tags/r/</link>
+      <link>//ginolhac.github.io/tags/r/</link>
       <pubDate>Thu, 08 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://ginolhac.github.io/tags/r/</guid>
+      <guid>//ginolhac.github.io/tags/r/</guid>
       <description></description>
     </item>
     

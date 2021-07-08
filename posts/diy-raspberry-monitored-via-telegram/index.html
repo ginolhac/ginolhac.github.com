@@ -9,12 +9,12 @@
 		
 		<meta name="generator" content="Hugo 0.42.1" />
 		<title>home surveillance monitored via telegram &middot; Aurélien&#39; blog</title>
-		<link rel="shortcut icon" href="http://ginolhac.github.io/images/favicon.ico">
-		<link rel="stylesheet" href="http://ginolhac.github.io/css/style.css">
-		<link rel="stylesheet" href="http://ginolhac.github.io/css/highlight.css">
+		<link rel="shortcut icon" href="//ginolhac.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="//ginolhac.github.io/css/style.css">
+		<link rel="stylesheet" href="//ginolhac.github.io/css/highlight.css">
     <link href="//ginolhac.github.io/styles/github.min.css" rel="stylesheet">
 		
-		<link rel="stylesheet" href="http://ginolhac.github.io/css/font-awesome.min.css">
+		<link rel="stylesheet" href="//ginolhac.github.io/css/font-awesome.min.css">
 		
 
 		
@@ -26,12 +26,12 @@
        <nav class="main-nav">
 	
 	
-		<a href='http://ginolhac.github.io/'> <span class="arrow">←</span>Home</a>
+		<a href='//ginolhac.github.io/'> <span class="arrow">←</span>Home</a>
 	
-	<a href='http://ginolhac.github.io/posts'>Archive</a>
-	<a href='http://ginolhac.github.io/karate'>Karate</a>
-	<a href='http://ginolhac.github.io/tags'>Tags</a>
-	<a href='http://ginolhac.github.io/about'>About</a>
+	<a href='//ginolhac.github.io/posts'>Archive</a>
+	<a href='//ginolhac.github.io/karate'>Karate</a>
+	<a href='//ginolhac.github.io/tags'>Tags</a>
+	<a href='//ginolhac.github.io/about'>About</a>
 
 	
 
@@ -53,9 +53,9 @@
                       
                       
                           
-                              <a href="http://ginolhac.github.io/tags/diy">DIY</a>
+                              <a href="//ginolhac.github.io/tags/diy">DIY</a>
                           
-                              <a href="http://ginolhac.github.io/tags/pi">pi</a>
+                              <a href="//ginolhac.github.io/tags/pi">pi</a>
                           
                       
                       
@@ -285,7 +285,7 @@ diff2html -i file ../public/motion.diff -F test.html
 
 <h3 id="see-live-streaming">see live streaming</h3>
 
-<p>with this configuration, you should see the live streaming from this URL: <a href="http://192.168.1.27:8081">http://192.168.1.27:8081</a></p>
+<p>with this configuration, you should see the live streaming from this URL: <a href="//192.168.1.27:8081">//192.168.1.27:8081</a></p>
 
 <p>the web control on port <strong>8080</strong> is disabled apart outside the pi, since we&rsquo;ll use telegram to control <em>motion</em></p>
 
@@ -303,7 +303,7 @@ diff2html -i file ../public/motion.diff -F test.html
 
 <h2 id="communication-with-motion-via-telegram">Communication with motion <em>via</em> telegram</h2>
 
-<p>Now comes the fun part. Receiving the motion detection by emails is fine, but it can be done via <strong>Telegram</strong> and the awesome API <a href="http://telepot.readthedocs.io"><code>telepot</code></a>. <strong>Eric</strong> told me about telegram <strong>bots</strong> and it looked promising.
+<p>Now comes the fun part. Receiving the motion detection by emails is fine, but it can be done via <strong>Telegram</strong> and the awesome API <a href="//telepot.readthedocs.io"><code>telepot</code></a>. <strong>Eric</strong> told me about telegram <strong>bots</strong> and it looked promising.
 Actually, you can even <em>send</em> commands to your pi using your phone using those telegram <strong>bots</strong>.</p>
 
 <p>The useful feature I implemented are:</p>
@@ -318,7 +318,7 @@ Actually, you can even <em>send</em> commands to your pi using your phone using 
 
 <h3 id="create-mybot">create mybot</h3>
 
-<p>Eric gave me the link to this <a href="http://www.instructables.com/id/Set-up-Telegram-Bot-on-Raspberry-Pi/">tutorial</a></p>
+<p>Eric gave me the link to this <a href="//www.instructables.com/id/Set-up-Telegram-Bot-on-Raspberry-Pi/">tutorial</a></p>
 
 <p>Of course, I am assuming you already have our own telegram account.</p>
 
@@ -409,7 +409,7 @@ import glob
 from telepot.loop import MessageLoop
 
 def webcontrol(chat_id, type, cmd):
-    req = 'http://localhost:8080/0/'+type+'/'+cmd
+    req = '//localhost:8080/0/'+type+'/'+cmd
     res = requests.get(req)
     bot.sendMessage(chat_id, res.text)
 
@@ -424,7 +424,7 @@ def handle(msg):
     print 'Got command: %s' % command
 
     if command == '/snapshot':
-        requests.get('http://localhost:8080/0/action/snapshot')
+        requests.get('//localhost:8080/0/action/snapshot')
     elif command == '/status':
         webcontrol(chat_id, 'detection', 'status')
     elif command == '/pause':
@@ -602,7 +602,7 @@ ln -s /home/pi/motion/motion.conf .
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>Beyond the initial goal, catch the neighbor cats coming in, which actually I don&rsquo;t care about, it was fun to set-up the whole thing. Moreover, <strong>telegram</strong> offers a great service and offers a great interface for many applications. I knew about the <a href="http://danielmarcelino.github.io/blog/2017/may-the-force-of-r-be-with-you-always.html">TeleR</a> bot, that is actually easy to set-up.</p>
+<p>Beyond the initial goal, catch the neighbor cats coming in, which actually I don&rsquo;t care about, it was fun to set-up the whole thing. Moreover, <strong>telegram</strong> offers a great service and offers a great interface for many applications. I knew about the <a href="//danielmarcelino.github.io/blog/2017/may-the-force-of-r-be-with-you-always.html">TeleR</a> bot, that is actually easy to set-up.</p>
 
 <p>Don&rsquo;t hesitate to leave a comment below for any remarks or improvements that I overseen.</p>
 
@@ -659,7 +659,7 @@ ln -s /home/pi/motion/motion.conf .
     
     </p>
     <p class="small">
-        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+        Powered by <a href="//www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
     </p>
     <script src="//yihui.name/js/math-code.js"></script>
     <script async
@@ -676,9 +676,9 @@ ln -s /home/pi/motion/motion.conf .
 
         </section>
 
-        <script src="http://ginolhac.github.io/js/jquery-3.3.1.min.js"></script>
-<script src="http://ginolhac.github.io/js/main.js"></script>
-<script src="http://ginolhac.github.io/js/highlight.min.js"></script>
+        <script src="//ginolhac.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="//ginolhac.github.io/js/main.js"></script>
+<script src="//ginolhac.github.io/js/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 

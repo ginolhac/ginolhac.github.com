@@ -1,5 +1,5 @@
 #-----------------------------------------------------------------------------#
-#-- File created with Instab - http://www.pconline.com/~smcarey/instab.html --#
+#-- File created with Instab - //www.pconline.com/~smcarey/instab.html --#
 #-----------------------------------------------------------------------------#
 
 Author/Artist: Karate
@@ -35,7 +35,7 @@ practise playing chordally on!
 
 OK enough talk! Here's the song: 
 
-(Thanks to Aurélien for some corrections on this song)  
+(Thanks to Aurï¿½lien for some corrections on this song)  
 
 THEME 1.40
 ----------------------------------------|-------------------------------------

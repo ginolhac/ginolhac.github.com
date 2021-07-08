@@ -219,7 +219,7 @@ webcontrol_localhost <span class="f1">on</span><span class="f2">off</span>
 </div>
 <div id="see-live-streaming" class="section level3">
 <h3><span class="header-section-number">0.4.4</span> see live streaming</h3>
-<p>with this configuration, you should see the live streaming from this URL: <a href="http://192.168.1.27:8081" class="uri">http://192.168.1.27:8081</a></p>
+<p>with this configuration, you should see the live streaming from this URL: <a href="//192.168.1.27:8081" class="uri">//192.168.1.27:8081</a></p>
 <p>the web control on port <strong>8080</strong> is disabled apart outside the pi, since we’ll use telegram to control <em>motion</em></p>
 </div>
 <div id="detection" class="section level3">
@@ -239,7 +239,7 @@ webcontrol_localhost <span class="f1">on</span><span class="f2">off</span>
 </div>
 <div id="communication-with-motion-via-telegram" class="section level2">
 <h2><span class="header-section-number">0.5</span> Communication with motion <em>via</em> telegram</h2>
-<p>Now comes the fun part. Receiving the motion detection by emails is fine, but it can be done via <strong>Telegram</strong> and the awesome API <a href="http://telepot.readthedocs.io"><code>telepot</code></a>. <strong>Eric</strong> told me about telegram <strong>bots</strong> and it looked promising. Actually, you can even <em>send</em> commands to your pi using your phone using those telegram <strong>bots</strong>.</p>
+<p>Now comes the fun part. Receiving the motion detection by emails is fine, but it can be done via <strong>Telegram</strong> and the awesome API <a href="//telepot.readthedocs.io"><code>telepot</code></a>. <strong>Eric</strong> told me about telegram <strong>bots</strong> and it looked promising. Actually, you can even <em>send</em> commands to your pi using your phone using those telegram <strong>bots</strong>.</p>
 <p>The useful feature I implemented are:</p>
 <ul>
 <li><strong>alerts</strong>. A motion is detected. Send the best picture to your telegram account.</li>
@@ -250,7 +250,7 @@ webcontrol_localhost <span class="f1">on</span><span class="f2">off</span>
 </ul>
 <div id="create-mybot" class="section level3">
 <h3><span class="header-section-number">0.5.1</span> create mybot</h3>
-<p>Eric gave me the link to this <a href="http://www.instructables.com/id/Set-up-Telegram-Bot-on-Raspberry-Pi/">tutorial</a></p>
+<p>Eric gave me the link to this <a href="//www.instructables.com/id/Set-up-Telegram-Bot-on-Raspberry-Pi/">tutorial</a></p>
 <p>Of course, I am assuming you already have our own telegram account.</p>
 <p>Talk to the <code>BotFather</code> and create <code>mybot</code>, you will receive a private token.</p>
 </div>
@@ -317,7 +317,7 @@ import glob
 from telepot.loop import MessageLoop
 
 def webcontrol(chat_id, type, cmd):
-    req = &#39;http://localhost:8080/0/&#39;+type+&#39;/&#39;+cmd
+    req = &#39;//localhost:8080/0/&#39;+type+&#39;/&#39;+cmd
     res = requests.get(req)
     bot.sendMessage(chat_id, res.text)
 
@@ -332,7 +332,7 @@ def handle(msg):
     print &#39;Got command: %s&#39; % command
 
     if command == &#39;/snapshot&#39;:
-        requests.get(&#39;http://localhost:8080/0/action/snapshot&#39;)
+        requests.get(&#39;//localhost:8080/0/action/snapshot&#39;)
     elif command == &#39;/status&#39;:
         webcontrol(chat_id, &#39;detection&#39;, &#39;status&#39;)
     elif command == &#39;/pause&#39;:
