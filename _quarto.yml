@@ -18,6 +18,7 @@ website:
 format:
   html:
     theme: cosmo
+    toc: true
     highlight-style: arrow
     css: styles.css
 

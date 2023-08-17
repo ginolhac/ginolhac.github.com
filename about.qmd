@@ -1,5 +1,6 @@
 ---
 title: "About"
+toc: false
 about:
   id: gino
   template: solana
