@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aurélien Ginolhac">
+<meta name="dcterms.date" content="2023-08-17">
+<meta name="description" content="Trimming UMI">
 
-<title>ginolhac’s blog</title>
+<title>Starting to learn Rust</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +23,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,40 +103,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -109,8 +115,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/avatar@2x.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -120,12 +126,12 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./karate/index.html"> <i class="bi bi-music" role="img">
+    <a class="nav-link" href="../../karate/index.html"> <i class="bi bi-music" role="img">
 </i> 
 <span class="menu-text">Karate tabs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -143,271 +149,143 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">ginolhac’s blog</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Starting to learn Rust</h1>
+                  <div>
+        <div class="description">
+          Trimming UMI
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Rust</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aurélien Ginolhac </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 17, 2023</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="DIY">DIY <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RasPI">RasPI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rust">Rust <span class="quarto-category-count">(1)</span></div><div class="category" data-category="academia">academia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="animation">animation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bike">bike <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#rationale" id="toc-rationale" class="nav-link active" data-scroll-target="#rationale">Rationale</a>
+  <ul class="collapse">
+  <li><a href="#opposite-of-r" id="toc-opposite-of-r" class="nav-link" data-scroll-target="#opposite-of-r">Opposite of R:</a></li>
+  <li><a href="#similarities-to-r" id="toc-similarities-to-r" class="nav-link" data-scroll-target="#similarities-to-r">Similarities to R:</a></li>
+  </ul></li>
+  <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages">Advantages</a>
+  <ul class="collapse">
+  <li><a href="#compiler" id="toc-compiler" class="nav-link" data-scroll-target="#compiler">Compiler</a></li>
+  <li><a href="#bonus-the-logo" id="toc-bonus-the-logo" class="nav-link" data-scroll-target="#bonus-the-logo">Bonus: the <i class="fa-brands fa-rust" aria-label="rust"></i> logo</a></li>
+  </ul></li>
+  <li><a href="#learning-material" id="toc-learning-material" class="nav-link" data-scroll-target="#learning-material">Learning material</a></li>
+  <li><a href="#first-project-umi-trimming" id="toc-first-project-umi-trimming" class="nav-link" data-scroll-target="#first-project-umi-trimming">First project: UMI trimming</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
-<div class="quarto-figure quarto-figure-center">
+<section id="rationale" class="level2">
+<h2 class="anchored" data-anchor-id="rationale">Rationale</h2>
+<p>I am very happy with <i class="fa-brands fa-r-project" aria-label="r-project"></i> but I want to learn something new, another programming language. The desire comes with several needs</p>
+<section id="opposite-of-r" class="level3">
+<h3 class="anchored" data-anchor-id="opposite-of-r">Opposite of R:</h3>
+<ul>
+<li>A <em>compiled</em> language
+<ul>
+<li>Speed</li>
+<li>Strict syntax, almost pedantic</li>
+</ul></li>
+<li>Strongly <em>typed</em></li>
+</ul>
+</section>
+<section id="similarities-to-r" class="level3">
+<h3 class="anchored" data-anchor-id="similarities-to-r">Similarities to R:</h3>
+<ul>
+<li>Full of functional programming</li>
+<li>Great <em>packages</em> offered by a great community (<a href="https://crates.io"><strong>crates</strong></a>)</li>
+</ul>
+<p>Turns out this language is <a href="https://www.rust-lang.org/"><strong>Rust</strong></a>.</p>
+</section>
+</section>
+<section id="advantages" class="level2">
+<h2 class="anchored" data-anchor-id="advantages">Advantages</h2>
+<section id="compiler" class="level3">
+<h3 class="anchored" data-anchor-id="compiler">Compiler</h3>
+<p>It is incredibly helpful. I am using <a href="https://code.visualstudio.com/">VScode</a> with the extension <code>rust-analyser</code> that provides immediate feedback, great suggestions to both warnings and errors.</p>
+</section>
+<section id="bonus-the-logo" class="level3">
+<h3 class="anchored" data-anchor-id="bonus-the-logo">Bonus: the <i class="fa-brands fa-rust" aria-label="rust"></i> logo</h3>
+<p>It has the two things I like a lot:</p>
+<ul>
+<li>A <i class="fa-solid fa-gear" aria-label="gear"></i> from <i class="fa-solid fa-bicycle" aria-label="bicycle"></i> (a <em>chainring</em>)</li>
+<li>A big <strong>R</strong> that looks very much like <i class="fa-brands fa-r-project" aria-label="r-project"></i></li>
+</ul>
+<div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="images/background-1.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Denmark, ginolhac</figcaption>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Rust_programming_language_black_logo.svg/1024px-Rust_programming_language_black_logo.svg.png" class="img-fluid figure-img" alt="Rust logo" width="200"></p>
+<figcaption class="figure-caption">Rust logo</figcaption>
 </figure>
 </div>
+</section>
+</section>
+<section id="learning-material" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="learning-material">Learning material</h2>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><img src="oreilly-rust.jpeg" class="img-fluid"></p>
+</div></div><p>I am using so far three resources:</p>
+<ul>
+<li><p>The <a href="https://www.oreilly.com/library/view/programming-rust-2nd/9781492052586/">Programming <strong>Rust</strong></a> book (Ed. O’Reilly). From a recommendation by <a href="https://mastodon.social/@deadparrot">Stefan Baumgartner</a></p></li>
+<li><p>The official <a href="https://doc.rust-lang.org/book/ch00-00-introduction.html">documentation</a> that include a lot of example.</p></li>
+<li><p>The <a href="https://learning.accelerant.dev/view/courses/how-to-learn-rust">“How to learn Rust” course</a> by Tim McManara. From a recommendation of <a href="https://jcarroll.com.au">Jonathan Caroll</a></p></li>
+</ul>
+</section>
+<section id="first-project-umi-trimming" class="level2">
+<h2 class="anchored" data-anchor-id="first-project-umi-trimming">First project: UMI trimming</h2>
+<p><strong>UMI</strong> stands for Unique Molecular Identifier.</p>
+<p>The goal is reproduce some features from <a href="https://umi-tools.readthedocs.io/en/latest/QUICK_START.html"><code>umi-tools</code></a> especially the <code>extract</code> command.</p>
+<p>For example, convert the following read</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@VH00666:90:AAAWVCCHV:1:1101:24026:1000</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">GTCAGTTATAGCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[...]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>into:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@VH00666:90:AAAWVCCHV:1:1101:24026:1000_GTCAGT</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">GCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The UMI was <strong>GTCAGT</strong> and appended to the read <strong>name</strong>, while being removed from the sequence along with the <strong>TATA</strong> linker.</p>
+<p>This project is <a href="https://github.com/ginolhac/umi_trim">here on <i class="fa-brands fa-github" aria-label="github"></i></a></p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Rust" data-listing-date-sort="1692230400000" data-listing-file-modified-sort="1692282635084" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="237">
-<div class="thumbnail">
-<p><a href="./posts/starting-learning-rust/index.html"> <img src="./posts/starting-learning-rust/rust-logo.png" class="thumbnail-image" alt="Rust logo"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/starting-learning-rust/index.html">
-<h3 class="no-anchor listing-title">
-Starting to learn Rust
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Rust'); return false;">
-Rust
-</div>
-</div>
-<a href="./posts/starting-learning-rust/index.html">
-<div class="listing-description">
-<p>Trimming UMI</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/starting-learning-rust/index.html">
-<div class="listing-date">
-Aug 17, 2023
-</div>
-<div class="listing-author">
-Aurélien Ginolhac
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="academia" data-listing-date-sort="1522022400000" data-listing-file-modified-sort="1692282635084" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
-<div class="thumbnail">
-<p><a href="./posts/latex-modern-cv/index.html"> <img src="./posts/latex-modern-cv/sample.png" class="thumbnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/latex-modern-cv/index.html">
-<h3 class="no-anchor listing-title">
-LaTex modern CV
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('academia'); return false;">
-academia
-</div>
-</div>
-<a href="./posts/latex-modern-cv/index.html">
-<div class="listing-description">
-<p>How to setup latex using tinytex</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/latex-modern-cv/index.html">
-<div class="listing-date">
-Mar 26, 2018
-</div>
-<div class="listing-author">
-Aurélien Ginolhac
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Python,DIY,RasPI" data-listing-date-sort="1517011200000" data-listing-file-modified-sort="1692282635084" data-listing-date-modified-sort="1529366400000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1915">
-<div class="thumbnail">
-<p><a href="./posts/diy-raspberry-monitored-via-telegram/index.html"> <p class="card-img-top"><img src="images/cam_noIR.jpg"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/diy-raspberry-monitored-via-telegram/index.html">
-<h3 class="no-anchor listing-title">
-home surveillance monitored via telegram
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('DIY'); return false;">
-DIY
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('RasPI'); return false;">
-RasPI
-</div>
-</div>
-<a href="./posts/diy-raspberry-monitored-via-telegram/index.html">
-<div class="listing-description">
-<p>using telepot and the NoIR camera</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/diy-raspberry-monitored-via-telegram/index.html">
-<div class="listing-date">
-Jan 27, 2018
-</div>
-<div class="listing-author">
-Aurelien Ginolhac
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="R,animation" data-listing-date-sort="1481155200000" data-listing-file-modified-sort="1692282635088" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="114">
-<div class="thumbnail">
-<p><a href="./posts/tweening-a-poisson-distribution/index.html"> <p class="card-img-top"><img src="images/poisson.gif"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/tweening-a-poisson-distribution/index.html">
-<h3 class="no-anchor listing-title">
-tweening a Poisson distribution
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('animation'); return false;">
-animation
-</div>
-</div>
-<a href="./posts/tweening-a-poisson-distribution/index.html">
-<div class="listing-description">
-<p>using tweenr and ggplot2</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/tweening-a-poisson-distribution/index.html">
-<div class="listing-date">
-Dec 8, 2016
-</div>
-<div class="listing-author">
-Aurélien Ginolhac
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="R,animation" data-listing-date-sort="1469923200000" data-listing-file-modified-sort="1692282635084" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="962">
-<div class="thumbnail">
-<p><a href="./posts/teething-process/index.html"> <p class="card-img-top"><img src="posts/teething-process/index_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/teething-process/index.html">
-<h3 class="no-anchor listing-title">
-teething
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('animation'); return false;">
-animation
-</div>
-</div>
-<a href="./posts/teething-process/index.html">
-<div class="listing-description">
-<p>Compare teething for two kids</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/teething-process/index.html">
-<div class="listing-date">
-Jul 31, 2016
-</div>
-<div class="listing-author">
-Aurélien Ginolhac
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="bike" data-listing-date-sort="1422193115000" data-listing-file-modified-sort="1692282635088" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12">
-<div class="thumbnail">
-<p><a href="./posts/winter-is-coming/index.html"> <p class="card-img-top"><img src="images/20150124_131420.jpg"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/winter-is-coming/index.html">
-<h3 class="no-anchor listing-title">
-winter is coming
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('bike'); return false;">
-bike
-</div>
-</div>
-<a href="./posts/winter-is-coming/index.html">
-<div class="listing-description">
-<p>snow on bike</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/winter-is-coming/index.html">
-<div class="listing-date">
-Jan 25, 2015
-</div>
-<div class="listing-author">
-Aurélien Ginolhac
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -751,6 +629,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
+</script>
+<script src="https://utteranc.es/client.js" repo="ginolhac/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
 <footer class="footer">
