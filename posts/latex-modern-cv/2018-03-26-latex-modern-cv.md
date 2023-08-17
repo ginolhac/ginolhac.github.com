@@ -1,7 +1,7 @@
 ---
 title: LaTex modern CV
 author: 'Aurélien Ginolhac'
-description: "Howto setup latex using tinytex"
+description: "How to setup latex using tinytex"
 date: '2018-03-26'
 categories:
   - academia
