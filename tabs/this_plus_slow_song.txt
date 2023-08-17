@@ -2,7 +2,7 @@
 #This file is the author's own work and represents their interpretation of the#
 #song. You may only use this file for private study, scholarship, or research.#
 #-----------------------------------------------------------------------------#
-#-- File created with Instab - //www.pconline.com/~smcarey/instab.html --#
+#-- File created with Instab - http://www.pconline.com/~smcarey/instab.html --#
 #-----------------------------------------------------------------------------#
 
 Author/Artist: Karate

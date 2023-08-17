@@ -1,0 +1,25 @@
+project:
+  type: website
+
+website:
+  title: ""
+  site-url: https://ginolhac.github.io
+  navbar:
+    logo: images/avatar@2x.png
+        
+    right:
+      - icon: music
+        href: karate/index.qmd
+      - about.qmd
+      - icon: github
+        href: https://github.com/ginolhac
+  page-footer: "Copyright 2023, Aurélien Ginolhac" 
+
+format:
+  html:
+    theme: cosmo
+    highlight-style: arrow
+    css: styles.css
+
+
+

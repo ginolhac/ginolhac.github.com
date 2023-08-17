@@ -1,0 +1,40 @@
+---
+title: "tweening a Poisson distribution"
+author: "Aurélien Ginolhac"
+date: "2016-12-08"
+slug: tweening a Poisson distribution
+description: "using tweenr and ggplot2"
+categories:
+  - R
+  - animation
+---
+
+
+# with gganimate and tweenr
+
+using $\lambda$ from 5 to 55 with a step of 5.
+
+```{r, message = FALSE, warning=FALSE, eval=FALSE}
+library(tidyverse)
+library(gganimate)
+library(tweenr) # devtools::install_github("thomasp85/tweenr")
+
+crossing(tibble(x = 1:50),
+         tibble(lambda = c(2, seq(5, 55, 5)))) %>%
+  mutate(dpoi = dpois(x, lambda = lambda)) -> poi_df
+
+my_list <- map(unique(poi_df$lambda), ~ filter(poi_df, lambda == .x) %>% as.data.frame())
+
+tween_states(my_list, tweenlength = 7, statelength = 1, ease = "cubic-in-out", nframes = 50) %>%
+  
+  ggplot(aes(x, dpoi, frame = .frame)) + 
+  geom_col(position = "dodge", width = 2.0) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(x = NULL) +
+  theme_classic(16) -> p
+
+gganimate(p, title_frame = FALSE, ani.width = 600, ani.height = 450, interval = 0.1, filename = "poisson.gif")
+```
+
+
+![](/images/poisson.gif)

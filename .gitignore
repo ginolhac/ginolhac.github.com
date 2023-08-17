@@ -1,1 +1,5 @@
-.DS_Store
+/.Rproj.user/
+*.Rproj
+/_site
+/_freeze
+
