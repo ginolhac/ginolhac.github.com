@@ -1,0 +1,126 @@
+---
+title: "Vertical faceting"
+author: "Aurélien Ginolhac"
+date: "2023-03-06"
+image: dir-v.png
+categories: [R, dataviz]
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+
+The question is: **how can we plot one variable for faceting vertically?**
+
+And bonus, since we want through time the plot of very different measurements, we must have a free y-scale.
+
+## TL;DR
+
+Use either:
+
+- The `dir = "v"` argument of `facet_wrap()`
+- The `rows = vars(variable)` argument of `facet_grid()`
+
+## Demo
+
+We will use a file from the [Aranet4](https://aranet4.com/) sensor using the mobile app provided by the company.
+This sensor measures 4 parameters every 2 to 10 minutes which are:
+
+-   **CO**<sub>2</sub>, using the infrared absorption property of greenhouse gases like carbon dioxide.
+
+-   **Temperature** in *Celsius degrees*.
+
+-   **Relative humidity** (in %).
+
+-   **Atmospheric pressure** in \_h Pa\_.
+    This latter variable is exported but displayed on the device, we will skip it.
+
+The **CO**<sub>2</sub> measurement is performed as follows (from the user manual):
+
+![CO2 aranet](https://i.imgur.com/zLq7HuB.png)
+
+According to the file extension, it is a comma-separated values. 
+But if you look at the file with a text editor, you will see that values are surrounded by double quotes and number are
+using commas for decimal separator.
+Moreover, the dates are not in a standard format unfortunately. But it is a real life example data.
+
+`readr` will detect the double quotes and deal with it automatically but the other issues needs to be fixed:
+
+- For the `Time(dd/mm/yyyy)` column, the **datetime** format is specified.
+- For the number decimals as commas, you need to set the locale to `locale(decimal_mark = ",")`
+- Skip the last column (Atmospheric Pressure) as we won't plot it.
+
+
+```{r}
+aranet <- read_csv("https://biostat2.uni.lu/practicals/data/Gino_2022-08-14T22_53_06+0200.csv",
+                   col_types = cols(`Time(dd/mm/yyyy)` = col_datetime(format = "%d/%m/%Y %H:%M:%S")),
+                   locale = locale(decimal_mark = ","),
+                   col_select = -`Atmospheric pressure(hPa)`) |> 
+  rename(Time = `Time(dd/mm/yyyy)`)
+aranet
+```
+
+## Reshape the variables in the long format
+
+```{r, solution = TRUE}
+aranet |>
+  pivot_longer(cols = -Time,
+               names_to = "measure",
+               values_to = "value") -> aranet_long
+aranet_long
+```
+
+## Plot the values per `Time` and facet per measurement
+
+
+Measurement are one of the 3 variables: CO<sub>2</sub> ppm, Temp and Relative Humidity.
+
+In the facet command, you should free the **y-axis** with `scales = "free_y"`
+
+We want variables in rows. Either `facet_wrap()` `dir` argument or `facet_grid()` `rows = ` do the job.
+
+### `facet_wrap()` solution
+
+
+The key part is to change the `dir` argument for vertical
+
+```{r}
+#| fig-width: 9
+#| fig-height: 8
+#| fig-column: page
+ggplot(aranet_long, aes(x = Time, y = value)) +
+  geom_line() +
+  facet_wrap(vars(measure), scales = "free_y",
+             # panel titles next to the y axis
+             strip.position = "bottom", # use left for mimicking facet_grid below
+             dir = "v") +
+  scale_x_datetime(breaks = scales::date_breaks("1 day"),
+                   date_labels = "%b %d") +
+  labs(x = NULL, y = NULL) +
+  theme_minimal(14)
+```
+
+
+### `facet_grid()` solution
+
+`faacet_grid()` is designed for **two** variables faceting, but we can omit one.
+
+The key part is to use only the `rows`` argument for vertical panels.
+
+
+
+```{r}
+#| fig-width: 9
+#| fig-height: 8
+ggplot(aranet_long, aes(x = Time, y = value)) +
+  geom_line() +
+  facet_grid(rows = vars(measure), scales = "free_y",
+             # panel titles next to the y axis
+             switch = "y") +
+  scale_x_datetime(breaks = scales::date_breaks("1 day"),
+                   date_labels = "%b %d") +
+  labs(x = NULL, y = NULL) +
+  theme_minimal(14)
+```
