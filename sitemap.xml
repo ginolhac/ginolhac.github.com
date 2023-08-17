@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ginolhac.github.io/about.html</loc>
-    <lastmod>2023-08-17T14:30:35.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ginolhac.github.io/posts/teething-process/index.html</loc>
-    <lastmod>2023-08-17T14:30:35.084Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ginolhac.github.io/posts/starting-learning-rust/index.html</loc>
-    <lastmod>2023-08-17T14:30:35.084Z</lastmod>
+    <loc>https://ginolhac.github.io/posts/tweening-a-poisson-distribution/index.html</loc>
+    <lastmod>2023-08-17T14:50:05.401Z</lastmod>
   </url>
   <url>
     <loc>https://ginolhac.github.io/posts/winter-is-coming/index.html</loc>
-    <lastmod>2023-08-17T14:30:35.088Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ginolhac.github.io/index.html</loc>
-    <lastmod>2023-08-17T14:30:35.012Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ginolhac.github.io/karate/index.html</loc>
-    <lastmod>2023-08-17T14:30:35.012Z</lastmod>
+    <lastmod>2023-08-17T14:50:05.401Z</lastmod>
   </url>
   <url>
     <loc>https://ginolhac.github.io/posts/latex-modern-cv/index.html</loc>
-    <lastmod>2023-08-17T14:30:35.084Z</lastmod>
+    <lastmod>2023-08-17T14:50:05.397Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ginolhac.github.io/about.html</loc>
+    <lastmod>2023-08-17T14:50:05.325Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ginolhac.github.io/index.html</loc>
+    <lastmod>2023-08-17T14:50:05.337Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ginolhac.github.io/karate/index.html</loc>
+    <lastmod>2023-08-17T14:50:05.337Z</lastmod>
   </url>
   <url>
     <loc>https://ginolhac.github.io/posts/diy-raspberry-monitored-via-telegram/index.html</loc>
-    <lastmod>2023-08-17T14:30:35.084Z</lastmod>
+    <lastmod>2023-08-17T14:50:05.397Z</lastmod>
   </url>
   <url>
-    <loc>https://ginolhac.github.io/posts/tweening-a-poisson-distribution/index.html</loc>
-    <lastmod>2023-08-17T14:30:35.088Z</lastmod>
+    <loc>https://ginolhac.github.io/posts/teething-process/index.html</loc>
+    <lastmod>2023-08-17T14:50:05.401Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ginolhac.github.io/posts/starting-learning-rust/index.html</loc>
+    <lastmod>2023-08-17T14:50:05.401Z</lastmod>
   </url>
 </urlset>

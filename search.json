@@ -1,5 +1,47 @@
 [
   {
+    "objectID": "posts/tweening-a-poisson-distribution/index.html",
+    "href": "posts/tweening-a-poisson-distribution/index.html",
+    "title": "tweening a Poisson distribution",
+    "section": "",
+    "text": "with gganimate and tweenr\nusing \\(\\lambda\\) from 5 to 55 with a step of 5.\n\nlibrary(tidyverse)\nlibrary(gganimate)\nlibrary(tweenr) # devtools::install_github(\"thomasp85/tweenr\")\n\ncrossing(tibble(x = 1:50),\n         tibble(lambda = c(2, seq(5, 55, 5)))) %&gt;%\n  mutate(dpoi = dpois(x, lambda = lambda)) -&gt; poi_df\n\nmy_list &lt;- map(unique(poi_df$lambda), ~ filter(poi_df, lambda == .x) %&gt;% as.data.frame())\n\ntween_states(my_list, tweenlength = 7, statelength = 1, ease = \"cubic-in-out\", nframes = 50) %&gt;%\n  \n  ggplot(aes(x, dpoi, frame = .frame)) + \n  geom_col(position = \"dodge\", width = 2.0) +\n  scale_y_continuous(expand = c(0, 0)) +\n  labs(x = NULL) +\n  theme_classic(16) -&gt; p\n\ngganimate(p, title_frame = FALSE, ani.width = 600, ani.height = 450, interval = 0.1, filename = \"poisson.gif\")"
+  },
+  {
+    "objectID": "posts/winter-is-coming/index.html",
+    "href": "posts/winter-is-coming/index.html",
+    "title": "winter is coming",
+    "section": "",
+    "text": "Snow during winter time. How unexpected this could be?\n\n\n\nVon backhaus in white"
+  },
+  {
+    "objectID": "posts/latex-modern-cv/index.html#install-missing-packages",
+    "href": "posts/latex-modern-cv/index.html#install-missing-packages",
+    "title": "LaTex modern CV",
+    "section": "install missing packages",
+    "text": "install missing packages\ntlmgr install moderncv\ntlmgr install xcolor\ntlmgr install colortbl\ntlmgr install fancyhdr\ntlmgr install microtype\ntlmgr install pgf # to install tikz\ntlmgr install textgreek\ntlmgr install fontawesome\ntlmgr install lastpage\ntlmgr install marvosym \ntlmgr install greek-fontenc\ntlmgr install babel-greek\ntlmgr update --self --all\ntlmgr path add"
+  },
+  {
+    "objectID": "posts/latex-modern-cv/index.html#issue-with-fontawesome",
+    "href": "posts/latex-modern-cv/index.html#issue-with-fontawesome",
+    "title": "LaTex modern CV",
+    "section": "issue with fontawesome",
+    "text": "issue with fontawesome\n\nreload / install fonts fmtutil-sys --all\n\nside effect, the Roboto condensed for Robert Rudis, ggplot2 theme is now working nicely!"
+  },
+  {
+    "objectID": "posts/latex-modern-cv/index.html#solve-issue-of-nfss-corrupted",
+    "href": "posts/latex-modern-cv/index.html#solve-issue-of-nfss-corrupted",
+    "title": "LaTex modern CV",
+    "section": "solve issue of NFSS corrupted",
+    "text": "solve issue of NFSS corrupted\nfollowing this answer:\nthe error was completed with For encoding scheme LGR the defaults cmr/m/n do not form a valid font shape\ntlmgr install cbfonts\nallows to get the Greek letters working. Why the greek-fontenc and babel-greek was not sufficient? I don’t know"
+  },
+  {
+    "objectID": "posts/latex-modern-cv/index.html#workflow",
+    "href": "posts/latex-modern-cv/index.html#workflow",
+    "title": "LaTex modern CV",
+    "section": "Workflow",
+    "text": "Workflow\n\nbibliography from pubmed to .bib using http://www.bioinformatics.org/texmed/ as biblio.bib\nfix gamma character {I}{F}{N}γ responses to {I}{F}{N}{$\\gamma$} responses\nfirst compilation, generate biblio.aux\nin plainyr_rev.bst, specify \"Ginolhac, A\" so my name gets underlined and bolded\nrun bibtex biblio to generate biblio.bbl\nsecond compilation to generate the pdf"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -12,76 +54,6 @@
     "title": "About",
     "section": "Licence",
     "text": "Licence\n  This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License except for the borrowed and mentioned with proper source: statements."
-  },
-  {
-    "objectID": "posts/teething-process/index.html",
-    "href": "posts/teething-process/index.html",
-    "title": "teething",
-    "section": "",
-    "text": "Teething can be tough for kids, and so for the parents. For our first kid, it was actually pretty painful. Then, I wanted to see how synchronize the second kid would be with the first one."
-  },
-  {
-    "objectID": "posts/teething-process/index.html#input-data",
-    "href": "posts/teething-process/index.html#input-data",
-    "title": "teething",
-    "section": "Input data",
-    "text": "Input data\nThis was an old input, now I would use the datapasta rstudio addin by Miles Mc Bain to get a tribble from any spreadsheet.\n\ntibble::tribble(\n      ~kid,        ~date,                ~teeth,\n   \"Anouk\", \"2014-03-31\", \"incisive inf cent D\",\n   \"Anouk\", \"2014-04-18\", \"incisive inf cent G\",\n   \"Anouk\", \"2014-07-02\", \"incisive sup cent D\",\n   \"Anouk\", \"2014-06-09\", \"incisive sup cent G\",\n   \"Anouk\", \"2014-07-03\",  \"incisive sup lat G\",\n   \"Anouk\", \"2014-07-26\",  \"incisive sup lat D\",\n   \"Anouk\", \"2014-08-12\",  \"incisive inf lat D\",\n   \"Anouk\", \"2014-10-12\",  \"incisive inf lat G\",\n   \"Anouk\", \"2015-01-04\",        \"prem 1 sup G\",\n   \"Anouk\", \"2015-01-11\",        \"prem 1 sup G\",\n   \"Anouk\", \"2015-01-11\",        \"prem 1 inf D\",\n   \"Anouk\", \"2015-02-01\",        \"prem 1 inf D\",\n   \"Anouk\", \"2015-02-01\",        \"canine sup G\",\n   \"Anouk\", \"2015-02-12\",        \"canine sup D\",\n   \"Anouk\", \"2015-03-28\",        \"canine inf D\",\n   \"Anouk\", \"2015-04-04\",        \"canine inf G\", # imputed data\n   \"Anouk\", \"2015-10-15\",        \"prem 2 inf G\",\n   \"Anouk\", \"2015-10-15\",        \"prem 2 inf D\",\n   \"Anouk\", \"2015-12-21\",        \"prem 2 sup D\",\n   \"Anouk\", \"2016-03-01\",        \"prem 2 sup G\",\n   \"Irène\", \"2017-05-11\", \"incisive inf cent D\",\n   \"Irène\", \"2017-05-18\", \"incisive inf cent G\",\n   \"Irène\", \"2017-07-11\", \"incisive sup cent D\",\n   \"Irène\", \"2017-07-25\", \"incisive sup cent G\",\n   \"Irène\", \"2017-08-03\", \"incisive sup lat D\",\n   \"Irène\", \"2017-08-04\", \"incisive inf lat D\",\n   \"Irène\", \"2017-08-04\", \"incisive inf lat G\",\n   \"Irène\", \"2017-08-23\", \"incisive sup lat G\",\n   \"Irène\", \"2017-09-30\",        \"prem 1 inf D\",\n   \"Irène\", \"2017-09-20\",        \"prem 1 inf G\",\n   \"Irène\", \"2017-10-22\",        \"prem 1 sup D\",\n   \"Irène\", \"2017-10-20\",        \"prem 1 sup G\",\n   \"Irène\", \"2018-04-04\",        \"canine sup D\",\n   \"Irène\", \"2018-04-28\",        \"canine inf D\",\n   \"Irène\", \"2018-05-15\",        \"canine sup G\",\n   \"Irène\", \"2018-05-25\",        \"prem 2 inf G\",\n   \"Irène\", \"2018-06-01\",        \"canine inf G\",\n   \"Irène\", \"2018-06-07\",        \"prem 2 inf D\",\n   \"Irène\", \"2018-09-04\",        \"prem 2 sup D\") -&gt; teeth\n\n\ncount(teeth, kid)\n\n# A tibble: 2 × 2\n  kid       n\n  &lt;chr&gt; &lt;int&gt;\n1 Anouk    20\n2 Irène    19\n\n\nhttps://en.wikipedia.org/wiki/Dental_notation\nPrimary Dentition\n        upper right - 5             upper left - 6\n             55 54 53 52 51 | 61 62 63 64 65 \n          R --------------------------------- L\n             85 84 83 82 81 | 71 72 73 74 75 \n        lower right - 8             lower left - 7\n\n I - incisor\n C - canine\n P - premolar\n M - molar"
-  },
-  {
-    "objectID": "posts/teething-process/index.html#plotting",
-    "href": "posts/teething-process/index.html#plotting",
-    "title": "teething",
-    "section": "Plotting",
-    "text": "Plotting\n\nteeth %&gt;%\n  mutate(date = parse_date(date),\n         t_teeth = word(teeth, 1),\n         age = case_when(kid == \"Anouk\" ~ date - ymd(\"20130828\"),\n                         kid == \"Irène\" ~ date - ymd(\"20160922\")),\n         age2 = as.numeric(age) / 365) -&gt; teeth_tp\nteeth_tp %&gt;%\n  group_by(kid) %&gt;%\n  arrange(age) %&gt;%\n  mutate(n_teeth = row_number()) %&gt;% \n  ggplot(aes(x = age2, y = n_teeth, colour = kid), width = 20) +\n  geom_line() +\n  geom_point(aes(shape = t_teeth)) +\n  scale_y_continuous(breaks = c(1, seq(5, 20, 5))) +\n  theme_bw(14) +\n  labs(x = \"age (years)\",\n       y = \"# teeth\",\n       shape = \"type\")"
-  },
-  {
-    "objectID": "posts/teething-process/index.html#animate",
-    "href": "posts/teething-process/index.html#animate",
-    "title": "teething",
-    "section": "Animate",
-    "text": "Animate\n\nlibrary(gganimate)\nteeth_tp %&gt;%\n   group_by(kid) %&gt;%\n   arrange(age) %&gt;%\n   mutate(n_teeth = row_number()) %&gt;% \n   ggplot(aes(x = age2, y = n_teeth, colour = kid)) +\n   geom_line() +\n   # to try transition_reveal()\n   transition_reveal(kid, n_teeth) +\n   #ease_aes(\"linear\") +\n   shadow_trail() +\n   geom_point(aes(shape = t_teeth), size = 5) +\n   scale_y_continuous(breaks = c(1, seq(5, 20, 5))) +\n   scale_color_manual(values = wesanderson::wes_palette(\"GrandBudapest1\")[3:4]) + \n   theme_bw(14) +\n   labs(x = \"age (years)\",\n        y = \"# teeth\",\n        shape = \"type\") -&gt; tp\nanimate(tp, nframes = 60)\nanim_save(\"teething.gif\", last_animation())"
-  },
-  {
-    "objectID": "posts/starting-learning-rust/index.html",
-    "href": "posts/starting-learning-rust/index.html",
-    "title": "Starting to learn Rust",
-    "section": "",
-    "text": "I am very happy with  but I want to learn something new, another programming language. The desire comes with several needs\n\n\n\nA compiled language\n\nSpeed\nStrict syntax, almost pedantic\n\nStrongly typed\n\n\n\n\n\nFull of functional programming\nGreat packages offered by a great community (crates)\n\nTurns out this language is Rust."
-  },
-  {
-    "objectID": "posts/starting-learning-rust/index.html#rationale",
-    "href": "posts/starting-learning-rust/index.html#rationale",
-    "title": "Starting to learn Rust",
-    "section": "",
-    "text": "I am very happy with  but I want to learn something new, another programming language. The desire comes with several needs\n\n\n\nA compiled language\n\nSpeed\nStrict syntax, almost pedantic\n\nStrongly typed\n\n\n\n\n\nFull of functional programming\nGreat packages offered by a great community (crates)\n\nTurns out this language is Rust."
-  },
-  {
-    "objectID": "posts/starting-learning-rust/index.html#advantages",
-    "href": "posts/starting-learning-rust/index.html#advantages",
-    "title": "Starting to learn Rust",
-    "section": "Advantages",
-    "text": "Advantages\n\nCompiler\nIt is incredibly helpful. I am using VScode with the extension rust-analyser that provides immediate feedback, great suggestions to both warnings and errors.\n\n\nBonus: the  logo\nIt has the two things I like a lot:\n\nA  from  (a chainring)\nA big R that looks very much like \n\n\n\n\nRust logo"
-  },
-  {
-    "objectID": "posts/starting-learning-rust/index.html#learning-material",
-    "href": "posts/starting-learning-rust/index.html#learning-material",
-    "title": "Starting to learn Rust",
-    "section": "Learning material",
-    "text": "Learning material\n\n\n\nI am using so far three resources:\n\nThe Programming Rust book (Ed. O’Reilly). From a recommendation by Stefan Baumgartner\nThe official documentation that include a lot of example.\nThe “How to learn Rust” course by Tim McManara. From a recommendation of Jonathan Caroll"
-  },
-  {
-    "objectID": "posts/starting-learning-rust/index.html#first-project-umi-trimming",
-    "href": "posts/starting-learning-rust/index.html#first-project-umi-trimming",
-    "title": "Starting to learn Rust",
-    "section": "First project: UMI trimming",
-    "text": "First project: UMI trimming\nUMI stands for Unique Molecular Identifier.\nThe goal is reproduce some features from umi-tools especially the extract command.\nFor example, convert the following read\n@VH00666:90:AAAWVCCHV:1:1101:24026:1000\nGTCAGTTATAGCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC\n[...]\ninto:\n@VH00666:90:AAAWVCCHV:1:1101:24026:1000_GTCAGT\nGCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC\nThe UMI was GTCAGT and appended to the read name, while being removed from the sequence along with the TATA linker.\nThis project is here on"
-  },
-  {
-    "objectID": "posts/winter-is-coming/index.html",
-    "href": "posts/winter-is-coming/index.html",
-    "title": "winter is coming",
-    "section": "",
-    "text": "Snow during winter time. How unexpected this could be?\n\n\n\nVon backhaus in white"
   },
   {
     "objectID": "index.html",
@@ -161,34 +133,6 @@
     "text": "Karate (1995)\n\n\n\n\nSong\nAuthor\n\n\n\n\nIf You Can Hold Your Breath\nPete DeStefano\n\n\nEvery Sister\nPhilip Tanimura\n\n\nCaffeine or Me?\nPhilip Tanimura"
   },
   {
-    "objectID": "posts/latex-modern-cv/index.html#install-missing-packages",
-    "href": "posts/latex-modern-cv/index.html#install-missing-packages",
-    "title": "LaTex modern CV",
-    "section": "install missing packages",
-    "text": "install missing packages\ntlmgr install moderncv\ntlmgr install xcolor\ntlmgr install colortbl\ntlmgr install fancyhdr\ntlmgr install microtype\ntlmgr install pgf # to install tikz\ntlmgr install textgreek\ntlmgr install fontawesome\ntlmgr install lastpage\ntlmgr install marvosym \ntlmgr install greek-fontenc\ntlmgr install babel-greek\ntlmgr update --self --all\ntlmgr path add"
-  },
-  {
-    "objectID": "posts/latex-modern-cv/index.html#issue-with-fontawesome",
-    "href": "posts/latex-modern-cv/index.html#issue-with-fontawesome",
-    "title": "LaTex modern CV",
-    "section": "issue with fontawesome",
-    "text": "issue with fontawesome\n\nreload / install fonts fmtutil-sys --all\n\nside effect, the Roboto condensed for Robert Rudis, ggplot2 theme is now working nicely!"
-  },
-  {
-    "objectID": "posts/latex-modern-cv/index.html#solve-issue-of-nfss-corrupted",
-    "href": "posts/latex-modern-cv/index.html#solve-issue-of-nfss-corrupted",
-    "title": "LaTex modern CV",
-    "section": "solve issue of NFSS corrupted",
-    "text": "solve issue of NFSS corrupted\nfollowing this answer:\nthe error was completed with For encoding scheme LGR the defaults cmr/m/n do not form a valid font shape\ntlmgr install cbfonts\nallows to get the Greek letters working. Why the greek-fontenc and babel-greek was not sufficient? I don’t know"
-  },
-  {
-    "objectID": "posts/latex-modern-cv/index.html#workflow",
-    "href": "posts/latex-modern-cv/index.html#workflow",
-    "title": "LaTex modern CV",
-    "section": "Workflow",
-    "text": "Workflow\n\nbibliography from pubmed to .bib using http://www.bioinformatics.org/texmed/ as biblio.bib\nfix gamma character {I}{F}{N}γ responses to {I}{F}{N}{$\\gamma$} responses\nfirst compilation, generate biblio.aux\nin plainyr_rev.bst, specify \"Ginolhac, A\" so my name gets underlined and bolded\nrun bibtex biblio to generate biblio.bbl\nsecond compilation to generate the pdf"
-  },
-  {
     "objectID": "posts/diy-raspberry-monitored-via-telegram/index.html",
     "href": "posts/diy-raspberry-monitored-via-telegram/index.html",
     "title": "home surveillance monitored via telegram",
@@ -238,10 +182,73 @@
     "text": "Conclusion\nBeyond the initial goal, catch the neighbor cats coming in, which actually I don’t care about, it was fun to set-up the whole thing. Moreover, telegram offers a great service and offers a great interface for many applications. I knew about the TeleR bot, that is actually easy to set-up.\nDon’t hesitate to leave a comment below for any remarks or improvements that I overseen."
   },
   {
-    "objectID": "posts/tweening-a-poisson-distribution/index.html",
-    "href": "posts/tweening-a-poisson-distribution/index.html",
-    "title": "tweening a Poisson distribution",
+    "objectID": "posts/teething-process/index.html",
+    "href": "posts/teething-process/index.html",
+    "title": "teething",
     "section": "",
-    "text": "with gganimate and tweenr\nusing \\(\\lambda\\) from 5 to 55 with a step of 5.\n\nlibrary(tidyverse)\nlibrary(gganimate)\nlibrary(tweenr) # devtools::install_github(\"thomasp85/tweenr\")\n\ncrossing(tibble(x = 1:50),\n         tibble(lambda = c(2, seq(5, 55, 5)))) %&gt;%\n  mutate(dpoi = dpois(x, lambda = lambda)) -&gt; poi_df\n\nmy_list &lt;- map(unique(poi_df$lambda), ~ filter(poi_df, lambda == .x) %&gt;% as.data.frame())\n\ntween_states(my_list, tweenlength = 7, statelength = 1, ease = \"cubic-in-out\", nframes = 50) %&gt;%\n  \n  ggplot(aes(x, dpoi, frame = .frame)) + \n  geom_col(position = \"dodge\", width = 2.0) +\n  scale_y_continuous(expand = c(0, 0)) +\n  labs(x = NULL) +\n  theme_classic(16) -&gt; p\n\ngganimate(p, title_frame = FALSE, ani.width = 600, ani.height = 450, interval = 0.1, filename = \"poisson.gif\")"
+    "text": "Teething can be tough for kids, and so for the parents. For our first kid, it was actually pretty painful. Then, I wanted to see how synchronize the second kid would be with the first one."
+  },
+  {
+    "objectID": "posts/teething-process/index.html#input-data",
+    "href": "posts/teething-process/index.html#input-data",
+    "title": "teething",
+    "section": "Input data",
+    "text": "Input data\nThis was an old input, now I would use the datapasta rstudio addin by Miles Mc Bain to get a tribble from any spreadsheet.\n\ntibble::tribble(\n      ~kid,        ~date,                ~teeth,\n   \"Anouk\", \"2014-03-31\", \"incisive inf cent D\",\n   \"Anouk\", \"2014-04-18\", \"incisive inf cent G\",\n   \"Anouk\", \"2014-07-02\", \"incisive sup cent D\",\n   \"Anouk\", \"2014-06-09\", \"incisive sup cent G\",\n   \"Anouk\", \"2014-07-03\",  \"incisive sup lat G\",\n   \"Anouk\", \"2014-07-26\",  \"incisive sup lat D\",\n   \"Anouk\", \"2014-08-12\",  \"incisive inf lat D\",\n   \"Anouk\", \"2014-10-12\",  \"incisive inf lat G\",\n   \"Anouk\", \"2015-01-04\",        \"prem 1 sup G\",\n   \"Anouk\", \"2015-01-11\",        \"prem 1 sup G\",\n   \"Anouk\", \"2015-01-11\",        \"prem 1 inf D\",\n   \"Anouk\", \"2015-02-01\",        \"prem 1 inf D\",\n   \"Anouk\", \"2015-02-01\",        \"canine sup G\",\n   \"Anouk\", \"2015-02-12\",        \"canine sup D\",\n   \"Anouk\", \"2015-03-28\",        \"canine inf D\",\n   \"Anouk\", \"2015-04-04\",        \"canine inf G\", # imputed data\n   \"Anouk\", \"2015-10-15\",        \"prem 2 inf G\",\n   \"Anouk\", \"2015-10-15\",        \"prem 2 inf D\",\n   \"Anouk\", \"2015-12-21\",        \"prem 2 sup D\",\n   \"Anouk\", \"2016-03-01\",        \"prem 2 sup G\",\n   \"Irène\", \"2017-05-11\", \"incisive inf cent D\",\n   \"Irène\", \"2017-05-18\", \"incisive inf cent G\",\n   \"Irène\", \"2017-07-11\", \"incisive sup cent D\",\n   \"Irène\", \"2017-07-25\", \"incisive sup cent G\",\n   \"Irène\", \"2017-08-03\", \"incisive sup lat D\",\n   \"Irène\", \"2017-08-04\", \"incisive inf lat D\",\n   \"Irène\", \"2017-08-04\", \"incisive inf lat G\",\n   \"Irène\", \"2017-08-23\", \"incisive sup lat G\",\n   \"Irène\", \"2017-09-30\",        \"prem 1 inf D\",\n   \"Irène\", \"2017-09-20\",        \"prem 1 inf G\",\n   \"Irène\", \"2017-10-22\",        \"prem 1 sup D\",\n   \"Irène\", \"2017-10-20\",        \"prem 1 sup G\",\n   \"Irène\", \"2018-04-04\",        \"canine sup D\",\n   \"Irène\", \"2018-04-28\",        \"canine inf D\",\n   \"Irène\", \"2018-05-15\",        \"canine sup G\",\n   \"Irène\", \"2018-05-25\",        \"prem 2 inf G\",\n   \"Irène\", \"2018-06-01\",        \"canine inf G\",\n   \"Irène\", \"2018-06-07\",        \"prem 2 inf D\",\n   \"Irène\", \"2018-09-04\",        \"prem 2 sup D\") -&gt; teeth\n\n\ncount(teeth, kid)\n\n# A tibble: 2 × 2\n  kid       n\n  &lt;chr&gt; &lt;int&gt;\n1 Anouk    20\n2 Irène    19\n\n\nhttps://en.wikipedia.org/wiki/Dental_notation\nPrimary Dentition\n        upper right - 5             upper left - 6\n             55 54 53 52 51 | 61 62 63 64 65 \n          R --------------------------------- L\n             85 84 83 82 81 | 71 72 73 74 75 \n        lower right - 8             lower left - 7\n\n I - incisor\n C - canine\n P - premolar\n M - molar"
+  },
+  {
+    "objectID": "posts/teething-process/index.html#plotting",
+    "href": "posts/teething-process/index.html#plotting",
+    "title": "teething",
+    "section": "Plotting",
+    "text": "Plotting\n\nteeth %&gt;%\n  mutate(date = parse_date(date),\n         t_teeth = word(teeth, 1),\n         age = case_when(kid == \"Anouk\" ~ date - ymd(\"20130828\"),\n                         kid == \"Irène\" ~ date - ymd(\"20160922\")),\n         age2 = as.numeric(age) / 365) -&gt; teeth_tp\nteeth_tp %&gt;%\n  group_by(kid) %&gt;%\n  arrange(age) %&gt;%\n  mutate(n_teeth = row_number()) %&gt;% \n  ggplot(aes(x = age2, y = n_teeth, colour = kid), width = 20) +\n  geom_line() +\n  geom_point(aes(shape = t_teeth)) +\n  scale_y_continuous(breaks = c(1, seq(5, 20, 5))) +\n  theme_bw(14) +\n  labs(x = \"age (years)\",\n       y = \"# teeth\",\n       shape = \"type\")"
+  },
+  {
+    "objectID": "posts/teething-process/index.html#animate",
+    "href": "posts/teething-process/index.html#animate",
+    "title": "teething",
+    "section": "Animate",
+    "text": "Animate\n\nlibrary(gganimate)\nteeth_tp %&gt;%\n   group_by(kid) %&gt;%\n   arrange(age) %&gt;%\n   mutate(n_teeth = row_number()) %&gt;% \n   ggplot(aes(x = age2, y = n_teeth, colour = kid)) +\n   geom_line() +\n   # to try transition_reveal()\n   transition_reveal(kid, n_teeth) +\n   #ease_aes(\"linear\") +\n   shadow_trail() +\n   geom_point(aes(shape = t_teeth), size = 5) +\n   scale_y_continuous(breaks = c(1, seq(5, 20, 5))) +\n   scale_color_manual(values = wesanderson::wes_palette(\"GrandBudapest1\")[3:4]) + \n   theme_bw(14) +\n   labs(x = \"age (years)\",\n        y = \"# teeth\",\n        shape = \"type\") -&gt; tp\nanimate(tp, nframes = 60)\nanim_save(\"teething.gif\", last_animation())"
+  },
+  {
+    "objectID": "posts/starting-learning-rust/index.html",
+    "href": "posts/starting-learning-rust/index.html",
+    "title": "Starting to learn Rust",
+    "section": "",
+    "text": "I am very happy with  but I want to learn something new, another programming language. The desire comes with several needs\n\n\n\nA compiled language\n\nSpeed\nStrict syntax, almost pedantic\n\nStrongly typed\n\n\n\n\n\nFull of functional programming\nGreat packages offered by a great community (crates)\n\nTurns out this language is Rust."
+  },
+  {
+    "objectID": "posts/starting-learning-rust/index.html#rationale",
+    "href": "posts/starting-learning-rust/index.html#rationale",
+    "title": "Starting to learn Rust",
+    "section": "",
+    "text": "I am very happy with  but I want to learn something new, another programming language. The desire comes with several needs\n\n\n\nA compiled language\n\nSpeed\nStrict syntax, almost pedantic\n\nStrongly typed\n\n\n\n\n\nFull of functional programming\nGreat packages offered by a great community (crates)\n\nTurns out this language is Rust."
+  },
+  {
+    "objectID": "posts/starting-learning-rust/index.html#advantages",
+    "href": "posts/starting-learning-rust/index.html#advantages",
+    "title": "Starting to learn Rust",
+    "section": "Advantages",
+    "text": "Advantages\n\nCompiler\nIt is incredibly helpful. I am using VScode with the extension rust-analyser that provides immediate feedback, great suggestions to both warnings and errors.\n\n\nBonus: the  logo\nIt has the two things I like a lot:\n\nA  from  (a chainring)\nA big R that looks very much like \n\n\n\n\nRust logo"
+  },
+  {
+    "objectID": "posts/starting-learning-rust/index.html#learning-material",
+    "href": "posts/starting-learning-rust/index.html#learning-material",
+    "title": "Starting to learn Rust",
+    "section": "Learning material",
+    "text": "Learning material\n\n\n\nI am using so far three resources:\n\nThe Programming Rust book (Ed. O’Reilly). From a recommendation by Stefan Baumgartner\nThe official documentation that includes a lot of example.\nThe “How to learn Rust” course by Tim McManara (only $25). From a recommendation of Jonathan Caroll"
+  },
+  {
+    "objectID": "posts/starting-learning-rust/index.html#example-of-syntax",
+    "href": "posts/starting-learning-rust/index.html#example-of-syntax",
+    "title": "Starting to learn Rust",
+    "section": "Example of syntax",
+    "text": "Example of syntax\nPrograms are managed the cargo utility. It creates, run, test, optimize Rust code. Here is one of official documentation example. We need the rand crate dependency. Here we specify the wanted version 0.8.5.\nThe code for the main guessing is included.\n\nCargo.tomlmain.rs\n\n\n[package]\nname = \"guessing_game\"\nversion = \"0.1.0\"\nedition = \"2021\"\n\n# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html\n\n[dependencies]\nrand = \"0.8.5\"\n\n\nuse std::io;\nuse std::cmp::Ordering;\nuse rand::Rng;\n\nfn main() {\n    println!(\"Guess the number!\");\n    \n    let max = 50u32;\n    // to keep track of the number of guesses\n    let mut count = 0u32;\n\n    // create an integer randomly from 1 to 50\n    let secret_number = rand::thread_rng().gen_range(1..=max);\n    // loop over until the number is found\n    loop { \n        count += 1;   \n        println!(\"Please input your guess. (an integer from 1 to {max})\");\n        \n        let mut guess: String = String::new();\n        \n        io::stdin()\n        .read_line(&mut guess)\n        .expect(\"Failed to read line\");\n        // coerce to an integer\n        let guess: u32 = match guess.trim().parse() {\n            Ok(num) =&gt; num,\n            // but offer possibily to change\n            Err(_) =&gt; {\n                println!(\"You entered {}, not a number\", guess.trim());\n                continue;\n            }\n        };\n        \n        println!(\"You guessed: {guess}\");  //while the secret was {secret_number}\");\n        \n        match guess.cmp(&secret_number) {\n            Ordering::Less =&gt; println!(\"Too small!\"),\n            Ordering::Greater =&gt; println!(\"Too big!\"),\n            Ordering::Equal =&gt; {\n                println!(\"You win! in {count} trials\");\n                break;\n            }\n        }\n    }\n}"
+  },
+  {
+    "objectID": "posts/starting-learning-rust/index.html#first-project-umi-trimming",
+    "href": "posts/starting-learning-rust/index.html#first-project-umi-trimming",
+    "title": "Starting to learn Rust",
+    "section": "First project: UMI trimming",
+    "text": "First project: UMI trimming\nUMI stands for Unique Molecular Identifier.\nThe goal is reproduce some features from umi-tools especially the extract command.\nFor example, convert the following read\n@VH00666:90:AAAWVCCHV:1:1101:24026:1000\nGTCAGTTATAGCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC\n[...]\ninto:\n@VH00666:90:AAAWVCCHV:1:1101:24026:1000_GTCAGT\nGCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC\nThe UMI was GTCAGT and appended to the read name, while being removed from the sequence along with the TATA linker.\n\nRust-bio\nThis library rust-bio provides many features, and I am only using the\n\nalphabets to check the letters are actually IUPAC / DNA\nfastq for Reading/Writing FASTQ reads.\n\n\n\nThe Command Line Interface (CLI) utility: clap\nclap is an awesome library that helps making a CLI fun and easy.\nThe help output looks like (options actually appear in bold:\n$ umi_trim -h\nMove Unique Molecular Identifier from seq to name and trim a linker motif (TATA)\n\nUsage: umi_trim [OPTIONS] --input &lt;INPUT&gt; --output &lt;OUTPUT&gt;\n\nOptions:\n  -i, --input &lt;INPUT&gt;            FASTQ filename to read from\n  -o, --output &lt;OUTPUT&gt;          Filename to write to\n  -u, --umi-length &lt;UMI_LENGTH&gt;  UMI length in characters [default: 6]\n  -l, --linker &lt;LINKER&gt;          Linker UMI-READ to be discarded [default: TATA]\n  -h, --help                     Print help\n  -V, --version                  Print version\nThis project is here on"
   }
 ]
