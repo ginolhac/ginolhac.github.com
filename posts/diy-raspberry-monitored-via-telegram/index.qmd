@@ -2,6 +2,7 @@
 title: home surveillance monitored via telegram
 author: Aurelien Ginolhac
 date: "2018-01-27"
+date-modified: "2018-06-19"
 description: "using telepot and the NoIR camera"
 categories:
   - Python
