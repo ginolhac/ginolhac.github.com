@@ -57,8 +57,84 @@ I am using so far three resources:
 
 
 
-- The official [documentation](https://doc.rust-lang.org/book/ch00-00-introduction.html) that include a lot of example.
-- The ["How to learn Rust" course](https://learning.accelerant.dev/view/courses/how-to-learn-rust) by Tim McManara. From a recommendation of [Jonathan Caroll](https://jcarroll.com.au)
+- The official [documentation](https://doc.rust-lang.org/book/ch00-00-introduction.html) that includes a lot of example.
+- The ["How to learn Rust" course](https://learning.accelerant.dev/view/courses/how-to-learn-rust) by Tim McManara (only $25). From a recommendation of [Jonathan Caroll](https://jcarroll.com.au)
+
+## Example of syntax
+
+Programs are managed the `cargo` utility. It creates, run, test, optimize Rust code.
+Here is one of official documentation example. We need the [`rand`](https://crates.io/crates/rand) **crate** dependency. Here we specify the wanted version `0.8.5`.
+
+The code for the main guessing is included.
+
+::: {.panel-tabset}
+
+## `Cargo.toml`
+
+``` rust
+[package]
+name = "guessing_game"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.5"
+```
+
+## `main.rs`
+
+``` rust
+use std::io;
+use std::cmp::Ordering;
+use rand::Rng;
+
+fn main() {
+    println!("Guess the number!");
+    
+    let max = 50u32;
+    // to keep track of the number of guesses
+    let mut count = 0u32;
+
+    // create an integer randomly from 1 to 50
+    let secret_number = rand::thread_rng().gen_range(1..=max);
+    // loop over until the number is found
+    loop { 
+        count += 1;   
+        println!("Please input your guess. (an integer from 1 to {max})");
+        
+        let mut guess: String = String::new();
+        
+        io::stdin()
+        .read_line(&mut guess)
+        .expect("Failed to read line");
+        // coerce to an integer
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            // but offer possibily to change
+            Err(_) => {
+                println!("You entered {}, not a number", guess.trim());
+                continue;
+            }
+        };
+        
+        println!("You guessed: {guess}");  //while the secret was {secret_number}");
+        
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win! in {count} trials");
+                break;
+            }
+        }
+    }
+}
+```
+
+:::
+
 
 ## First project: UMI trimming
 
@@ -83,5 +159,34 @@ GCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC
 ```
 
 The UMI was **GTCAGT** and appended to the read **name**, while being removed from the sequence along with the **TATA** linker.
+
+### Rust-bio
+
+This library [`rust-bio`](https://github.com/rust-bio/rust-bio) provides many features, and I am only using the 
+
+- `alphabets` to check the letters are actually IUPAC / DNA
+- `fastq` for Reading/Writing FASTQ reads.
+
+
+### The Command Line Interface (CLI) utility: `clap`
+
+[`clap`](https://crates.io/crates/clap) is an awesome library that helps making a CLI fun and easy.
+
+The help output looks like (options actually appear in **bold**:
+
+``` bash
+$ umi_trim -h
+Move Unique Molecular Identifier from seq to name and trim a linker motif (TATA)
+
+Usage: umi_trim [OPTIONS] --input <INPUT> --output <OUTPUT>
+
+Options:
+  -i, --input <INPUT>            FASTQ filename to read from
+  -o, --output <OUTPUT>          Filename to write to
+  -u, --umi-length <UMI_LENGTH>  UMI length in characters [default: 6]
+  -l, --linker <LINKER>          Linker UMI-READ to be discarded [default: TATA]
+  -h, --help                     Print help
+  -V, --version                  Print version
+```
 
 This project is [here on {{< fa brands github >}}](https://github.com/ginolhac/umi_trim)
