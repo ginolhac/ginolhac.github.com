@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.322">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aurelien Ginolhac">
+<meta name="dcterms.date" content="2018-01-27">
+<meta name="description" content="using telepot and the NoIR camera">
+
+<title>home surveillance monitored via telegram</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../karate/index.html"> <i class="bi bi-music" role="img">
+</i> 
+<span class="menu-text">Karate tabs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ginolhac"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">home surveillance monitored via telegram</h1>
+                  <div>
+        <div class="description">
+          using telepot and the NoIR camera
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Python</div>
+                <div class="quarto-category">DIY</div>
+                <div class="quarto-category">RasPI</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aurelien Ginolhac </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 27, 2018</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="rationale" class="level2">
+<h2 class="anchored" data-anchor-id="rationale">Rationale</h2>
+<p>The <a href="https://www.raspberrypi.org">raspberry pi</a> has always been appealing to me, but I needed a project to really get involved. After discussing with <a href="https://github.com/koncina">Eric Koncina</a> who made several great applications with Pis, I decided to go for a home surveillance system.</p>
+<p>The main objective was to see how often the neighbor cats are coming to our garden, because they are scaring our cat. It’s not a big deal, rather a justification for the <strong>pi</strong> project.</p>
+</section>
+<section id="materials" class="level2">
+<h2 class="anchored" data-anchor-id="materials">Materials</h2>
+<p>I bought a <a href="https://www.kubii.fr/fr/kits-raspberry-pi/1992-starter-kit-raspberry-pi-3-budget-3272496008496.html">Pi3 starter budget kit</a> that contains:</p>
+<ul>
+<li>Pi3</li>
+<li>power, 5V, 2.5A</li>
+<li>case</li>
+<li>SD card 16 Go</li>
+</ul>
+<p>Additionally, I purchased:</p>
+<ul>
+<li><a href="https://www.raspberrypi.org/products/pi-noir-camera-v2/">Pi camera NoIR</a></li>
+</ul>
+<p>Was hoping to get some decent pictures / videos with low light. Turned out that IR leds are needed. That goes in the <a href="#TODO">TODO</a> section.</p>
+<p>Here is an example of picture with low interior light. Colors are off, but quality is fine to me</p>
+<p><img src="../../images/cam_noIR.jpg" class="img-fluid"></p>
+</section>
+<section id="setting-up-the-pi" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-the-pi">Setting-up the pi</h2>
+<p>I won’t go into details, I mostly followed the instructions in this <a href="https://howchoo.com/g/ndy1zte2yjn/how-to-set-up-wifi-on-your-raspberry-pi-without-ethernet">tutorial</a>. Briefly, here are the main steps</p>
+<section id="download-raspbian-lite" class="level3">
+<h3 class="anchored" data-anchor-id="download-raspbian-lite">download raspbian lite</h3>
+<p>Since I have no screen, no keyboard and the pi comes with a WiFi controller, the <strong>stretch lite</strong> is sufficient. Image can be found at <a href="https://www.raspberrypi.org/downloads/raspbian/">raspberrypi.org</a></p>
+</section>
+<section id="format-sd-card" class="level3">
+<h3 class="anchored" data-anchor-id="format-sd-card">format SD card</h3>
+<p>using disk utility, choose <code>MS-DOS FAT</code> file system</p>
+</section>
+<section id="install-raspbian" class="level3">
+<h3 class="anchored" data-anchor-id="install-raspbian">install raspbian</h3>
+<p>Ensure your SD card is the second disk (<code>/dev/disk2</code>), otherwise <strong>do</strong> adapt to the correct one!</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> 2017-11-29-raspbian-stretch-lite.zip</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dd bs=1m if=2017-11-29-raspbian-stretch-lite.img of=/dev/rdisk2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="enable-ssh" class="level3">
+<h3 class="anchored" data-anchor-id="enable-ssh">enable ssh</h3>
+<p>Once copied, you can enable <strong>ssh</strong> by creating an empty file at the SD card root</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /Volumes/boot/</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="enable-wifi" class="level3">
+<h3 class="anchored" data-anchor-id="enable-wifi">enable wifi</h3>
+<p>In order to connect to the pi without screen / keyboard, <strong>wifi</strong> needs to be configured right away. At the same location (<code>/Volumes/boot</code>) add a file named <code>wpa_supplicant.conf</code></p>
+<p>which contains:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">network</span><span class="op">=</span>{</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="va">ssid</span><span class="op">=</span><span class="st">"your_network_ssid"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">psk</span><span class="op">=</span><span class="st">"xxx"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">key_mgmt</span><span class="op">=</span>WPA-PSK</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Of note, I recently acquired a pi <strong>zeroWH</strong>, for which I had to add 3 lines (<a href="https://raspberrypi.stackexchange.com/questions/75039/can-t-get-auto-wifi-connection-to-work-on-pi-zero-w-on-boot">StackExchange question</a>).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">ctrl_interface</span><span class="op">=</span>DIR=/var/run/wpa_supplicant <span class="va">GROUP</span><span class="op">=</span>netdev</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">update_config</span><span class="op">=</span>1</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">country</span><span class="op">=</span>FR</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">network</span><span class="op">=</span>{</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">ssid</span><span class="op">=</span><span class="st">"your_network_ssid"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">psk</span><span class="op">=</span><span class="st">"xxx"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">key_mgmt</span><span class="op">=</span>WPA-PSK</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="connect-to-pi" class="level3">
+<h3 class="anchored" data-anchor-id="connect-to-pi">connect to pi</h3>
+<p>once the raspberrypi booted, try to find its IP</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nmap</span> <span class="at">-sn</span> 192.168.1.0/24</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which gives:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Starting</span> Nmap 7.60 <span class="er">(</span> <span class="ex">https://nmap.org</span> <span class="kw">)</span> <span class="ex">at</span> 2017-12-08 22:44 CET</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Nmap</span> scan report for 192.168.1.27</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> is up <span class="er">(</span><span class="ex">0.0071s</span> latency<span class="kw">)</span><span class="bu">.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Nmap</span> scan report for 192.168.1.254</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> is up <span class="er">(</span><span class="ex">0.0048s</span> latency<span class="kw">)</span><span class="bu">.</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Nmap</span> done: 256 IP addresses <span class="er">(</span><span class="ex">2</span> hosts up<span class="kw">)</span> <span class="ex">scanned</span> in 11.71 seconds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>192.168.1.254</code> was the rooter, so pi was assigned <code>192.168.1.27</code></p>
+<p><code>ssh pi@192.168.1.27</code> works.</p>
+<p>you can also assign a fixed IP to your pi</p>
+</section>
+<section id="final-configuration" class="level3">
+<h3 class="anchored" data-anchor-id="final-configuration">final configuration</h3>
+<p>once connected to the pi:</p>
+<ul>
+<li>run <code>sudo raspi-config</code> to activate the camera</li>
+<li>change password for the <code>pi</code> user</li>
+<li>set up <code>locales</code> and timezone</li>
+<li>update &amp;&amp; upgrade raspbian stretch</li>
+<li>add public <code>ssh</code> key to <code>.ssh/authorized_keys</code> for password less connection</li>
+</ul>
+</section>
+</section>
+<section id="install-the-surveillance-system" class="level2">
+<h2 class="anchored" data-anchor-id="install-the-surveillance-system">install the surveillance system</h2>
+<p>Even if, I’d like to have <a href="https://github.com/opencv">openCV</a> like in this <a href="https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/">tutorial</a>, it was way more work. Hence, the choice of <a href="https://motion-project.github.io">motion</a></p>
+<section id="motion-software" class="level3">
+<h3 class="anchored" data-anchor-id="motion-software">motion software</h3>
+<p>I followed the instructions provided in this great <a href="https://www.bouvet.no/bouvet-deler/utbrudd/building-a-motion-activated-security-camera-with-the-raspberry-pi-zero">tutorial</a> by <strong>Bouvet</strong>. With some changes described below.</p>
+<section id="compilation" class="level4">
+<h4 class="anchored" data-anchor-id="compilation">compilation</h4>
+<p>see from here https://motion-project.github.io/motion_build.html</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/Motion-Project/motion/releases/download/release-4.1.1/pi_stretch_motion_4.1.1-1_armhf.deb</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install gdebi-core</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi pi_stretch_motion_4.1.1-1_armhf.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="run-motion" class="level3">
+<h3 class="anchored" data-anchor-id="run-motion">run <code>motion</code></h3>
+<p>first, as <strong>Bouvet</strong> suggested, I copied the main config file</p>
+<p><code>mkdir ~/motion &amp;&amp; cp /etc/motion/motion.conf ~/motion/</code></p>
+<p>and alter the new copy.</p>
+<p>running <strong>motion</strong>:</p>
+<p><code>motion -c ~/motion/motion.conf</code></p>
+</section>
+<section id="tweaks-to-the-initial-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tweaks-to-the-initial-tutorial">tweaks to the initial tutorial</h3>
+<p>I choose to get the videos and several other changes made to the <code>motion</code> version <strong>4.1.1.</strong> and are reported in the complete <em>diff</em> page below</p>
+<p><a href="../../data/motion_diff.html" target="_blank">diff page for motion.conf</a></p>
+<p>The initial values are reported in red, in green: the new ones.</p>
+<!-- https://www.npmjs.com/package/diff2html-cli
+diff2html -i file ../public/motion.diff -F test.html
+-->
+</section>
+<section id="see-live-streaming" class="level3">
+<h3 class="anchored" data-anchor-id="see-live-streaming">see live streaming</h3>
+<p>with this configuration, you should see the live streaming from this URL: <a href="http://192.168.1.27:8081">http://192.168.1.27:8081</a></p>
+<p>the web control on port <strong>8080</strong> is disabled apart outside the pi, since we’ll use telegram to control <em>motion</em></p>
+</section>
+<section id="detection" class="level3">
+<h3 class="anchored" data-anchor-id="detection">detection</h3>
+<p>Here is an example of my kid being detected. The red rectangle works nicely</p>
+<p><img src="../../images/kid_catch.jpg" class="img-fluid"></p>
+<p>But of course, there are false alarms, such as when the light comes in/out suddenly</p>
+<p><img src="../../images/light_false_alarm.jpg" class="img-fluid"></p>
+<p>the parameter <code>lightswitch 80</code> reduced the issue but it still exists.</p>
+</section>
+</section>
+<section id="communication-with-motion-via-telegram" class="level2">
+<h2 class="anchored" data-anchor-id="communication-with-motion-via-telegram">Communication with motion <em>via</em> telegram</h2>
+<p>Now comes the fun part. Receiving the motion detection by emails is fine, but it can be done via <strong>Telegram</strong> and the awesome API <a href="http://telepot.readthedocs.io"><code>telepot</code></a>. <strong>Eric</strong> told me about telegram <strong>bots</strong> and it looked promising. Actually, you can even <em>send</em> commands to your pi using your phone using those telegram <strong>bots</strong>.</p>
+<p>The useful feature I implemented are:</p>
+<ul>
+<li><strong>alerts</strong>. A motion is detected. Send the best picture to your telegram account.</li>
+<li><strong>pause</strong> / <strong>resume</strong> motion detection. Imagine you are away and for some reason (shadows, your own cat) you keep receiving alerts, you may want to remotely <em>pause</em> the detection. And of course, being able to <em>resume</em> it. Those commands are already in <code>motion</code>, we just need to talk to it.</li>
+<li><strong>status</strong>. You haven’t received alerts, is the system running smoothly? You can ask for a confirmation that detection is on. Also, check if the camera is on.</li>
+<li><strong>snapshot</strong>. No alerts, but you’d like to get a snapshot at any time.</li>
+<li><strong>video</strong>. Maybe the nicest feature IMHO. Sending picture to your phone for every detection is fine, but not all videos. Based on the picture you see, you’d like to get the video of the detection. Once again, by a command to a telegram bot, you receive the last video recorded.</li>
+</ul>
+<section id="create-mybot" class="level3">
+<h3 class="anchored" data-anchor-id="create-mybot">create mybot</h3>
+<p>Eric gave me the link to this <a href="http://www.instructables.com/id/Set-up-Telegram-Bot-on-Raspberry-Pi/">tutorial</a></p>
+<p>Of course, I am assuming you already have our own telegram account.</p>
+<p>Talk to the <code>BotFather</code> and create <code>mybot</code>, you will receive a private token.</p>
+</section>
+<section id="install-telepot" class="level3">
+<h3 class="anchored" data-anchor-id="install-telepot">install telepot</h3>
+<p>back on the pi, install <code>telepot</code> with <code>pip</code>, assuming you installed <code>python</code> and <code>pip</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install telepot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="test-sending-message" class="level3">
+<h3 class="anchored" data-anchor-id="test-sending-message">test sending message</h3>
+<section id="get-the-bot-id" class="level4">
+<h4 class="anchored" data-anchor-id="get-the-bot-id">get the bot id</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> telepot</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>bot <span class="op">=</span> telepot.Bot(<span class="st">'your-token'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bot.getMe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>returns <code>{u'username': u'mybot', u'first_name': u'cat tracker', u'is_bot': True, u'id': 00000008}</code></p>
+</section>
+<section id="get-your-telegram-id" class="level4">
+<h4 class="anchored" data-anchor-id="get-your-telegram-id">get your telegram id:</h4>
+<ul>
+<li>send a messages from telegram to <code>mybot</code></li>
+<li>fetch your message on the pi</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> bot.getUpdates()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pprint(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>your id appears, such as: <strong>u’id’: 00000004</strong></p>
+</section>
+<section id="basic-tests" class="level4">
+<h4 class="anchored" data-anchor-id="basic-tests">basic tests</h4>
+<ul>
+<li>for text</li>
+</ul>
+<p><code>bot.sendMessage(00000004, 'Hey!')</code></p>
+<ul>
+<li>for picture</li>
+</ul>
+<p><code>bot.sendPhoto(00000004, photo=open('/home/pi/motion/detected/07-2018-01-06_205746-13.jpg', 'rb'), caption='motion detected')</code></p>
+</section>
+<section id="create-commands-for-the-bot" class="level4">
+<h4 class="anchored" data-anchor-id="create-commands-for-the-bot">create commands for the bot</h4>
+<p>After sending <code>/setcommands</code> to the <code>BotFather</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">time</span> <span class="at">-</span> Returns current time on pi</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">check</span> <span class="at">-</span> Returns status of the camera</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">status</span> <span class="at">-</span> Returns status of motion</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pause</span> <span class="at">-</span> Pauses the motion detection</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">resume</span> <span class="at">-</span> Resumes motion detection</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">snapshot</span> <span class="at">-</span> Returns current image</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ex">video</span> <span class="at">-</span> Returns last recorded video</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Of note, it doesn’t prevent the bot to receive other commands, it just helps to display commands and select them in telegram.</p>
+</section>
+<section id="python-script-that-listen" class="level4">
+<h4 class="anchored" data-anchor-id="python-script-that-listen">python script that listen</h4>
+<p>here the script <code>listen_bot.py</code>, derived from the telepot documentation.</p>
+<p>Some comments:</p>
+<ul>
+<li>the last video when requested is fetched from the sub-folder <code>vids</code>. If we use the main folder of detection, the last video could be an incomplete one form a newer detection. Hence, the command in <code>motion.conf</code> to move a finished video to the <code>vids</code> folder.</li>
+<li>I failed to restrict the bot to communicate only with me. Might not be a big deal, but the code <code>if chat_id != 00000008</code> is not working.</li>
+<li>the webcontrol was set in the <em>RAW</em> mode. Then the retrieved text can be directly send to your telegram account</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/python2.7</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> telepot</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> telepot.loop <span class="im">import</span> MessageLoop</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> webcontrol(chat_id, <span class="bu">type</span>, cmd):</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    req <span class="op">=</span> <span class="st">'http://localhost:8080/0/'</span><span class="op">+</span><span class="bu">type</span><span class="op">+</span><span class="st">'/'</span><span class="op">+</span>cmd</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> requests.get(req)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    bot.sendMessage(chat_id, res.text)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> handle(msg):</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    chat_id <span class="op">=</span> msg[<span class="st">'chat'</span>][<span class="st">'id'</span>]</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    command <span class="op">=</span> msg[<span class="st">'text'</span>]</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">#should work thanks to Winston</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> msg[<span class="st">'from'</span>][<span class="st">'id'</span>] <span class="op">!=</span> <span class="dv">0000000</span><span class="er">8</span>:</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        bot.sendMessage(chat_id, <span class="st">"Sorry this is a personal bot. Access Denied!"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        exit(<span class="dv">1</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">'Got command: </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> command</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> command <span class="op">==</span> <span class="st">'/snapshot'</span>:</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        requests.get(<span class="st">'http://localhost:8080/0/action/snapshot'</span>)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> command <span class="op">==</span> <span class="st">'/status'</span>:</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>        webcontrol(chat_id, <span class="st">'detection'</span>, <span class="st">'status'</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> command <span class="op">==</span> <span class="st">'/pause'</span>:</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        webcontrol(chat_id, <span class="st">'detection'</span>, <span class="st">'pause'</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> command <span class="op">==</span> <span class="st">'/resume'</span>:</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>        webcontrol(chat_id, <span class="st">'detection'</span>, <span class="st">'start'</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> command <span class="op">==</span> <span class="st">'/check'</span>:</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>        webcontrol(chat_id, <span class="st">'detection'</span>, <span class="st">'connection'</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> command <span class="op">==</span> <span class="st">'/time'</span>:</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>        bot.sendMessage(chat_id, <span class="st">'now is '</span><span class="op">+</span><span class="bu">str</span>(datetime.datetime.now()))</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> command <span class="op">==</span> <span class="st">'/video'</span>:</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the most recent video in this particular folder of complete vids</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>        video <span class="op">=</span> <span class="bu">max</span>(glob.iglob(<span class="st">'/home/pi/motion/detected/vids/*.mp4'</span>), key<span class="op">=</span>os.path.getctime)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># send video, adapt the the first argument to your own telegram id</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>        bot.sendVideo(<span class="dv">0000000</span><span class="er">8</span>, video<span class="op">=</span><span class="bu">open</span>(video, <span class="st">'rb'</span>), caption<span class="op">=</span><span class="st">'last video'</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>        bot.sendMessage(chat_id, <span class="st">"sorry, I don't know the command "</span><span class="op">+</span>command)</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co"># adapt the following to the bot_id:bot_token</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>bot <span class="op">=</span> telepot.Bot(<span class="st">'0000000004:bot_token'</span>)</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>MessageLoop(bot, handle).run_as_thread()</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="st">'I am listening ...'</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="dv">1</span>:</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now if the both <code>listen_bot.py</code> and <code>motion -c ~/motion/motion.conf</code> are running, the system should work.</p>
+</section>
+<section id="sending-scripts" class="level4">
+<h4 class="anchored" data-anchor-id="sending-scripts">sending scripts</h4>
+<p>they are called in the <code>motion.conf</code> file.</p>
+<p>first, <code>send_detection.py</code></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/python2.7</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> telepot</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>bot <span class="op">=</span> telepot.Bot(<span class="st">'0000000004:bot_token'</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>pic <span class="op">=</span> sys.argv[<span class="dv">1</span>]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># change caption if it is a snapshot or motion</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> pic.endswith(<span class="st">"snapshot.jpg"</span>):</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    cap <span class="op">=</span> <span class="st">'snapshot'</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    cap <span class="op">=</span> <span class="st">'motion detected'</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>bot.sendPhoto(<span class="dv">0000000</span><span class="er">4</span>, photo<span class="op">=</span><span class="bu">open</span>(pic, <span class="st">'rb'</span>), caption<span class="op">=</span>cap)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>exit(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>second, <code>send_message.py</code></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/python2.7</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> telepot</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>bot <span class="op">=</span> telepot.Bot(<span class="st">'0000000004:bot_token'</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> sys.argv[<span class="dv">1</span>]</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>bot.sendMessage(<span class="dv">0000000</span><span class="er">4</span>, text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="run-scripts-at-startup" class="level4">
+<h4 class="anchored" data-anchor-id="run-scripts-at-startup">run scripts at startup</h4>
+<p><strong>Edit 2018-06-19</strong></p>
+<section id="for-listening" class="level5">
+<h5 class="anchored" data-anchor-id="for-listening">for listening</h5>
+<p>I am now using <code>systemd</code>. Cleaner and safer.</p>
+<p>Here, the following is working, but I am sure this is the right way to do, so use we care.</p>
+<p>add the file <code>listen.service</code> in the folder <code>/etc/systemd/system</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode .bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Unit]</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="va">Description</span><span class="op">=</span>Listen <span class="ex">to</span> foo telegram bot</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="va">After</span><span class="op">=</span>network.target</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[Service]</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="va">ExecStart</span><span class="op">=</span>/usr/bin/python2.7 <span class="ex">-u</span> listen_bot.py</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="va">WorkingDirectory</span><span class="op">=</span>/home/pi/motion/</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="va">StandardOutput</span><span class="op">=</span>inherit</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="va">StandardError</span><span class="op">=</span>inherit</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="va">Restart</span><span class="op">=</span>always</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="va">User</span><span class="op">=</span>motion</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="ex">[Install]</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="va">WantedBy</span><span class="op">=</span>multi-user.target</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>now as example, you can check the <strong>status</strong> of this new service <code>listen</code></p>
+<pre><code>pi@raspberrypi:/etc/systemd/system $ service listen status
+● listen.service - Listen to foo telegram bot
+   Loaded: loaded (/etc/systemd/system/listen.service; enabled; vendor preset: enabled)
+   Active: active (running) since Sun 2018-05-13 21:51:50 CEST; 1 months 6 days ago
+ Main PID: 502 (python2.7)
+   CGroup: /system.slice/listen.service
+           └─502 /usr/bin/python2.7 -u listen_bot.py
+
+May 13 21:51:50 raspberrypi systemd[1]: Started Listen to foo telegram bot.
+May 13 21:51:51 raspberrypi python2.7[502]: I am listening ...
+Jun 19 20:52:17 raspberrypi python2.7[502]: Got command: /time</code></pre>
+<p>And, safer since both <code>motion</code> and <code>listen</code> are running as the user <code>motion</code> who does not have <code>sudo</code> rights.</p>
+</section>
+<section id="for-motion" class="level5">
+<h5 class="anchored" data-anchor-id="for-motion">For motion</h5>
+<p>I am now using the <strong>daemon</strong> mode to only benefit from <code>systemd</code></p>
+<ul>
+<li>point the usual conf file towards the tweaked version in your home</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode .bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /etc/motion</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> motion.conf motion.conf.bak</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> /home/pi/motion/motion.conf .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>be sure to have the correct smblink</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode .bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">motion.conf</span> <span class="at">-</span><span class="op">&gt;</span> /home/pi/motion/motion.conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="screenshots" class="level4">
+<h4 class="anchored" data-anchor-id="screenshots">Screenshots</h4>
+<p>Here are some examples of the telegram window</p>
+<ul>
+<li>received a notification and later on, <code>/check</code> if connection is still on.</li>
+</ul>
+<p><img src="../../images/check.png" class="img-fluid"></p>
+<ul>
+<li>received notification and ask for the corresponding video</li>
+</ul>
+<p><img src="../../images/last_video.png" class="img-fluid"></p>
+<p>this video works as a GIF directly in the window:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cat_video.gif" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">gif file</figcaption>
+</figure>
+</div>
+<!-- ffmpeg -i videos/cat_video.mp4 -r 10 -f image2pipe -vf scale=320:-1 -vcodec ppm - | \
+  convert -delay 5 -loop 0 - cat_video.gif
+-->
+<ul>
+<li><strong>pause</strong> the detection, and since no motion can be detected, ask for a <strong>snapshot</strong></li>
+</ul>
+<p><img src="../../images/pause.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="todo" class="level3">
+<h3 class="anchored" data-anchor-id="todo">TODO</h3>
+<p>Despite a functional system, some improvements I’d like to achieve:</p>
+<ul>
+<li>restrict the bot to one user: see <strong>Winston Smith</strong> recommendation in comments, seems to work nicely</li>
+<li>add gracefull stop for <code>listen</code> service</li>
+<li>I bought a IP camera, and <code>motion</code> should work with both. Haven’t spent enough time configuring it</li>
+<li>remove pics/videos older than <em>xx</em> days to save space</li>
+<li><del>run the 2 services as a user without <code>sudo</code> rights</del></li>
+<li>look into better settings for NoIR camera using <a href="https://raspberrypi.stackexchange.com/questions/13818/auto-brightness-bypass-whilst-using-motion">this thread</a></li>
+</ul>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Beyond the initial goal, catch the neighbor cats coming in, which actually I don’t care about, it was fun to set-up the whole thing. Moreover, <strong>telegram</strong> offers a great service and offers a great interface for many applications. I knew about the <a href="http://danielmarcelino.github.io/blog/2017/may-the-force-of-r-be-with-you-always.html">TeleR</a> bot, that is actually easy to set-up.</p>
+<p>Don’t hesitate to leave a comment below for any remarks or improvements that I overseen.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="ginolhac/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2023, Aurélien Ginolhac</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
