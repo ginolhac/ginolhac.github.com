@@ -3,6 +3,8 @@ title: LaTex modern CV
 author: 'Aurélien Ginolhac'
 description: "How to setup latex using tinytex"
 date: '2018-03-26'
+image: sample.png
+image-height: "100px"
 categories:
   - academia
 ---
