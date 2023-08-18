@@ -5,9 +5,16 @@ date: "2014-07-26"
 
 ![](/images/background-2.jpg)
 
-This page is dedicated to tabs from the band [karate][southern] made by fans. These tabs
-came from the original [website][willem].  
-[Geoff Farina][geoff] is the Karate's guitarist, many thanks to him for writing such nice songs.
+::: {.column-margin}
+
+![Geoff Farina (De Paul University)](Farina_Geoff2.jpg){fig-weight="80px"}
+
+:::
+
+
+This page is dedicated to tabs from the band [karate](https://en.wikipedia.org/wiki/Karate_(band)) made by fans. These tabs
+came from the original website (today offline) made by **Willem Holthuis**.  
+[Geoff Farina](https://www.geofffarina.com/) is the Karate's guitarist, many thanks to him for writing such nice songs.
 Have fun playing the incredible music made by
 Karate and please feel free to correct the tabs by sending an email to his author if you find
 any mistakes or new interpretations.
