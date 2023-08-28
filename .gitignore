@@ -1,6 +1,7 @@
 /.Rproj.user/
 *.Rproj
 /.quarto/
+/.Rprofile
 /_site
 /_freeze
-
+*.zip
