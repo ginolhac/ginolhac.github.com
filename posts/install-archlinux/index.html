@@ -201,6 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#the-pkg.tar.xz-world" id="toc-the-pkg.tar.xz-world" class="nav-link" data-scroll-target="#the-pkg.tar.xz-world">The <code>pkg.tar.xz</code> world</a></li>
   <li><a href="#arch-installation-with-full-disk-encryptiom" id="toc-arch-installation-with-full-disk-encryptiom" class="nav-link" data-scroll-target="#arch-installation-with-full-disk-encryptiom">Arch installation with full disk encryptiom</a></li>
+  <li><a href="#post-install-adjustments" id="toc-post-install-adjustments" class="nav-link" data-scroll-target="#post-install-adjustments">Post-install adjustments</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -339,6 +340,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>No dual boot with <i class="fa-brands fa-windows" aria-label="windows"></i></li>
 </ul>
 <p>The most tricky part is <code>GRUB</code> with <em>efi</em> but this tutorial steps were clear and correct.</p>
+</section>
+<section id="post-install-adjustments" class="level3">
+<h3 class="anchored" data-anchor-id="post-install-adjustments">Post-install adjustments</h3>
+<ul>
+<li><code>docker</code></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> docker</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable docker</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> usermod <span class="at">-aG</span> docker login</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Disable PC speaker using <code>gsettings set org.gnome.desktop.wm.preferences audible-bell false</code></li>
+<li>Missing fonts</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> noto-fonts noto-fonts-emoji ttf-dejavu ttf-liberation ttf-meslo-nerd-font-powerlevel10k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Useful packages</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> git-lfs cmake udunits gcc-fortran rustup sshfs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Chromium (needed for <code>{renderthis}</code>): <code>yay ungoogled-chromium-bin</code></li>
+<li>Jottacloud: <code>yay jotta-cli</code></li>
+</ul>
 
 
 </section>
