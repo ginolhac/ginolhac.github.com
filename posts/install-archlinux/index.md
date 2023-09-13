@@ -153,3 +153,24 @@ The differences were:
 - No dual boot with {{< fa brands windows >}}
 
 The most tricky part is `GRUB` with _efi_ but this tutorial steps were clear and correct.
+
+### Post-install adjustments
+
+- `docker`
+
+``` bash
+yay docker
+sudo systemctl enable docker
+sudo usermod -aG docker login
+```
+- Disable PC speaker using `gsettings set org.gnome.desktop.wm.preferences audible-bell false`
+- Missing fonts
+``` bash
+yay noto-fonts noto-fonts-emoji ttf-dejavu ttf-liberation ttf-meslo-nerd-font-powerlevel10k
+```
+- Useful packages
+``` bash
+yay git-lfs cmake udunits gcc-fortran rustup sshfs
+```
+- Chromium (needed for `{renderthis}`): `yay ungoogled-chromium-bin`
+- Jottacloud: `yay jotta-cli`
