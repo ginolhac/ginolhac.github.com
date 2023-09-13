@@ -20,8 +20,7 @@ about:
 
 ### A bioinformatician versed in {{< fa brands r-project >}}
 
-I am working at the [University of Luxembourg](http://wwwen.uni.lu/); in the [Departement of Life Sciences and Medecine](https://wwwen.uni.lu/recherche/fstm/dlsm), providing services to the researchers.
-
+I am working at the [University of Luxembourg](https://www.uni.lu/en/); in the [Departement of Life Sciences and Medecine](https://www.uni.lu/fstm-en/research-departments/department-of-life-sciences-and-medicine/), providing services to the researchers.
 
 :::
 
