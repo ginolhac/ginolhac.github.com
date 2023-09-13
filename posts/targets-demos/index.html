@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.358">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aurélien Ginolhac">
+<meta name="dcterms.date" content="2023-02-05">
+<meta name="description" content="A marvelous workflow manger for R">
+
+<title>{targets} demos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../karate/index.html"> <i class="bi bi-music" role="img">
+</i> 
+<span class="menu-text">Karate tabs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ginolhac"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">{targets} demos</h1>
+                  <div>
+        <div class="description">
+          A marvelous workflow manger for R
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">workflow managers</div>
+                <div class="quarto-category">packages</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aurélien Ginolhac </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 5, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-workflow-manager-for" id="toc-a-workflow-manager-for" class="nav-link active" data-scroll-target="#a-workflow-manager-for">A workflow manager for <i class="fa-brands fa-r-project" aria-label="r-project"></i></a></li>
+  <li><a href="#example-dataset-datasaurus" id="toc-example-dataset-datasaurus" class="nav-link" data-scroll-target="#example-dataset-datasaurus">Example dataset: datasauRus <img src="https://jumpingrivers.github.io/datasauRus/logo.png" height="100"></a></li>
+  <li><a href="#multiple-projects-in-one-folder" id="toc-multiple-projects-in-one-folder" class="nav-link" data-scroll-target="#multiple-projects-in-one-folder">Multiple projects in one folder</a></li>
+  <li><a href="#packages-needed" id="toc-packages-needed" class="nav-link" data-scroll-target="#packages-needed">Packages needed</a></li>
+  <li><a href="#one-file-linear-pipeline" id="toc-one-file-linear-pipeline" class="nav-link" data-scroll-target="#one-file-linear-pipeline">One file, linear pipeline</a></li>
+  <li><a href="#cleaner-coding-with-sourcing-functions" id="toc-cleaner-coding-with-sourcing-functions" class="nav-link" data-scroll-target="#cleaner-coding-with-sourcing-functions">Cleaner coding with sourcing functions</a></li>
+  <li><a href="#one-folder-dynamic-branching" id="toc-one-folder-dynamic-branching" class="nav-link" data-scroll-target="#one-folder-dynamic-branching">One folder, dynamic branching</a></li>
+  <li><a href="#several-folders-dynamic-within-static-branching" id="toc-several-folders-dynamic-within-static-branching" class="nav-link" data-scroll-target="#several-folders-dynamic-within-static-branching">Several folders, dynamic within static branching</a></li>
+  <li><a href="#demo-repository" id="toc-demo-repository" class="nav-link" data-scroll-target="#demo-repository">Demo repository</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="a-workflow-manager-for" class="level2">
+<h2 class="anchored" data-anchor-id="a-workflow-manager-for">A workflow manager for <i class="fa-brands fa-r-project" aria-label="r-project"></i></h2>
+<p><a href="https://github.com/ropensci/targets"><strong>Targets</strong></a> is an <i class="fa-brands fa-r-project" aria-label="r-project"></i> package that is</p>
+<blockquote class="blockquote">
+<p>Function-oriented Make-like declarative workflows for <i class="fa-brands fa-r-project" aria-label="r-project"></i></p>
+</blockquote>
+<p>Main author: <a href="https://wlandau.github.io/about.html">William Landau</a>. See the <code>targets</code> <a href="https://books.ropensci.org/targets/literate-programming.html">manual</a> for an extensive documentation.</p>
+<p>The goal is to create so-called <code>targets</code> that are significant steps that linked between one another. Those links create the dependencies, and once one <code>target</code> run successfully and its upstream dependencies are up-to-date, they are no reason to run it again. Time/Computing intensive steps are then cached in the <code>store</code>.</p>
+<p>Invalidation of a <code>target</code> arises when:</p>
+<ul>
+<li>Upstream targets invalidate (or input files <em>checksum</em> for special <code>format = "file"</code>)</li>
+<li>Code of the targets changed</li>
+<li>Package used was updated</li>
+</ul>
+</section>
+<section id="example-dataset-datasaurus" class="level2">
+<h2 class="anchored" data-anchor-id="example-dataset-datasaurus">Example dataset: datasauRus <img src="https://jumpingrivers.github.io/datasauRus/logo.png" height="100"></h2>
+<p>The great package <a href="https://jumpingrivers.github.io/datasauRus/"><code>datasauRus</code></a> offers a fake table which consists of 13 dataset (each of 142 observations) with 2 values <code>x</code> and <code>y</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 1,846 × 3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   dataset     x     y</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span> dino     <span class="fl">55.4</span>  <span class="fl">97.2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span> dino     <span class="fl">51.5</span>  <span class="fl">96.0</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span> dino     <span class="fl">46.2</span>  <span class="fl">94.5</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span> dino     <span class="fl">42.8</span>  <span class="fl">91.4</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span> dino     <span class="fl">40.8</span>  <span class="fl">88.3</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span> dino     <span class="fl">38.7</span>  <span class="fl">84.9</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span> dino     <span class="fl">35.6</span>  <span class="fl">79.9</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span> dino     <span class="fl">33.1</span>  <span class="fl">77.6</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span> dino     <span class="fl">29.0</span>  <span class="fl">74.5</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> dino     <span class="fl">26.2</span>  <span class="fl">71.4</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># … with 1,836 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For each the 4 demos, we use different versions of the same data:</p>
+<ul>
+<li>One tabulated-separated-value (tsv) file of 1847 lines (1846 observations + 1 header)</li>
+<li>Same as before but with plotting functions in a separate <i class="fa-brands fa-r-project" aria-label="r-project"></i> script</li>
+<li>One folder that contains 13 tsv of 143 lines</li>
+<li>Three folders of 2, 4 and 7 tsv of 143 lines each</li>
+</ul>
+</section>
+<section id="multiple-projects-in-one-folder" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-projects-in-one-folder">Multiple projects in one folder</h2>
+<p>This is supported by <code>targets</code> and described in the <a href="https://books.ropensci.org/targets/projects.html">manual: projects</a>. A config YAML file, <code>_targets.yaml</code> describe the 4 different projects, specifying the name of both:</p>
+<ul>
+<li>the <code>targets</code> <i class="fa-brands fa-r-project" aria-label="r-project"></i> script (actual definition of <code>target</code>)</li>
+<li>the store folder name (where objects are cached and described)</li>
+</ul>
+<p>Additional options or inheritance can be specified too.</p>
+<p>Content:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ds_linear</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">store</span><span class="kw">:</span><span class="at"> _ds_1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span><span class="at"> _targets_ds_1.R</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ds_fun_linear</span><span class="kw">:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">store</span><span class="kw">:</span><span class="at"> _ds_fun1</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span><span class="at"> _targets_ds_fun1.R</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ds_dynamic</span><span class="kw">:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">store</span><span class="kw">:</span><span class="at"> _ds_2</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span><span class="at"> _targets_ds_2.R</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ds_static</span><span class="kw">:</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">store</span><span class="kw">:</span><span class="at"> _ds_3</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span><span class="at"> _targets_ds_3.R</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">reporter_make</span><span class="kw">:</span><span class="at"> verbose_positives</span><span class="co"> # do not display skipped targets</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="packages-needed" class="level2">
+<h2 class="anchored" data-anchor-id="packages-needed">Packages needed</h2>
+<p>Those demos are using several packages, you can get the necessary ones by using <a href="https://rstudio.github.io/renv/articles/renv.html"><code>renv</code></a>. Once the repo cloned/downloaded:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to install a local library of the key packages.</p>
+</section>
+<section id="one-file-linear-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="one-file-linear-pipeline">One file, linear pipeline</h2>
+<p>Using the original <code>tsv</code> from the package <code>datasauRus</code> itself. <code>targets</code> allows to track the timestamp of an URL.</p>
+<p>Here we track <code>https://raw.githubusercontent.com/jumpingrivers/datasauRus/main/inst/extdata/DatasaurusDozen-Long.tsv</code>.</p>
+<p>See the complete <code>targets</code> <i class="fa-brands fa-r-project" aria-label="r-project"></i> script in <code>_targets_ds_1.R</code> and displayed dependencies as <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">directed acyclic graph</a>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dag_linear.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">ds1</figcaption>
+</figure>
+</div>
+<p><code>targets</code> encourages using <a href="https://books.ropensci.org/targets/literate-programming.html">literate programing</a> where a <strong>Rmarkdown</strong> document higher level comments and code, dependencies are based on the parsing of the <code>tar_read()</code> and <code>tar_load()</code> calls within it. This can be used as smart caching system where help focusing on the analysis report, leaving the computation for the <i class="fa-brands fa-r-project" aria-label="r-project"></i> script <code>_targets.R</code>.</p>
+<p>For this first example, the corresponding <code>Rmd</code> is <code>ds1.Rmd</code>. It will be rendered by the pipeline (target definition in <code>tar_render()</code>).</p>
+<p>To run this example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify which projet to use</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">TAR_PROJECT =</span> <span class="st">"ds_linear"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Run what is needed like make in a Makefile</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">tar_make</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For the first run, `tar_make()1 should output something like:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> targets<span class="sc">::</span><span class="fu">tar_make</span>()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>• start target ds_file</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>• built target ds_file [<span class="fl">0.695</span> seconds]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>• start target ds</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>• built target ds [<span class="fl">0.176</span> seconds]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>• start target anim</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>• built target anim [<span class="fl">48.762</span> seconds]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>• start target all_facets</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>• built target all_facets [<span class="fl">0.007</span> seconds]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>• start target gif</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>• built target gif [<span class="fl">0.005</span> seconds]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>• start target report</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>• built target report [<span class="fl">4.144</span> seconds]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>• end pipeline [<span class="fl">54.083</span> seconds]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The GIF animation takes roughly one minute, so it would be cumbersome to wait this time at each Rmarkdown knitting process. It is a good case for <code>targets</code>, the GIF will be re-run only if needed while you polish the Rmd report.</p>
+<p>See the output of re-reruning <code>tar_make()</code> again:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> targets<span class="sc">::</span><span class="fu">tar_make</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>✔ skip target ds_file</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>✔ skip target ds</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>✔ skip target anim</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>✔ skip target all_facets</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>✔ skip target gif</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>✔ skip target report</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>✔ skip pipeline [<span class="fl">0.27</span> seconds]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>0.27 seconds versus 54.</p>
+</section>
+<section id="cleaner-coding-with-sourcing-functions" class="level2">
+<h2 class="anchored" data-anchor-id="cleaner-coding-with-sourcing-functions">Cleaner coding with sourcing functions</h2>
+<p><code>_targets_ds_fun1.R</code> is similar as <code>_targets_ds_1.R</code> except that plotting functions were placed in <code>R/plotting.R</code> which is sourced before the targets definition</p>
+<p>Targets definition is then cleaner to read:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># track if distant file has changed</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_url</span>(ds_file, <span class="st">"https://raw.githubusercontent.com/jumpingrivers/datasauRus/main/inst/extdata/DatasaurusDozen-Long.tsv"</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(ds, <span class="fu">read_tsv</span>(ds_file, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(all_facets, <span class="fu">facet_ds</span>(ds)),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># animation is worth caching  ~ 1 min</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(anim, <span class="fu">anim_ds</span>(ds), </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"gganimate"</span>, <span class="st">"gifski"</span>)),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_file</span>(gif, {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anim_save</span>(<span class="st">"ds.gif"</span>, <span class="at">animation =</span> anim, <span class="at">title_frame =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># anim_save returns NULL, we need to get the file output path</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ds.gif"</span>},</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"gganimate"</span>)),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_render</span>(report, <span class="st">"ds1.Rmd"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="one-folder-dynamic-branching" class="level2">
+<h2 class="anchored" data-anchor-id="one-folder-dynamic-branching">One folder, dynamic branching</h2>
+<p>Often, input files are more than one. Of course, you don’t want to list them by hand and one want to apply similar treatment to each of them. Moving away from <strong>for loops</strong>, we embrace functional programming and let <code>targets</code> branching over the list of files and dynamically for it adapts to how many are present.</p>
+<p>This is called <a href="https://books.ropensci.org/targets/dynamic.html">dynamic branching</a> and it contains the <em>magic</em> aggregation (like <code>bind_rows()</code>) when calling the target <strong>name</strong>.</p>
+<p>On the filesystem, the folder <code>data</code> contains 13 files:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">data/</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_10.tsv</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_11.tsv</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_12.tsv</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_13.tsv</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_1.tsv</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_2.tsv</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_3.tsv</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_4.tsv</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_5.tsv</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_6.tsv</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_7.tsv</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> dset_8.tsv</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> dset_9.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Which once tracked by <code>targets</code> are:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tar_read</span>(dset) <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">enframe</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 13 × 2</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>   name          value           </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>   <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>         <span class="er">&lt;</span>chr<span class="sc">&gt;</span>           </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span> dset_e814d3a7 data<span class="sc">/</span>dset_1.tsv </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span> dset_96886f69 data<span class="sc">/</span>dset_10.tsv</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span> dset_a4c9d9df data<span class="sc">/</span>dset_11.tsv</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span> dset_02e8e253 data<span class="sc">/</span>dset_12.tsv</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span> dset_39f18392 data<span class="sc">/</span>dset_13.tsv</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span> dset_d74af7a4 data<span class="sc">/</span>dset_2.tsv </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span> dset_55280675 data<span class="sc">/</span>dset_3.tsv </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span> dset_80822375 data<span class="sc">/</span>dset_4.tsv </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span> dset_020f0640 data<span class="sc">/</span>dset_5.tsv </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> dset_0577d04d data<span class="sc">/</span>dset_6.tsv </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> dset_66982b15 data<span class="sc">/</span>dset_7.tsv </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> dset_3c9c9095 data<span class="sc">/</span>dset_8.tsv </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span> dset_fe11a7b7 data<span class="sc">/</span>dset_9.tsv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, the DAG is:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dag_dynamic.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">ds2</figcaption>
+</figure>
+</div>
+<p>You see that all targets appears in blue, so outdated. This is the expected behavior of <a href="https://docs.ropensci.org/tarchetypes/reference/tar_files.html"><code>tar_files()</code></a>. We don’t know in advance how many (if any) files are present, so the listing is checked all the time and downstream targets are then also outdated.</p>
+<p>However, the downstream targets are re-run only if needed</p>
+<ul>
+<li>If input files <em>changed</em></li>
+<li>If code for those targets <em>changed</em>.</li>
+</ul>
+<p>See example of re-running <code>tar_make()</code>. <code>dset_files</code> was run again, but no files were different so all the rest is <strong>skipped</strong> and the whole pipeline took 1.1 second.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> targets<span class="sc">::</span><span class="fu">tar_make</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>• start target dset_files</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>• built target dset_files [<span class="fl">0.702</span> seconds]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>✔ skip branch dset_6630d1f3</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>✔ skip branch dset_f10c2c43</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>✔ skip branch dset_c79e8ff6</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>✔ skip branch dset_b1eac8ed</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>[...]</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>✔ skip branch plots_01ca2c35</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>✔ skip branch plots_9fc19e45</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>✔ skip branch plots_01f427e3</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>✔ skip pattern plots</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>✔ skip target report</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>• end pipeline [<span class="fl">1.172</span> seconds]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dynamic branching scales great on the DAG since the number of branches can be reported, no additional items are created. to avoid this, we can switch to <a href="https://docs.ropensci.org/tarchetypes/reference/tar_files_input.html"><code>tar_files_input()</code></a> which also <em>automatically groups input files into batches to reduce overhead and increase the efficiency of parallel processing.</em>.</p>
+<p>See the DAG with <code>tar_files_input()</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dag_dynamic_input.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">ds2</figcaption>
+</figure>
+</div>
+</section>
+<section id="several-folders-dynamic-within-static-branching" class="level2">
+<h2 class="anchored" data-anchor-id="several-folders-dynamic-within-static-branching">Several folders, dynamic within static branching</h2>
+<p>We created a folder structure as we often have to deal with, 3 sub-folders of data:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>circles</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>├── dset_2.tsv</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>└── dset_3.tsv</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>lines</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>├── dset_11.tsv</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>├── dset_12.tsv</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>├── dset_13.tsv</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>├── dset_6.tsv</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>├── dset_7.tsv</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>├── dset_8.tsv</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>└── dset_9.tsv</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>others</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>├── dset_10.tsv</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>├── dset_1.tsv</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>├── dset_4.tsv</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>└── dset_5.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Especially with <strong>static</strong> branching, it is meaningful to check which commands are planned. See the <strong>manifest</strong> for this example:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tar_manifest</span>() <span class="sc">|&gt;</span> <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 21 × 3</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>   name                 command                                                                                                   pattern</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>   <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>                <span class="er">&lt;</span>chr<span class="sc">&gt;</span>                                                                                                     <span class="er">&lt;</span>chr<span class="sc">&gt;</span>  </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span> filenames_circles    <span class="st">"fs::dir_ls(</span><span class="sc">\"</span><span class="st">circles</span><span class="sc">\"</span><span class="st">, glob = </span><span class="sc">\"</span><span class="st">*tsv</span><span class="sc">\"</span><span class="st">)"</span>                                                                <span class="cn">NA</span>     </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span> filenames_others     <span class="st">"fs::dir_ls(</span><span class="sc">\"</span><span class="st">others</span><span class="sc">\"</span><span class="st">, glob = </span><span class="sc">\"</span><span class="st">*tsv</span><span class="sc">\"</span><span class="st">)"</span>                                                                 <span class="cn">NA</span>     </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span> filenames_lines      <span class="st">"fs::dir_ls(</span><span class="sc">\"</span><span class="st">lines</span><span class="sc">\"</span><span class="st">, glob = </span><span class="sc">\"</span><span class="st">*tsv</span><span class="sc">\"</span><span class="st">)"</span>                                                                  <span class="cn">NA</span>     </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span> files_circles        <span class="st">"filenames_circles"</span>                                                                                       <span class="fu">map</span>(fi…</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span> files_others         <span class="st">"filenames_others"</span>                                                                                        <span class="fu">map</span>(fi…</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span> files_lines          <span class="st">"filenames_lines"</span>                                                                                         <span class="fu">map</span>(fi…</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span> ds_circles           <span class="st">"read_tsv(files_circles, show_col_types = FALSE)"</span>                                                         <span class="fu">map</span>(fi…</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span> ds_others            <span class="st">"read_tsv(files_others, show_col_types = FALSE)"</span>                                                          <span class="fu">map</span>(fi…</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span> ds_lines             <span class="st">"read_tsv(files_lines, show_col_types = FALSE)"</span>                                                           <span class="fu">map</span>(fi…</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> summary_stat_circles <span class="st">"summarise(ds_circles, m_x = mean(x), m_y = mean(y))"</span>                                                     <span class="fu">map</span>(ds…</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> plots_circles        <span class="st">"ggplot(ds_circles, aes(x, y)) + geom_point()"</span>                                                            <span class="fu">map</span>(ds…</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> summary_stat_others  <span class="st">"summarise(ds_others, m_x = mean(x), m_y = mean(y))"</span>                                                      <span class="fu">map</span>(ds…</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span> plots_others         <span class="st">"ggplot(ds_others, aes(x, y)) + geom_point()"</span>                                                             <span class="fu">map</span>(ds…</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> plots_lines          <span class="st">"ggplot(ds_lines, aes(x, y)) + geom_point()"</span>                                                              <span class="fu">map</span>(ds…</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span> summary_stat_lines   <span class="st">"summarise(ds_lines, m_x = mean(x), m_y = mean(y))"</span>                                                       <span class="fu">map</span>(ds…</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span> patch_plots_circles  <span class="st">"wrap_plots(plots_circles) + plot_annotation(title = stringr::str_split_i(tar_name(), </span><span class="sc">\n</span><span class="st">     </span><span class="sc">\"</span><span class="st">_</span><span class="sc">\"</span><span class="st">, -1))"</span> <span class="cn">NA</span>     </span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span> patch_plots_others   <span class="st">"wrap_plots(plots_others) + plot_annotation(title = stringr::str_split_i(tar_name(), </span><span class="sc">\n</span><span class="st">     </span><span class="sc">\"</span><span class="st">_</span><span class="sc">\"</span><span class="st">, -1))"</span>  <span class="cn">NA</span>     </span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="dv">18</span> patch_plots_lines    <span class="st">"wrap_plots(plots_lines) + plot_annotation(title = stringr::str_split_i(tar_name(), </span><span class="sc">\n</span><span class="st">     </span><span class="sc">\"</span><span class="st">_</span><span class="sc">\"</span><span class="st">, -1))"</span>   <span class="cn">NA</span>     </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="dv">19</span> stat_summaries       <span class="st">"dplyr::bind_rows(summary_stat_lines = summary_stat_lines, </span><span class="sc">\n</span><span class="st">     summary_stat_circles = summary_stat_ci… NA     </span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="st">20 plots_agg            "</span><span class="fu">wrap_plots</span>(<span class="fu">list</span>(<span class="at">patch_plots_lines =</span> patch_plots_lines, \n     <span class="at">patch_plots_circles =</span> patch_plots_circles… <span class="cn">NA</span>     </span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="dv">21</span> report               <span class="st">"tarchetypes::tar_render_run(path = </span><span class="sc">\"</span><span class="st">ds3.Rmd</span><span class="sc">\"</span><span class="st">, args = list(input = </span><span class="sc">\"</span><span class="st">ds3.Rmd</span><span class="sc">\"</span><span class="st">, </span><span class="sc">\n</span><span class="st">     knit_root_dir =… NA    </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You see that we get meaningful names based on the 3 folders listed. Still we get dynamic branching for reading files inside each folder. The same treatment is performed on each 3 input folders but when we want/need to combine the parallel branches for a relevant aggregation, we use <code>tar_combine()</code>. Example of both aggregating tibbles or plots are exemplified as depicted below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dag_static.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">ds3</figcaption>
+</figure>
+</div>
+</section>
+<section id="demo-repository" class="level2">
+<h2 class="anchored" data-anchor-id="demo-repository">Demo repository</h2>
+<p>All the corresponding files are available in the <a href="https://gitlab.lcsb.uni.lu/aurelien.ginolhac/targets_demos/">Gitlab repository</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="ginolhac/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2023, Aurélien Ginolhac</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
