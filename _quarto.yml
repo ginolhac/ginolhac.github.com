@@ -21,6 +21,7 @@ format:
     toc: true
     highlight-style: dracula
     css: styles.css
+    code-line-numbers: true
 
 
 
