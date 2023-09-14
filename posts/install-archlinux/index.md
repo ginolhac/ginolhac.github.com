@@ -174,3 +174,17 @@ yay git-lfs cmake udunits gcc-fortran rustup sshfs
 ```
 - Chromium (needed for `{renderthis}`): `yay ungoogled-chromium-bin`
 - Jottacloud: `yay jotta-cli`
+- Slack: `yay slack-desktop`
+- Signal and Telegram: `yay telegram-desktop-bin signal-desktop-beta-bin`
+- System tray notifications `yay extension-manager`, then start App `Extension Manager` and install:
+
+![AppIndicator](appindicator.png)
+
+Then it displays things like this:
+
+![System tray](tray.png)
+
+- For the {{< fa brands r-project >}} package [`{V8}`](https://github.com/jeroen/V8), needs to activate the static lib before installing:
+``` r
+Sys.setenv(DOWNLOAD_STATIC_LIBV8 = 1)
+```
