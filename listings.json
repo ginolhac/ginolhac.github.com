@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/posts/install-archlinux/index.html",
+      "/posts/snakemake-test-ci/index.html",
       "/posts/starting-learning-rust/index.html",
       "/posts/panel-size/index.html",
       "/posts/vertical-facetting/index.html",

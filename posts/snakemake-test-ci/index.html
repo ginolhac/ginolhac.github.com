@@ -76,6 +76,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -194,8 +196,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#rationale" id="toc-rationale" class="nav-link active" data-scroll-target="#rationale">Rationale</a></li>
   <li><a href="#inspiration-from-the-experienced-people" id="toc-inspiration-from-the-experienced-people" class="nav-link" data-scroll-target="#inspiration-from-the-experienced-people">Inspiration from the experienced people</a></li>
-  <li><a href="#cicd-configuration" id="toc-cicd-configuration" class="nav-link" data-scroll-target="#cicd-configuration">CI/CD configuration</a></li>
-  <li><a href="#gitlab-repository" id="toc-gitlab-repository" class="nav-link" data-scroll-target="#gitlab-repository">Gitlab repository</a></li>
+  <li><a href="#cicd-configuration" id="toc-cicd-configuration" class="nav-link" data-scroll-target="#cicd-configuration"><i class="fa-brands fa-gitlab" aria-label="gitlab"></i> CI/CD configuration</a></li>
+  <li><a href="#demo" id="toc-demo" class="nav-link" data-scroll-target="#demo">Demo</a></li>
+  <li><a href="#gitlab-repository" id="toc-gitlab-repository" class="nav-link" data-scroll-target="#gitlab-repository"><i class="fa-brands fa-gitlab" aria-label="gitlab"></i> Gitlab repository</a></li>
   </ul>
 </nav>
     </div>
@@ -229,49 +232,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption class="figure-caption">Test passed!</figcaption>
 </figure>
 </div>
-</div></div></section>
+</div></div><p>Looking at how it is done in their <i class="fa-brands fa-github" aria-label="github"></i> <a href="https://github.com/snakemake-workflows/rna-seq-star-deseq2/blob/master/.github/workflows/main.yml">GitHub Action file</a>, the relevant part is:</p>
+<div class="column-page">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test workflow (basic model, no batch_effects)</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> snakemake/snakemake-github-action@v1.22.0</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="at">        </span><span class="fu">directory</span><span class="kw">:</span><span class="at"> .test</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="at">        </span><span class="fu">snakefile</span><span class="kw">:</span><span class="at"> workflow/Snakefile</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="st">"--configfile .test/config_basic/config.yaml --use-conda --show-failed-logs --cores 2 --conda-cleanup-pkgs cache"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>They are doing more testing but wit the same structure. The annoying part to me is the:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> snakemake/snakemake-github-action@v1.22.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Because it abstracts the real pipeline, it works but it has some magic inside and even going through the <a href="https://github.com/snakemake/snakemake-github-action">repo</a> is not giving details.</p>
+<p>The same happens for <i class="fa-brands fa-r-project" aria-label="r-project"></i> with <code>{renv}</code> cache / restore, <code>quarto render</code> and publishing on GitHub pages like for this <a href="https://github.com/ginolhac/ginolhac.github.com/blob/main/.github/workflows/quarto-publish.yml">very blog</a>.</p>
+<p>But, some great things are useful, like the option <code>--show-failed-logs</code> that I didn’t know and that is especially relevant here.</p>
+<p>Anyway, the Snakemake template is on <i class="fa-brands fa-gitlab" aria-label="gitlab"></i> GitLab , so the CI/CD has to happen there.</p>
+</section>
 <section id="cicd-configuration" class="level2">
-<h2 class="anchored" data-anchor-id="cicd-configuration">CI/CD configuration</h2>
+<h2 class="anchored" data-anchor-id="cicd-configuration"><i class="fa-brands fa-gitlab" aria-label="gitlab"></i> CI/CD configuration</h2>
+<p>As said, on GiLab, the Continuous Integration/Development has no magic recipes like on <i class="fa-brands fa-github" aria-label="github"></i>. One needs to declare every step.</p>
 <p>The content of the config <code>.gitlab-ci.yml</code> is:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> docker:dind</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">variables</span><span class="kw">:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">DOCKER_DRIVER</span><span class="kw">:</span><span class="at"> overlay2</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">DOCKER_TLS_CERTDIR</span><span class="kw">:</span><span class="at"> </span><span class="st">""</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stages</span><span class="kw">:</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> test</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">testing</span><span class="kw">:</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">stage</span><span class="kw">:</span><span class="at"> test</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">image</span><span class="kw">:</span><span class="at"> snakemake/snakemake:stable</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">key</span><span class="kw">:</span><span class="at"> ${CI_JOB_NAME}</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .test/.snakemake/</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> cd .test</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> snakemake --configfile config_basic/config.yaml </span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="at">      --snakefile Snakefile_test -j1 --use-singularity --show-failed-logs</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> snakemake --configfile config_basic/config.yaml </span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">      --snakefile Snakefile_test -j1 --report</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> NB_DEG=`wc -l results/diffexp/KO_vs_WT.diffexp.tsv | cut -f1 -d ' '`</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> test "$NB_DEG" -eq 94 || exit 1</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> diff results/diffexp/KO_vs_WT.diffexp.tsv expected/KO_vs_WT.diffexp.tsv</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> diff  &lt;(grep -v seed trimmed_se/A1-1.settings)  &lt;(grep -v seed expected/A1-1.settings)</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> diff  &lt;(grep -v seed trimmed_pe/B1-1.settings)  &lt;(grep -v seed expected/B1-1.settings)</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> diff  &lt;(grep -v seed trimmed_pe/A2-1.settings)  &lt;(grep -v seed expected/A2-1.settings)</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> diff  &lt;(grep -v seed trimmed_pe/B2-1.settings)  &lt;(grep -v seed expected/B2-1.settings)</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">tags</span><span class="kw">:</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> shared-cache</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">when</span><span class="kw">:</span><span class="at"> always</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>I abstracted the specificity of our Gitlab, suppressing this line:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--registry-mirror"</span><span class="kw">,</span><span class="at"> </span><span class="st">"https://docker-registry.lcsb.uni.lu"</span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> docker:dind</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">variables</span><span class="kw">:</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="at">  </span><span class="fu">DOCKER_DRIVER</span><span class="kw">:</span><span class="at"> overlay2</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="at">  </span><span class="fu">DOCKER_TLS_CERTDIR</span><span class="kw">:</span><span class="at"> </span><span class="st">""</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="fu">stages</span><span class="kw">:</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> test</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="fu">testing</span><span class="kw">:</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="at">  </span><span class="fu">stage</span><span class="kw">:</span><span class="at"> test</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="at">  </span><span class="fu">image</span><span class="kw">:</span><span class="at"> snakemake/snakemake:stable</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="at">    </span><span class="fu">key</span><span class="kw">:</span><span class="at"> ${CI_JOB_NAME}</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .test/.snakemake/</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="at">    </span><span class="kw">-</span><span class="at"> cd .test</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="at">    </span><span class="kw">-</span><span class="at"> snakemake --configfile config_basic/config.yaml </span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="at">      --snakefile Snakefile_test -j1 --use-singularity --show-failed-logs</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="at">    </span><span class="kw">-</span><span class="at"> snakemake --configfile config_basic/config.yaml </span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="at">      --snakefile Snakefile_test -j1 --report</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="at">    </span><span class="kw">-</span><span class="at"> NB_DEG=`wc -l results/diffexp/KO_vs_WT.diffexp.tsv | cut -f1 -d ' '`</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="at">    </span><span class="kw">-</span><span class="at"> test "$NB_DEG" -eq 94 || exit 1</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="at">    </span><span class="kw">-</span><span class="at"> diff results/diffexp/KO_vs_WT.diffexp.tsv expected/KO_vs_WT.diffexp.tsv</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="at">    </span><span class="kw">-</span><span class="at"> diff  &lt;(grep -v seed trimmed_se/A1-1.settings)  &lt;(grep -v seed expected/A1-1.settings)</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="at">    </span><span class="kw">-</span><span class="at"> diff  &lt;(grep -v seed trimmed_pe/B1-1.settings)  &lt;(grep -v seed expected/B1-1.settings)</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="at">    </span><span class="kw">-</span><span class="at"> diff  &lt;(grep -v seed trimmed_pe/A2-1.settings)  &lt;(grep -v seed expected/A2-1.settings)</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="at">    </span><span class="kw">-</span><span class="at"> diff  &lt;(grep -v seed trimmed_pe/B2-1.settings)  &lt;(grep -v seed expected/B2-1.settings)</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="at">  </span><span class="fu">tags</span><span class="kw">:</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="at">    </span><span class="kw">-</span><span class="at"> shared-cache</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="at">  </span><span class="fu">when</span><span class="kw">:</span><span class="at"> always</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I abstracted the specificity of our <i class="fa-brands fa-gitlab" aria-label="gitlab"></i> Gitlab, suppressing this line:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--registry-mirror"</span><span class="kw">,</span><span class="at"> </span><span class="st">"https://docker-registry.lcsb.uni.lu"</span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s break it down</p>
+<section id="docker-in-docker-dind-service" class="level4">
+<h4 class="anchored" data-anchor-id="docker-in-docker-dind-service">Docker in Docker (dind) service</h4>
+<p>Lines 1 to 6. Nothing special, copied from our template</p>
+</section>
+<section id="stages" class="level4">
+<h4 class="anchored" data-anchor-id="stages">Stages</h4>
+<p>Lines 8-9. Here only one, but could have a second one for testing the complex design like on <i class="fa-brands fa-github" aria-label="github"></i></p>
+</section>
+<section id="main-part" class="level4">
+<h4 class="anchored" data-anchor-id="main-part">Main part</h4>
+<ul>
+<li><code>image</code> copied over from the Github Action, useful that have a <i class="fa-brands fa-docker" aria-label="docker"></i> image done.</li>
+<li><code>cache</code> (lines 14-17). I am not using <code>conda</code> but <a href="https://docs.sylabs.io/guides/3.1/user-guide/index.html"><code>singularity</code></a>, the <i class="fa-brands fa-docker" aria-label="docker"></i> Docker for HPC. Thus it is useful to cache the image to avoid downloading it every single time. Snakemake caches it in <code>.snakemake/singularity/hashsum.sif</code> checking if a new one if available. Lines 32-33 indicates that the cache is shared, so any <i class="fa-brands fa-gitlab" aria-label="gitlab"></i> runner is able to access the cached data.</li>
+<li><code>script</code> comes in 2 steps:
+<ul>
+<li>Running snakemake: lines 20-23</li>
+<li>Testing the results obtained: lines 24-30 Testing the number of lines of the differential expression TSV, redundant with the exact expected file with a <code>diff</code>. And testing also the expected trimming stats. Random seed are different so need to be excluded.</li>
+</ul></li>
+<li><code>when</code> indicates for which action the CI is triggered. Could be only on pull request, release, manual etc. Here we triggered it for any commit push to the repo.</li>
+</ul>
+</section>
+</section>
+<section id="demo" class="level2">
+<h2 class="anchored" data-anchor-id="demo">Demo</h2>
+<p>A testing run lasts for roughly <strong>4 minutes</strong> which is reasonable.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="demo1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">demo running test</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="demo2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">demo testing results</figcaption>
+</figure>
+</div>
+<p>Without the cache, the download of the singularity brings the time to 6 minutes 26 seconds. See the additional pulling notification (line 4):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">[...]</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">$</span> snakemake <span class="at">--configfile</span> config_basic/config.yaml <span class="at">--snakefile</span> Snakefile_test <span class="at">-j1</span> <span class="at">--use-singularity</span> <span class="at">--show-failed-logs</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="ex">Building</span> DAG of jobs...</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="ex">Pulling</span> singularity image docker://ginolhac/snake-rna-seq:0.7.</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="ex">[...]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="gitlab-repository" class="level2">
-<h2 class="anchored" data-anchor-id="gitlab-repository">Gitlab repository</h2>
+<h2 class="anchored" data-anchor-id="gitlab-repository"><i class="fa-brands fa-gitlab" aria-label="gitlab"></i> Gitlab repository</h2>
 <p>This repo is public and available <a href="https://gitlab.lcsb.uni.lu/aurelien.ginolhac/snakemake-rna-seq">here</a></p>
 
 

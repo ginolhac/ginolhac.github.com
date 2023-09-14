@@ -282,62 +282,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>Cargo.toml</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>main.rs</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>[package]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"guessing_game"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>version <span class="op">=</span> <span class="st">"0.1.0"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>edition <span class="op">=</span> <span class="st">"2021"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a># See more keys and their definitions at https<span class="op">:</span><span class="co">//doc.rust-lang.org/cargo/reference/manifest.html</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>[dependencies]</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>rand <span class="op">=</span> <span class="st">"0.8.5"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1"></a>[package]</span>
+<span id="cb1-2"><a href="#cb1-2"></a>name <span class="op">=</span> <span class="st">"guessing_game"</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>version <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>edition <span class="op">=</span> <span class="st">"2021"</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a># See more keys and their definitions at https<span class="op">:</span><span class="co">//doc.rust-lang.org/cargo/reference/manifest.html</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>[dependencies]</span>
+<span id="cb1-9"><a href="#cb1-9"></a>rand <span class="op">=</span> <span class="st">"0.8.5"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::cmp::</span>Ordering<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">rand::</span>Rng<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Guess the number!"</span>)<span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> max <span class="op">=</span> <span class="dv">50u32</span><span class="op">;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// to keep track of the number of guesses</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> count <span class="op">=</span> <span class="dv">0u32</span><span class="op">;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// create an integer randomly from 1 to 50</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> secret_number <span class="op">=</span> <span class="pp">rand::</span>thread_rng()<span class="op">.</span>gen_range(<span class="dv">1</span><span class="op">..=</span>max)<span class="op">;</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// loop over until the number is found</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">loop</span> <span class="op">{</span> </span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span>   </span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Please input your guess. (an integer from 1 to {max})"</span>)<span class="op">;</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> guess<span class="op">:</span> <span class="dt">String</span> <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="pp">io::</span>stdin()</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>read_line(<span class="op">&amp;</span><span class="kw">mut</span> guess)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>expect(<span class="st">"Failed to read line"</span>)<span class="op">;</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">// coerce to an integer</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> guess<span class="op">:</span> <span class="dt">u32</span> <span class="op">=</span> <span class="cf">match</span> guess<span class="op">.</span>trim()<span class="op">.</span>parse() <span class="op">{</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            <span class="cn">Ok</span>(num) <span class="op">=&gt;</span> num<span class="op">,</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            <span class="co">// but offer possibily to change</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            <span class="cn">Err</span>(_) <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                <span class="pp">println!</span>(<span class="st">"You entered {}, not a number"</span><span class="op">,</span> guess<span class="op">.</span>trim())<span class="op">;</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span><span class="op">;</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="op">};</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"You guessed: {guess}"</span>)<span class="op">;</span>  <span class="co">//while the secret was {secret_number}");</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> guess<span class="op">.</span>cmp(<span class="op">&amp;</span>secret_number) <span class="op">{</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Ordering::</span>Less <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Too small!"</span>)<span class="op">,</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Ordering::</span>Greater <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Too big!"</span>)<span class="op">,</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Ordering::</span>Equal <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                <span class="pp">println!</span>(<span class="st">"You win! in {count} trials"</span>)<span class="op">;</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span><span class="op">;</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">use</span> <span class="pp">std::</span>io<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">use</span> <span class="pp">std::cmp::</span>Ordering<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">use</span> <span class="pp">rand::</span>Rng<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="pp">println!</span>(<span class="st">"Guess the number!"</span>)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>    </span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="kw">let</span> max <span class="op">=</span> <span class="dv">50u32</span><span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="co">// to keep track of the number of guesses</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="kw">let</span> <span class="kw">mut</span> count <span class="op">=</span> <span class="dv">0u32</span><span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="co">// create an integer randomly from 1 to 50</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="kw">let</span> secret_number <span class="op">=</span> <span class="pp">rand::</span>thread_rng()<span class="op">.</span>gen_range(<span class="dv">1</span><span class="op">..=</span>max)<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="co">// loop over until the number is found</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="cf">loop</span> <span class="op">{</span> </span>
+<span id="cb2-16"><a href="#cb2-16"></a>        count <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span>   </span>
+<span id="cb2-17"><a href="#cb2-17"></a>        <span class="pp">println!</span>(<span class="st">"Please input your guess. (an integer from 1 to {max})"</span>)<span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>        </span>
+<span id="cb2-19"><a href="#cb2-19"></a>        <span class="kw">let</span> <span class="kw">mut</span> guess<span class="op">:</span> <span class="dt">String</span> <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>        </span>
+<span id="cb2-21"><a href="#cb2-21"></a>        <span class="pp">io::</span>stdin()</span>
+<span id="cb2-22"><a href="#cb2-22"></a>        <span class="op">.</span>read_line(<span class="op">&amp;</span><span class="kw">mut</span> guess)</span>
+<span id="cb2-23"><a href="#cb2-23"></a>        <span class="op">.</span>expect(<span class="st">"Failed to read line"</span>)<span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>        <span class="co">// coerce to an integer</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>        <span class="kw">let</span> guess<span class="op">:</span> <span class="dt">u32</span> <span class="op">=</span> <span class="cf">match</span> guess<span class="op">.</span>trim()<span class="op">.</span>parse() <span class="op">{</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>            <span class="cn">Ok</span>(num) <span class="op">=&gt;</span> num<span class="op">,</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>            <span class="co">// but offer possibily to change</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>            <span class="cn">Err</span>(_) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>                <span class="pp">println!</span>(<span class="st">"You entered {}, not a number"</span><span class="op">,</span> guess<span class="op">.</span>trim())<span class="op">;</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>                <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>            <span class="op">}</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>        <span class="op">};</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>        </span>
+<span id="cb2-34"><a href="#cb2-34"></a>        <span class="pp">println!</span>(<span class="st">"You guessed: {guess}"</span>)<span class="op">;</span>  <span class="co">//while the secret was {secret_number}");</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a>        </span>
+<span id="cb2-36"><a href="#cb2-36"></a>        <span class="cf">match</span> guess<span class="op">.</span>cmp(<span class="op">&amp;</span>secret_number) <span class="op">{</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a>            <span class="pp">Ordering::</span>Less <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Too small!"</span>)<span class="op">,</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a>            <span class="pp">Ordering::</span>Greater <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Too big!"</span>)<span class="op">,</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a>            <span class="pp">Ordering::</span>Equal <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb2-40"><a href="#cb2-40"></a>                <span class="pp">println!</span>(<span class="st">"You win! in {count} trials"</span>)<span class="op">;</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a>                <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a>            <span class="op">}</span></span>
+<span id="cb2-43"><a href="#cb2-43"></a>        <span class="op">}</span></span>
+<span id="cb2-44"><a href="#cb2-44"></a>    <span class="op">}</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -347,12 +347,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>UMI</strong> stands for Unique Molecular Identifier.</p>
 <p>The goal is reproduce some features from <a href="https://umi-tools.readthedocs.io/en/latest/QUICK_START.html"><code>umi-tools</code></a> especially the <code>extract</code> command.</p>
 <p>For example, convert the following read</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@VH00666:90:AAAWVCCHV:1:1101:24026:1000</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">GTCAGTTATAGCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[...]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">@VH00666:90:AAAWVCCHV:1:1101:24026:1000</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">GTCAGTTATAGCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="ex">[...]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>into:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@VH00666:90:AAAWVCCHV:1:1101:24026:1000_GTCAGT</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">GCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">@VH00666:90:AAAWVCCHV:1:1101:24026:1000_GTCAGT</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="ex">GCGGGCGCGCAAAAAAAAAAAAAAAAAAAGATCGGAAGAGCACACGTCTGAACTCCAGTCACTCCC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The UMI was <strong>GTCAGT</strong> and appended to the read <strong>name</strong>, while being removed from the sequence along with the <strong>TATA</strong> linker.</p>
 <section id="rust-bio" class="level3">
 <h3 class="anchored" data-anchor-id="rust-bio">Rust-bio</h3>
@@ -366,18 +366,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="the-command-line-interface-cli-utility-clap">The Command Line Interface (CLI) utility: <code>clap</code></h3>
 <p><a href="https://crates.io/crates/clap"><code>clap</code></a> is an awesome library that helps making a CLI fun and easy.</p>
 <p>The help output looks like (options actually appear in <strong>bold</strong>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> umi_trim <span class="at">-h</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Move</span> Unique Molecular Identifier from seq to name and trim a linker motif <span class="er">(</span><span class="ex">TATA</span><span class="kw">)</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span> umi_trim <span class="pp">[</span><span class="ss">OPTIONS</span><span class="pp">]</span> <span class="at">--input</span> <span class="op">&lt;</span>INPUT<span class="op">&gt;</span> --output <span class="op">&lt;</span>OUTPUT<span class="op">&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Options:</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-i,</span> <span class="at">--input</span> <span class="op">&lt;</span>INPUT<span class="op">&gt;</span>            FASTQ filename to read from</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-o,</span> <span class="at">--output</span> <span class="op">&lt;</span>OUTPUT<span class="op">&gt;</span>          Filename to write to</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-u,</span> <span class="at">--umi-length</span> <span class="op">&lt;</span>UMI_LENGTH<span class="op">&gt;</span>  UMI length in characters [default: 6]</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-l,</span> <span class="at">--linker</span> <span class="op">&lt;</span>LINKER<span class="op">&gt;</span>          Linker UMI-READ to be discarded [default: TATA]</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-h,</span> <span class="at">--help</span>                     Print help</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-V,</span> <span class="at">--version</span>                  Print version</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">$</span> umi_trim <span class="at">-h</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">Move</span> Unique Molecular Identifier from seq to name and trim a linker motif <span class="er">(</span><span class="ex">TATA</span><span class="kw">)</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="ex">Usage:</span> umi_trim <span class="pp">[</span><span class="ss">OPTIONS</span><span class="pp">]</span> <span class="at">--input</span> <span class="op">&lt;</span>INPUT<span class="op">&gt;</span> --output <span class="op">&lt;</span>OUTPUT<span class="op">&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="ex">Options:</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="ex">-i,</span> <span class="at">--input</span> <span class="op">&lt;</span>INPUT<span class="op">&gt;</span>            FASTQ filename to read from</span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="ex">-o,</span> <span class="at">--output</span> <span class="op">&lt;</span>OUTPUT<span class="op">&gt;</span>          Filename to write to</span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="ex">-u,</span> <span class="at">--umi-length</span> <span class="op">&lt;</span>UMI_LENGTH<span class="op">&gt;</span>  UMI length in characters [default: 6]</span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="ex">-l,</span> <span class="at">--linker</span> <span class="op">&lt;</span>LINKER<span class="op">&gt;</span>          Linker UMI-READ to be discarded [default: TATA]</span>
+<span id="cb5-11"><a href="#cb5-11"></a>  <span class="ex">-h,</span> <span class="at">--help</span>                     Print help</span>
+<span id="cb5-12"><a href="#cb5-12"></a>  <span class="ex">-V,</span> <span class="at">--version</span>                  Print version</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This project is <a href="https://github.com/ginolhac/umi_trim">here on <i class="fa-brands fa-github" aria-label="github"></i></a></p>
 
 
