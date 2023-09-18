@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.358">
+<meta name="generator" content="quarto-1.4.371">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -255,7 +255,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Was hoping to get some decent pictures / videos with low light. Turned out that IR leds are needed. That goes in the <a href="#TODO">TODO</a> section.</p>
 <p>Here is an example of picture with low interior light. Colors are off, but quality is fine to me</p>
-<p><img src="../../images/cam_noIR.jpg" class="img-fluid"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="../../images/cam_noIR.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
 </section>
 <section id="setting-up-the-pi" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up-the-pi">Setting-up the pi</h2>
@@ -365,9 +371,21 @@ diff2html -i file ../public/motion.diff -F test.html
 <section id="detection" class="level3">
 <h3 class="anchored" data-anchor-id="detection">detection</h3>
 <p>Here is an example of my kid being detected. The red rectangle works nicely</p>
-<p><img src="../../images/kid_catch.jpg" class="img-fluid"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="../../images/kid_catch.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
 <p>But of course, there are false alarms, such as when the light comes in/out suddenly</p>
-<p><img src="../../images/light_false_alarm.jpg" class="img-fluid"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="../../images/light_false_alarm.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
 <p>the parameter <code>lightswitch 80</code> reduced the issue but it still exists.</p>
 </section>
 </section>
@@ -588,16 +606,28 @@ Jun 19 20:52:17 raspberrypi python2.7[502]: Got command: /time</code></pre>
 <ul>
 <li>received a notification and later on, <code>/check</code> if connection is still on.</li>
 </ul>
-<p><img src="../../images/check.png" class="img-fluid"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="../../images/check.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
 <ul>
 <li>received notification and ask for the corresponding video</li>
 </ul>
-<p><img src="../../images/last_video.png" class="img-fluid"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="../../images/last_video.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
 <p>this video works as a GIF directly in the window:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="cat_video.gif" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">gif file</figcaption>
+<figcaption>gif file</figcaption>
 </figure>
 </div>
 <!-- ffmpeg -i videos/cat_video.mp4 -r 10 -f image2pipe -vf scale=320:-1 -vcodec ppm - | \
@@ -606,7 +636,13 @@ Jun 19 20:52:17 raspberrypi python2.7[502]: Got command: /time</code></pre>
 <ul>
 <li><strong>pause</strong> the detection, and since no motion can be detected, ask for a <strong>snapshot</strong></li>
 </ul>
-<p><img src="../../images/pause.png" class="img-fluid"></p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div>
+<img src="../../images/pause.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
 </section>
 </section>
 <section id="todo" class="level3">

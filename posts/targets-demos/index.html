@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.358">
+<meta name="generator" content="quarto-1.4.371">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -289,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dag_linear.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">ds1</figcaption>
+<figcaption>ds1</figcaption>
 </figure>
 </div>
 <p><code>targets</code> encourages using <a href="https://books.ropensci.org/targets/literate-programming.html">literate programing</a> where a <strong>Rmarkdown</strong> document higher level comments and code, dependencies are based on the parsing of the <code>tar_read()</code> and <code>tar_load()</code> calls within it. This can be used as smart caching system where help focusing on the analysis report, leaving the computation for the <i class="fa-brands fa-r-project" aria-label="r-project"></i> script <code>_targets.R</code>.</p>
@@ -388,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dag_dynamic.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">ds2</figcaption>
+<figcaption>ds2</figcaption>
 </figure>
 </div>
 <p>You see that all targets appears in blue, so outdated. This is the expected behavior of <a href="https://docs.ropensci.org/tarchetypes/reference/tar_files.html"><code>tar_files()</code></a>. We don’t know in advance how many (if any) files are present, so the listing is checked all the time and downstream targets are then also outdated.</p>
@@ -417,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dag_dynamic_input.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">ds2</figcaption>
+<figcaption>ds2</figcaption>
 </figure>
 </div>
 </section>
@@ -470,7 +470,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dag_static.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">ds3</figcaption>
+<figcaption>ds3</figcaption>
 </figure>
 </div>
 </section>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.371">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aurélien Ginolhac">
+<meta name="dcterms.date" content="2023-09-14">
+<meta name="description" content="with  Gitlab Continuous Integration">
+
+<title>Deploying  and  packages</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../karate/index.html"> <i class="bi bi-music" role="img">
+</i> 
+<span class="menu-text">Karate tabs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ginolhac"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Deploying <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <i class="fa-brands fa-python" aria-label="python"></i> packages</h1>
+                  <div>
+        <div class="description">
+          with <i class="fa-brands fa-gitlab" aria-label="gitlab"></i> Gitlab Continuous Integration
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">CI/CD</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aurélien Ginolhac </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 14, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#aim" id="toc-aim" class="nav-link active" data-scroll-target="#aim">Aim</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#python-packages" id="toc-python-packages" class="nav-link" data-scroll-target="#python-packages"><i class="fa-brands fa-python" aria-label="python"></i> Python packages</a></li>
+  </ul></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#initialization" id="toc-initialization" class="nav-link" data-scroll-target="#initialization">Initialization</a></li>
+  <li><a href="#installing-python-packages" id="toc-installing-python-packages" class="nav-link" data-scroll-target="#installing-python-packages">Installing Python packages</a></li>
+  <li><a href="#snapshot" id="toc-snapshot" class="nav-link" data-scroll-target="#snapshot">Snapshot</a></li>
+  <li><a href="#quick-test" id="toc-quick-test" class="nav-link" data-scroll-target="#quick-test">Quick test</a></li>
+  <li><a href="#rprofile" id="toc-rprofile" class="nav-link" data-scroll-target="#rprofile"><code>.Rprofile</code></a></li>
+  </ul></li>
+  <li><a href="#ci-config" id="toc-ci-config" class="nav-link" data-scroll-target="#ci-config">CI config</a>
+  <ul class="collapse">
+  <li><a href="#caching" id="toc-caching" class="nav-link" data-scroll-target="#caching">Caching</a></li>
+  <li><a href="#building" id="toc-building" class="nav-link" data-scroll-target="#building">Building</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="aim" class="level2">
+<h2 class="anchored" data-anchor-id="aim">Aim</h2>
+<p>Synchronize both <i class="fa-brands fa-r-project" aria-label="r-project"></i> <strong>and</strong> <i class="fa-brands fa-python" aria-label="python"></i> packages between users and <i class="fa-brands fa-gitlab" aria-label="gitlab"></i> runners that actually render a teaching website using <a href="https://quarto.org/"><strong>Quarto</strong></a>.</p>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p><a href="https://rstudio.github.io/renv/articles/renv.html"><code>{renv}</code></a> is a package for managing <i class="fa-brands fa-r-project" aria-label="r-project"></i> packages at the <strong>project</strong> scale.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://rstudio.github.io/renv/articles/renv.png" class="img-fluid figure-img"></p>
+<figcaption><code>renv</code> overview (Kevin Ushey)</figcaption>
+</figure>
+</div>
+<section id="python-packages" class="level3">
+<h3 class="anchored" data-anchor-id="python-packages"><i class="fa-brands fa-python" aria-label="python"></i> Python packages</h3>
+<p>This <a href="https://rstudio.github.io/renv/articles/python.html">article</a> is succinct but describes that <code>{renv}</code> can manage Python packages.</p>
+</section>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<section id="initialization" class="level3">
+<h3 class="anchored" data-anchor-id="initialization">Initialization</h3>
+<p>Following instructions from the <code>renv</code> website. Using the <em>virtual environment</em> solution and not <code>conda</code> as the first one is included in python3.</p>
+<p>You need to have installed:</p>
+<ul>
+<li>Python: <code>python3.11-venv</code></li>
+<li>R:
+<ul>
+<li><code>{reticulate}</code></li>
+<li><code>{renv}</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="sc">&gt;</span> renv<span class="sc">::</span><span class="fu">use_python</span>()</span>
+<span id="cb1-2"><a href="#cb1-2"></a>Please select a version of Python to use with this project<span class="sc">:</span> </span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="dv">1</span><span class="sc">:</span> <span class="er">/</span>usr<span class="sc">/</span>bin<span class="sc">/</span>python3</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a>Selection<span class="sc">:</span> <span class="dv">1</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="sc">-</span> Selected <span class="st">"/usr/bin/python3"</span> [Python <span class="dv">3</span>.<span class="fl">11.12</span>].</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="sc">-</span> Creating virtual environment <span class="st">'renv-python-3.11'</span> ... Done<span class="sc">!</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="sc">-</span> Updating Python packages ... Done<span class="sc">!</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="sc">-</span> Lockfile written to <span class="st">"renv.lock"</span>.</span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="sc">-</span> Activated Python <span class="dv">3</span>.<span class="fl">11.12</span> [virtualenv; .<span class="sc">/</span>renv<span class="sc">/</span>python<span class="sc">/</span>virtualenvs<span class="sc">/</span>renv<span class="sc">-</span>python<span class="fl">-3.11</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="installing-python-packages" class="level3">
+<h3 class="anchored" data-anchor-id="installing-python-packages">Installing Python packages</h3>
+<p>For example, installing <code>pandas</code></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="sc">&gt;</span> reticulate<span class="sc">::</span><span class="fu">py_install</span>(<span class="st">"pandas"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>Using virtual environment <span class="st">'/xxxx/xxxx/renv/python/virtualenvs/renv-python-3.11'</span> ...</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="sc">+</span> <span class="er">/</span>xxxx<span class="sc">/</span>xxxx<span class="sc">/</span>renv<span class="sc">/</span>python<span class="sc">/</span>virtualenvs<span class="sc">/</span>renv<span class="sc">-</span>python<span class="fl">-3.10</span><span class="sc">/</span>bin<span class="sc">/</span>python <span class="sc">-</span>m pip install <span class="sc">--</span>upgrade <span class="sc">--</span>no<span class="sc">-</span>user pandas</span>
+<span id="cb2-4"><a href="#cb2-4"></a>Collecting pandas</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  Obtaining dependency information <span class="cf">for</span> pandas from https<span class="sc">:</span><span class="er">//</span>files.pythonhosted.org<span class="sc">/</span>packages<span class="sc">/</span>fb<span class="sc">/</span><span class="dv">4</span>f<span class="sc">/</span><span class="dv">4</span>a4372b2e24439f559b73318683486831d75e59544ae02bf8dec8dd6f48b<span class="sc">/</span>pandas<span class="dv">-2</span>.<span class="fl">1.0</span><span class="sc">-</span>cp310<span class="sc">-</span>cp310<span class="sc">-</span>manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  Downloading pandas<span class="dv">-2</span>.<span class="fl">1.0</span><span class="sc">-</span>cp310<span class="sc">-</span>cp310<span class="sc">-</span><span class="fu">manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata</span> (<span class="dv">18</span> kB)</span>
+<span id="cb2-7"><a href="#cb2-7"></a>Collecting numpy<span class="sc">&gt;=</span><span class="dv">1</span>.<span class="fl">22.4</span> (from pandas)</span>
+<span id="cb2-8"><a href="#cb2-8"></a>  Obtaining dependency information <span class="cf">for</span> numpy<span class="sc">&gt;=</span><span class="dv">1</span>.<span class="fl">22.4</span> from https<span class="sc">:</span><span class="er">//</span>files.pythonhosted.org<span class="sc">/</span>packages<span class="sc">/</span><span class="dv">9</span>b<span class="sc">/</span><span class="dv">5</span>a<span class="sc">/</span>f265a1ba3641d16b5480a217a6aed08cceef09cd173b568cd5351053472a<span class="sc">/</span>numpy<span class="dv">-1</span>.<span class="fl">26.0</span><span class="sc">-</span>cp310<span class="sc">-</span>cp310<span class="sc">-</span>manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata</span>
+<span id="cb2-9"><a href="#cb2-9"></a>  Downloading numpy<span class="dv">-1</span>.<span class="fl">26.0</span><span class="sc">-</span>cp310<span class="sc">-</span>cp310<span class="sc">-</span><span class="fu">manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata</span> (<span class="dv">58</span> kB)</span>
+<span id="cb2-10"><a href="#cb2-10"></a>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="fl">58.5</span><span class="sc">/</span><span class="fl">58.5</span> kB <span class="fl">4.0</span> MB<span class="sc">/</span>s eta <span class="dv">0</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>Collecting python<span class="sc">-</span>dateutil<span class="sc">&gt;=</span><span class="dv">2</span>.<span class="fl">8.2</span> (from pandas)</span>
+<span id="cb2-12"><a href="#cb2-12"></a>  Downloading python_dateutil<span class="dv">-2</span>.<span class="fl">8.2</span><span class="sc">-</span>py2.py3<span class="sc">-</span>none<span class="sc">-</span><span class="fu">any.whl</span> (<span class="dv">247</span> kB)</span>
+<span id="cb2-13"><a href="#cb2-13"></a>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="fl">247.7</span><span class="sc">/</span><span class="fl">247.7</span> kB <span class="fl">10.5</span> MB<span class="sc">/</span>s eta <span class="dv">0</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>Collecting pytz<span class="sc">&gt;=</span><span class="fl">2020.1</span> (from pandas)</span>
+<span id="cb2-15"><a href="#cb2-15"></a>  Obtaining dependency information <span class="cf">for</span> pytz<span class="sc">&gt;=</span><span class="fl">2020.1</span> from https<span class="sc">:</span><span class="er">//</span>files.pythonhosted.org<span class="sc">/</span>packages<span class="sc">/</span><span class="dv">32</span><span class="sc">/</span><span class="dv">4</span>d<span class="sc">/</span>aaf7eff5deb402fd9a24a1449a8119f00d74ae9c2efa79f8ef9994261fc2<span class="sc">/</span>pytz<span class="dv">-2023</span>.<span class="fl">3.</span>post1<span class="sc">-</span>py2.py3<span class="sc">-</span>none<span class="sc">-</span>any.whl.metadata</span>
+<span id="cb2-16"><a href="#cb2-16"></a>  Downloading pytz<span class="dv">-2023</span>.<span class="fl">3.</span>post1<span class="sc">-</span>py2.py3<span class="sc">-</span>none<span class="sc">-</span><span class="fu">any.whl.metadata</span> (<span class="dv">22</span> kB)</span>
+<span id="cb2-17"><a href="#cb2-17"></a>Collecting tzdata<span class="sc">&gt;=</span><span class="fl">2022.1</span> (from pandas)</span>
+<span id="cb2-18"><a href="#cb2-18"></a>  Downloading tzdata<span class="fl">-2023.3</span><span class="sc">-</span>py2.py3<span class="sc">-</span>none<span class="sc">-</span><span class="fu">any.whl</span> (<span class="dv">341</span> kB)</span>
+<span id="cb2-19"><a href="#cb2-19"></a>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="fl">341.8</span><span class="sc">/</span><span class="fl">341.8</span> kB <span class="fl">10.6</span> MB<span class="sc">/</span>s eta <span class="dv">0</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>Collecting six<span class="sc">&gt;=</span><span class="fl">1.5</span> (from python<span class="sc">-</span>dateutil<span class="sc">&gt;=</span><span class="dv">2</span>.<span class="fl">8.2</span><span class="ot">-&gt;</span>pandas)</span>
+<span id="cb2-21"><a href="#cb2-21"></a>  Downloading six<span class="dv">-1</span>.<span class="fl">16.0</span><span class="sc">-</span>py2.py3<span class="sc">-</span>none<span class="sc">-</span><span class="fu">any.whl</span> (<span class="dv">11</span> kB)</span>
+<span id="cb2-22"><a href="#cb2-22"></a>Downloading pandas<span class="dv">-2</span>.<span class="fl">1.0</span><span class="sc">-</span>cp310<span class="sc">-</span>cp310<span class="sc">-</span><span class="fu">manylinux_2_17_x86_64.manylinux2014_x86_64.whl</span> (<span class="fl">12.7</span> MB)</span>
+<span id="cb2-23"><a href="#cb2-23"></a>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="fl">12.7</span><span class="sc">/</span><span class="fl">12.7</span> MB <span class="fl">11.0</span> MB<span class="sc">/</span>s eta <span class="dv">0</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>Downloading numpy<span class="dv">-1</span>.<span class="fl">26.0</span><span class="sc">-</span>cp310<span class="sc">-</span>cp310<span class="sc">-</span><span class="fu">manylinux_2_17_x86_64.manylinux2014_x86_64.whl</span> (<span class="fl">18.2</span> MB)</span>
+<span id="cb2-25"><a href="#cb2-25"></a>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="fl">18.2</span><span class="sc">/</span><span class="fl">18.2</span> MB <span class="fl">10.9</span> MB<span class="sc">/</span>s eta <span class="dv">0</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>Downloading pytz<span class="dv">-2023</span>.<span class="fl">3.</span>post1<span class="sc">-</span>py2.py3<span class="sc">-</span>none<span class="sc">-</span><span class="fu">any.whl</span> (<span class="dv">502</span> kB)</span>
+<span id="cb2-27"><a href="#cb2-27"></a>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="fl">502.5</span><span class="sc">/</span><span class="fl">502.5</span> kB <span class="fl">10.5</span> MB<span class="sc">/</span>s eta <span class="dv">0</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>Installing collected packages<span class="sc">:</span> pytz, tzdata, six, numpy, python<span class="sc">-</span>dateutil, pandas</span>
+<span id="cb2-29"><a href="#cb2-29"></a>Successfully installed numpy<span class="dv">-1</span>.<span class="fl">26.0</span> pandas<span class="dv">-2</span>.<span class="fl">1.0</span> python<span class="sc">-</span>dateutil<span class="dv">-2</span>.<span class="fl">8.2</span> pytz<span class="dv">-2023</span>.<span class="fl">3.</span>post1 six<span class="dv">-1</span>.<span class="fl">16.0</span> tzdata<span class="fl">-2023.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="snapshot" class="level3">
+<h3 class="anchored" data-anchor-id="snapshot">Snapshot</h3>
+<p>Now, register with <code>{renv}</code> what we have just installed.</p>
+<p>The main function <code>renv::snapshot()</code> will regiter <strong>both</strong> <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <i class="fa-brands fa-python" aria-label="python"></i> packages.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="sc">&gt;</span> renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb3-2"><a href="#cb3-2"></a>The following <span class="fu">package</span>(s) will be updated <span class="cf">in</span> the lockfile<span class="sc">:</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># CRAN -----------------------------------------------------------------------</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="sc">-</span> renv   [<span class="sc">*</span> <span class="ot">-&gt;</span> <span class="dv">1</span>.<span class="fl">0.2</span>]</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a>Do you want to proceed? [Y<span class="sc">/</span>n]<span class="sc">:</span> </span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="sc">-</span> Lockfile written to <span class="st">"/xxxx/xxxx/renv.lock"</span>.</span>
+<span id="cb3-9"><a href="#cb3-9"></a>The following will be written to requirements.txt<span class="sc">:</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="sc">-</span> numpy<span class="sc">==</span><span class="dv">1</span>.<span class="fl">26.0</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="sc">-</span> pandas<span class="sc">==</span><span class="dv">2</span>.<span class="fl">1.0</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="sc">-</span> python<span class="sc">-</span>dateutil<span class="sc">==</span><span class="dv">2</span>.<span class="fl">8.2</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="sc">-</span> pytz<span class="sc">==</span><span class="dv">2023</span>.<span class="fl">3.</span>post1</span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="sc">-</span> six<span class="sc">==</span><span class="dv">1</span>.<span class="fl">16.0</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="sc">-</span> tzdata<span class="sc">==</span><span class="fl">2023.3</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a></span>
+<span id="cb3-17"><a href="#cb3-17"></a>Do you want to proceed? [Y<span class="sc">/</span>n]<span class="sc">:</span> </span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="sc">-</span> Wrote Python packages to <span class="st">"/xxxx/xxxx/requirements.txt"</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Checking on the written files, <code>requirements.txt</code> is a rather simple text file:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>requirements.txt</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="requirements.txt"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">numpy</span><span class="op">=</span>=1.26.0</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">pandas</span><span class="op">=</span>=2.1.0</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python-dateutil==2.8.2</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">pytz</span><span class="op">=</span>=2023.3.post1</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">six</span><span class="op">=</span>=1.16.0</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">tzdata</span><span class="op">=</span>=2023.3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>renv.lock</code>, the <i class="fa-brands fa-python" aria-label="python"></i> relevant part:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>renv.lock</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="renv.lock"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[...]</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Python"</span><span class="ex">:</span> {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Version"</span><span class="ex">:</span> <span class="st">"3.11.12"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Type"</span><span class="ex">:</span> <span class="st">"virtualenv"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Name"</span><span class="ex">:</span> <span class="st">"./renv/python/virtualenvs/renv-python-3.11"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="er">}</span><span class="ex">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[...]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="quick-test" class="level3">
+<h3 class="anchored" data-anchor-id="quick-test">Quick test</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="sc">&gt;</span> pd <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">"pandas"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="sc">&gt;</span> pd<span class="sc">$</span><span class="fu">Series</span>(<span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">8</span>))</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> </span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="dv">1</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="rprofile" class="level3">
+<h3 class="anchored" data-anchor-id="rprofile"><code>.Rprofile</code></h3>
+<p>In theory, the sourced <code>.Rprofile</code> should only contains one necessary line generated by <code>renv</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="bu">source</span><span class="er">(</span><span class="st">"renv/activate.R"</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, if you encountered issue with <i class="fa-brands fa-r-logo" aria-label="r-logo"></i> not finding the <i class="fa-brands fa-python" aria-label="python"></i> environment, it could be useful to have those env variables defined:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">Sys.setenv</span>(<span class="at">RETICULATE_MINICONDA_PATH =</span> <span class="st">"renv/python/virtualenvs/renv-python-3.11/"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">"renv/python/virtualenvs/renv-python-3.11/bin/python"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="ci-config" class="level2">
+<h2 class="anchored" data-anchor-id="ci-config">CI config</h2>
+<p>Now the Continuous Integration (CI) triggered by every commit needs to:</p>
+<ol type="1">
+<li>Install the missing packages, especially the <i class="fa-brands fa-python" aria-label="python"></i> ones</li>
+<li>Cache them to avoid re-installing at each commit</li>
+<li>Run the pipeline of building the R code (using <code>{targets}</code> (see <a href="../../posts/targets-demos">previous post</a>)</li>
+<li>Render the website using <strong>quarto</strong></li>
+</ol>
+<section id="caching" class="level3">
+<h3 class="anchored" data-anchor-id="caching">Caching</h3>
+<p>The config is:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="at">    </span><span class="fu">key</span><span class="kw">:</span><span class="at"> $CI_JOB_NAME</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="at">      </span><span class="kw">-</span><span class="at"> _targets/</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="at">      </span><span class="kw">-</span><span class="at"> _site/</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="at">      </span><span class="kw">-</span><span class="at"> lectures_rendered/</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> renv/python/virtualenvs/</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ${RENV_PATHS_CACHE}</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ${RENV_PATHS_LIBRARY}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>_targets/</code> folder that contains the metadata and objects done by <code>{targets}</code>, necessary otherwise everything is redone each time.</li>
+<li><code>_site</code> output folder of the website, default name by <strong>quarto</strong>.</li>
+<li><code>renv/python/virtualenvs/</code> cache the python install + packages</li>
+</ul>
+<p>Rest is classic and is described <a href="https://rstudio.github.io/renv/articles/ci.html#gitlab-ci">here</a></p>
+</section>
+<section id="building" class="level3">
+<h3 class="anchored" data-anchor-id="building">Building</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="at">  </span><span class="fu">before_script</span><span class="kw">:</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="at">    </span><span class="kw">-</span><span class="at"> Rscript -e "renv::restore()"</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="at">    </span><span class="kw">-</span><span class="at"> ./run.R</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> source renv/python/virtualenvs/renv-python-3.11/bin/activate</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="at">    </span><span class="kw">-</span><span class="at"> quarto render</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="at">  </span><span class="fu">tags</span><span class="kw">:</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> shared-cache</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="at">  </span><span class="fu">when</span><span class="kw">:</span><span class="at"> always</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>./run.R</code> runs <code>targets::tar_make()</code></li>
+<li>The <strong>key part</strong> is this <code>source [venv]</code> line 5. It allows the next line with the <code>quarto</code> call to be aware of where is the <i class="fa-brands fa-python" aria-label="python"></i> install / packages <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+<li><code>quarto render</code> then build the website</li>
+</ul>
+</section>
+<section id="results" class="level3">
+<h3 class="anchored" data-anchor-id="results">Results</h3>
+<p>In this screenshot, you see the first time the CI sees the need to install packages for both languages</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="ci1.png" class="img-fluid figure-img"></p>
+<figcaption>Installing (and caching) packages in CI</figcaption>
+</figure>
+</div>
+<p>And now, after a successful caching, no install is required:</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="ci2.png" class="img-fluid figure-img"></p>
+<figcaption>Building website in CI</figcaption>
+</figure>
+</div>
+<ul>
+<li>line 40-59 is the <code>{targets}</code> pipeline</li>
+<li>line 61-63 the beginning of the <strong>quarto</strong> rendering process that involved <i class="fa-brands fa-python" aria-label="python"></i> <strong>Python</strong> code.</li>
+</ul>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>The <code>.Rprofile</code> works only for the <i class="fa-brands fa-r-project" aria-label="r-project"></i> part and here we have pure <i class="fa-brands fa-python" aria-label="python"></i> code in a Quarto document<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="ginolhac/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2023, Aurélien Ginolhac</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

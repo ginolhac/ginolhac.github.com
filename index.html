@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.358">
+<meta name="generator" content="quarto-1.4.371">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-date','listing-title','listing-subtitle','listing-description','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
@@ -165,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="CI/CD">CI/CD <span class="quarto-category-count">(1)</span></div><div class="category" data-category="DIY">DIY <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(6)</span></div><div class="category" data-category="RasPI">RasPI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rust">Rust <span class="quarto-category-count">(1)</span></div><div class="category" data-category="academia">academia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="animation">animation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bike">bike <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dataviz">dataviz <span class="quarto-category-count">(2)</span></div><div class="category" data-category="linux">linux <span class="quarto-category-count">(1)</span></div><div class="category" data-category="packages">packages <span class="quarto-category-count">(2)</span></div><div class="category" data-category="python">python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="workflow managers">workflow managers <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="CI/CD">CI/CD <span class="quarto-category-count">(2)</span></div><div class="category" data-category="DIY">DIY <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(7)</span></div><div class="category" data-category="RasPI">RasPI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rust">Rust <span class="quarto-category-count">(1)</span></div><div class="category" data-category="academia">academia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="animation">animation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bike">bike <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dataviz">dataviz <span class="quarto-category-count">(2)</span></div><div class="category" data-category="linux">linux <span class="quarto-category-count">(1)</span></div><div class="category" data-category="packages">packages <span class="quarto-category-count">(2)</span></div><div class="category" data-category="python">python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="workflow managers">workflow managers <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -175,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/background-1.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Denmark, ginolhac</figcaption>
+<figcaption>Denmark, ginolhac</figcaption>
 </figure>
 </div>
 
@@ -183,8 +183,73 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="linux" data-listing-date-sort="1694390400000" data-listing-file-modified-sort="1694681927002" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1842">
+<div class="quarto-post image-right" data-index="0" data-categories="python,R,CI/CD" data-listing-date-sort="1694649600000" data-listing-file-modified-sort="1695038370022" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="824">
+<div class="thumbnail">
+<p><a href="./posts/renv-python-ci/index.html"></a></p><a href="./posts/renv-python-ci/index.html">
+<p><img src="./posts/renv-python-ci/renv-logo.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/renv-python-ci/index.html"></a></p>
+</div>
+<div class="body">
+<p><a href="./posts/renv-python-ci/index.html"></a></p><a href="./posts/renv-python-ci/index.html">
+<h3 class="no-anchor listing-title">
+Deploying <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <i class="fa-brands fa-python" aria-label="python"></i> packages
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
+python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('CI/CD'); return false;">
+CI/CD
+</div>
+</div>
+<p><a href="./posts/renv-python-ci/index.html"></a></p><a href="./posts/renv-python-ci/index.html">
+<div class="listing-description">
+<p>with <i class="fa-brands fa-gitlab" aria-label="gitlab"></i> Gitlab Continuous Integration</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/renv-python-ci/index.html">
+<div class="listing-date">
+Sep 14, 2023
+</div>
+<div class="listing-reading-time">
+5 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="linux" data-listing-date-sort="1694390400000" data-listing-file-modified-sort="1695038370022" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1842">
 <div class="thumbnail">
 <p><a href="./posts/install-archlinux/index.html"></a></p><a href="./posts/install-archlinux/index.html">
 <p><img src="./posts/install-archlinux/archlinux-logo.png" class="thumbnail-image"></p>
@@ -215,13 +280,13 @@ linux
 <div class="listing-date">
 Sep 11, 2023
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+10 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="python,workflow managers,CI/CD" data-listing-date-sort="1694044800000" data-listing-file-modified-sort="1694681927002" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="899">
+<div class="quarto-post image-right" data-index="2" data-categories="python,workflow managers,CI/CD" data-listing-date-sort="1694044800000" data-listing-file-modified-sort="1695038370026" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="899">
 <div class="thumbnail">
 <p><a href="./posts/snakemake-test-ci/index.html"></a></p><a href="./posts/snakemake-test-ci/index.html">
 <p><img src="./posts/snakemake-test-ci/snakemake-logo.png" class="thumbnail-image"></p>
@@ -258,13 +323,13 @@ CI/CD
 <div class="listing-date">
 Sep 7, 2023
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+5 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Rust" data-listing-date-sort="1692230400000" data-listing-file-modified-sort="1694681927002" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="934">
+<div class="quarto-post image-right" data-index="3" data-categories="Rust" data-listing-date-sort="1692230400000" data-listing-file-modified-sort="1695038370026" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="934">
 <div class="thumbnail">
 <p><a href="./posts/starting-learning-rust/index.html"></a></p><a href="./posts/starting-learning-rust/index.html">
 <p><img src="./posts/starting-learning-rust/rust-logo.png" class="thumbnail-image" alt="Rust logo"></p>
@@ -295,13 +360,13 @@ Rust
 <div class="listing-date">
 Aug 17, 2023
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+5 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="R,dataviz" data-listing-date-sort="1684281600000" data-listing-file-modified-sort="1694681927002" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="104">
+<div class="quarto-post image-right" data-index="4" data-categories="R,dataviz" data-listing-date-sort="1684281600000" data-listing-file-modified-sort="1695038370022" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="104">
 <div class="thumbnail">
 <p><a href="./posts/panel-size/index.html"></a></p><a href="./posts/panel-size/index.html">
 <p><img src="./posts/panel-size/panel-size.png" class="thumbnail-image"></p>
@@ -335,13 +400,13 @@ This is how to create dots of the same size and optimized width using <strong>Er
 <div class="listing-date">
 May 17, 2023
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+1 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="R,dataviz" data-listing-date-sort="1678060800000" data-listing-file-modified-sort="1694681927006" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
+<div class="quarto-post image-right" data-index="5" data-categories="R,dataviz" data-listing-date-sort="1678060800000" data-listing-file-modified-sort="1695038370030" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
 <div class="thumbnail">
 <p><a href="./posts/vertical-facetting/index.html"></a></p><a href="./posts/vertical-facetting/index.html">
 <p><img src="./posts/vertical-facetting/dir-v.png" class="thumbnail-image"></p>
@@ -375,13 +440,13 @@ The question is: <strong>how can we plot one variable for faceting vertically?</
 <div class="listing-date">
 Mar 6, 2023
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+4 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="R,packages" data-listing-date-sort="1676851200000" data-listing-file-modified-sort="1694681926930" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="73">
+<div class="quarto-post image-right" data-index="6" data-categories="R,packages" data-listing-date-sort="1676851200000" data-listing-file-modified-sort="1695038369954" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="73">
 <div class="thumbnail">
 <p><a href="./posts/crop-circle/index.html"></a></p><a href="./posts/crop-circle/index.html">
 <p><img src="./posts/crop-circle/hex.png" class="thumbnail-image"></p>
@@ -415,13 +480,13 @@ From the repo on GitHub.
 <div class="listing-date">
 Feb 20, 2023
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+1 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="R,workflow managers,packages" data-listing-date-sort="1675555200000" data-listing-file-modified-sort="1694681927006" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2932">
+<div class="quarto-post image-right" data-index="7" data-categories="R,workflow managers,packages" data-listing-date-sort="1675555200000" data-listing-file-modified-sort="1695038370026" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2932">
 <div class="thumbnail">
 <p><a href="./posts/targets-demos/index.html"></a></p><a href="./posts/targets-demos/index.html">
 <p><img src="./posts/targets-demos/targets-logo.png" class="thumbnail-image"></p>
@@ -458,13 +523,13 @@ packages
 <div class="listing-date">
 Feb 5, 2023
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+15 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="academia" data-listing-date-sort="1522022400000" data-listing-file-modified-sort="1694681927002" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
+<div class="quarto-post image-right" data-index="8" data-categories="academia" data-listing-date-sort="1522022400000" data-listing-file-modified-sort="1695038370022" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
 <div class="thumbnail">
 <p><a href="./posts/latex-modern-cv/index.html"></a></p><a href="./posts/latex-modern-cv/index.html">
 <p><img src="./posts/latex-modern-cv/sample.png" class="thumbnail-image"></p>
@@ -495,13 +560,13 @@ academia
 <div class="listing-date">
 Mar 26, 2018
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+1 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="Python,DIY,RasPI" data-listing-date-sort="1517011200000" data-listing-file-modified-sort="1694681926998" data-listing-date-modified-sort="1529366400000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1915">
+<div class="quarto-post image-right" data-index="9" data-categories="Python,DIY,RasPI" data-listing-date-sort="1517011200000" data-listing-file-modified-sort="1695038370018" data-listing-date-modified-sort="1529366400000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1915">
 <div class="thumbnail">
 <p><a href="./posts/diy-raspberry-monitored-via-telegram/index.html"></a></p><a href="./posts/diy-raspberry-monitored-via-telegram/index.html">
 <p class="card-img-top"><img src="images/cam_noIR.jpg"  class="thumbnail-image card-img"/></p>
@@ -538,13 +603,13 @@ RasPI
 <div class="listing-date">
 Jan 27, 2018
 </div>
-<div class="listing-author">
-Aurelien Ginolhac
+<div class="listing-reading-time">
+10 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="R,animation" data-listing-date-sort="1481155200000" data-listing-file-modified-sort="1694681927006" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="114">
+<div class="quarto-post image-right" data-index="10" data-categories="R,animation" data-listing-date-sort="1481155200000" data-listing-file-modified-sort="1695038370030" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="114">
 <div class="thumbnail">
 <p><a href="./posts/tweening-a-poisson-distribution/index.html"></a></p><a href="./posts/tweening-a-poisson-distribution/index.html">
 <p class="card-img-top"><img src="images/poisson.gif"  class="thumbnail-image card-img"/></p>
@@ -578,13 +643,13 @@ animation
 <div class="listing-date">
 Dec 8, 2016
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+1 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="R,animation" data-listing-date-sort="1469923200000" data-listing-file-modified-sort="1694681927006" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="962">
+<div class="quarto-post image-right" data-index="11" data-categories="R,animation" data-listing-date-sort="1469923200000" data-listing-file-modified-sort="1695038370030" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="962">
 <div class="thumbnail">
 <p><a href="./posts/teething-process/index.html"></a></p><a href="./posts/teething-process/index.html">
 <p class="card-img-top"><img src="posts/teething-process/index_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
@@ -618,13 +683,13 @@ animation
 <div class="listing-date">
 Jul 31, 2016
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+5 min
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="bike" data-listing-date-sort="1422193115000" data-listing-file-modified-sort="1694681927006" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12">
+<div class="quarto-post image-right" data-index="12" data-categories="bike" data-listing-date-sort="1422193115000" data-listing-file-modified-sort="1695038370030" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12">
 <div class="thumbnail">
 <p><a href="./posts/winter-is-coming/index.html"></a></p><a href="./posts/winter-is-coming/index.html">
 <p class="card-img-top"><img src="images/20150124_131420.jpg"  class="thumbnail-image card-img"/></p>
@@ -655,8 +720,8 @@ bike
 <div class="listing-date">
 Jan 25, 2015
 </div>
-<div class="listing-author">
-Aurélien Ginolhac
+<div class="listing-reading-time">
+1 min
 </div>
 </a>
 </div>

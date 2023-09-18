@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/renv-python-ci/index.html",
       "/posts/install-archlinux/index.html",
       "/posts/snakemake-test-ci/index.html",
       "/posts/starting-learning-rust/index.html",
