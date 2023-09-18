@@ -4,11 +4,14 @@ listing:
   contents: posts
   sort: "date desc"
   type: default
+  fields: [image, date, title, subtitle, description, categories, reading-time]
   categories: true
-  sort-ui: false
-  filter-ui: false
+  sort-ui: true
+  filter-ui: true
+  #image-height: 200px
 page-layout: full
 title-block-banner: true
 ---
+
 
 ![Denmark, ginolhac](images/background-1.jpg)
