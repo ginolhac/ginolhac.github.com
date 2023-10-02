@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/resume-parallel/index.html",
       "/posts/renv-python-ci/index.html",
       "/posts/install-archlinux/index.html",
       "/posts/snakemake-test-ci/index.html",

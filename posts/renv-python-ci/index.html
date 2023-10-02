@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.371">
+<meta name="generator" content="quarto-1.4.395">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -222,6 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+
 <section id="aim" class="level2">
 <h2 class="anchored" data-anchor-id="aim">Aim</h2>
 <p>Synchronize both <i class="fa-brands fa-r-project" aria-label="r-project"></i> <strong>and</strong> <i class="fa-brands fa-python" aria-label="python"></i> packages between users and <i class="fa-brands fa-gitlab" aria-label="gitlab"></i> runners that actually render a teaching website using <a href="https://quarto.org/"><strong>Quarto</strong></a>.</p>
@@ -326,25 +327,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>requirements.txt</strong></pre>
 </div>
-<div class="sourceCode" id="cb4" data-filename="requirements.txt"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">numpy</span><span class="op">=</span>=1.26.0</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">pandas</span><span class="op">=</span>=2.1.0</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python-dateutil==2.8.2</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">pytz</span><span class="op">=</span>=2023.3.post1</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">six</span><span class="op">=</span>=1.16.0</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">tzdata</span><span class="op">=</span>=2023.3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4" data-filename="requirements.txt"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="va">numpy</span><span class="op">=</span>=1.26.0</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="va">pandas</span><span class="op">=</span>=2.1.0</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="ex">python-dateutil==2.8.2</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="va">pytz</span><span class="op">=</span>=2023.3.post1</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="va">six</span><span class="op">=</span>=1.16.0</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="va">tzdata</span><span class="op">=</span>=2023.3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>renv.lock</code>, the <i class="fa-brands fa-python" aria-label="python"></i> relevant part:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>renv.lock</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="renv.lock"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[...]</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Python"</span><span class="ex">:</span> {</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Version"</span><span class="ex">:</span> <span class="st">"3.11.12"</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Type"</span><span class="ex">:</span> <span class="st">"virtualenv"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Name"</span><span class="ex">:</span> <span class="st">"./renv/python/virtualenvs/renv-python-3.11"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="er">}</span><span class="ex">,</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[...]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" data-filename="renv.lock"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">[...]</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="st">"Python"</span><span class="ex">:</span> {</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="st">"Version"</span><span class="ex">:</span> <span class="st">"3.11.12"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="st">"Type"</span><span class="ex">:</span> <span class="st">"virtualenv"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="st">"Name"</span><span class="ex">:</span> <span class="st">"./renv/python/virtualenvs/renv-python-3.11"</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="er">}</span><span class="ex">,</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="ex">[...]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="quick-test" class="level3">
@@ -568,15 +569,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
         for (let i = 0; i < 2; i++) {
           container.appendChild(note.children[i].cloneNode(true));
         }
+        typesetMath(container);
         return container.innerHTML
       } else {
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -585,6 +609,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
+      typesetMath(note);
       return note.innerHTML;
     }
   }
@@ -627,6 +652,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -702,7 +750,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);

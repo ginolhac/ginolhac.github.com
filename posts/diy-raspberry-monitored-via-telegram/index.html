@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.371">
+<meta name="generator" content="quarto-1.4.395">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -235,6 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+
 <section id="rationale" class="level2">
 <h2 class="anchored" data-anchor-id="rationale">Rationale</h2>
 <p>The <a href="https://www.raspberrypi.org">raspberry pi</a> has always been appealing to me, but I needed a project to really get involved. After discussing with <a href="https://github.com/koncina">Eric Koncina</a> who made several great applications with Pis, I decided to go for a home surveillance system.</p>
@@ -255,13 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Was hoping to get some decent pictures / videos with low light. Turned out that IR leds are needed. That goes in the <a href="#TODO">TODO</a> section.</p>
 <p>Here is an example of picture with low interior light. Colors are off, but quality is fine to me</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="../../images/cam_noIR.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img">
-</div>
-</figure>
-</div>
+<p><img src="../../images/cam_noIR.jpg" class="img-fluid"></p>
 </section>
 <section id="setting-up-the-pi" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up-the-pi">Setting-up the pi</h2>
@@ -371,21 +366,9 @@ diff2html -i file ../public/motion.diff -F test.html
 <section id="detection" class="level3">
 <h3 class="anchored" data-anchor-id="detection">detection</h3>
 <p>Here is an example of my kid being detected. The red rectangle works nicely</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="../../images/kid_catch.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="img-fluid figure-img">
-</div>
-</figure>
-</div>
+<p><img src="../../images/kid_catch.jpg" class="img-fluid"></p>
 <p>But of course, there are false alarms, such as when the light comes in/out suddenly</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="../../images/light_false_alarm.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="img-fluid figure-img">
-</div>
-</figure>
-</div>
+<p><img src="../../images/light_false_alarm.jpg" class="img-fluid"></p>
 <p>the parameter <code>lightswitch 80</code> reduced the issue but it still exists.</p>
 </section>
 </section>
@@ -606,23 +589,11 @@ Jun 19 20:52:17 raspberrypi python2.7[502]: Got command: /time</code></pre>
 <ul>
 <li>received a notification and later on, <code>/check</code> if connection is still on.</li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="../../images/check.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="img-fluid figure-img">
-</div>
-</figure>
-</div>
+<p><img src="../../images/check.png" class="img-fluid"></p>
 <ul>
 <li>received notification and ask for the corresponding video</li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="../../images/last_video.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="img-fluid figure-img">
-</div>
-</figure>
-</div>
+<p><img src="../../images/last_video.png" class="img-fluid"></p>
 <p>this video works as a GIF directly in the window:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -636,13 +607,7 @@ Jun 19 20:52:17 raspberrypi python2.7[502]: Got command: /time</code></pre>
 <ul>
 <li><strong>pause</strong> the detection, and since no motion can be detected, ask for a <strong>snapshot</strong></li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<img src="../../images/pause.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="img-fluid figure-img">
-</div>
-</figure>
-</div>
+<p><img src="../../images/pause.png" class="img-fluid"></p>
 </section>
 </section>
 <section id="todo" class="level3">
@@ -795,15 +760,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
         for (let i = 0; i < 2; i++) {
           container.appendChild(note.children[i].cloneNode(true));
         }
+        typesetMath(container);
         return container.innerHTML
       } else {
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -812,6 +800,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
+      typesetMath(note);
       return note.innerHTML;
     }
   }
@@ -854,6 +843,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -929,7 +941,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
