@@ -1,6 +1,6 @@
 ---
 title: "{targets} demos"
-description: "A marvelous workflow manger for {{< fa brands r-project >}}"
+description: "A marvelous workflow manager for {{< fa brands r-project >}}"
 date: "2023-02-05"
 image: targets-logo.png
 image-height: "100px"
