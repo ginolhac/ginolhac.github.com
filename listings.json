@@ -2,20 +2,20 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/resume-parallel/index.html",
-      "/posts/renv-python-ci/index.html",
-      "/posts/install-archlinux/index.html",
-      "/posts/snakemake-test-ci/index.html",
-      "/posts/starting-learning-rust/index.html",
-      "/posts/panel-size/index.html",
-      "/posts/vertical-facetting/index.html",
-      "/posts/crop-circle/index.html",
-      "/posts/targets-demos/index.html",
-      "/posts/latex-modern-cv/index.html",
-      "/posts/diy-raspberry-monitored-via-telegram/index.html",
-      "/posts/tweening-a-poisson-distribution/index.html",
-      "/posts/teething-process/index.html",
-      "/posts/winter-is-coming/index.html"
+      "/posts/2023-10-02_resume-parallel/index.html",
+      "/posts/2023-09-14_renv-python-ci/index.html",
+      "/posts/2023-09-11_install-archlinux/index.html",
+      "/posts/2023-09-07_snakemake-test-ci/index.html",
+      "/posts/2023-08-17_starting-learning-rust/index.html",
+      "/posts/2023-05-17_panel-size/index.html",
+      "/posts/2023-03-06_vertical-faceting/index.html",
+      "/posts/2023-02-20_crop-circles/index.html",
+      "/posts/2023-02-05_targets-demos/index.html",
+      "/posts/2018-03-26_latex-moderncv/index.html",
+      "/posts/2018-01-27_diy-raspberry-monitored-via-telegram/index.html",
+      "/posts/2016-12-18_tweening-a-poisson-distribution/index.html",
+      "/posts/2016-07-31_teething-process/index.html",
+      "/posts/2015-01-25_winter-is-coming/index.html"
     ]
   }
 ]
