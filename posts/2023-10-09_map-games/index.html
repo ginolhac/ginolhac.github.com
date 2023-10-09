@@ -7,9 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aurélien Ginolhac">
-<meta name="dcterms.date" content="2023-05-17">
+<meta name="dcterms.date" content="2023-10-09">
+<meta name="description" content="Incentive to explore new places ">
 
-<title>Same dot sizes</title>
+<title> Maps Games</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -75,6 +42,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -148,10 +117,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Same dot sizes</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">R</div>
-                <div class="quarto-category">dataviz</div>
+      <h1 class="title"><i class="fa-solid fa-bicycle" aria-label="bicycle"></i> Maps Games</h1>
+                  <div>
+        <div class="description">
+          Incentive to explore new places <i class="fa-solid fa-map-location-dot" aria-label="map-location-dot"></i>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">bike</div>
               </div>
                   </div>
   </div>
@@ -169,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">May 17, 2023</p>
+        <p class="date">October 9, 2023</p>
       </div>
     </div>
     
@@ -181,7 +154,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#wandrer-earth" id="toc-wandrer-earth" class="nav-link active" data-scroll-target="#wandrer-earth">Wandrer Earth</a>
+  <ul class="collapse">
+  <li><a href="#chrome-extension" id="toc-chrome-extension" class="nav-link" data-scroll-target="#chrome-extension">Chrome extension</a></li>
+  <li><a href="#dependency-to-strava" id="toc-dependency-to-strava" class="nav-link" data-scroll-target="#dependency-to-strava">Dependency to Strava</a></li>
+  </ul></li>
+  <li><a href="#squadrats" id="toc-squadrats" class="nav-link" data-scroll-target="#squadrats">Squadrats</a></li>
+  <li><a href="#alternative-veloviewer" id="toc-alternative-veloviewer" class="nav-link" data-scroll-target="#alternative-veloviewer">Alternative: VeloViewer</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -190,41 +175,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ek.plot) <span class="co"># renv::install("koncina/ek.plot")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="wandrer-earth" class="level2">
+<h2 class="anchored" data-anchor-id="wandrer-earth">Wandrer Earth</h2>
+<p><a href="https://wandrer.earth/">Wandrer Earth</a> is a website that fetch your activities (either on bike or on foot) and compare the GPS tracks with your previous ones.</p>
+<p>It retains the <strong>new ridden</strong> kilometers, and a scoring system does some ranking. I am not so much into this chart but it strongly pushes you to explore</p>
+<ul>
+<li>New paths</li>
+<li>Plan in advance to ride new streets in towns / villages</li>
+<li>Be exhaustive for some neighborhood / towns and why not countries!<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="escapade.png" class="img-fluid figure-img"></p>
+<figcaption>Output of a ride</figcaption>
+</figure>
 </div>
-<p>This is how to create dots of the same size and optimized width using <strong>Eric Koncina</strong> package: <a href="https://github.com/koncina/ek.plot"><code>ek.plot</code></a>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>dot_size <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>p <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">expand_grid</span>(<span class="at">row =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">column =</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> column, <span class="at">y =</span> row, <span class="at">size =</span> size)) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> dot_size, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">colour =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, dot_size), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="fu">theme</span>(</span>
-<span id="cb2-11"><a href="#cb2-11"></a>        <span class="at">legend.key.height =</span>  <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>)</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    ) </span>
-<span id="cb2-13"><a href="#cb2-13"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="288"></p>
+<p>In <em>red</em> the parts that I already ridden, in <em>blue</em> the new ones.</p>
+<p>I absolutely love this game and sometimes go around some blocks just to collect new streets. Of note, I export the <a href="https://www.garmin.com">Garmin</a> map and add it as a layer to my GPS. Since I ride mostly with the map on, I can see <em>red</em> tracks displayed and can take opportunity to change my route to fetch some new meters.</p>
+<section id="chrome-extension" class="level3">
+<h3 class="anchored" data-anchor-id="chrome-extension">Chrome extension</h3>
+<p>For planning tours, I am using <a href="https://komoot.com">komoot</a>. It is not part of the <i class="fa-solid fa-map-location-dot" aria-label="map-location-dot"></i> games but fantastic for the task. <a href="https://www.highcube.org/">Craig Durkin</a>, the man behind <strong>Wandrer Earth</strong> has developed an extension that allows to display the ridden or unridden tracks in <strong>Komoot</strong>.</p>
+</section>
+<section id="dependency-to-strava" class="level3">
+<h3 class="anchored" data-anchor-id="dependency-to-strava">Dependency to Strava</h3>
+<p>One cons that some finds is that it works only with <a href="https://strava.com">strava</a>. Actually all 3 websites presented here are fetching data from <strong>Strava</strong>.</p>
+</section>
+</section>
+<section id="squadrats" class="level2">
+<h2 class="anchored" data-anchor-id="squadrats">Squadrats</h2>
+<p><a href="https://squadrats.com/">Squadrats</a> is using your GPS tracks to create, as you guessed, squares. Squares of different sizes and there are different ranking, like extending the bigger one (<em>ÜBERSQUADRAT</em>), having a maximum of squares, or little ones (<em>Squadratinhos</em>).</p>
+<p>This pushes you to go farther from home, hitting just a corner of a squadrat and it’s yours. I only recently started to be interested by this game.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="squadrats.png" class="img-fluid figure-img"></p>
+<figcaption>My general map as today</figcaption>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">set_panel_size</span>(p,</span>
-<span id="cb3-2"><a href="#cb3-2"></a>                             <span class="at">width =</span> <span class="dv">3</span> <span class="sc">*</span> <span class="fu">unit</span>(dot_size <span class="sc">*</span> ggplot2<span class="sc">:::</span>.pt, <span class="st">"pt"</span>),</span>
-<span id="cb3-3"><a href="#cb3-3"></a>                             <span class="at">height =</span> <span class="dv">5</span> <span class="sc">*</span> <span class="fu">unit</span>(dot_size <span class="sc">*</span> ggplot2<span class="sc">:::</span>.pt, <span class="st">"pt"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="fu">write_plot</span>(<span class="st">"panel-size.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "panel-size.png"</code></pre>
-</div>
+</section>
+<section id="alternative-veloviewer" class="level2">
+<h2 class="anchored" data-anchor-id="alternative-veloviewer">Alternative: VeloViewer</h2>
+<p><a href="https://veloviewer.com/">VeloViewer</a> offers a LOT of graphs. Actually too much for me. Tried for one year and did not renew my subscription.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://cf.veloviewer.com/img/veloviewer-strava-summary-homepage.png" class="img-fluid figure-img"></p>
+<figcaption>Dashboard from the demo website</figcaption>
+</figure>
 </div>
 
 
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Two friends of mine have ridden &gt; 50% of <em>all</em> bikeable trails / roads of Luxembourg. Pretty impressive<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

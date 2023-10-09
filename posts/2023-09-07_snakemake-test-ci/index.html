@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.398">
+<meta name="generator" content="quarto-1.4.410">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5"></a><span class="at">        </span><span class="fu">snakefile</span><span class="kw">:</span><span class="at"> workflow/Snakefile</span></span>
 <span id="cb1-6"><a href="#cb1-6"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="st">"--configfile .test/config_basic/config.yaml --use-conda --show-failed-logs --cores 2 --conda-cleanup-pkgs cache"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>They are doing more testing but wit the same structure. The annoying part to me is the:</p>
+<p>They are doing more testing but with the same structure. The annoying part to me is the:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> snakemake/snakemake-github-action@v1.22.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Because it abstracts the real pipeline, it works but it has some magic inside and even going through the <a href="https://github.com/snakemake/snakemake-github-action">repo</a> is not giving details.</p>
 <p>The same happens for <i class="fa-brands fa-r-project" aria-label="r-project"></i> with <code>{renv}</code> cache / restore, <code>quarto render</code> and publishing on GitHub pages like for this <a href="https://github.com/ginolhac/ginolhac.github.com/blob/main/.github/workflows/quarto-publish.yml">very blog</a>.</p>
