@@ -54,15 +54,12 @@ I am using so far three resources:
 
 - The [Programming **Rust**](https://www.oreilly.com/library/view/programming-rust-2nd/9781492052586/) book (Ed. O'Reilly). From a recommendation by [Stefan Baumgartner](https://mastodon.social/@deadparrot)
 
-
-
-
 - The official [documentation](https://doc.rust-lang.org/book/ch00-00-introduction.html) that includes a lot of example.
 - The ["How to learn Rust" course](https://learning.accelerant.dev/view/courses/how-to-learn-rust) by Tim McManara (only $25). From a recommendation of [Jonathan Caroll](https://jcarroll.com.au)
 
 ## Example of syntax
 
-Programs are managed the `cargo` utility. It creates, run, test, optimize Rust code.
+Programs are managed by the `cargo` utility. It creates, run, test, optimize Rust code.
 Here is one of official documentation example. We need the [`rand`](https://crates.io/crates/rand) **crate** dependency. Here we specify the wanted version `0.8.5`.
 
 The code for the main guessing is included.

@@ -56,7 +56,7 @@ Looking at how it is done in their {{< fa brands github >}} [GitHub Action file]
 ```
 :::
 
-They are doing more testing but wit the same structure. The annoying part to me is the:
+They are doing more testing but with the same structure. The annoying part to me is the:
 
 ``` yaml
 uses: snakemake/snakemake-github-action@v1.22.0
