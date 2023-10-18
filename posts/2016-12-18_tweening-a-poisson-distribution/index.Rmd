@@ -3,6 +3,8 @@ title: "tweening a Poisson distribution"
 author: "Aurélien Ginolhac"
 date: "2016-12-08"
 slug: tweening a Poisson distribution
+execute: 
+  freeze: true
 description: "using tweenr and ggplot2"
 categories:
   - R

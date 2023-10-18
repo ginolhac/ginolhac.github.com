@@ -3,6 +3,8 @@ title: "teething"
 author: "Aurélien Ginolhac"
 date: "2016-07-31"
 description: "Compare teething for two kids"
+execute: 
+  freeze: true
 categories:
   - R
   - animation

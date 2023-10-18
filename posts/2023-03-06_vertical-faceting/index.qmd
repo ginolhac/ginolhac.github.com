@@ -2,6 +2,8 @@
 title: "Vertical faceting"
 author: "Aurélien Ginolhac"
 date: "2023-03-06"
+execute: 
+  freeze: true
 image: dir-v.png
 categories: [R, dataviz]
 ---

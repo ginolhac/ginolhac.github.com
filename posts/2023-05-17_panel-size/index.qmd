@@ -1,6 +1,8 @@
 ---
 title: "Same dot sizes"
 date: "2023-05-17"
+execute: 
+  freeze: true
 image: panel-size.png
 categories: [R, dataviz]
 ---
