@@ -4,7 +4,7 @@ toc: false
 about:
   id: gino
   template: solana
-  image: "/images/bio-photo@2x.jpg"
+  image: "/images/painted-bio.png"
   image-shape: round
   image-width: 10em
   links:
@@ -42,7 +42,7 @@ Image of the 🌏 🌡️ 1850-2022 from [ShowYourStripes](https://showyourstrip
 
 ### About this site
 
-This is a [Quarto blog](https://quarto.org/docs/websites/website-blog.html) made with [RStudio](https://posit.co/download/rstudio-desktop/) and deployed using [GitHub Actions](https://github.com/features/actions).
+This is a [Quarto blog](https://quarto.org/docs/websites/website-blog.html) made with [RStudio](https://posit.co/download/rstudio-desktop/) and deployed using [GitHub Actions](https://github.com/features/actions). Bio picture painted by the great 📦 [`paintr`](https://github.com/cj-holmes/paintr).
 
 </br>
 
