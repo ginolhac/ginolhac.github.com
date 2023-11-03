@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.429">
+<meta name="generator" content="quarto-1.4.480">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
@@ -383,6 +383,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For the <i class="fa-brands fa-r-project" aria-label="r-project"></i> package <a href="https://github.com/jeroen/V8"><code>{V8}</code></a>, needs to activate the static lib before installing:</li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">Sys.setenv</span>(<span class="at">DOWNLOAD_STATIC_LIBV8 =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Avoid typing the GPG passphrase and save it in GNOME</li>
+</ul>
+<p>in <code>~/.config/gnupg/gpg-agent.conf</code></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">pinentry-program</span> /usr/bin/pinentry-gnome3</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">allow-preset-passphrase</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="ex">max-cache-ttl</span> 60480000</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="ex">default-cache-ttl</span> 604480000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
