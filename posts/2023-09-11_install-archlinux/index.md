@@ -188,3 +188,16 @@ Then it displays things like this:
 ``` r
 Sys.setenv(DOWNLOAD_STATIC_LIBV8 = 1)
 ```
+
+- Avoid typing the GPG passphrase and save it in GNOME
+
+in `~/.config/gnupg/gpg-agent.conf`
+
+``` bash
+pinentry-program /usr/bin/pinentry-gnome3
+allow-preset-passphrase
+max-cache-ttl 60480000
+default-cache-ttl 604480000
+```
+
+
