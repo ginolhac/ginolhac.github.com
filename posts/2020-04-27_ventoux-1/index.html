@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aurélien Ginolhac">
-<meta name="dcterms.date" content="2016-07-31">
-<meta name="description" content="Compare teething for two kids">
+<meta name="dcterms.date" content="2020-04-17">
+<meta name="description" content="Lock-down project: learning basic bike mechanics">
 
-<title>teething</title>
+<title> Rebuilding the Ventoux, part 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -76,6 +42,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -149,15 +120,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">teething</h1>
+      <h1 class="title"><i class="fa-solid fa-bicycle" aria-label="bicycle"></i> Rebuilding the Ventoux, part 1</h1>
                   <div>
         <div class="description">
-          Compare teething for two kids
+          Lock-down project: learning basic bike mechanics
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">R</div>
-                <div class="quarto-category">animation</div>
+                <div class="quarto-category">bike</div>
+                <div class="quarto-category">DIY</div>
               </div>
                   </div>
   </div>
@@ -175,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 31, 2016</p>
+        <p class="date">April 17, 2020</p>
       </div>
     </div>
     
@@ -191,145 +162,165 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#input-data" id="toc-input-data" class="nav-link active" data-scroll-target="#input-data">Input data</a></li>
-  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a></li>
-  <li><a href="#animate" id="toc-animate" class="nav-link" data-scroll-target="#animate">Animate</a></li>
+  <li><a href="#peugeot-ventoux" id="toc-peugeot-ventoux" class="nav-link active" data-scroll-target="#peugeot-ventoux">Peugeot Ventoux</a>
+  <ul class="collapse">
+  <li><a href="#unmounting-the-bike" id="toc-unmounting-the-bike" class="nav-link" data-scroll-target="#unmounting-the-bike">Unmounting the bike</a></li>
+  <li><a href="#ordering-new-wheels" id="toc-ordering-new-wheels" class="nav-link" data-scroll-target="#ordering-new-wheels">Ordering new wheels</a></li>
+  <li><a href="#brakes-and-tools" id="toc-brakes-and-tools" class="nav-link" data-scroll-target="#brakes-and-tools">Brakes and tools</a></li>
+  <li><a href="#mounting-the-cassette" id="toc-mounting-the-cassette" class="nav-link" data-scroll-target="#mounting-the-cassette">Mounting the cassette</a></li>
+  <li><a href="#final-result-for-now" id="toc-final-result-for-now" class="nav-link" data-scroll-target="#final-result-for-now">Final result for now</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<p>Teething can be tough for kids, and so for the parents. For our first kid, it was actually pretty painful. Then, I wanted to see how synchronize the second kid would be with the first one.</p>
-<section id="input-data" class="level2">
-<h2 class="anchored" data-anchor-id="input-data">Input data</h2>
-<p>This was an old input, now I would use the <a href="https://github.com/milesmcbain/datapasta">datapasta</a> rstudio addin by Miles Mc Bain to get a <code>tribble</code> from any spreadsheet.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
-<span id="cb1-2"><a href="#cb1-2"></a>      <span class="sc">~</span>kid,        <span class="sc">~</span>date,                <span class="sc">~</span>teeth,</span>
-<span id="cb1-3"><a href="#cb1-3"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-03-31"</span>, <span class="st">"incisive inf cent D"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-04-18"</span>, <span class="st">"incisive inf cent G"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-07-02"</span>, <span class="st">"incisive sup cent D"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-06-09"</span>, <span class="st">"incisive sup cent G"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-07-03"</span>,  <span class="st">"incisive sup lat G"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-07-26"</span>,  <span class="st">"incisive sup lat D"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-08-12"</span>,  <span class="st">"incisive inf lat D"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-10-12"</span>,  <span class="st">"incisive inf lat G"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-01-04"</span>,        <span class="st">"prem 1 sup G"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-01-11"</span>,        <span class="st">"prem 1 sup G"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-01-11"</span>,        <span class="st">"prem 1 inf D"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-02-01"</span>,        <span class="st">"prem 1 inf D"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-02-01"</span>,        <span class="st">"canine sup G"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-02-12"</span>,        <span class="st">"canine sup D"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-03-28"</span>,        <span class="st">"canine inf D"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-04-04"</span>,        <span class="st">"canine inf G"</span>, <span class="co"># imputed data</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-10-15"</span>,        <span class="st">"prem 2 inf G"</span>,</span>
-<span id="cb1-20"><a href="#cb1-20"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-10-15"</span>,        <span class="st">"prem 2 inf D"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-12-21"</span>,        <span class="st">"prem 2 sup D"</span>,</span>
-<span id="cb1-22"><a href="#cb1-22"></a>   <span class="st">"Anouk"</span>, <span class="st">"2016-03-01"</span>,        <span class="st">"prem 2 sup G"</span>,</span>
-<span id="cb1-23"><a href="#cb1-23"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-05-11"</span>, <span class="st">"incisive inf cent D"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-05-18"</span>, <span class="st">"incisive inf cent G"</span>,</span>
-<span id="cb1-25"><a href="#cb1-25"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-07-11"</span>, <span class="st">"incisive sup cent D"</span>,</span>
-<span id="cb1-26"><a href="#cb1-26"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-07-25"</span>, <span class="st">"incisive sup cent G"</span>,</span>
-<span id="cb1-27"><a href="#cb1-27"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-08-03"</span>, <span class="st">"incisive sup lat D"</span>,</span>
-<span id="cb1-28"><a href="#cb1-28"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-08-04"</span>, <span class="st">"incisive inf lat D"</span>,</span>
-<span id="cb1-29"><a href="#cb1-29"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-08-04"</span>, <span class="st">"incisive inf lat G"</span>,</span>
-<span id="cb1-30"><a href="#cb1-30"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-08-23"</span>, <span class="st">"incisive sup lat G"</span>,</span>
-<span id="cb1-31"><a href="#cb1-31"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-09-30"</span>,        <span class="st">"prem 1 inf D"</span>,</span>
-<span id="cb1-32"><a href="#cb1-32"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-09-20"</span>,        <span class="st">"prem 1 inf G"</span>,</span>
-<span id="cb1-33"><a href="#cb1-33"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-10-22"</span>,        <span class="st">"prem 1 sup D"</span>,</span>
-<span id="cb1-34"><a href="#cb1-34"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-10-20"</span>,        <span class="st">"prem 1 sup G"</span>,</span>
-<span id="cb1-35"><a href="#cb1-35"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-04-04"</span>,        <span class="st">"canine sup D"</span>,</span>
-<span id="cb1-36"><a href="#cb1-36"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-04-28"</span>,        <span class="st">"canine inf D"</span>,</span>
-<span id="cb1-37"><a href="#cb1-37"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-05-15"</span>,        <span class="st">"canine sup G"</span>,</span>
-<span id="cb1-38"><a href="#cb1-38"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-05-25"</span>,        <span class="st">"prem 2 inf G"</span>,</span>
-<span id="cb1-39"><a href="#cb1-39"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-06-01"</span>,        <span class="st">"canine inf G"</span>,</span>
-<span id="cb1-40"><a href="#cb1-40"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-06-07"</span>,        <span class="st">"prem 2 inf D"</span>,</span>
-<span id="cb1-41"><a href="#cb1-41"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-09-04"</span>,        <span class="st">"prem 2 sup D"</span>) <span class="ot">-&gt;</span> teeth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Many people started a project during the lock-downs due to covid-19 pandemic. In Luxembourg, we got only one and it triggered my long due bike project. I had two goals, 1) learn basic bike mechanics 2) restore my teenage bike: a Peugeot Ventoux. Learning by doing is, for me, the best way. Yes there are tons of youtube videos about everything but without the real thing to do I have no will to just watch them.</p>
+<section id="peugeot-ventoux" class="level1 page-columns page-full">
+<h1>Peugeot Ventoux</h1>
+<p>The serial number engraved below the bottom bracket is <code>Y003 30825</code>. Meaning it was built in March 1990. I probably got it in March 1991 and I remembered reading again and again the bike catalog waiting for my birthday to come.</p>
+<p>The only picture of this catalog that seems relevant online is this one from the Netherlands:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="1990nl_07.jpg" class="img-fluid figure-img"></p>
+<figcaption>Ventoux NL</figcaption>
+</figure>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">count</span>(teeth, kid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  kid       n
-  &lt;chr&gt; &lt;int&gt;
-1 Anouk    20
-2 Irène    19</code></pre>
+<p>Mine was yellow / grey and I used until 2010 when I left France. And for 10 years it collected dust in some basements.</p>
+<p>In 2020 it looked like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="IMG_20200427_1.jpg" class="lightbox" data-description="" data-gallery="quarto-lightbox-gallery-1" title="Ventoux, initial state"><img src="IMG_20200427_1.jpg" height="800" alt="Ventoux, initial state" class="figure-img"></a></p>
+<figcaption>Ventoux, initial state</figcaption>
+</figure>
 </div>
-</div>
-<p>https://en.wikipedia.org/wiki/Dental_notation</p>
-<pre><code>Primary Dentition
-        upper right - 5             upper left - 6
-             55 54 53 52 51 | 61 62 63 64 65 
-          R --------------------------------- L
-             85 84 83 82 81 | 71 72 73 74 75 
-        lower right - 8             lower left - 7
-
- I - incisor
- C - canine
- P - premolar
- M - molar</code></pre>
+<p>Quite a miserable bike, I decided to give it a try bringing back to some ride-ready state and if I failed it would not harm much.</p>
+<section id="unmounting-the-bike" class="level2">
+<h2 class="anchored" data-anchor-id="unmounting-the-bike">Unmounting the bike</h2>
+<p>I never unmounted a crank set, a cassette nor even a chain. For 20 years I just put air in tubes and changed them when got a puncture. Hardly did a maintenance in bike shops neither. Thinking about it, that was not smart. I might have changed brake pads and oil chain but it sounded like too much work. I believed in eternal which didn’t go wrong while I though this way but really could have been.</p>
 </section>
-<section id="plotting" class="level2">
-<h2 class="anchored" data-anchor-id="plotting">Plotting</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>teeth <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">parse_date</span>(date),</span>
-<span id="cb5-3"><a href="#cb5-3"></a>         <span class="at">t_teeth =</span> <span class="fu">word</span>(teeth, <span class="dv">1</span>),</span>
-<span id="cb5-4"><a href="#cb5-4"></a>         <span class="at">age =</span> <span class="fu">case_when</span>(kid <span class="sc">==</span> <span class="st">"Anouk"</span> <span class="sc">~</span> date <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"20130828"</span>),</span>
-<span id="cb5-5"><a href="#cb5-5"></a>                         kid <span class="sc">==</span> <span class="st">"Irène"</span> <span class="sc">~</span> date <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"20160922"</span>)),</span>
-<span id="cb5-6"><a href="#cb5-6"></a>         <span class="at">age2 =</span> <span class="fu">as.numeric</span>(age) <span class="sc">/</span> <span class="dv">365</span>) <span class="ot">-&gt;</span> teeth_tp</span>
-<span id="cb5-7"><a href="#cb5-7"></a>teeth_tp <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">group_by</span>(kid) <span class="sc">%&gt;%</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">arrange</span>(age) <span class="sc">%&gt;%</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">mutate</span>(<span class="at">n_teeth =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-11"><a href="#cb5-11"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age2, <span class="at">y =</span> n_teeth, <span class="at">colour =</span> kid), <span class="at">width =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> t_teeth)) <span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a>  <span class="fu">theme_bw</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"age (years)"</span>,</span>
-<span id="cb5-17"><a href="#cb5-17"></a>       <span class="at">y =</span> <span class="st">"# teeth"</span>,</span>
-<span id="cb5-18"><a href="#cb5-18"></a>       <span class="at">shape =</span> <span class="st">"type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<section id="ordering-new-wheels" class="level2">
+<h2 class="anchored" data-anchor-id="ordering-new-wheels">Ordering new wheels</h2>
+<p>For the wheels, they looked crooked, worn and spokes fragile. So I decided to buy a new set. It would solved the freewheel issue. The set costs €100 which sounded just fair.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IMG_20200525_171922_368.jpg" class="img-fluid figure-img"></p>
+<figcaption>New pair of wheels with the old rear one below</figcaption>
+</figure>
 </div>
+<p>Also add tires and tubes, cheap ones (turned out not great).</p>
+</section>
+<section id="brakes-and-tools" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="brakes-and-tools">Brakes and tools</h2>
+<p>Bike tools are cheap and last a lifetime. Should have invested in that way earlier. Chain whip is easy to use, same for a chain tool. For the crank removal (and bottom bracket), the main issue is not the price, rather the number of standards.</p>
+<p>Here is what I purchased from <em>Probikeshop</em> on the 2020-05-13</p>
+<table class="table">
+<colgroup>
+<col style="width: 73%">
+<col style="width: 12%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Quantity</th>
+<th>Price (€)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Two wheels SHIMANO R501 - 10S(56233) Freewheel SHIMANO</td>
+<td>1</td>
+<td>102.99</td>
+</tr>
+<tr class="even">
+<td>Chain 9S SHIMANO HG53 DEORE / SORA - 116 links</td>
+<td>1</td>
+<td>12.49</td>
+</tr>
+<tr class="odd">
+<td>Shimano PARK TOOL FR-1.3(92114) freewheel</td>
+<td>1</td>
+<td>10.49</td>
+</tr>
+<tr class="even">
+<td>Chain whip BBB TURNTABLE 10S BTL-11(61856)</td>
+<td>1</td>
+<td>14.49</td>
+</tr>
+<tr class="odd">
+<td>Tires MICHELIN LITHION 2 700x25c</td>
+<td>1</td>
+<td>30.98</td>
+</tr>
+<tr class="even">
+<td>Air Tube MICHELIN A1 AIRSTOP BUTYL 700x18/25c</td>
+<td>2</td>
+<td>7.98</td>
+</tr>
+<tr class="odd">
+<td>Two calipers SHIMANO SORA 3000</td>
+<td>1</td>
+<td>30,90</td>
+</tr>
+<tr class="even">
+<td>Cable brake Kit and hoose SHIMANO PTFE</td>
+<td>1</td>
+<td>30.90</td>
+</tr>
+<tr class="odd">
+<td>Bar tape CLASSIC COMFORT</td>
+<td>1</td>
+<td>7.49</td>
+</tr>
+</tbody>
+</table>
+<p>I ordered new brake calipers as the current <strong>Shimano</strong> <em>Exage</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> look wasted (see details in the margin).</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IMG_20200427_143500.jpg" class="img-fluid figure-img"></p>
+<figcaption>Front brake detail</figcaption>
+</figure>
+</div>
+</div></div></section>
+<section id="mounting-the-cassette" class="level2">
+<h2 class="anchored" data-anchor-id="mounting-the-cassette">Mounting the cassette</h2>
+<p>Instead of buying a new cassette and chain, I only got a new chain and cleaned the cassette. Was a lot of work and realized too late, it was totally worn out and we soon damage the brand-new chain. But, learning is long process.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="IMG_20200526_151757_1.jpg" class="lightbox" data-description="" data-gallery="quarto-lightbox-gallery-2" title="New rear wheel with a worn but clean cassette"><img src="IMG_20200526_151757_1.jpg" height="600" alt="New rear wheel with a worn but clean cassette" class="figure-img"></a></p>
+<figcaption>New rear wheel with a worn but clean cassette</figcaption>
+</figure>
 </div>
 </section>
-<section id="animate" class="level2">
-<h2 class="anchored" data-anchor-id="animate">Animate</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(gganimate)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>teeth_tp <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>   <span class="fu">group_by</span>(kid) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>   <span class="fu">arrange</span>(age) <span class="sc">%&gt;%</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>   <span class="fu">mutate</span>(<span class="at">n_teeth =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-6"><a href="#cb6-6"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age2, <span class="at">y =</span> n_teeth, <span class="at">colour =</span> kid)) <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>   <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>   <span class="co"># to try transition_reveal()</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>   <span class="fu">transition_reveal</span>(kid, n_teeth) <span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>   <span class="co">#ease_aes("linear") +</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>   <span class="fu">shadow_trail</span>() <span class="sc">+</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> t_teeth), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a>   <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values =</span> wesanderson<span class="sc">::</span><span class="fu">wes_palette</span>(<span class="st">"GrandBudapest1"</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]) <span class="sc">+</span> </span>
-<span id="cb6-15"><a href="#cb6-15"></a>   <span class="fu">theme_bw</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"age (years)"</span>,</span>
-<span id="cb6-17"><a href="#cb6-17"></a>        <span class="at">y =</span> <span class="st">"# teeth"</span>,</span>
-<span id="cb6-18"><a href="#cb6-18"></a>        <span class="at">shape =</span> <span class="st">"type"</span>) <span class="ot">-&gt;</span> tp</span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="fu">animate</span>(tp, <span class="at">nframes =</span> <span class="dv">60</span>)</span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="fu">anim_save</span>(<span class="st">"teething.gif"</span>, <span class="fu">last_animation</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><img src="teething.gif" class="img-fluid"></p>
+<section id="final-result-for-now" class="level2">
+<h2 class="anchored" data-anchor-id="final-result-for-now">Final result for now</h2>
+<p>After much cleaning, mounting the wheels, removing the brakes</p>
+<p><img src="IMG_20200526_165401.jpg" class="img-fluid"></p>
+</section>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<p>Description image from bike wheels transformed by the fun package <a href="https://github.com/cj-holmes/paintr"><code>paintr</code></a> by <strong>CJ Holmes</strong>.</p>
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Quoting Shimano “EXAGE, coined from “excellent,” “exceed” and “age”. Most certainly it exceeding its age!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -736,6 +727,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox"});</script>
 
 
 
