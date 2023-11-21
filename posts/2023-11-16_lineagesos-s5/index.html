@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aurélien Ginolhac">
-<meta name="dcterms.date" content="2023-10-09">
-<meta name="description" content="Incentive to explore new places ">
+<meta name="dcterms.date" content="2023-11-14">
+<meta name="description" content="Flashing a ungoogled-ROM">
 
-<title> Maps Games</title>
+<title>Installing LineageOS on an old  S5</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -117,14 +151,15 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title"><i class="fa-solid fa-bicycle" aria-label="bicycle"></i> Maps Games</h1>
+      <h1 class="title">Installing LineageOS on an old <i class="fa-solid fa-mobile-screen-button" aria-label="mobile-screen-button"></i> S5</h1>
                   <div>
         <div class="description">
-          Incentive to explore new places <i class="fa-solid fa-map-location-dot" aria-label="map-location-dot"></i>
+          Flashing a ungoogled-ROM
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">bike</div>
+                <div class="quarto-category">linux</div>
+                <div class="quarto-category">DIY</div>
               </div>
                   </div>
   </div>
@@ -142,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 9, 2023</p>
+        <p class="date">November 14, 2023</p>
       </div>
     </div>
     
@@ -158,80 +193,179 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#wandrer-earth" id="toc-wandrer-earth" class="nav-link active" data-scroll-target="#wandrer-earth">Wandrer Earth</a>
-  <ul class="collapse">
-  <li><a href="#chrome-extension" id="toc-chrome-extension" class="nav-link" data-scroll-target="#chrome-extension">Chrome extension</a></li>
-  <li><a href="#dependency-to-strava" id="toc-dependency-to-strava" class="nav-link" data-scroll-target="#dependency-to-strava">Dependency to Strava</a></li>
-  </ul></li>
-  <li><a href="#squadrats" id="toc-squadrats" class="nav-link" data-scroll-target="#squadrats">Squadrats</a></li>
-  <li><a href="#alternative-veloviewer" id="toc-alternative-veloviewer" class="nav-link" data-scroll-target="#alternative-veloviewer">Alternative: VeloViewer</a></li>
+  <li><a href="#current-android-and-state" id="toc-current-android-and-state" class="nav-link active" data-scroll-target="#current-android-and-state">Current Android and state</a></li>
+  <li><a href="#lineageos" id="toc-lineageos" class="nav-link" data-scroll-target="#lineageos">LineageOS</a></li>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
+  <li><a href="#mandatory-software" id="toc-mandatory-software" class="nav-link" data-scroll-target="#mandatory-software">Mandatory software</a></li>
+  <li><a href="#download-images" id="toc-download-images" class="nav-link" data-scroll-target="#download-images">Download images</a></li>
+  <li><a href="#install-the-custom-recovery-mode" id="toc-install-the-custom-recovery-mode" class="nav-link" data-scroll-target="#install-the-custom-recovery-mode">Install the custom recovery mode</a></li>
+  <li><a href="#upload-the-lineage-os-image" id="toc-upload-the-lineage-os-image" class="nav-link" data-scroll-target="#upload-the-lineage-os-image">Upload the Lineage OS image</a></li>
+  <li><a href="#screenshot" id="toc-screenshot" class="nav-link" data-scroll-target="#screenshot">Screenshot</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<section id="wandrer-earth" class="level2">
-<h2 class="anchored" data-anchor-id="wandrer-earth">Wandrer Earth</h2>
-<p><a href="https://wandrer.earth/">Wandrer Earth</a> is a website that fetch your activities (either on bike or on foot) and compare the GPS tracks with your previous ones.</p>
-<p>It retains the <strong>new ridden</strong> kilometers, and a scoring system does some ranking. I am not so much into this chart but it strongly pushes you to explore</p>
+<p>Bought a Samsung S5 <i class="fa-solid fa-mobile" aria-label="mobile"></i> in October 2014. It’d served me well for 4 years and since was lying in a drawer. Now the next and current smartphone is 5 years old and show some issues. Nothing dramatic but one is annoying, it is <strong>not</strong> receiving updates, especially <em>security</em> ones for 3 years now. I don’t much knowledge about the consequences but clearly it is not great. Thus, here are four motivations for installing open-source OS on a phone:</p>
 <ul>
-<li>New paths</li>
-<li>Plan in advance to ride new streets in towns / villages</li>
-<li>Be exhaustive for some neighborhood / towns and why not countries!<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>Test the feasibility of having a non proprietary Android (apps outside <i class="fa-brands fa-google-play" aria-label="google-play"></i>)</li>
+<li>Get updated Android <i class="fa-brands fa-android" aria-label="android"></i></li>
+<li>Get away from <i class="fa-brands fa-google" aria-label="google"></i></li>
+<li>Learn new stuffs as I have never done anything with Android OS</li>
 </ul>
+<section id="current-android-and-state" class="level2">
+<h2 class="anchored" data-anchor-id="current-android-and-state">Current Android and state</h2>
+<p>The phone was as expected at 0% battery. Stayed turn off for 5 years. After charging it for a few moments it booted nicely, everything seems to work. Android version was <strong>6.01</strong></p>
+</section>
+<section id="lineageos" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="lineageos">LineageOS</h2>
+<p>I know nothing about alternative Android OS. I show someone on Mastodon installing <a href="https://lineageos.org/"><strong>LineageOS</strong></a> so I went for this one.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="escapade.png" class="img-fluid figure-img"></p>
-<figcaption>Output of a ride</figcaption>
+<p><img src="lineage-logo.png" class="img-fluid figure-img"></p>
+<figcaption>Lineage logo</figcaption>
 </figure>
 </div>
-<p>In <em>red</em> the parts that I already ridden, in <em>blue</em> the new ones.</p>
-<p>I absolutely love this game and sometimes go around some blocks just to collect new streets. Of note, I export the <a href="https://www.garmin.com">Garmin</a> map and add it as a layer to my GPS. Since I ride mostly with the map on, I can see <em>red</em> tracks displayed and can take opportunity to change my route to fetch some new meters.</p>
-<section id="chrome-extension" class="level3">
-<h3 class="anchored" data-anchor-id="chrome-extension">Chrome extension</h3>
-<p>For planning tours, I am using <a href="https://komoot.com">komoot</a>. It is not part of the <i class="fa-solid fa-map-location-dot" aria-label="map-location-dot"></i> games but fantastic for the task. <a href="https://www.highcube.org/">Craig Durkin</a>, the man behind <strong>Wandrer Earth</strong> has developed an extension that allows to display the ridden or unridden tracks in <strong>Komoot</strong>.</p>
+</div></div><p>Luckily, the S5 is a supported devices and I am supposed to install <a href="https://wiki.lineageos.org/devices/klte/install"><strong>klte</strong> Lineage version 18.1</a>. I followed the steps and of course it went wrong, I assumed the <strong>Odin</strong> step was optional. It is not.</p>
 </section>
-<section id="dependency-to-strava" class="level3">
-<h3 class="anchored" data-anchor-id="dependency-to-strava">Dependency to Strava</h3>
-<p>One cons that some finds is that it works only with <a href="https://strava.com">strava</a>. Actually all 3 websites presented here are fetching data from <strong>Strava</strong>.</p>
-</section>
-</section>
-<section id="squadrats" class="level2">
-<h2 class="anchored" data-anchor-id="squadrats">Squadrats</h2>
-<p><a href="https://squadrats.com/">Squadrats</a> is using your GPS tracks to create, as you guessed, squares. Squares of different sizes and there are different ranking, like extending the bigger one (<em>ÜBERSQUADRAT</em>), having a maximum of squares, or little ones (<em>Squadratinhos</em>).</p>
-<p>This pushes you to go farther from home, hitting just a corner of a squadrat and it’s yours. I only recently started to be interested by this game.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="squadrats.png" class="img-fluid figure-img"></p>
-<figcaption>My general map as today</figcaption>
-</figure>
-</div>
-</section>
-<section id="alternative-veloviewer" class="level2">
-<h2 class="anchored" data-anchor-id="alternative-veloviewer">Alternative: VeloViewer</h2>
-<p><a href="https://veloviewer.com/">VeloViewer</a> offers a LOT of graphs. Actually too much for me. Tried for one year and did not renew my subscription.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://cf.veloviewer.com/img/veloviewer-strava-summary-homepage.png" class="img-fluid figure-img"></p>
-<figcaption>Dashboard from the demo website</figcaption>
-</figure>
-</div>
-
-
-</section>
-
-
-<div id="quarto-appendix" class="default"><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>Two friends of mine have ridden &gt; 50% of <em>all</em> bikeable trails / roads of Luxembourg. Pretty impressive<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<section id="workflow" class="level2">
+<h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
+<p>The <strong>recovery</strong> mode is protected. If we reboot in this mode, it is to recover the Samsung Android OS. Did not understand that the <strong>Odin</strong> step was about <strong>erasing</strong> this by the Lineage recovery image. That explained the different images available for <strong>klte</strong>.</p>
+<ol type="1">
+<li>Setup the laptop with the necessary tools:
+<ul>
+<li><code>adb</code> android development</li>
+<li><code>odin</code>, the <i class="fa-brands fa-linux" aria-label="linux"></i> worked nicely, not true we need the <i class="fa-brands fa-windows" aria-label="windows"></i> official software</li>
+</ul></li>
+<li>Reboot the phone in download mode</li>
+<li>Install the lineage recovery image</li>
+<li><strong>Reboot quicky</strong> in <strong>recovery</strong> mode (otherwise Samsung erases step 3., happened twice….)</li>
+<li>Sideload the lineage OS (previously converted from <code>.img</code> -&gt; <code>.tar</code>)</li>
+<li>Reboot, LneageOs get installed.</li>
 </ol>
-</aside></div></main> <!-- /main -->
+<p>I tried the install of <i class="fa-brands fa-google-play" aria-label="google-play"></i> with MindTheGaps but it failed and turned out it is available anyway. Well I don’t know what happened here.</p>
+<p>Let’s see in details the different steps</p>
+</section>
+<section id="mandatory-software" class="level2">
+<h2 class="anchored" data-anchor-id="mandatory-software">Mandatory software</h2>
+<p>The instructions are available <a href="https://wiki.lineageos.org/adb_fastboot_guide">here</a>.</p>
+<p>On <strong>Arch</strong> <i class="fa-brands fa-linux" aria-label="linux"></i> what was needed:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">yay</span> odin4-cli android-sdk-platform-tools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Of note, <code>android-sdk-platform-tools</code> provides both <code>adb</code> and <code>fastboot</code> but there are located in <code>/opt/android-sdk/platform-tools/</code>. I created symbolic links for both tools in <code>~/bin/</code></p>
+</div>
+</div>
+<p>Then I followed the instructions for setting <code>adb</code></p>
+<p>To use adb with your device, you’ll need to enable developer options and USB debugging:</p>
+<ol type="1">
+<li>Open Settings, and select “About”.</li>
+<li>Tap on “Build number” seven times.</li>
+<li>Go back, and select “Developer options”.</li>
+<li>Scroll down, and check the “Android debugging” or “USB debugging” entry under “Debugging”.</li>
+<li>Plug your device into your computer.</li>
+<li>On the computer, open up a terminal/command prompt and type <code>adb devices</code>.</li>
+<li>A dialog should show on your device, asking you to allow usb debugging. Check “always allow”, and choose OK</li>
+</ol>
+<p>I did not remember doing the step 7. Worked anyway.</p>
+</section>
+<section id="download-images" class="level2">
+<h2 class="anchored" data-anchor-id="download-images">Download images</h2>
+<p>Following instructions, images are <a href="https://download.lineageos.org/devices/klte/builds">there</a>.</p>
+<p>I downloaded</p>
+<ul>
+<li><code>lineage-18.1-20231102-nightly-klte-signed.zip</code></li>
+<li><code>recovery.img</code></li>
+</ul>
+<p>and check their sha256sums.</p>
+<p>The recovery image is the first one needed, but the <code>tar</code> version. To convert <code>img</code> to <code>tar</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">tar</span> <span class="at">--format</span><span class="op">=</span>ustar <span class="at">-cvf</span> recovery.tar recovery.img</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="install-the-custom-recovery-mode" class="level2">
+<h2 class="anchored" data-anchor-id="install-the-custom-recovery-mode">Install the custom recovery mode</h2>
+<p>Plug in the phone in your laptop and be sure that <code>adb devices</code> returns a number. Otherwise, it means that the USB debugging is not enabled on the phone.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Mandatory step!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I first missed this part. The factory recovery mode will <strong>not</strong> allow you to install anything. You <strong>must</strong> complete this step AND prevent the rebooting that re-install the factory one.</p>
+</div>
+</div>
+<p>This implied rebooting in <strong>download</strong> mode, can be done with either Volume down + Home + Power or</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">adb</span> reboot download</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then once ready, to install the custom recovery from Lineage</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Root permissions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>odin4</code> must be executed as root, took me too much to figure this out.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">sudo</span> odin4 <span class="at">-a</span> recovery.tar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The screen looks like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IMG_20231114_173643.jpg" class="img-fluid figure-img"></p>
+<figcaption>Download mode while installing a custom recovery</figcaption>
+</figure>
+</div>
+<p>When it is done, I removed the battery, unplugged the phone to be sure it does not erase this custom recovery.</p>
+<p>Now boot into this custom recovery mode. With the device powered off, hold Volume Up + Home + Power. When the blue text appears, release the buttons.</p>
+<p>It must look like this, with the Lineage OS logo:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IMG_20231114_184440.jpg" class="img-fluid figure-img"></p>
+<figcaption>Custom recovery</figcaption>
+</figure>
+</div>
+</section>
+<section id="upload-the-lineage-os-image" class="level2">
+<h2 class="anchored" data-anchor-id="upload-the-lineage-os-image">Upload the Lineage OS image</h2>
+<p>On your laptop, upload <em>aka</em> sideload the image, go to <code>Apply Update</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">adb</span> sideload lineage-18.1-20231102-nightly-klte-signed.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once done, navigate to <code>Reboot system now</code> and the new OS is being install after the reboot, it should last less than 15 minutes (took not even 5 for me).</p>
+</section>
+<section id="screenshot" class="level2">
+<h2 class="anchored" data-anchor-id="screenshot">Screenshot</h2>
+<p>After installing F-droid and some apps, everything works great and the phone is still very responsive!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-11-16-211558_005.jpg" class="img-fluid figure-img"></p>
+<figcaption>LineageOS 18.1</figcaption>
+</figure>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
