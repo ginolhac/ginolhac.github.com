@@ -1,18 +1,21 @@
 ---
 title: "Installing LineageOS on an old {{< fa mobile-screen-button >}} S5"
-description: "Flashing a ungoogled-ROM"
+description: "Flashing an ungoogled-ROM"
 date: "2023-11-14"
 image: lineage-logo.png
 image-height: "100px"
 categories: 
   - linux
   - DIY
+format:
+  html: 
+    code-line-numbers: false
 ---
 
 Bought a Samsung S5 {{< fa mobile >}} in October 2014. It'd served me well for 4 years and since 
 was lying in a drawer. Now the next and current smartphone is 5 years old and show some issues. 
-Nothing dramatic but one is annoying, it is **not** receiving updates, especially _security_ ones for 3 years now. I don't much knowledge about the consequences but clearly it is not great.
-Thus, here are four motivations for installing open-source OS on a phone:
+Nothing dramatic but one is annoying, it is **not** receiving updates, especially _security_ ones for 3 years now. I don't have much knowledge about the consequences but clearly it is not great.
+Thus, here are four motivations for installing an open-source OS on a phone:
 
 - Test the feasibility of having a non proprietary Android (apps outside {{< fa brands google-play >}})
 - Get updated Android {{< fa brands android >}} 
@@ -125,7 +128,7 @@ Then once ready, to install the custom recovery from Lineage
 
 ::: {.callout-important}
 ## Root permissions
-`odin4` must be executed as root, took me too much to figure this out.
+`odin4` must be executed as root, took me too much yime to figure this out.
 :::
 
 
@@ -135,7 +138,7 @@ sudo odin4 -a recovery.tar
 
 The screen looks like this:
 
-![Download mode while installing a custom recovery](IMG_20231114_173643.jpg)
+![_Download mode while installing a custom recovery_](IMG_20231114_173643.jpg){height=300}
 
 When it is done, I removed the battery, unplugged the phone to be sure it does not erase this custom recovery.
 
@@ -144,21 +147,24 @@ When the blue text appears, release the buttons.
 
 It must look like this, with the Lineage OS logo:
 
-![Custom recovery](IMG_20231114_184440.jpg)
+![_Custom recovery_](IMG_20231114_184440.jpg){height=300}
 
 ## Upload the Lineage OS image
 
 On your laptop, upload _aka_ sideload the image, go to `Apply Update`
 
+and on the laptop type:
+
 ``` bash
 adb sideload lineage-18.1-20231102-nightly-klte-signed.zip
 ```
 
-Once done, navigate to `Reboot system now` and the new OS is being install after the reboot, it should 
+Once done, navigate on the phone to `Reboot system now` and the new OS is being installed after the reboot, it should 
 last less than 15 minutes (took not even 5 for me).
 
 ## Screenshot
 
 After installing F-droid and some apps, everything works great and the phone is still very responsive!
+Android version went from 6.01 to **11.0**.
 
-![LineageOS 18.1](2023-11-16-211558_005.jpg)
+![_LineageOS 18.1_](2023-11-16-211558_005.jpg){height=450}
