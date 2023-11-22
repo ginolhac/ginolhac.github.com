@@ -8,7 +8,7 @@
 
 <meta name="author" content="Aurélien Ginolhac">
 <meta name="dcterms.date" content="2023-11-14">
-<meta name="description" content="Flashing a ungoogled-ROM">
+<meta name="description" content="Flashing an ungoogled-ROM">
 
 <title>Installing LineageOS on an old  S5</title>
 <style>
@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <h1 class="title">Installing LineageOS on an old <i class="fa-solid fa-mobile-screen-button" aria-label="mobile-screen-button"></i> S5</h1>
                   <div>
         <div class="description">
-          Flashing a ungoogled-ROM
+          Flashing an ungoogled-ROM
         </div>
       </div>
                           <div class="quarto-categories">
@@ -211,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Bought a Samsung S5 <i class="fa-solid fa-mobile" aria-label="mobile"></i> in October 2014. It’d served me well for 4 years and since was lying in a drawer. Now the next and current smartphone is 5 years old and show some issues. Nothing dramatic but one is annoying, it is <strong>not</strong> receiving updates, especially <em>security</em> ones for 3 years now. I don’t much knowledge about the consequences but clearly it is not great. Thus, here are four motivations for installing open-source OS on a phone:</p>
+<p>Bought a Samsung S5 <i class="fa-solid fa-mobile" aria-label="mobile"></i> in October 2014. It’d served me well for 4 years and since was lying in a drawer. Now the next and current smartphone is 5 years old and show some issues. Nothing dramatic but one is annoying, it is <strong>not</strong> receiving updates, especially <em>security</em> ones for 3 years now. I don’t have much knowledge about the consequences but clearly it is not great. Thus, here are four motivations for installing an open-source OS on a phone:</p>
 <ul>
 <li>Test the feasibility of having a non proprietary Android (apps outside <i class="fa-brands fa-google-play" aria-label="google-play"></i>)</li>
 <li>Get updated Android <i class="fa-brands fa-android" aria-label="android"></i></li>
@@ -257,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="mandatory-software">Mandatory software</h2>
 <p>The instructions are available <a href="https://wiki.lineageos.org/adb_fastboot_guide">here</a>.</p>
 <p>On <strong>Arch</strong> <i class="fa-brands fa-linux" aria-label="linux"></i> what was needed:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">yay</span> odin4-cli android-sdk-platform-tools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> odin4-cli android-sdk-platform-tools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -294,7 +294,7 @@ Note
 </ul>
 <p>and check their sha256sums.</p>
 <p>The recovery image is the first one needed, but the <code>tar</code> version. To convert <code>img</code> to <code>tar</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">tar</span> <span class="at">--format</span><span class="op">=</span>ustar <span class="at">-cvf</span> recovery.tar recovery.img</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">--format</span><span class="op">=</span>ustar <span class="at">-cvf</span> recovery.tar recovery.img</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="install-the-custom-recovery-mode" class="level2">
 <h2 class="anchored" data-anchor-id="install-the-custom-recovery-mode">Install the custom recovery mode</h2>
@@ -313,7 +313,7 @@ Mandatory step!
 </div>
 </div>
 <p>This implied rebooting in <strong>download</strong> mode, can be done with either Volume down + Home + Power or</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">adb</span> reboot download</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> reboot download</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then once ready, to install the custom recovery from Lineage</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -325,15 +325,15 @@ Root permissions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>odin4</code> must be executed as root, took me too much to figure this out.</p>
+<p><code>odin4</code> must be executed as root, took me too much yime to figure this out.</p>
 </div>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">sudo</span> odin4 <span class="at">-a</span> recovery.tar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> odin4 <span class="at">-a</span> recovery.tar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The screen looks like this:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="IMG_20231114_173643.jpg" class="img-fluid figure-img"></p>
-<figcaption>Download mode while installing a custom recovery</figcaption>
+<p><img src="IMG_20231114_173643.jpg" height="300" class="figure-img"></p>
+<figcaption><em>Download mode while installing a custom recovery</em></figcaption>
 </figure>
 </div>
 <p>When it is done, I removed the battery, unplugged the phone to be sure it does not erase this custom recovery.</p>
@@ -341,24 +341,25 @@ Root permissions
 <p>It must look like this, with the Lineage OS logo:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="IMG_20231114_184440.jpg" class="img-fluid figure-img"></p>
-<figcaption>Custom recovery</figcaption>
+<p><img src="IMG_20231114_184440.jpg" height="300" class="figure-img"></p>
+<figcaption><em>Custom recovery</em></figcaption>
 </figure>
 </div>
 </section>
 <section id="upload-the-lineage-os-image" class="level2">
 <h2 class="anchored" data-anchor-id="upload-the-lineage-os-image">Upload the Lineage OS image</h2>
 <p>On your laptop, upload <em>aka</em> sideload the image, go to <code>Apply Update</code></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">adb</span> sideload lineage-18.1-20231102-nightly-klte-signed.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once done, navigate to <code>Reboot system now</code> and the new OS is being install after the reboot, it should last less than 15 minutes (took not even 5 for me).</p>
+<p>and on the laptop type:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> sideload lineage-18.1-20231102-nightly-klte-signed.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once done, navigate on the phone to <code>Reboot system now</code> and the new OS is being installed after the reboot, it should last less than 15 minutes (took not even 5 for me).</p>
 </section>
 <section id="screenshot" class="level2">
 <h2 class="anchored" data-anchor-id="screenshot">Screenshot</h2>
-<p>After installing F-droid and some apps, everything works great and the phone is still very responsive!</p>
+<p>After installing F-droid and some apps, everything works great and the phone is still very responsive! Android version went from 6.01 to <strong>11.0</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="2023-11-16-211558_005.jpg" class="img-fluid figure-img"></p>
-<figcaption>LineageOS 18.1</figcaption>
+<p><img src="2023-11-16-211558_005.jpg" height="450" class="figure-img"></p>
+<figcaption><em>LineageOS 18.1</em></figcaption>
 </figure>
 </div>
 
