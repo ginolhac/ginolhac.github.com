@@ -7,10 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aurélien Ginolhac">
-<meta name="dcterms.date" content="2015-01-25">
-<meta name="description" content="snow on bike">
+<meta name="dcterms.date" content="2023-11-27">
 
-<title>winter is coming</title>
+<title>Extract substrings from characters</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -115,14 +148,10 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">winter is coming</h1>
-                  <div>
-        <div class="description">
-          snow on bike
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">bike</div>
+      <h1 class="title">Extract substrings from characters</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">bioinfo</div>
+                <div class="quarto-category">R</div>
               </div>
                   </div>
   </div>
@@ -140,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 25, 2015</p>
+        <p class="date">November 27, 2023</p>
       </div>
     </div>
     
@@ -152,24 +181,126 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#hidden-gem" id="toc-hidden-gem" class="nav-link active" data-scroll-target="#hidden-gem">Hidden gem</a></li>
+  <li><a href="#aim-extract-the-second-group-of-two-digit-from-strings" id="toc-aim-extract-the-second-group-of-two-digit-from-strings" class="nav-link" data-scroll-target="#aim-extract-the-second-group-of-two-digit-from-strings">Aim: extract the second group of two digit from strings</a></li>
+  <li><a href="#wrong-solution" id="toc-wrong-solution" class="nav-link" data-scroll-target="#wrong-solution">Wrong solution</a></li>
+  <li><a href="#using-regex" id="toc-using-regex" class="nav-link" data-scroll-target="#using-regex">Using regex</a></li>
+  <li><a href="#using-look-around-in-the-regex" id="toc-using-look-around-in-the-regex" class="nav-link" data-scroll-target="#using-look-around-in-the-regex">Using look around in the regex</a></li>
+  <li><a href="#using-grouping-in-the-regex" id="toc-using-grouping-in-the-regex" class="nav-link" data-scroll-target="#using-grouping-in-the-regex">Using grouping in the regex</a></li>
+  <li><a href="#with-more-groups" id="toc-with-more-groups" class="nav-link" data-scroll-target="#with-more-groups">With more groups</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<p>Snow during winter time. How unexpected this could be?</p>
+<section id="hidden-gem" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="hidden-gem">Hidden gem</h2>
+<p>Opening help pages of functions used regularly is worth it. often, one discovers some hidden gems in argument functions. Here is an example with the <code>str_extract()</code> function from the package <code>stringr</code>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../images/20150124_131420.jpg" class="img-fluid figure-img"></p>
-<figcaption>Von backhaus in white</figcaption>
+<p><img src="logo.png" class="img-fluid figure-img"></p>
+<figcaption><code>stringr</code> logo</figcaption>
 </figure>
 </div>
+</div></div></section>
+<section id="aim-extract-the-second-group-of-two-digit-from-strings" class="level2">
+<h2 class="anchored" data-anchor-id="aim-extract-the-second-group-of-two-digit-from-strings">Aim: extract the second group of two digit from strings</h2>
+<p>Let’s look at some strings that encode some code:</p>
+<ul>
+<li>First 2 digits are the year</li>
+<li>Second 2 digits are the lab id</li>
+<li>Third 2 digits are the project id</li>
+</ul>
+<p>Plus some other strings that are not relevant here like <code>INFO</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>codes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"140102"</span>, <span class="st">"210301"</span>, <span class="st">"220501"</span>, <span class="st">"220502"</span>, <span class="st">"230101"</span>, <span class="st">"INFO"</span>, <span class="st">"230102"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>codes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "140102" "210301" "220501" "220502" "230101" "INFO"   "230102"</code></pre>
+</div>
+</div>
+<p>From those we want to obtain the following:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">"01"</span> <span class="st">"03"</span> <span class="st">"05"</span> <span class="st">"05"</span> <span class="st">"01"</span> <span class="cn">NA</span>   <span class="st">"01"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="wrong-solution" class="level2">
+<h2 class="anchored" data-anchor-id="wrong-solution">Wrong solution</h2>
+<p>If we use <code>str_sub()</code> we can extract the second group of two digits, it does not work for <code>INFO</code> that should be <code>NA</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(codes, <span class="dv">3</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "01" "03" "05" "05" "01" "FO" "01"</code></pre>
+</div>
+</div>
+<p>We need a regular expression that specify 6 digits and take the second group of two digits.</p>
+</section>
+<section id="using-regex" class="level2">
+<h2 class="anchored" data-anchor-id="using-regex">Using regex</h2>
+<p><code>str_extract()</code> takes a regular expression as argument. We can use the following regex to extract the second group of two digits:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(codes, <span class="st">"..</span><span class="sc">\\</span><span class="st">d{2}.."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "140102" "210301" "220501" "220502" "230101" NA       "230102"</code></pre>
+</div>
+</div>
+<p>Fine for detecting the <code>INFO</code> and exclude it but we don’t extract since the 2 previous and 2 following any characters (<code>.</code>) are included in the regex.</p>
+</section>
+<section id="using-look-around-in-the-regex" class="level2">
+<h2 class="anchored" data-anchor-id="using-look-around-in-the-regex">Using look around in the regex</h2>
+<p><a href="https://stringr.tidyverse.org/articles/regular-expressions.html#look-arounds">Look arounds</a> are extremely powerful but very complex. I never get it right the first time. I always need to look up the help pages.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(codes, <span class="st">"(?&lt;=</span><span class="sc">\\</span><span class="st">d{2})</span><span class="sc">\\</span><span class="st">d{2}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "01" "03" "05" "05" "01" NA   "01"</code></pre>
+</div>
+</div>
+<p>But already we see the <strong>grouping</strong> popping up.</p>
+</section>
+<section id="using-grouping-in-the-regex" class="level2">
+<h2 class="anchored" data-anchor-id="using-grouping-in-the-regex">Using grouping in the regex</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(codes, <span class="st">"..(</span><span class="sc">\\</span><span class="st">d{2}).."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "140102" "210301" "220501" "220502" "230101" NA       "230102"</code></pre>
+</div>
+</div>
+<p>This is where I was usually stopped and return to look arounds.</p>
+<p>But, <code>str_extract()</code> has a <code>group</code> argument that allows to extract the group of interest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(codes, <span class="st">"..(</span><span class="sc">\\</span><span class="st">d{2}).."</span>, <span class="at">group =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "01" "03" "05" "05" "01" NA   "01"</code></pre>
+</div>
+</div>
+<p>Works! and easy to understand.</p>
+</section>
+<section id="with-more-groups" class="level2">
+<h2 class="anchored" data-anchor-id="with-more-groups">With more groups</h2>
+<p>For example, the second group (5th and 6th characters):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(codes, <span class="st">"..(</span><span class="sc">\\</span><span class="st">d{2})(..)"</span>, <span class="at">group =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "02" "01" "01" "02" "01" NA   "02"</code></pre>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Reading help pages help!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -336,25 +336,67 @@
     "text": "Conclusion\nBeyond the initial goal, catch the neighbor cats coming in, which actually I don’t care about, it was fun to set-up the whole thing. Moreover, telegram offers a great service and offers a great interface for many applications. I knew about the TeleR bot, that is actually easy to set-up.\nDon’t hesitate to leave a comment below for any remarks or improvements that I overseen."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "posts/2023-11-27_stringr_group/index.html",
+    "href": "posts/2023-11-27_stringr_group/index.html",
+    "title": "Extract substrings from characters",
     "section": "",
-    "text": "Github\n  \n  \n    \n     Mastodon\n  \n\n      \n\n\nI am working at the University of Luxembourg; in the Departement of Life Sciences and Medecine, providing services to the researchers.\n— Acknowledgment provided by acknowledge-the-climate-crisis.org\nImage of the 🌏 🌡️ 1850-2022 from ShowYourStripes"
+    "text": "Opening help pages of functions used regularly is worth it. often, one discovers some hidden gems in argument functions. Here is an example with the str_extract() function from the package stringr.\n\n\n\n\n\nstringr logo"
   },
   {
-    "objectID": "about.html#licence",
-    "href": "about.html#licence",
-    "title": "About",
-    "section": "Licence",
-    "text": "Licence\n  This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License except for the borrowed and mentioned with proper source: statements."
+    "objectID": "posts/2023-11-27_stringr_group/index.html#hidden-gem",
+    "href": "posts/2023-11-27_stringr_group/index.html#hidden-gem",
+    "title": "Extract substrings from characters",
+    "section": "",
+    "text": "Opening help pages of functions used regularly is worth it. often, one discovers some hidden gems in argument functions. Here is an example with the str_extract() function from the package stringr.\n\n\n\n\n\nstringr logo"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ginolhac’s blog",
-    "section": "",
-    "text": "Denmark, ginolhac\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nInstalling LineageOS on an old  S5\n\n\n\n\n\n\nlinux\n\n\nDIY\n\n\n\nFlashing an ungoogled-ROM\n\n\n\n\n\nNov 14, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\n Maps Games\n\n\n\n\n\n\nbike\n\n\n\nIncentive to explore new places \n\n\n\n\n\nOct 9, 2023\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nResume long parallel jobs\n\n\n\n\n\n\nhpc\n\n\nbioinfo\n\n\n\n\n\n\n\n\n\nOct 2, 2023\n\n\n11 min\n\n\n\n\n\n\n\n\n\n\n\n\nDeploying  and  packages\n\n\n\n\n\n\npython\n\n\nR\n\n\nCI/CD\n\n\n\nwith  Gitlab Continuous Integration\n\n\n\n\n\nSep 14, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nInstall Archlinux\n\n\n\n\n\n\nlinux\n\n\n\nMoving away from Ubuntu\n\n\n\n\n\nSep 11, 2023\n\n\n10 min\n\n\n\n\n\n\n\n\n\n\n\n\nTesting Snakemake template\n\n\n\n\n\n\npython\n\n\nworkflow managers\n\n\nCI/CD\n\n\n\nusing Gitlab Continuous Integration\n\n\n\n\n\nSep 7, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nStarting to learn Rust\n\n\n\n\n\n\nRust\n\n\n\nTrimming UMI\n\n\n\n\n\nAug 17, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nSame dot sizes\n\n\n\n\n\n\nR\n\n\ndataviz\n\n\n\n\n\n\n\n\n\nMay 17, 2023\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nVertical faceting\n\n\n\n\n\n\nR\n\n\ndataviz\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nCrop Circles\n\n\n\n\n\n\nR\n\n\npackages\n\n\n\n\n\n\n\n\n\nFeb 20, 2023\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\n{targets} demos\n\n\n\n\n\n\nR\n\n\nworkflow managers\n\n\npackages\n\n\n\nA marvelous workflow manager for \n\n\n\n\n\nFeb 5, 2023\n\n\n15 min\n\n\n\n\n\n\n\n\n\n\n\n\nLaTex modern CV\n\n\n\n\n\n\nacademia\n\n\n\nHow to setup latex using tinytex\n\n\n\n\n\nMar 26, 2018\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nhome surveillance monitored via telegram\n\n\n\n\n\n\nPython\n\n\nDIY\n\n\nRasPI\n\n\n\nusing telepot and the NoIR camera\n\n\n\n\n\nJan 27, 2018\n\n\n10 min\n\n\n\n\n\n\n\n\n\n\n\n\ntweening a Poisson distribution\n\n\n\n\n\n\nR\n\n\nanimation\n\n\n\nusing tweenr and ggplot2\n\n\n\n\n\nDec 8, 2016\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nteething\n\n\n\n\n\n\nR\n\n\nanimation\n\n\n\nCompare teething for two kids\n\n\n\n\n\nJul 31, 2016\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nwinter is coming\n\n\n\n\n\n\nbike\n\n\n\nsnow on bike\n\n\n\n\n\nJan 25, 2015\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "objectID": "posts/2023-11-27_stringr_group/index.html#aim-extract-the-second-group-of-two-digit-from-strings",
+    "href": "posts/2023-11-27_stringr_group/index.html#aim-extract-the-second-group-of-two-digit-from-strings",
+    "title": "Extract substrings from characters",
+    "section": "Aim: extract the second group of two digit from strings",
+    "text": "Aim: extract the second group of two digit from strings\nLet’s look at some strings that encode some code:\n\nFirst 2 digits are the year\nSecond 2 digits are the lab id\nThird 2 digits are the project id\n\nPlus some other strings that are not relevant here like INFO.\n\ncodes &lt;- c(\"140102\", \"210301\", \"220501\", \"220502\", \"230101\", \"INFO\", \"230102\")\ncodes\n\n[1] \"140102\" \"210301\" \"220501\" \"220502\" \"230101\" \"INFO\"   \"230102\"\n\n\nFrom those we want to obtain the following:\n\"01\" \"03\" \"05\" \"05\" \"01\" NA   \"01\""
+  },
+  {
+    "objectID": "posts/2023-11-27_stringr_group/index.html#wrong-solution",
+    "href": "posts/2023-11-27_stringr_group/index.html#wrong-solution",
+    "title": "Extract substrings from characters",
+    "section": "Wrong solution",
+    "text": "Wrong solution\nIf we use str_sub() we can extract the second group of two digits, it does not work for INFO that should be NA.\n\nstr_sub(codes, 3, 4)\n\n[1] \"01\" \"03\" \"05\" \"05\" \"01\" \"FO\" \"01\"\n\n\nWe need a regular expression that specify 6 digits and take the second group of two digits."
+  },
+  {
+    "objectID": "posts/2023-11-27_stringr_group/index.html#using-regex",
+    "href": "posts/2023-11-27_stringr_group/index.html#using-regex",
+    "title": "Extract substrings from characters",
+    "section": "Using regex",
+    "text": "Using regex\nstr_extract() takes a regular expression as argument. We can use the following regex to extract the second group of two digits:\n\nstr_extract(codes, \"..\\\\d{2}..\")\n\n[1] \"140102\" \"210301\" \"220501\" \"220502\" \"230101\" NA       \"230102\"\n\n\nFine for detecting the INFO and exclude it but we don’t extract since the 2 previous and 2 following any characters (.) are included in the regex."
+  },
+  {
+    "objectID": "posts/2023-11-27_stringr_group/index.html#using-look-around-in-the-regex",
+    "href": "posts/2023-11-27_stringr_group/index.html#using-look-around-in-the-regex",
+    "title": "Extract substrings from characters",
+    "section": "Using look around in the regex",
+    "text": "Using look around in the regex\nLook arounds are extremely powerful but very complex. I never get it right the first time. I always need to look up the help pages.\n\nstr_extract(codes, \"(?&lt;=\\\\d{2})\\\\d{2}\")\n\n[1] \"01\" \"03\" \"05\" \"05\" \"01\" NA   \"01\"\n\n\nBut already we see the grouping popping up."
+  },
+  {
+    "objectID": "posts/2023-11-27_stringr_group/index.html#using-grouping-in-the-regex",
+    "href": "posts/2023-11-27_stringr_group/index.html#using-grouping-in-the-regex",
+    "title": "Extract substrings from characters",
+    "section": "Using grouping in the regex",
+    "text": "Using grouping in the regex\n\nstr_extract(codes, \"..(\\\\d{2})..\")\n\n[1] \"140102\" \"210301\" \"220501\" \"220502\" \"230101\" NA       \"230102\"\n\n\nThis is where I was usually stopped and return to look arounds.\nBut, str_extract() has a group argument that allows to extract the group of interest.\n\nstr_extract(codes, \"..(\\\\d{2})..\", group = 1)\n\n[1] \"01\" \"03\" \"05\" \"05\" \"01\" NA   \"01\"\n\n\nWorks! and easy to understand."
+  },
+  {
+    "objectID": "posts/2023-11-27_stringr_group/index.html#with-more-groups",
+    "href": "posts/2023-11-27_stringr_group/index.html#with-more-groups",
+    "title": "Extract substrings from characters",
+    "section": "With more groups",
+    "text": "With more groups\nFor example, the second group (5th and 6th characters):\n\nstr_extract(codes, \"..(\\\\d{2})(..)\", group = 2)\n\n[1] \"02\" \"01\" \"01\" \"02\" \"01\" NA   \"02\""
+  },
+  {
+    "objectID": "posts/2023-11-27_stringr_group/index.html#conclusion",
+    "href": "posts/2023-11-27_stringr_group/index.html#conclusion",
+    "title": "Extract substrings from characters",
+    "section": "Conclusion",
+    "text": "Conclusion\nReading help pages help!"
   },
   {
     "objectID": "posts/2023-09-11_install-archlinux/index.html",
@@ -376,6 +418,27 @@
     "title": "Install Archlinux",
     "section": "Archlinux",
     "text": "Archlinux\n\nThe pkg.tar.xz world\n\n\n\nArchlinux logo\n\n\nWelcome to pacman and other great stuff. For example, disk encryption, where with Ubuntu it was not obvious how to set it up. This is now under control.\npacman is dealing with your installation and dependencies (just like apt). Software and utilities are coming from either\n\ncore\nextra\n\nBut what about RStudio? Signal? Slack?\nAll those accessory[^Of note, RStudio for me it absolutely not accessory, but they not for ] software can be found in the AUR: Arch User Repository.\nThen, for dealing with those 3 sources I was advice to use yay. After a couple of months, I enjoy typing yay in the Terminal and get the source updated + the packages. right now, I have only one AUR package to update.\n$ yay\n[sudo] password for xxxxx: \n:: Synchronizing package databases...\n core is up to date\n extra                                                   8.3 MiB  10.6 MiB/s 00:01 [################################################] 100%\n:: Searching AUR for updates...\n:: Searching databases for updates...\n -&gt; Flagged Out Of Date AUR Packages: telegram-desktop-bin\n:: 1 package to upgrade/install.\n1  aur/signal-desktop-beta-bin  6.29.0beta.1-1 -&gt; 6.31.0beta.1-1\n==&gt; Packages to exclude: (eg: \"1 2 3\", \"1-3\", \"^4\" or repo name)\n -&gt; Excluding packages may cause partial upgrades and break systems\n==&gt; \nBut next time, I will be notified of any update for open-ssh, rstudio or quarto.\nOf note, for the later, you can choose if you want to install the release version, the pre-release, binaries or compile things yourself. So far it fits completely my needs.\nOf note, I got the  version of I wanted without any tweaks:\n$ pacman -Q r\nr 4.3.1-2\n\nExample of a bigger upgrade\n:: Synchronizing package databases...\n core                                                        129.3 KiB   994 KiB/s 00:00 [###################################################] 100%\n extra                                                         8.3 MiB  26.1 MiB/s 00:00 [###################################################] 100%\n:: Searching AUR for updates...\n:: Searching databases for updates...\n:: 56 packages to upgrade/install.\n56  core/glib2                                   2.76.5-1         -&gt; 2.78.0-1\n55  core/glib2-docs                              2.76.5-1         -&gt; 2.78.0-1\n54  core/iana-etc                                20230803-1       -&gt; 20230907-1\n53  core/iproute2                                6.4.0-1          -&gt; 6.5.0-1\n52  core/linux                                   6.4.12.arch1-1   -&gt; 6.5.2.arch1-1\n51  core/openssh                                 9.4p1-3          -&gt; 9.4p1-4\n50  core/python                                  3.11.5-1         -&gt; 3.11.5-2\n49  core/shadow                                  4.13-2           -&gt; 4.13-3\n48  core/systemd                                 254.1-1          -&gt; 254.3-1\n47  core/systemd-libs                            254.1-1          -&gt; 254.3-1\n46  core/systemd-sysvcompat                      254.1-1          -&gt; 254.3-1\n45  extra/code                                   1.81.1-1         -&gt; 1.82.0-1\n44  extra/freerdp                                2:2.10.0-4       -&gt; 2:2.11.1-1\n[...]\n 8  extra/npm                                    9.8.1-1          -&gt; 10.1.0-1\n 7  extra/openpmix                               4.2.5-1          -&gt; 4.2.6-1\n 6  extra/pandoc-cli                             0.1.1-41         -&gt; 0.1.1-43\n 5  extra/vulkan-icd-loader                      1.3.255-1        -&gt; 1.3.263-1\n 4  aur/oh-my-posh-bin                           18.7.0-1         -&gt; 18.8.1-1\n 3  aur/quarto-cli-bin-pre-release               1.4.352-6        -&gt; 1.4.358-6\n 2  aur/rstudio-desktop-bin                      2023.06.1.524-1  -&gt; 2023.06.2.561-1\n 1  aur/signal-desktop-beta-bin                  6.29.0beta.1-1   -&gt; 6.31.0beta.1-1\n\n\n\nArch installation with full disk encryptiom\nI first installed Arch on my personal laptop (ThinkPad P14s) for testing (without encryption). I then proceed with my work laptop (XPS 7390), mostly following this install tutorial by mjnaderi. The encryption of the full disk works well using LVM2 and GRUB.\nThe differences were:\n\nInstall the linux-lts kernel in case something gets broken with the current one (thanks Hyacinthe!)\nNo dual boot with \n\nThe most tricky part is GRUB with efi but this tutorial steps were clear and correct.\n\n\nPost-install adjustments\n\ndocker\n\nyay docker\nsudo systemctl enable docker\nsudo usermod -aG docker login\n\nDisable PC speaker using gsettings set org.gnome.desktop.wm.preferences audible-bell false\nMissing fonts\n\nyay noto-fonts noto-fonts-emoji ttf-dejavu ttf-liberation ttf-meslo-nerd-font-powerlevel10k\n\nUseful packages\n\nyay git-lfs cmake udunits gcc-fortran rustup sshfs\n\nChromium (needed for {renderthis}): yay ungoogled-chromium-bin\nJottacloud: yay jotta-cli\nSlack: yay slack-desktop\nSignal and Telegram: yay telegram-desktop-bin signal-desktop-beta-bin\nSystem tray notifications yay extension-manager, then start App Extension Manager and install:\n\n\n\n\nAppIndicator\n\n\nThen it displays things like this:\n\n\n\nSystem tray\n\n\n\nFor the  package {V8}, needs to activate the static lib before installing:\n\nSys.setenv(DOWNLOAD_STATIC_LIBV8 = 1)\n\nAvoid typing the GPG passphrase and save it in GNOME\n\nin ~/.config/gnupg/gpg-agent.conf\npinentry-program /usr/bin/pinentry-gnome3\nallow-preset-passphrase\nmax-cache-ttl 60480000\ndefault-cache-ttl 604480000"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ginolhac’s blog",
+    "section": "",
+    "text": "Denmark, ginolhac\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nExtract substrings from characters\n\n\n\n\n\n\nbioinfo\n\n\nR\n\n\n\n\n\n\n\n\n\nNov 27, 2023\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nInstalling LineageOS on an old  S5\n\n\n\n\n\n\nlinux\n\n\nDIY\n\n\n\nFlashing an ungoogled-ROM\n\n\n\n\n\nNov 14, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\n Maps Games\n\n\n\n\n\n\nbike\n\n\n\nIncentive to explore new places \n\n\n\n\n\nOct 9, 2023\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nResume long parallel jobs\n\n\n\n\n\n\nhpc\n\n\nbioinfo\n\n\n\n\n\n\n\n\n\nOct 2, 2023\n\n\n11 min\n\n\n\n\n\n\n\n\n\n\n\n\nDeploying  and  packages\n\n\n\n\n\n\npython\n\n\nR\n\n\nCI/CD\n\n\n\nwith  Gitlab Continuous Integration\n\n\n\n\n\nSep 14, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nInstall Archlinux\n\n\n\n\n\n\nlinux\n\n\n\nMoving away from Ubuntu\n\n\n\n\n\nSep 11, 2023\n\n\n10 min\n\n\n\n\n\n\n\n\n\n\n\n\nTesting Snakemake template\n\n\n\n\n\n\npython\n\n\nworkflow managers\n\n\nCI/CD\n\n\n\nusing Gitlab Continuous Integration\n\n\n\n\n\nSep 7, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nStarting to learn Rust\n\n\n\n\n\n\nRust\n\n\n\nTrimming UMI\n\n\n\n\n\nAug 17, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nSame dot sizes\n\n\n\n\n\n\nR\n\n\ndataviz\n\n\n\n\n\n\n\n\n\nMay 17, 2023\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nVertical faceting\n\n\n\n\n\n\nR\n\n\ndataviz\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nCrop Circles\n\n\n\n\n\n\nR\n\n\npackages\n\n\n\n\n\n\n\n\n\nFeb 20, 2023\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\n{targets} demos\n\n\n\n\n\n\nR\n\n\nworkflow managers\n\n\npackages\n\n\n\nA marvelous workflow manager for \n\n\n\n\n\nFeb 5, 2023\n\n\n15 min\n\n\n\n\n\n\n\n\n\n\n\n\nLaTex modern CV\n\n\n\n\n\n\nacademia\n\n\n\nHow to setup latex using tinytex\n\n\n\n\n\nMar 26, 2018\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nhome surveillance monitored via telegram\n\n\n\n\n\n\nPython\n\n\nDIY\n\n\nRasPI\n\n\n\nusing telepot and the NoIR camera\n\n\n\n\n\nJan 27, 2018\n\n\n10 min\n\n\n\n\n\n\n\n\n\n\n\n\ntweening a Poisson distribution\n\n\n\n\n\n\nR\n\n\nanimation\n\n\n\nusing tweenr and ggplot2\n\n\n\n\n\nDec 8, 2016\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nteething\n\n\n\n\n\n\nR\n\n\nanimation\n\n\n\nCompare teething for two kids\n\n\n\n\n\nJul 31, 2016\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nwinter is coming\n\n\n\n\n\n\nbike\n\n\n\nsnow on bike\n\n\n\n\n\nJan 25, 2015\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Github\n  \n  \n    \n     Mastodon\n  \n\n      \n\n\nI am working at the University of Luxembourg; in the Departement of Life Sciences and Medecine, providing services to the researchers.\n— Acknowledgment provided by acknowledge-the-climate-crisis.org\nImage of the 🌏 🌡️ 1850-2022 from ShowYourStripes"
+  },
+  {
+    "objectID": "about.html#licence",
+    "href": "about.html#licence",
+    "title": "About",
+    "section": "Licence",
+    "text": "Licence\n  This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License except for the borrowed and mentioned with proper source: statements."
   },
   {
     "objectID": "posts/2018-03-26_latex-moderncv/index.html#install-missing-packages",
