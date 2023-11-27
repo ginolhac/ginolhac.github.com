@@ -9,3 +9,8 @@
 .caption{
    text-align: center;
 }
+
+.cell-output {
+  background-color: #f4f4f4;
+  border-radius: 4px;
+}

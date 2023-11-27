@@ -1,0 +1,109 @@
+---
+title: "Extract substrings from characters"
+author: "Aurélien Ginolhac"
+date: "2023-11-27"
+categories: [bioinfo, R]
+format:
+  html:
+    code-line-numbers: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+```
+
+## Hidden gem
+
+Opening help pages of functions used regularly is worth it. often, one discovers some 
+hidden gems in argument functions. Here is an example with the `str_extract()` function from the package `stringr`.
+
+::: {.column-margin}
+
+![`stringr` logo](logo.png)
+:::
+
+## Aim: extract the second group of two digit from strings
+
+Let's look at some strings that encode some code:
+
+- First 2 digits are the year
+- Second 2 digits are the lab id
+- Third 2 digits are the project id
+
+Plus some other strings that are not relevant here like `INFO`.
+
+```{r}
+codes <- c("140102", "210301", "220501", "220502", "230101", "INFO", "230102")
+codes
+```
+
+From those we want to obtain the following:
+
+``` r
+"01" "03" "05" "05" "01" NA   "01"
+```
+
+## Wrong solution
+
+If we use `str_sub()` we can extract the second group of two digits, it does not work for `INFO` that should be `NA`.
+
+```{r}
+str_sub(codes, 3, 4)
+```
+
+We need a regular expression that specify 6 digits and take the second group of two digits.
+
+## Using regex
+
+`str_extract()` takes a regular expression as argument. We can use the following regex to extract the second group of two digits:
+
+```{r}
+str_extract(codes, "..\\d{2}..")
+```
+
+Fine for detecting the `INFO` and exclude it but we don't extract since the 2 previous and 2 following any characters (`.`) are included in the regex.
+
+
+## Using look around in the regex
+
+[Look arounds](https://stringr.tidyverse.org/articles/regular-expressions.html#look-arounds) are extremely powerful but very complex.
+I never get it right the first time. I always need to look up the help pages.
+
+```{r}
+str_extract(codes, "(?<=\\d{2})\\d{2}")
+```
+
+But already we see the **grouping** popping up.
+
+## Using grouping in the regex
+
+```{r}
+str_extract(codes, "..(\\d{2})..")
+```
+
+This is where I was usually stopped and return to look arounds.
+
+But, `str_extract()` has a `group` argument that allows to extract the group of interest.
+
+
+```{r}
+str_extract(codes, "..(\\d{2})..", group = 1)
+```
+
+Works! and easy to understand.
+
+## With more groups
+
+For example, the second group (5th and 6th characters):
+
+```{r}
+str_extract(codes, "..(\\d{2})(..)", group = 2)
+```
+
+## Conclusion
+
+Reading help pages help!
+
+
