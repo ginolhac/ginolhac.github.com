@@ -50,7 +50,7 @@ I believed in eternal which didn't go wrong while I though this way but really c
 For the wheels, they looked crooked, worn and spokes fragile. So I decided to buy a new set.
 It would solved the freewheel issue. The set costs €100 which sounded just fair.
 
-![New pair of wheels with the old rear one below](IMG_20200525_171922_368.jpg)
+![New pair of wheels with the old rear one below](IMG_20200525_171922_368.jpg){.lightbox height="600px"}
 
 Also add tires and tubes, cheap ones (turned out not great).
 
@@ -70,7 +70,7 @@ Here is what I purchased from _Probikeshop_ on the 2020-05-13
 | Chain whip BBB TURNTABLE 10S BTL-11(61856)              | 1        | 14.49     |
 | Tires MICHELIN LITHION 2 700x25c                        | 1        | 30.98     |
 | Air Tube MICHELIN A1 AIRSTOP BUTYL 700x18/25c           | 2        | 7.98      |
-| Two calipers SHIMANO SORA 3000                          | 2        | 40,90     |
+| Two calipers SHIMANO SORA 3000                          | 2        | 40.90     |
 | Cable brake Kit and hose SHIMANO PTFE                   | 1        | 30.90     |
 | Bar tape CLASSIC COMFORT                                | 1        |  7.49     |
 
@@ -106,7 +106,8 @@ I aligned the old and new chain to have the same number of links:
 
 ## New brakes and housing cables
 
-Another step I experienced for the first time. New housing and cables for both front and rear brakes. Was easy but took time because I carefully think twice before cutting anything.
+Another step I experienced for the first time. New housing and cables for both front and rear brakes along the brake commands on the handle bar. 
+Was easy but took time because I carefully think twice before cutting anything.
 I added a bit of oil on the cable before putting them inside hoses.
 
 
@@ -138,6 +139,7 @@ The fenders are the _SKS_ long blades and still perfectly fine more than 3 years
 The side kickstand was actually too heavy and honestly quite ugly, it quickly went over to another bike.
 
 Of note, the wheel orange reflectors are still there with a red reflector on the saddle.
+Rear lamp a generous gift from my Danish friend Christian and the U-lock holder did not hold more than 2 weeks.
 
 Bike was finished on the 16th of June, so 6 weeks after starting this project.
 Much more to come after this first step.
