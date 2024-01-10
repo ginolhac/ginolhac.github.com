@@ -3,7 +3,7 @@ on:
     branches:
       - main
 
-name: Publish blog
+name: Build and Publish blog
 
 jobs:
   build-deploy:
@@ -38,7 +38,7 @@ jobs:
           curl -s -LO https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb && \
           apt-get update -qq && apt-get -y install \
           ./quarto-${QUARTO_VERSION}-linux-amd64.deb && rm quarto-${QUARTO_VERSION}-linux-amd64.deb
-      - name: Publish Quarto file
+      - name: Publish Quarto blog
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages

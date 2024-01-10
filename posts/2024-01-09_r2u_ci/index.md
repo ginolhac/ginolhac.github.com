@@ -3,7 +3,7 @@ title: "r2u for faster continuous integration"
 author: "Aurélien Ginolhac"
 date: "2024-01-09"
 code-tools: false
-categories: [R, CI]
+categories: [R, CI/CD]
 ---
 
 
@@ -152,3 +152,54 @@ Building the website took **1 minutes 7 seconds**.
 ![](build_site2.png)
 
 Once the {{< fa brands docker >}} image is there, the site building + publishing on the {{< fa brands gitlab >}} pages took **1 minutes 47 seconds**.
+
+## GitHub {{< fa brands github >}} Actions
+
+For this blog, the config file is:
+
+``` yaml
+on:
+  push:
+    branches:
+      - main
+
+name: Build and Publish blog
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    container:
+      image: rocker/r2u:latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: System Dependencies
+        run: |
+          apt update -qq && apt install --yes --no-install-recommends cmake git \
+          curl jq netbase \
+          libxml2-dev libcurl4-openssl-dev libmagick++-dev
+      - name: Mixed packages
+        run: |
+          install.r tidyverse rmarkdown BiocManager Rcpp V8 htmlwidgets magick \
+          && installBioc.r ComplexHeatmap && installGithub.r koncina/ek.plot
+      - name: Package Dependencies
+        run: |
+          Rscript -e "read.dcf('DESCRIPTION', 'Imports') |> 
+            tools:::.split_dependencies() |> 
+            names() |> 
+            setdiff(tools:::.get_standard_package_names()$base) |> 
+            install.packages()"
+      - name: Set up Quarto
+        env:
+          QUARTO_VERSION: "1.4.538"
+        run: |
+          curl -s -LO https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb && \
+          apt-get update -qq && apt-get -y install \
+          ./quarto-${QUARTO_VERSION}-linux-amd64.deb && rm quarto-${QUARTO_VERSION}-linux-amd64.deb
+      - name: Publish Quarto blog
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+```
