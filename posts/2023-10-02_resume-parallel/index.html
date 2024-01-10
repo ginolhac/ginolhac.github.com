@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.513">
+<meta name="generator" content="quarto-1.4.537">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -101,6 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -114,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -269,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div></div><p>See this Gantt representation of 2 jobs in parallel for 8 machines (click to enlarge).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="1200px-Parallel-gantt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-description="" title="Gantt chart from grid5000"><img src="1200px-Parallel-gantt.png" class="img-fluid figure-img" alt="Gantt chart from grid5000"></a></p>
+<p><a href="1200px-Parallel-gantt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="Gantt chart from grid5000"><img src="1200px-Parallel-gantt.png" class="img-fluid figure-img" alt="Gantt chart from grid5000"></a></p>
 <figcaption>Gantt chart from <a href="https://www.grid5000.fr/w/GNU_Parallel">grid5000</a></figcaption>
 </figure>
 </div>
@@ -491,16 +492,20 @@ Export the function!
 <h1>Credits</h1>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="pop-zebra_parallel.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-description="" title="Picture by Pop &amp; Zebra "><img src="pop-zebra_parallel.jpg" class="img-fluid figure-img" alt="Picture by Pop &amp; Zebra "></a></p>
+<p><a href="pop-zebra_parallel.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="Picture by Pop &amp; Zebra "><img src="pop-zebra_parallel.jpg" class="img-fluid figure-img" alt="Picture by Pop &amp; Zebra "></a></p>
 <figcaption>Picture by <a href="https://unsplash.com/fr/@popnzebra">Pop &amp; Zebra</a> <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></figcaption>
 </figure>
 </div>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Gantt chart from <a href="https://www.grid5000.fr/w/GNU_Parallel">grid5000</a></span>
+<span class="glightbox-desc lightbox-desc-2">Picture by <a href="https://unsplash.com/fr/@popnzebra">Pop &amp; Zebra</a> <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></span>
+</div>
 </section>
 
 
-<div id="quarto-appendix" class="default"><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p><em>interactive</em> jobs are limited to <strong>2 hours</strong><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -510,8 +515,9 @@ Export the function!
 <pre><code>parallel -j 6 "gzip {}" ::: *.tsv</code></pre>
 <a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></li>
 <li id="fn5"><p>Artistic picture by <a href="https://unsplash.com/fr/@popnzebra">Pop &amp; Zebra</a> from <a href="https://unsplash.com/fr/photos/skC3rorQveo">Unsplash</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Artistic picture by <a href="https://unsplash.com/fr/@popnzebra">Pop &amp; Zebra</a> from <a href="https://unsplash.com/fr/photos/skC3rorQveo">Unsplash</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</aside></div></main> <!-- /main -->
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -640,27 +646,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -675,10 +660,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -687,7 +676,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
       return note.innerHTML;
     }
   }
@@ -918,14 +909,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Copyright 2023, Aurélien Ginolhac</p>
+<p>Copyright 2024, Aurélien Ginolhac</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 

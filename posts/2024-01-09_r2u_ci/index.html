@@ -7,10 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aurélien Ginolhac">
-<meta name="dcterms.date" content="2016-12-08">
-<meta name="description" content="using tweenr and ggplot2">
+<meta name="dcterms.date" content="2024-01-09">
 
-<title>tweening a Poisson distribution</title>
+<title>r2u for faster continuous integration</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,6 +75,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,35 +105,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -179,15 +151,10 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">tweening a Poisson distribution</h1>
-                  <div>
-        <div class="description">
-          using tweenr and ggplot2
-        </div>
-      </div>
-                          <div class="quarto-categories">
+      <h1 class="title">r2u for faster continuous integration</h1>
+                                <div class="quarto-categories">
                 <div class="quarto-category">R</div>
-                <div class="quarto-category">animation</div>
+                <div class="quarto-category">CI</div>
               </div>
                   </div>
   </div>
@@ -205,7 +172,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">December 8, 2016</p>
+        <p class="date">January 9, 2024</p>
       </div>
     </div>
     
@@ -221,7 +188,13 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#with-gganimate-and-tweenr" id="toc-with-gganimate-and-tweenr" class="nav-link active" data-scroll-target="#with-gganimate-and-tweenr">with gganimate and tweenr</a></li>
+  <li><a href="#rationale" id="toc-rationale" class="nav-link active" data-scroll-target="#rationale">Rationale</a></li>
+  <li><a href="#a-failing-solution" id="toc-a-failing-solution" class="nav-link" data-scroll-target="#a-failing-solution">A failing solution</a></li>
+  <li><a href="#a-working-solution" id="toc-a-working-solution" class="nav-link" data-scroll-target="#a-working-solution">A working solution</a>
+  <ul class="collapse">
+  <li><a href="#how-to-use-it" id="toc-how-to-use-it" class="nav-link" data-scroll-target="#how-to-use-it">How to use it</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -232,33 +205,128 @@ window.Quarto = {
 
 
 
-<section id="with-gganimate-and-tweenr" class="level1">
-<h1>with gganimate and tweenr</h1>
-<p>using <span class="math inline">\(\lambda\)</span> from 5 to 55 with a step of 5.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(gganimate)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tweenr) <span class="co"># devtools::install_github("thomasp85/tweenr")</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">crossing</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>),</span>
-<span id="cb1-6"><a href="#cb1-6"></a>         <span class="fu">tibble</span>(<span class="at">lambda =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">55</span>, <span class="dv">5</span>)))) <span class="sc">%&gt;%</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>  <span class="fu">mutate</span>(<span class="at">dpoi =</span> <span class="fu">dpois</span>(x, <span class="at">lambda =</span> lambda)) <span class="ot">-&gt;</span> poi_df</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a>my_list <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="fu">unique</span>(poi_df<span class="sc">$</span>lambda), <span class="sc">~</span> <span class="fu">filter</span>(poi_df, lambda <span class="sc">==</span> .x) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>())</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">tween_states</span>(my_list, <span class="at">tweenlength =</span> <span class="dv">7</span>, <span class="at">statelength =</span> <span class="dv">1</span>, <span class="at">ease =</span> <span class="st">"cubic-in-out"</span>, <span class="at">nframes =</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>  </span>
-<span id="cb1-13"><a href="#cb1-13"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, dpoi, <span class="at">frame =</span> .frame)) <span class="sc">+</span> </span>
-<span id="cb1-14"><a href="#cb1-14"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">width =</span> <span class="fl">2.0</span>) <span class="sc">+</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>  <span class="fu">theme_classic</span>(<span class="dv">16</span>) <span class="ot">-&gt;</span> p</span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="fu">gganimate</span>(p, <span class="at">title_frame =</span> <span class="cn">FALSE</span>, <span class="at">ani.width =</span> <span class="dv">600</span>, <span class="at">ani.height =</span> <span class="dv">450</span>, <span class="at">interval =</span> <span class="fl">0.1</span>, <span class="at">filename =</span> <span class="st">"poisson.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="rocker.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="150"></p>
+<figcaption>Rocker on <a href="https://hub.docker.com/r/rocker/r2u">DockerHub</a></figcaption>
+</figure>
 </div>
-<p><img src="../../images/poisson.gif" class="img-fluid"></p>
+<section id="rationale" class="level2">
+<h2 class="anchored" data-anchor-id="rationale">Rationale</h2>
+<p><code>{renv}</code> is a great tool to manage <i class="fa-brands fa-r-project" aria-label="r-project"></i> dependencies. Especially it <strong>records</strong> versions of packages used in a project. This is a great feature for reproducibility, of course only if the <code>renv.lock</code> is <strong><code>git</code></strong> tracked.</p>
+<p>However, there are situations where we don’t really care about reproducibility, but we want to <strong>speed up</strong> the CI process. For example, when we built a teaching website or a Quarto blog.</p>
+<p>In CI, starting from raw Ubuntu images, a <code>renv::restore()</code> with <code>tidyverse</code> and <code>bioconductor</code> packages can take <strong>more than 30 minutes</strong>. This is a lot of time wasted for a simple blog post or a teaching website.</p>
+</section>
+<section id="a-failing-solution" class="level2">
+<h2 class="anchored" data-anchor-id="a-failing-solution">A failing solution</h2>
+<p>One solution is to use <strong>pre-built</strong> <i class="fa-brands fa-r-project" aria-label="r-project"></i> packages. The <a href="https://packagemanager.posit.co/client/#/">Public Posit Package Manager</a> should offer this feature (see <a href="../renv-linux-binary">previous post</a>), but the different flavor of <i class="fa-brands fa-linux" aria-label="linux"></i> makes it over-complicated and some past versions of packages are not available. Even more problematic is missing system libraries are not solved. Only when you do <code>library(xml2)</code> you realize that <code>libxml2-dev</code> is missing.</p>
+</section>
+<section id="a-working-solution" class="level2">
+<h2 class="anchored" data-anchor-id="a-working-solution">A working solution</h2>
+<p>This is what the <code>{r2u}</code> project is about: <strong>CRAN as Ubuntu Binaries</strong>.</p>
+<p>This project was initiated and is maintained by <a href="https://dirk.eddelbuettel.com/">Dirk Eddelbuettel</a> and hosted <a href="https://github.com/eddelbuettel/r2u">on Github</a>.</p>
+<p>Recently, it even got a <a href="https://hub.docker.com/r/rocker/r2u">Docker image</a> on the <a href="https://github.com/rocker-org/rocker">Rocker project</a>.</p>
+<section id="how-to-use-it" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-use-it">How to use it</h3>
+<p>I saw this toot from <strong>Dirk</strong> on <a href="https://mastodon.social/@eddelbuettel/111693310455494722">Mastodon</a>:</p>
+<iframe src="https://mastodon.social/@eddelbuettel/111693310455494722/embed" width="500" height="400" allowfullscreen="allowfullscreen" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms">
+</iframe>
+<p>And decided to go for a fake <code>DESCRIPTION</code> file.</p>
+<p>I will write down the setup for a blog on Gitlab as an example.</p>
+<p>All packages could be in the <code>DESCRIPTION</code> file but we could also cache directly in the <i class="fa-brands fa-docker" aria-label="docker"></i> image some packages.</p>
+<section id="dockerfile" class="level4">
+<h4 class="anchored" data-anchor-id="dockerfile">Dockerfile</h4>
+<p>Here I have all kind of sources:</p>
+<ul>
+<li><code>CRAN</code> packages</li>
+<li><code>Bioconductor</code> packages (needs <code>BiocManager</code> first)</li>
+<li><code>Github</code> packages</li>
+</ul>
+<p>And Quarto, fetch the pre-release from <i class="fa-brands fa-github" aria-label="github"></i>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">FROM</span> rocker/r2u:22.04</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">RUN</span>  <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="ex">apt-get</span> install <span class="at">-y</span> <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  curl netbase zip git <span class="dt">\</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  libxml2-dev libcurl4-openssl-dev libmagick++-dev</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">RUN</span> <span class="ex">install.r</span> tidyverse rmarkdown BiocManager Rcpp V8 htmlwidgets magick <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="kw">&amp;&amp;</span> <span class="ex">installBioc.r</span> ComplexHeatmap <span class="kw">&amp;&amp;</span> <span class="ex">installGithub.r</span> koncina/ek.plot</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="kw">ARG</span> QUARTO_VERSION=<span class="st">"1.4.537"</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="kw">RUN</span> <span class="ex">curl</span> <span class="at">-LO</span> https://github.com/quarto-dev/quarto-cli/releases/download/v<span class="va">${QUARTO_VERSION}</span>/quarto-<span class="va">${QUARTO_VERSION}</span>-linux-amd64.deb <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="ex">apt-get</span> update <span class="at">-qq</span> <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> <span class="at">-y</span> install <span class="dt">\</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>    ./quarto-<span class="va">${QUARTO_VERSION}</span>-linux-amd64.deb <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> quarto-<span class="va">${QUARTO_VERSION}</span>-linux-amd64.deb <span class="dt">\</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="kw">&amp;&amp;</span> <span class="ex">apt</span> autoremove <span class="at">-y</span> <span class="kw">&amp;&amp;</span> <span class="ex">apt</span> clean <span class="at">-y</span> <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> <span class="at">-rf</span> /var/lib/apt/lists/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="description-file" class="level4">
+<h4 class="anchored" data-anchor-id="description-file">DESCRIPTION file</h4>
+<p>I guess it could also be shortened to the <code>Imports</code> field only.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>Package<span class="sc">:</span> bloguilur</span>
+<span id="cb2-2"><a href="#cb2-2"></a>Title<span class="sc">:</span> bloguilur Companion</span>
+<span id="cb2-3"><a href="#cb2-3"></a>Version<span class="sc">:</span> <span class="dv">1</span>.<span class="fl">0.0</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>Authors<span class="sc">@</span>R<span class="sc">:</span> </span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="fu">person</span>(<span class="st">"Aurélien"</span>, <span class="st">"Ginolhac"</span>, , <span class="st">"aurelien.ginolhac@uni.lu"</span>, <span class="at">role =</span> <span class="fu">c</span>(<span class="st">"aut"</span>, <span class="st">"cre"</span>))</span>
+<span id="cb2-6"><a href="#cb2-6"></a>Description<span class="sc">:</span> Companion website University of Luxembourg</span>
+<span id="cb2-7"><a href="#cb2-7"></a>License<span class="sc">:</span> MIT <span class="sc">+</span> file LICENSE</span>
+<span id="cb2-8"><a href="#cb2-8"></a>URL<span class="sc">:</span> https<span class="sc">:</span><span class="er">//</span>r<span class="sc">-</span>training.pages.uni.lu<span class="sc">/</span>bloguilur<span class="sc">/</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>Depends<span class="sc">:</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">R</span> (<span class="sc">&gt;=</span> <span class="dv">4</span>.<span class="fl">1.0</span>)</span>
+<span id="cb2-11"><a href="#cb2-11"></a>Imports<span class="sc">:</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  countdown,</span>
+<span id="cb2-13"><a href="#cb2-13"></a>  cropcircles,</span>
+<span id="cb2-14"><a href="#cb2-14"></a>  fontawesome,</span>
+<span id="cb2-15"><a href="#cb2-15"></a>  ggimage,</span>
+<span id="cb2-16"><a href="#cb2-16"></a>  ggplot2,</span>
+<span id="cb2-17"><a href="#cb2-17"></a>  glue,</span>
+<span id="cb2-18"><a href="#cb2-18"></a>  gt,</span>
+<span id="cb2-19"><a href="#cb2-19"></a>  gtExtras,</span>
+<span id="cb2-20"><a href="#cb2-20"></a>  huxtable,</span>
+<span id="cb2-21"><a href="#cb2-21"></a>  knitr,</span>
+<span id="cb2-22"><a href="#cb2-22"></a>  ragg</span>
+<span id="cb2-23"><a href="#cb2-23"></a>Encoding<span class="sc">:</span> UTF<span class="dv">-8</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>Language<span class="sc">:</span> en<span class="sc">-</span>US</span>
+<span id="cb2-25"><a href="#cb2-25"></a>RoxygenNote<span class="sc">:</span> <span class="dv">7</span>.<span class="fl">2.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="gitlab-ci-configuration" class="level4">
+<h4 class="anchored" data-anchor-id="gitlab-ci-configuration">Gitlab CI configuration</h4>
+<p><code>.gitlab-ci.yml</code> file, showing only the <code>build_site</code> stage:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">build_site</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="at">  </span><span class="fu">stage</span><span class="kw">:</span><span class="at"> build_site</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="at">  </span><span class="fu">image</span><span class="kw">:</span><span class="at"> $CI_REGISTRY_IMAGE:latest</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="at">    </span><span class="fu">key</span><span class="kw">:</span><span class="at"> ${CI_JOB_NAME}</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> _site/</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> _freeze/</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="at">  </span><span class="fu">artifacts</span><span class="kw">:</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"$CI_JOB_NAME"</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="at">    </span><span class="fu">expire_in</span><span class="kw">:</span><span class="at"> 2 days</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> _site/</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="at">  </span><span class="fu">before_script</span><span class="kw">:</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="kw">    - </span><span class="ch">|</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>      Rscript -e "read.dcf('DESCRIPTION', 'Imports') |&gt; </span>
+<span id="cb3-17"><a href="#cb3-17"></a>        tools:::.split_dependencies() |&gt; </span>
+<span id="cb3-18"><a href="#cb3-18"></a>        names() |&gt; </span>
+<span id="cb3-19"><a href="#cb3-19"></a>        setdiff(tools:::.get_standard_package_names()$base) |&gt; </span>
+<span id="cb3-20"><a href="#cb3-20"></a>        install.packages()"</span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="at">    </span><span class="kw">-</span><span class="at"> quarto render</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="at">  </span><span class="fu">tags</span><span class="kw">:</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="at">    </span><span class="kw">-</span><span class="at"> shared-cache</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="at">  </span><span class="fu">when</span><span class="kw">:</span><span class="at"> always</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="results" class="level3">
+<h3 class="anchored" data-anchor-id="results">Results</h3>
+<p>Building the Docker image took <strong>5 minutes 30 seconds</strong>.</p>
+<p><img src="docker_build1.png" class="img-fluid"> […] <img src="docker_build2.png" class="img-fluid"></p>
+<p>Building the website took <strong>1 minutes 7 seconds</strong>.</p>
+<p><img src="build_site1.png" class="img-fluid"> […] <img src="build_site2.png" class="img-fluid"></p>
+<p>Once the <i class="fa-brands fa-docker" aria-label="docker"></i> image is there, the site building + publishing on the <i class="fa-brands fa-gitlab" aria-label="gitlab"></i> pages took <strong>1 minutes 47 seconds</strong>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

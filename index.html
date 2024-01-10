@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.513">
+<meta name="generator" content="quarto-1.4.537">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -64,6 +64,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -102,13 +103,40 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -165,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(18)</span></div><div class="category" data-category="CI/CD">CI/CD <span class="quarto-category-count">(2)</span></div><div class="category" data-category="DIY">DIY <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(8)</span></div><div class="category" data-category="RasPI">RasPI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rust">Rust <span class="quarto-category-count">(1)</span></div><div class="category" data-category="academia">academia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="animation">animation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bike">bike <span class="quarto-category-count">(3)</span></div><div class="category" data-category="bioinfo">bioinfo <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dataviz">dataviz <span class="quarto-category-count">(2)</span></div><div class="category" data-category="hpc">hpc <span class="quarto-category-count">(1)</span></div><div class="category" data-category="linux">linux <span class="quarto-category-count">(2)</span></div><div class="category" data-category="packages">packages <span class="quarto-category-count">(2)</span></div><div class="category" data-category="python">python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="workflow managers">workflow managers <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(19)</span></div><div class="category" data-category="CI">CI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="CI/CD">CI/CD <span class="quarto-category-count">(2)</span></div><div class="category" data-category="DIY">DIY <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(9)</span></div><div class="category" data-category="RasPI">RasPI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rust">Rust <span class="quarto-category-count">(1)</span></div><div class="category" data-category="academia">academia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="animation">animation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bike">bike <span class="quarto-category-count">(3)</span></div><div class="category" data-category="bioinfo">bioinfo <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dataviz">dataviz <span class="quarto-category-count">(2)</span></div><div class="category" data-category="hpc">hpc <span class="quarto-category-count">(1)</span></div><div class="category" data-category="linux">linux <span class="quarto-category-count">(2)</span></div><div class="category" data-category="packages">packages <span class="quarto-category-count">(2)</span></div><div class="category" data-category="python">python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="workflow managers">workflow managers <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -207,7 +235,43 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="bioinfo,R" data-listing-date-sort="1701043200000" data-listing-file-modified-sort="1701157412337" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="294">
+<div class="quarto-post image-right" data-index="0" data-categories="R,CI" data-listing-date-sort="1704754800000" data-listing-file-modified-sort="1704879048417" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="633">
+<div class="thumbnail">
+<p><a href="./posts/2024-01-09_r2u_ci/index.html" class="no-external"></a></p><a href="./posts/2024-01-09_r2u_ci/index.html" class="no-external">
+<p class="card-img-top"><img src="posts/2024-01-09_r2u_ci/rocker.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/2024-01-09_r2u_ci/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2024-01-09_r2u_ci/index.html" class="no-external">r2u for faster continuous integration</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2024-01-09_r2u_ci/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('CI'); return false;">
+CI
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/2024-01-09_r2u_ci/index.html" class="no-external"><code>{renv}</code> is a great tool to manage <i class="fa-brands fa-r-project" aria-label="r-project"></i> dependencies. Especially it <strong>records</strong> versions of packages used in a project. This is a great feature for reproducibility, of course only if…<code></code><strong><code></code></strong></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2024-01-09_r2u_ci/index.html" class="no-external">
+<div class="listing-date">
+Jan 9, 2024
+</div>
+<div class="listing-reading-time">
+4 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="bioinfo,R" data-listing-date-sort="1701039600000" data-listing-file-modified-sort="1704876683507" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="294">
 <div class="thumbnail">
 <p><a href="./posts/2023-11-27_stringr_group/index.html" class="no-external"></a></p><a href="./posts/2023-11-27_stringr_group/index.html" class="no-external">
 <p class="card-img-top"><img src="posts/2023-11-27_stringr_group/logo.png"  class="thumbnail-image card-img"/></p>
@@ -243,7 +307,7 @@ Nov 27, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="linux,DIY" data-listing-date-sort="1699920000000" data-listing-file-modified-sort="1701157412337" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="802">
+<div class="quarto-post image-right" data-index="2" data-categories="linux,DIY" data-listing-date-sort="1699916400000" data-listing-file-modified-sort="1700646206436" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="802">
 <div class="thumbnail">
 <p><a href="./posts/2023-11-16_lineagesos-s5/index.html" class="no-external"></a></p><a href="./posts/2023-11-16_lineagesos-s5/index.html" class="no-external">
 <p><img src="./posts/2023-11-16_lineagesos-s5/lineage-logo.png" class="thumbnail-image"></p>
@@ -279,7 +343,7 @@ Nov 14, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="bike" data-listing-date-sort="1696809600000" data-listing-file-modified-sort="1701157412313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="331">
+<div class="quarto-post image-right" data-index="3" data-categories="bike" data-listing-date-sort="1696802400000" data-listing-file-modified-sort="1697550643833" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="331">
 <div class="thumbnail">
 <p><a href="./posts/2023-10-09_map-games/index.html" class="no-external"></a></p><a href="./posts/2023-10-09_map-games/index.html" class="no-external">
 <p><img src="./posts/2023-10-09_map-games/escapade.png" class="thumbnail-image"></p>
@@ -312,7 +376,7 @@ Oct 9, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="hpc,bioinfo" data-listing-date-sort="1696204800000" data-listing-file-modified-sort="1701157412313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2004">
+<div class="quarto-post image-right" data-index="4" data-categories="hpc,bioinfo" data-listing-date-sort="1696197600000" data-listing-file-modified-sort="1697550643830" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2004">
 <div class="thumbnail">
 <p><a href="./posts/2023-10-02_resume-parallel/index.html" class="no-external"></a></p><a href="./posts/2023-10-02_resume-parallel/index.html" class="no-external">
 <p><img src="./posts/2023-10-02_resume-parallel/pop-zebra_parallel.jpg" class="thumbnail-image"></p>
@@ -348,7 +412,7 @@ Oct 2, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="python,R,CI/CD" data-listing-date-sort="1694649600000" data-listing-file-modified-sort="1701157412309" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="824">
+<div class="quarto-post image-right" data-index="5" data-categories="python,R,CI/CD" data-listing-date-sort="1694642400000" data-listing-file-modified-sort="1697550643827" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="824">
 <div class="thumbnail">
 <p><a href="./posts/2023-09-14_renv-python-ci/index.html" class="no-external"></a></p><a href="./posts/2023-09-14_renv-python-ci/index.html" class="no-external">
 <p><img src="./posts/2023-09-14_renv-python-ci/renv-logo.png" class="thumbnail-image"></p>
@@ -387,7 +451,7 @@ Sep 14, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="linux" data-listing-date-sort="1694390400000" data-listing-file-modified-sort="1701157412309" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1857">
+<div class="quarto-post image-right" data-index="6" data-categories="linux" data-listing-date-sort="1694383200000" data-listing-file-modified-sort="1700645540373" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1857">
 <div class="thumbnail">
 <p><a href="./posts/2023-09-11_install-archlinux/index.html" class="no-external"></a></p><a href="./posts/2023-09-11_install-archlinux/index.html" class="no-external">
 <p><img src="./posts/2023-09-11_install-archlinux/archlinux-logo.png" class="thumbnail-image"></p>
@@ -420,7 +484,7 @@ Sep 11, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="python,workflow managers,CI/CD" data-listing-date-sort="1694044800000" data-listing-file-modified-sort="1701157412309" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="899">
+<div class="quarto-post image-right" data-index="7" data-categories="python,workflow managers,CI/CD" data-listing-date-sort="1694037600000" data-listing-file-modified-sort="1697550643820" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="899">
 <div class="thumbnail">
 <p><a href="./posts/2023-09-07_snakemake-test-ci/index.html" class="no-external"></a></p><a href="./posts/2023-09-07_snakemake-test-ci/index.html" class="no-external">
 <p><img src="./posts/2023-09-07_snakemake-test-ci/snakemake-logo.png" class="thumbnail-image"></p>
@@ -459,7 +523,7 @@ Sep 7, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="Rust" data-listing-date-sort="1692230400000" data-listing-file-modified-sort="1701157412305" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="935">
+<div class="quarto-post image-right" data-index="8" data-categories="Rust" data-listing-date-sort="1692223200000" data-listing-file-modified-sort="1697550643817" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="935">
 <div class="thumbnail">
 <p><a href="./posts/2023-08-17_starting-learning-rust/index.html" class="no-external"></a></p><a href="./posts/2023-08-17_starting-learning-rust/index.html" class="no-external">
 <p><img src="./posts/2023-08-17_starting-learning-rust/rust-logo.png" class="thumbnail-image" alt="Rust logo"></p>
@@ -492,7 +556,7 @@ Aug 17, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="R,dataviz" data-listing-date-sort="1684281600000" data-listing-file-modified-sort="1701157412305" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="104">
+<div class="quarto-post image-right" data-index="9" data-categories="R,dataviz" data-listing-date-sort="1684274400000" data-listing-file-modified-sort="1697611634016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="104">
 <div class="thumbnail">
 <p><a href="./posts/2023-05-17_panel-size/index.html" class="no-external"></a></p><a href="./posts/2023-05-17_panel-size/index.html" class="no-external">
 <p><img src="./posts/2023-05-17_panel-size/panel-size.png" class="thumbnail-image"></p>
@@ -528,7 +592,7 @@ May 17, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="R,dataviz" data-listing-date-sort="1678060800000" data-listing-file-modified-sort="1701157412305" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
+<div class="quarto-post image-right" data-index="10" data-categories="R,dataviz" data-listing-date-sort="1678057200000" data-listing-file-modified-sort="1697611603589" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
 <div class="thumbnail">
 <p><a href="./posts/2023-03-06_vertical-faceting/index.html" class="no-external"></a></p><a href="./posts/2023-03-06_vertical-faceting/index.html" class="no-external">
 <p><img src="./posts/2023-03-06_vertical-faceting/dir-v.png" class="thumbnail-image"></p>
@@ -564,7 +628,7 @@ Mar 6, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="R,packages" data-listing-date-sort="1676851200000" data-listing-file-modified-sort="1701157412305" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="77">
+<div class="quarto-post image-right" data-index="11" data-categories="R,packages" data-listing-date-sort="1676847600000" data-listing-file-modified-sort="1700646227873" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="77">
 <div class="thumbnail">
 <p><a href="./posts/2023-02-20_crop-circles/index.html" class="no-external"></a></p><a href="./posts/2023-02-20_crop-circles/index.html" class="no-external">
 <p><img src="./posts/2023-02-20_crop-circles/hex.png" class="thumbnail-image"></p>
@@ -600,7 +664,7 @@ Feb 20, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="R,workflow managers,packages" data-listing-date-sort="1675555200000" data-listing-file-modified-sort="1701157412305" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2932">
+<div class="quarto-post image-right" data-index="12" data-categories="R,workflow managers,packages" data-listing-date-sort="1675551600000" data-listing-file-modified-sort="1697550643813" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2932">
 <div class="thumbnail">
 <p><a href="./posts/2023-02-05_targets-demos/index.html" class="no-external"></a></p><a href="./posts/2023-02-05_targets-demos/index.html" class="no-external">
 <p><img src="./posts/2023-02-05_targets-demos/targets-logo.png" class="thumbnail-image"></p>
@@ -639,7 +703,7 @@ Feb 5, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="bike,DIY" data-listing-date-sort="1587081600000" data-listing-file-modified-sort="1701157412301" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1234">
+<div class="quarto-post image-right" data-index="13" data-categories="bike,DIY" data-listing-date-sort="1587074400000" data-listing-file-modified-sort="1701157347501" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1234">
 <div class="thumbnail">
 <p><a href="./posts/2020-04-27_ventoux-1/index.html" class="no-external"></a></p><a href="./posts/2020-04-27_ventoux-1/index.html" class="no-external">
 <p><img src="./posts/2020-04-27_ventoux-1/painted-wheels.png" class="thumbnail-image"></p>
@@ -675,7 +739,7 @@ Apr 17, 2020
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="academia" data-listing-date-sort="1522022400000" data-listing-file-modified-sort="1701157412241" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
+<div class="quarto-post image-right" data-index="14" data-categories="academia" data-listing-date-sort="1522015200000" data-listing-file-modified-sort="1697550643810" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
 <div class="thumbnail">
 <p><a href="./posts/2018-03-26_latex-moderncv/index.html" class="no-external"></a></p><a href="./posts/2018-03-26_latex-moderncv/index.html" class="no-external">
 <p><img src="./posts/2018-03-26_latex-moderncv/sample.png" class="thumbnail-image"></p>
@@ -708,7 +772,7 @@ Mar 26, 2018
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="Python,DIY,RasPI" data-listing-date-sort="1517011200000" data-listing-file-modified-sort="1701157412241" data-listing-date-modified-sort="1529366400000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1915">
+<div class="quarto-post image-right" data-index="15" data-categories="Python,DIY,RasPI" data-listing-date-sort="1517007600000" data-listing-file-modified-sort="1697550643810" data-listing-date-modified-sort="1529359200000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1915">
 <div class="thumbnail">
 <p><a href="./posts/2018-01-27_diy-raspberry-monitored-via-telegram/index.html" class="no-external"></a></p><a href="./posts/2018-01-27_diy-raspberry-monitored-via-telegram/index.html" class="no-external">
 <p class="card-img-top"><img src="images/cam_noIR.jpg"  class="thumbnail-image card-img"/></p>
@@ -747,7 +811,7 @@ Jan 27, 2018
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="R,animation" data-listing-date-sort="1481155200000" data-listing-file-modified-sort="1701157412189" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="114">
+<div class="quarto-post image-right" data-index="16" data-categories="R,animation" data-listing-date-sort="1481151600000" data-listing-file-modified-sort="1697611727669" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="114">
 <div class="thumbnail">
 <p><a href="./posts/2016-12-18_tweening-a-poisson-distribution/index.html" class="no-external"></a></p><a href="./posts/2016-12-18_tweening-a-poisson-distribution/index.html" class="no-external">
 <p class="card-img-top"><img src="images/poisson.gif"  class="thumbnail-image card-img"/></p>
@@ -783,7 +847,7 @@ Dec 8, 2016
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="16" data-categories="R,animation" data-listing-date-sort="1469923200000" data-listing-file-modified-sort="1701157412189" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="962">
+<div class="quarto-post image-right" data-index="17" data-categories="R,animation" data-listing-date-sort="1469916000000" data-listing-file-modified-sort="1697611616223" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="962">
 <div class="thumbnail">
 <p><a href="./posts/2016-07-31_teething-process/index.html" class="no-external"></a></p><a href="./posts/2016-07-31_teething-process/index.html" class="no-external">
 <p class="card-img-top"><img src="posts/2016-07-31_teething-process/index_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
@@ -819,7 +883,7 @@ Jul 31, 2016
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="17" data-categories="bike" data-listing-date-sort="1422193115000" data-listing-file-modified-sort="1701157412189" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12">
+<div class="quarto-post image-right" data-index="18" data-categories="bike" data-listing-date-sort="1422193115000" data-listing-file-modified-sort="1697550643757" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12">
 <div class="thumbnail">
 <p><a href="./posts/2015-01-25_winter-is-coming/index.html" class="no-external"></a></p><a href="./posts/2015-01-25_winter-is-coming/index.html" class="no-external">
 <p class="card-img-top"><img src="images/20150124_131420.jpg"  class="thumbnail-image card-img"/></p>
@@ -985,27 +1049,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -1020,10 +1063,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1032,7 +1079,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
       return note.innerHTML;
     }
   }
@@ -1261,7 +1310,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Copyright 2023, Aurélien Ginolhac</p>
+<p>Copyright 2024, Aurélien Ginolhac</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;
