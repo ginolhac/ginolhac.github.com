@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <h1 class="title">r2u for faster continuous integration</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">R</div>
-                <div class="quarto-category">CI</div>
+                <div class="quarto-category">CI/CD</div>
               </div>
                   </div>
   </div>
@@ -195,6 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#how-to-use-it" id="toc-how-to-use-it" class="nav-link" data-scroll-target="#how-to-use-it">How to use it</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
   </ul></li>
+  <li><a href="#github-actions" id="toc-github-actions" class="nav-link" data-scroll-target="#github-actions">GitHub <i class="fa-brands fa-github" aria-label="github"></i> Actions</a></li>
   </ul>
 </nav>
     </div>
@@ -324,9 +325,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Building the website took <strong>1 minutes 7 seconds</strong>.</p>
 <p><img src="build_site1.png" class="img-fluid"> […] <img src="build_site2.png" class="img-fluid"></p>
 <p>Once the <i class="fa-brands fa-docker" aria-label="docker"></i> image is there, the site building + publishing on the <i class="fa-brands fa-gitlab" aria-label="gitlab"></i> pages took <strong>1 minutes 47 seconds</strong>.</p>
-
-
 </section>
+</section>
+<section id="github-actions" class="level2">
+<h2 class="anchored" data-anchor-id="github-actions">GitHub <i class="fa-brands fa-github" aria-label="github"></i> Actions</h2>
+<p>For this blog, the config file is:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="at">      </span><span class="kw">-</span><span class="at"> main</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Build and Publish blog</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="at">  </span><span class="fu">build-deploy</span><span class="kw">:</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="at">    </span><span class="fu">container</span><span class="kw">:</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="at">      </span><span class="fu">image</span><span class="kw">:</span><span class="at"> rocker/r2u:latest</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="at">      </span><span class="fu">GITHUB_PAT</span><span class="kw">:</span><span class="at"> ${{ secrets.GITHUB_TOKEN }}</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out repository</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> System Dependencies</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>          apt update -qq &amp;&amp; apt install --yes --no-install-recommends cmake git \</span>
+<span id="cb4-21"><a href="#cb4-21"></a>          curl jq netbase \</span>
+<span id="cb4-22"><a href="#cb4-22"></a>          libxml2-dev libcurl4-openssl-dev libmagick++-dev</span>
+<span id="cb4-23"><a href="#cb4-23"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Mixed packages</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>          install.r tidyverse rmarkdown BiocManager Rcpp V8 htmlwidgets magick \</span>
+<span id="cb4-26"><a href="#cb4-26"></a>          &amp;&amp; installBioc.r ComplexHeatmap &amp;&amp; installGithub.r koncina/ek.plot</span>
+<span id="cb4-27"><a href="#cb4-27"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Package Dependencies</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a>          Rscript -e "read.dcf('DESCRIPTION', 'Imports') |&gt; </span>
+<span id="cb4-30"><a href="#cb4-30"></a>            tools:::.split_dependencies() |&gt; </span>
+<span id="cb4-31"><a href="#cb4-31"></a>            names() |&gt; </span>
+<span id="cb4-32"><a href="#cb4-32"></a>            setdiff(tools:::.get_standard_package_names()$base) |&gt; </span>
+<span id="cb4-33"><a href="#cb4-33"></a>            install.packages()"</span>
+<span id="cb4-34"><a href="#cb4-34"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Quarto</span></span>
+<span id="cb4-35"><a href="#cb4-35"></a><span class="at">        </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a><span class="at">          </span><span class="fu">QUARTO_VERSION</span><span class="kw">:</span><span class="at"> </span><span class="st">"1.4.538"</span></span>
+<span id="cb4-37"><a href="#cb4-37"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a>          curl -s -LO https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb &amp;&amp; \</span>
+<span id="cb4-39"><a href="#cb4-39"></a>          apt-get update -qq &amp;&amp; apt-get -y install \</span>
+<span id="cb4-40"><a href="#cb4-40"></a>          ./quarto-${QUARTO_VERSION}-linux-amd64.deb &amp;&amp; rm quarto-${QUARTO_VERSION}-linux-amd64.deb</span>
+<span id="cb4-41"><a href="#cb4-41"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish Quarto blog</span></span>
+<span id="cb4-42"><a href="#cb4-42"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/publish@v2</span></span>
+<span id="cb4-43"><a href="#cb4-43"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-44"><a href="#cb4-44"></a><span class="at">          </span><span class="fu">target</span><span class="kw">:</span><span class="at"> gh-pages</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 
 </main> <!-- /main -->
