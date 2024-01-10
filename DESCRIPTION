@@ -1,0 +1,25 @@
+Package: blog
+Title: blog Companion
+Version: 1.0.0
+Authors@R: 
+    person("Aurélien", "Ginolhac", , "ginolhac@gmail.com", role = c("aut", "cre"))
+Description: Companion website
+License: MIT + file LICENSE
+URL: https://ginolhac.github.io
+Depends:
+  R (>= 4.1.0)
+Imports:
+  countdown,
+  cropcircles,
+  fontawesome,
+  ggimage,
+  ggplot2,
+  glue,
+  gt,
+  gtExtras,
+  huxtable,
+  knitr,
+  ragg
+Encoding: UTF-8
+Language: en-US
+RoxygenNote: 7.2.3
