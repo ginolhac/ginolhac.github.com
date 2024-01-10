@@ -35,11 +35,9 @@ jobs:
         env:
           QUARTO_VERSION: "1.4.538"
         run: |
-          curl -LO https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb && \
+          curl -s -LO https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb && \
           apt-get update -qq && apt-get -y install \
           ./quarto-${QUARTO_VERSION}-linux-amd64.deb && rm quarto-${QUARTO_VERSION}-linux-amd64.deb
-        with:
-          version: pre-release
       - name: Publish Quarto file
         uses: quarto-dev/quarto-actions/publish@v2
         with:
