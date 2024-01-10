@@ -5,13 +5,12 @@ on:
 
 name: Build and Publish blog
 
-    permissions:
-      contents: write
-      pages: write
-
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
     container:
       image: rocker/r2u:latest
     env:
