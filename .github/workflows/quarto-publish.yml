@@ -18,6 +18,7 @@ jobs:
       - name: System Dependencies
         run: |
           apt update -qq && apt install --yes --no-install-recommends cmake git \
+          curl jq netbase \
           libxml2-dev libcurl4-openssl-dev libmagick++-dev
       - name: Mixed packages
         run: |
