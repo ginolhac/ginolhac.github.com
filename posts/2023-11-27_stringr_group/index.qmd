@@ -11,7 +11,7 @@ format:
 ```{r}
 #| label: setup
 #| include: false
-library(tidyverse)
+library(stringr)
 ```
 
 ## Hidden gem
@@ -35,6 +35,8 @@ Let's look at some strings that encode some code:
 Plus some other strings that are not relevant here like `INFO`.
 
 ```{r}
+library(stringr)
+
 codes <- c("140102", "210301", "220501", "220502", "230101", "INFO", "230102")
 codes
 ```
