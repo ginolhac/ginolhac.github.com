@@ -199,7 +199,6 @@ jobs:
           apt-get update -qq && apt-get -y install \
           ./quarto-${QUARTO_VERSION}-linux-amd64.deb && rm quarto-${QUARTO_VERSION}-linux-amd64.deb
       - name: Publish Quarto blog
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
+        uses: quarto-dev/quarto-actions/render@v2
+
 ```
