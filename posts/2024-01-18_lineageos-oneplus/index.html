@@ -78,6 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -220,35 +223,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="lineageos-on-the-one-plus-6t" class="level2">
 <h2 class="anchored" data-anchor-id="lineageos-on-the-one-plus-6t">LineageOS on the One Plus 6T</h2>
-<p><strong>LineageOS</strong> support so many (and old) <a href="https://wiki.lineageos.org/devices/">devices</a> it’s amazing. The One Plus 6T corresponds to the <a href="https://wiki.lineageos.org/devices/fajita/">fajita</a> release and builds are <a href="https://download.lineageos.org/devices/fajita/builds">here</a>.</p>
+<p><strong>LineageOS</strong> supports so many (and old) <a href="https://wiki.lineageos.org/devices/">devices</a> it’s amazing. The One Plus 6T corresponds to the <a href="https://wiki.lineageos.org/devices/fajita/">fajita</a> release and builds are <a href="https://download.lineageos.org/devices/fajita/builds">here</a>.</p>
 <section id="installation" class="level3">
 <h3 class="anchored" data-anchor-id="installation">Installation</h3>
 <p>The 8-steps instructions are clearly described in the <a href="https://wiki.lineageos.org/devices/fajita/install/">wiki</a>.</p>
-<p>I had to update from Android 10 to 11 as asked.</p>
+<p>Using the OxygenOS from OnePlus, I had to update from Android 10 to 11 as asked.</p>
 <p>After activating the USB debugging, I had to add my login to the <code>plugdev</code> group while it was not necessary for the Samsung S5.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># usermod -aG plugdev login</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">usermod</span> <span class="at">-aG</span> plugdev login</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Had to restart the laptop, check you are part of this group with <code>id</code>.</p>
-<p>Of note, all commands are run as <code>root</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Of note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All commands are run as <code>root</code>.</p>
+</div>
+</div>
 </section>
 <section id="unlock-oem" class="level3">
 <h3 class="anchored" data-anchor-id="unlock-oem">Unlock OEM</h3>
 <p>After rebooting in proprietary recovery:</p>
-<p><img src="restart_bootloader.jpg" height="300"></p>
+<p><a href="restart_bootloader.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="restart_bootloader.jpg" height="300"></a></p>
 <p>The following commands:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastboot</span> devices</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fastboot</span> oem unlock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Are super fast:</p>
-<p><img src="cli_unlock.jpg" class="img-fluid"></p>
+<p>are super fast:</p>
+<p><img src="cli_unlock.jpg" height="150"></p>
 <p>Result:</p>
-<p><img src="oem_unlock.jpg" height="300"></p>
+<p><a href="oem_unlock.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="oem_unlock.jpg" height="300"></a></p>
 </section>
 <section id="install-lineage-recovery" class="level3">
 <h3 class="anchored" data-anchor-id="install-lineage-recovery">Install lineage recovery</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sideload</span> <span class="at">-d</span> boot.img</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload lineage-20.0-20240116-nightly-fajita-signed.zip </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastboot</span> flash boot.img</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="cli_recovery.jpg" class="img-fluid"></p>
-<p><img src="recovery_adb.jpg" height="300"></p>
-<p>Then sideload vbmeta.img and dtbo.img and <a href="https://github.com/MindTheGapps/13.0.0-arm64/releases/tag/MindTheGapps-13.0.0-arm64-20231025_200931">MindtheGapps</a></p>
+<p>Check that after rebooting in recovery mode that you have the <strong>LineageOS</strong> recovery:</p>
+<p><a href="recovery_adb.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="recovery_adb.jpg" height="300"></a></p>
+<p>Then select <strong>Apply update</strong> on the phone using volume Up/Down and Power to confirm. On the laptop, <em>sideload</em> the main lineage image, 2 accessories and <a href="https://github.com/MindTheGapps/13.0.0-arm64/releases/tag/MindTheGapps-13.0.0-arm64-20231025_200931">MindtheGapps</a> if you want to keep Google Play.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -263,25 +278,28 @@ Watch out
 </div>
 </div>
 <p>I am not sure what the <code>dtbo</code> and <code>vbmeta</code> images actually are but I did follow all steps.</p>
-<p><img src="wipe_sideload.jpg" height="300"></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload dtbo.img </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload vbmeta.img </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload MindTheGapps-13.0.0-arm64-20231025_200931.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="install_mind_the_gapps.jpg" height="300"></p>
+<p><a href="wipe_sideload.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="wipe_sideload.jpg" height="300"></a></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload lineage-20.0-20240116-nightly-fajita-signed.zip </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload dtbo.img </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload vbmeta.img </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload MindTheGapps-13.0.0-arm64-20231025_200931.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="install_mind_the_gapps.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="install_mind_the_gapps.jpg" height="300"></a></p>
 <p>and reboot system.</p>
 </section>
 </section>
 <section id="aftermath" class="level2">
 <h2 class="anchored" data-anchor-id="aftermath">Aftermath</h2>
-<p>We started from Android 11, now we have 13. Everything is working. The only annoying part is the Fingerprint reader which success reading rate is around 50%. Don’t know what is wrong, the sensor or the software treating information.</p>
-<p>The bank apps are working, Luxtrust and so on.</p>
-<p>While installing message apps, it was interesting to see the different levels of security for restoring/transferring accounts.</p>
+<p>We started from Android 11, now we have 13. And we continue receiving updates (already one a week after this installation). Everything is working. The only annoying part is the Fingerprint reader which success reading rate is around 50%. Don’t know what is wrong, the sensor or the software treating information.</p>
+<p>The bank apps are working, Luxtrust and so on as one friend was telling me that un-rooted ROM prevents usage of these apps.</p>
+<p>While installing messaging apps, it was interesting to see the different levels of security for restoring/transferring accounts.</p>
 <ul>
-<li>Signal</li>
-<li>Telegram</li>
-<li>Simplex Chat</li>
+<li><strong>Signal</strong> It is not allowed to have the app working on both phones using the same phone number. It makes sense, even if I have only Wifi on the old phone, it could be used to send messages but not with Signal. A procedure is proposed to transfer the content (contacts / messages / groups) from the old -&gt; new phone using Bluetooth. It worked perfectly. Of note, all linked Signal Desktop were un-linked and I had to re-link them using the new phone.</li>
+<li><strong>Telegram</strong> Very little security. On the new phone, installed the app, received a confirmation by SMS and that’s it. All chats were restored, and the old phone can still be used along with the Desktop apps.</li>
+<li><a href="https://simplex.chat/"><strong>Simplex Chat</strong></a> This messaging app is nice as it does not require any account. Transferring data was feasible, I had to archive an archive with a passphrase, copy over this file and restore the database after unlocking it with the passphrase.</li>
 </ul>
 <p>Each boot is showing this warning, I gladly ignore.</p>
+<p><a href="warning-bootloader.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="warning-bootloader.jpg" height="300"></a></p>
 </section>
 <section id="whats-next" class="level2">
 <h2 class="anchored" data-anchor-id="whats-next">What’s next?</h2>
@@ -694,6 +712,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 
