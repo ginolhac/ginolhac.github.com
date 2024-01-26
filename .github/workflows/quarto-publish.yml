@@ -24,7 +24,9 @@ jobs:
           curl jq netbase \
           libxml2-dev libcurl4-openssl-dev libmagick++-dev
       - name: install chromium
-        uses: browser-actions/setup-chrome@v1
+        run: |
+          curl -s -L https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/chrome.deb && \
+          apt-get update -qq && apt-get -y install /tmp/chrome.deb && rm /tmp/chrome.deb
       - name: Mixed packages
         run: |
           install.r tidyverse rmarkdown BiocManager Rcpp V8 htmlwidgets magick \
