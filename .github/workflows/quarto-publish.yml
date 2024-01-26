@@ -25,7 +25,6 @@ jobs:
           libxml2-dev libcurl4-openssl-dev libmagick++-dev
       - name: install chromium
         uses: browser-actions/setup-chrome@v1
-        run: chrome --version
       - name: Mixed packages
         run: |
           install.r tidyverse rmarkdown BiocManager Rcpp V8 htmlwidgets magick \
