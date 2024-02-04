@@ -168,3 +168,23 @@ After installing F-droid and some apps, everything works great and the phone is 
 Android version went from 6.01 to **11.0**.
 
 ![_LineageOS 18.1_](2023-11-16-211558_005.jpg){height=450}
+
+## Edit 2024-02-03: The _Screen Curtain_ drama
+
+My daughter is using this S5 happily for 2 months now. 
+No email account, no google apps but F-droid is great.
+Then today, she played with many options as usual when in the screen accessibility,
+she activated the _screen curtain_. Meant for blind people to preserve their privacy,
+the whole screen turns totally black once you enter your PIN.
+Going on the Internet, the best thread was on [reddit](https://www.reddit.com/r/LineageOS/comments/sql4s8/screen_curtain_on_samsung_s5_running_181_20210919/). 
+I tried the [`scrcpy](https://github.com/Genymobile/scrcpy/) (which is a great software!), the `adb shell` but all those solutions involved the USB debugging on that was not anymore the case.
+The only work bit that [`scrcpy --otg`](https://github.com/Genymobile/scrcpy/blob/master/doc/hid-otg.md) but I 
+did not get what was needed to navigate, or to send relevant characters.
+So in end, I rebooted in the recovery mode (Vol Up + Home + Power).
+`adb shell` worked, i was able to enable it but, even mounting in `/mnt/system` the `data/` folder was empty.
+Thus, I wiped out the partition and _sideload_ **LineageOS** again:
+
+`lineage-18.1-20240201-nightly-klte-signed.zip`
+
+And we are able to use the phone again. All custom / app / pictures gone but she 
+will remember this lesson apparently.
