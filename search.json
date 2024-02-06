@@ -207,7 +207,7 @@
     "href": "posts/2020-04-27_ventoux-1/index.html#acknowledgements",
     "title": " Rebuilding the Ventoux, part 1",
     "section": "Acknowledgements",
-    "text": "Acknowledgements\nDescription image from bike wheels transformed by the fun package paintr by CJ Holmes.\n\n\n\nVentoux, initial state\nNew pair of wheels with the old rear one below\nNew rear wheel with a worn but clean cassette\nSetting up the front Sora brake"
+    "text": "Acknowledgements\nDescription image from bike wheels transformed by the fun package paintr by CJ Holmes."
   },
   {
     "objectID": "posts/2020-04-27_ventoux-1/index.html#footnotes",
@@ -355,6 +355,13 @@
     "title": "Installing LineageOS on an old  S5",
     "section": "Screenshot",
     "text": "Screenshot\nAfter installing F-droid and some apps, everything works great and the phone is still very responsive! Android version went from 6.01 to 11.0.\n\n\n\nLineageOS 18.1"
+  },
+  {
+    "objectID": "posts/2023-11-16_lineagesos-s5/index.html#edit-2024-02-03-the-screen-curtain-drama",
+    "href": "posts/2023-11-16_lineagesos-s5/index.html#edit-2024-02-03-the-screen-curtain-drama",
+    "title": "Installing LineageOS on an old  S5",
+    "section": "Edit 2024-02-03: The Screen Curtain drama",
+    "text": "Edit 2024-02-03: The Screen Curtain drama\nMy daughter is using this S5 happily for 2 months now. No email account, no google apps but F-droid is great. Then today, she played with many options as usual when in the screen accessibility, she activated the screen curtain. Meant for blind people to preserve their privacy, the whole screen turns totally black once you enter your PIN. Going on the Internet, the best thread was on reddit. I tried the [scrcpy](https://github.com/Genymobile/scrcpy/) (which is a great software!), theadb shellbut all those solutions involved the USB debugging on that was not anymore the case. The only work bit that [scrcpy –otg](https://github.com/Genymobile/scrcpy/blob/master/doc/hid-otg.md) but I  did not get what was needed to navigate, or to send relevant characters. So in end, I rebooted in the recovery mode (Vol Up + Home + Power).adb shellworked, i was able to enable it but, even mounting in/mnt/systemthedata/` folder was empty. Thus, I wiped out the partition and sideload LineageOS again:\nlineage-18.1-20240201-nightly-klte-signed.zip\nAnd we are able to use the phone again. All custom / app / pictures gone but she will remember this lesson apparently."
   },
   {
     "objectID": "posts/2023-11-27_stringr_group/index.html",
@@ -704,7 +711,7 @@
     "href": "posts/2023-10-02_resume-parallel/index.html#footnotes",
     "title": "Resume long parallel jobs",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\ninteractive jobs are limited to 2 hours↩︎\nSee this article for explanations↩︎\nThe backslash \\ indicates that the long line is split in two but interpreted as one↩︎\nFor example, a more complex example for compressing text files, max 6 in parallel. The {} is the place holder for all filenames that end with the .tsv extension. The compression will done by gzip. The triple colon ::: to read from external commands, the quadruple :::: like the split barcode is to read from a file.\nparallel -j 6 \"gzip {}\" ::: *.tsv\n↩︎\nArtistic picture by Pop & Zebra from Unsplash↩︎\nArtistic picture by Pop & Zebra from Unsplash↩︎"
+    "text": "Footnotes\n\n\ninteractive jobs are limited to 2 hours↩︎\nSee this article for explanations↩︎\nThe backslash \\ indicates that the long line is split in two but interpreted as one↩︎\nFor example, a more complex example for compressing text files, max 6 in parallel. The {} is the place holder for all filenames that end with the .tsv extension. The compression will done by gzip. The triple colon ::: to read from external commands, the quadruple :::: like the split barcode is to read from a file.\nparallel -j 6 \"gzip {}\" ::: *.tsv\n↩︎\nArtistic picture by Pop & Zebra from Unsplash↩︎"
   },
   {
     "objectID": "posts/2023-09-14_renv-python-ci/index.html",
