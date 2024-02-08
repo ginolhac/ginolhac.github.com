@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.9">
+<meta name="generator" content="quarto-1.5.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div></div><p>See this Gantt representation of 2 jobs in parallel for 8 machines (click to enlarge).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="1200px-Parallel-gantt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Gantt chart from grid5000"><img src="1200px-Parallel-gantt.png" class="img-fluid figure-img" alt="Gantt chart from grid5000"></a></p>
+<p><a href="1200px-Parallel-gantt.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1" title="Gantt chart from grid5000"><img src="1200px-Parallel-gantt.png" class="img-fluid figure-img" alt="Gantt chart from grid5000"></a></p>
 <figcaption>Gantt chart from <a href="https://www.grid5000.fr/w/GNU_Parallel">grid5000</a></figcaption>
 </figure>
 </div>
@@ -492,12 +492,16 @@ Export the function!
 <h1>Credits</h1>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="pop-zebra_parallel.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Picture by Pop &amp; Zebra "><img src="pop-zebra_parallel.jpg" class="img-fluid figure-img" alt="Picture by Pop &amp; Zebra "></a></p>
+<p><a href="pop-zebra_parallel.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="Picture by Pop &amp; Zebra "><img src="pop-zebra_parallel.jpg" class="img-fluid figure-img" alt="Picture by Pop &amp; Zebra "></a></p>
 <figcaption>Picture by <a href="https://unsplash.com/fr/@popnzebra">Pop &amp; Zebra</a> <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></figcaption>
 </figure>
 </div>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Gantt chart from <a href="https://www.grid5000.fr/w/GNU_Parallel">grid5000</a></span>
+<span class="glightbox-desc lightbox-desc-2">Picture by <a href="https://unsplash.com/fr/@popnzebra">Pop &amp; Zebra</a> <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></span>
+</div>
 </section>
 
 
@@ -511,6 +515,7 @@ Export the function!
 <pre><code>parallel -j 6 "gzip {}" ::: *.tsv</code></pre>
 <a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></li>
 <li id="fn5"><p>Artistic picture by <a href="https://unsplash.com/fr/@popnzebra">Pop &amp; Zebra</a> from <a href="https://unsplash.com/fr/photos/skC3rorQveo">Unsplash</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Artistic picture by <a href="https://unsplash.com/fr/@popnzebra">Pop &amp; Zebra</a> from <a href="https://unsplash.com/fr/photos/skC3rorQveo">Unsplash</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -916,7 +921,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.9">
+<meta name="generator" content="quarto-1.5.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -367,7 +367,7 @@ Root permissions
 </section>
 <section id="edit-2024-02-03-the-screen-curtain-drama" class="level2">
 <h2 class="anchored" data-anchor-id="edit-2024-02-03-the-screen-curtain-drama">Edit 2024-02-03: The <em>Screen Curtain</em> drama</h2>
-<p>My daughter is using this S5 happily for 2 months now. No email account, no google apps but F-droid is great. Then today, she played with many options as usual when in the screen accessibility, she activated the <em>screen curtain</em>. Meant for blind people to preserve their privacy, the whole screen turns totally black once you enter your PIN. Going on the Internet, the best thread was on <a href="https://www.reddit.com/r/LineageOS/comments/sql4s8/screen_curtain_on_samsung_s5_running_181_20210919/">reddit</a>. I tried the [<code>scrcpy](https://github.com/Genymobile/scrcpy/) (which is a great software!), the</code>adb shell<code>but all those solutions involved the USB debugging on that was not anymore the case. The only work bit that [</code>scrcpy –otg<code>](https://github.com/Genymobile/scrcpy/blob/master/doc/hid-otg.md) but I  did not get what was needed to navigate, or to send relevant characters. So in end, I rebooted in the recovery mode (Vol Up + Home + Power).</code>adb shell<code>worked, i was able to enable it but, even mounting in</code>/mnt/system<code>the</code>data/` folder was empty. Thus, I wiped out the partition and <em>sideload</em> <strong>LineageOS</strong> again:</p>
+<p>My daughter is using this S5 happily for 2 months now. No email account, no google apps but F-droid is great. Then today, she played with many options as usual when in the screen accessibility, she activated the <em>screen curtain</em>. Meant for blind people to preserve their privacy, the whole screen turns totally black once you enter your PIN. Going on the Internet, the best thread was on <a href="https://www.reddit.com/r/LineageOS/comments/sql4s8/screen_curtain_on_samsung_s5_running_181_20210919/">reddit</a>. I tried the <a href="https://github.com/Genymobile/scrcpy/"><code>scrcpy</code></a> (which is a great software!), the <code>adb shell</code> but all those solutions involved the USB debugging on that was not anymore the case. The only bit that work was <a href="https://github.com/Genymobile/scrcpy/blob/master/doc/hid-otg.md"><code>scrcpy --otg</code></a> but I did not get what was needed to navigate, or to send relevant characters. So in end, I rebooted in the recovery mode (Vol Up + Home + Power). <code>adb shell</code> worked, I was able to enable it but, even mounting in <code>/mnt/system</code> the <code>data/</code> folder was empty. Thus, I wiped out the partition and <em>sideloaded</em> <strong>LineageOS</strong> again:</p>
 <p><code>lineage-18.1-20240201-nightly-klte-signed.zip</code></p>
 <p>And we are able to use the phone again. All custom / app / pictures gone but she will remember this lesson apparently.</p>
 
