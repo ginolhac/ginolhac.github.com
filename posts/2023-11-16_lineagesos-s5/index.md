@@ -177,12 +177,12 @@ Then today, she played with many options as usual when in the screen accessibili
 she activated the _screen curtain_. Meant for blind people to preserve their privacy,
 the whole screen turns totally black once you enter your PIN.
 Going on the Internet, the best thread was on [reddit](https://www.reddit.com/r/LineageOS/comments/sql4s8/screen_curtain_on_samsung_s5_running_181_20210919/). 
-I tried the [`scrcpy](https://github.com/Genymobile/scrcpy/) (which is a great software!), the `adb shell` but all those solutions involved the USB debugging on that was not anymore the case.
-The only work bit that [`scrcpy --otg`](https://github.com/Genymobile/scrcpy/blob/master/doc/hid-otg.md) but I 
+I tried the [`scrcpy`](https://github.com/Genymobile/scrcpy/) (which is a great software!), the `adb shell` but all those solutions involved the USB debugging on that was not anymore the case.
+The only bit that work was [`scrcpy --otg`](https://github.com/Genymobile/scrcpy/blob/master/doc/hid-otg.md) but I 
 did not get what was needed to navigate, or to send relevant characters.
 So in end, I rebooted in the recovery mode (Vol Up + Home + Power).
-`adb shell` worked, i was able to enable it but, even mounting in `/mnt/system` the `data/` folder was empty.
-Thus, I wiped out the partition and _sideload_ **LineageOS** again:
+`adb shell` worked, I was able to enable it but, even mounting in `/mnt/system` the `data/` folder was empty.
+Thus, I wiped out the partition and _sideloaded_ **LineageOS** again:
 
 `lineage-18.1-20240201-nightly-klte-signed.zip`
 
