@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.3">
+<meta name="generator" content="quarto-1.5.14">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -205,6 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#install-lineage-recovery" id="toc-install-lineage-recovery" class="nav-link" data-scroll-target="#install-lineage-recovery">Install lineage recovery</a></li>
   </ul></li>
   <li><a href="#aftermath" id="toc-aftermath" class="nav-link" data-scroll-target="#aftermath">Aftermath</a></li>
+  <li><a href="#edit-android-14" id="toc-edit-android-14" class="nav-link" data-scroll-target="#edit-android-14">Edit: Android 14</a></li>
   <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s next?</a></li>
   </ul>
 </nav>
@@ -300,6 +301,10 @@ Watch out
 </ul>
 <p>Each boot is showing this warning, I gladly ignore.</p>
 <p><a href="warning-bootloader.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="warning-bootloader.jpg" height="300"></a></p>
+</section>
+<section id="edit-android-14" class="level2">
+<h2 class="anchored" data-anchor-id="edit-android-14">Edit: Android 14</h2>
+<p>LineageOS offered on 2024-02-16 the upgrade to Android 14, called <a href="https://lineageos.org/Changelog-28/">LineageOS version <strong>21</strong></a>. I did it, and it was smooth. No data loss, no settings lost. The phone is still working fine. I followed the <a href="https://wiki.lineageos.org/devices/fajita/upgrade/">instructions</a> for <code>adb sideload</code> and it worked.</p>
 </section>
 <section id="whats-next" class="level2">
 <h2 class="anchored" data-anchor-id="whats-next">What’s next?</h2>
@@ -712,7 +717,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
