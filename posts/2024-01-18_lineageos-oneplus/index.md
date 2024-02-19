@@ -128,6 +128,11 @@ Each boot is showing this warning, I gladly ignore.
 
 ![](warning-bootloader.jpg){.lightbox height=300}
 
+## Edit: Android 14
+
+LineageOS offered on 2024-02-16 the upgrade to Android 14, called [LineageOS version **21**](https://lineageos.org/Changelog-28/). I did it, and it was smooth. No data loss, no settings lost. The phone is still working fine. I followed the [instructions](https://wiki.lineageos.org/devices/fajita/upgrade/) for `adb sideload` and it worked.
+
+
 ## What's next?
 
 Getting rid of Google Play. Or Google account altogether.
