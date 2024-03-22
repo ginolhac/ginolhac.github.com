@@ -66,6 +66,7 @@ Here is what I purchased from _Probikeshop_ on the 2020-05-13
 |---------------------------------------------------------|----------|-----------|
 | Two wheels SHIMANO R501 - 10S(56233) Freewheel SHIMANO  | 1        | 102.99    |
 | Chain 9S SHIMANO HG53 DEORE / SORA - 116 links          | 1        | 12.49     |
+| SHI221668 Shimano BL-R400 Brake Lever - black           | 1        | 28.50     |
 | Shimano PARK TOOL FR-1.3(92114) freewheel               | 1        | 10.49     |
 | Chain whip BBB TURNTABLE 10S BTL-11(61856)              | 1        | 14.49     |
 | Tires MICHELIN LITHION 2 700x25c                        | 1        | 30.98     |
@@ -106,7 +107,7 @@ I aligned the old and new chain to have the same number of links:
 
 ## New brakes and housing cables
 
-Another step I experienced for the first time. New housing and cables for both front and rear brakes along the brake commands on the handle bar. 
+Another step I experienced for the first time. New housing and cables for both front and rear brakes along the new brake commands on the handle bar. 
 Was easy but took time because I carefully think twice before cutting anything.
 I added a bit of oil on the cable before putting them inside hoses.
 
