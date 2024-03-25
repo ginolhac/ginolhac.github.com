@@ -12,7 +12,7 @@ image: "hex.png"
 
 From the [repo on GitHub](https://github.com/doehm/cropcircles).
 
-```{r}
+```{.r}
 library(cropcircles)
 suppressPackageStartupMessages(library(dplyr))
 library(ggimage)
@@ -38,3 +38,7 @@ df |>
   ylim(0, 5) +
   coord_fixed()
 ```
+
+
+![](out.png)
+
