@@ -77,7 +77,7 @@ I was already happy with a gravel bike which handle bar was fairly large (compar
 
 : Third command to bike24.de (2020-08-01) {.striped .hover}
 
-### Installing a new tranmission
+### Installing a new transmission
 
 I postponed the bottom bracket replacement as it was really stuck. The handle bar though was easy enough, placing the tape took me a long time because I was carefully all steps of the necessary Calvin Jones youtube videos.
 The chainring I wanted only one, it is easier to maintain and it makes not much sense for a commute bike to have more. I chose a number of teeth in between my 2 current ones. I picked arbitraly 39 teeth, was a good pick.
