@@ -12,14 +12,13 @@ Imports:
   countdown,
   cropcircles,
   fontawesome,
-  ggimage,
-  ggplot2,
-  glue,
   gt,
   gtExtras,
   huxtable,
   knitr,
-  ragg
+  ragg,
+  rmarkdown,
+  tidyverse
 Encoding: UTF-8
 Language: en-US
 RoxygenNote: 7.2.3
