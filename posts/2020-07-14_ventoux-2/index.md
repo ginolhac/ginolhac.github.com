@@ -1,9 +1,10 @@
 ---
 title: "{{< fa bicycle >}} Rebuilding the Ventoux, part 2"
-description: "Replacing the bottom brackets"
+description: "Replacing the bottom bracket and more"
 date: "2020-07-14"
-image: painted-bb.png
+image: painted_bb.png
 image-height: "100px"
+lightbox: true
 categories: 
   - bike
   - DIY
@@ -35,13 +36,15 @@ My trustful Danish friend advised me wisely to look into the [Sheldon Brown](htt
 Dimensions from France, Italy, UK are all reported and I managed to find out that
  the Shimano BB-UN55 should fit (and it did).
 
- Second Command to bike24.de 2020-07-14.
+
 
 | Item                                                | Quantity | Price |
 |-----------------------------------------------------|----------|-------|
 | PTO147795 Park Tool CT-3.2 Chain Tool               | 1        | 34.40 |
 | PTO111383 Park Tool BBT-22 Bottom Bracket Remover   | 1        | 19.65 |
 | SHI123592 Shimano BB-UN55 Bottom Bracket JIS Square | 1        | 13.75 |
+
+: Second Command to bike24.de (2020-07-14) {.striped .hover}
 
 ## Chainring and derailleur
 
@@ -59,11 +62,6 @@ Did a try with a Sora basic derailleur purchase.
 Since I need to order those transmission items, I took  the opportunity to also changed the handle bar.
 I was already happy with a gravel bike which handle bar was fairly large (compare to road bike). The price was reasonable and it was worth also learning about the stem, headset config, dismantle and remounting all this.
 
-Third command to bike24.de 2020-08-01
-
-Handle part, stem and derailleur Sora
-
-
 | Item                                                | Quantity | Price |
 |-----------------------------------------------------|----------|-------|
 | XLC ST-M15 Comp 31.8 Stem Base Angel - Length: 35° - 60 mm | 1   14,74 EUR  |
@@ -75,7 +73,9 @@ Handle part, stem and derailleur Sora
 | Shimano CS-HG400-9 Cassette 9-speed Ratio/teeth: 11-32 | 1  | 18,67 EUR   | 
 | Shimano Sora Chainring for FC-3503 - 3x9-speed - black  39 teeth | 1 |  11,79 EUR   | 
 | Gebhardt Chainring Bolt Niro Length: 5,4 mm | 5 |   14,50 EUR    |
-| Shimano Sora RD-R3000-GS Rear Derailleur 3x9 medium | 1 |  22,60 EUR   | 
+| Shimano Sora RD-R3000-GS Rear Derailleur 3x9 medium | 1 |  22,60 EUR   |
+
+: Third command to bike24.de (2020-08-01) {.striped .hover}
 
 ### Installing a new tranmission
 
@@ -126,11 +126,11 @@ The BB cup, moving in motion
 
 Check out this damned piece of rust !
 
-![](IMG_20200801_172423_1.jpg){.lightbox heigh=400px}
+![](IMG_20200801_172423_1.jpg){heigh=400px}
 
 
 The new bottom bracked once in place with the tool to screw it:
 
-![](IMG_20200801_175920.jpg){.lightbox heigh=400px}
+![](IMG_20200801_175920.jpg){heigh=400px}
 
 What a journey, that was a massive amount of work and stress but was worth it!
