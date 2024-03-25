@@ -84,10 +84,6 @@ The chainring I wanted only one, it is easier to maintain and it makes not much 
 The derailleur, I knew the frame can handle cassettes of 7 speeds. But the lowest I found online was 9! I did a try and thanks to the magic of steel, I could enlarge the frame a bit and it fits.
 Derailleur went screwed on the frame as the original one and looked ok. The main issue was the number of links to keep on the 9S chain. I did a bit random, followed Calvin Jones advice but was not so great.
 
-After replacing all this, it looks like this 
-
-![](IMG_20230430_101157.jpg){.lightbox heigh=400px}
-
 The derailleur was too much under tension I now observe.
 
 ### Note about the front derailleur
@@ -134,3 +130,5 @@ The new bottom bracked once in place with the tool to screw it:
 ![](IMG_20200801_175920.jpg){heigh=400px}
 
 What a journey, that was a massive amount of work and stress but was worth it!
+
+![](IMG_20200808_132840.jpg){.lightbox heigh=400px}

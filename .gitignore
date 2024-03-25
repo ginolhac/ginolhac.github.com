@@ -6,4 +6,5 @@
 /_freeze
 *.zip
 /renv/
+*VID_20200801_111906*mp4
 .Rbuildignore
