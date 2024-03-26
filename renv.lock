@@ -377,19 +377,6 @@
       ],
       "Hash": "e8a1e41acf02548751f45c718d55aa6a"
     },
-    "cropcircles": {
-      "Package": "cropcircles",
-      "Version": "0.2.4",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "glue",
-        "magick",
-        "purrr"
-      ],
-      "Hash": "b8c99af635a5d03a20153ede17cc51ec"
-    },
     "curl": {
       "Package": "curl",
       "Version": "5.2.1",
@@ -612,43 +599,6 @@
       ],
       "Hash": "15e9634c0fcd294799e9b2e929ed1b86"
     },
-    "ggfun": {
-      "Package": "ggfun",
-      "Version": "0.1.4",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "cli",
-        "ggplot2",
-        "grid",
-        "rlang",
-        "utils"
-      ],
-      "Hash": "91780e07f1d631a1152835b4e25c66b9"
-    },
-    "ggimage": {
-      "Package": "ggimage",
-      "Version": "0.3.3",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "ggfun",
-        "ggplot2",
-        "ggplotify",
-        "grid",
-        "jsonlite",
-        "magick",
-        "methods",
-        "scales",
-        "tibble",
-        "tools",
-        "utils",
-        "withr"
-      ],
-      "Hash": "18c57347f13a654ef8683a6676042624"
-    },
     "ggplot2": {
       "Package": "ggplot2",
       "Version": "3.5.0",
@@ -673,22 +623,6 @@
         "withr"
       ],
       "Hash": "52ef83f93f74833007f193b2d4c159a2"
-    },
-    "ggplotify": {
-      "Package": "ggplotify",
-      "Version": "0.1.2",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "ggplot2",
-        "grDevices",
-        "graphics",
-        "grid",
-        "gridGraphics",
-        "yulab.utils"
-      ],
-      "Hash": "1547863db3b472cf7181973acf649f1a"
     },
     "glue": {
       "Package": "glue",
@@ -753,18 +687,6 @@
         "withr"
       ],
       "Hash": "d6db1667059d027da730decdc214b959"
-    },
-    "gridGraphics": {
-      "Package": "gridGraphics",
-      "Version": "0.5-1",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "grDevices",
-        "graphics",
-        "grid"
-      ],
-      "Hash": "5b79228594f02385d4df4979284879ae"
     },
     "gt": {
       "Package": "gt",
@@ -1070,18 +992,6 @@
         "timechange"
       ],
       "Hash": "680ad542fbcf801442c83a6ac5a2126c"
-    },
-    "magick": {
-      "Package": "magick",
-      "Version": "2.8.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "Rcpp",
-        "curl",
-        "magrittr"
-      ],
-      "Hash": "3f6bcbb8a0c1c9365b2f02d5d04ad7bc"
     },
     "magrittr": {
       "Package": "magrittr",
@@ -1864,23 +1774,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "29240487a071f535f5e5d5a323b7afbd"
-    },
-    "yulab.utils": {
-      "Package": "yulab.utils",
-      "Version": "0.1.4",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "cli",
-        "digest",
-        "fs",
-        "memoise",
-        "rlang",
-        "stats",
-        "tools",
-        "utils"
-      ],
-      "Hash": "60ee2aaa179dc282e9fa7367bad76e89"
     }
   }
 }
