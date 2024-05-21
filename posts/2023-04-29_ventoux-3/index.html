@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aurélien Ginolhac">
-<meta name="dcterms.date" content="2024-01-18">
-<meta name="description" content="Moving to an ungoogled-ROM">
+<meta name="dcterms.date" content="2023-04-29">
+<meta name="description" content="Replacing for better parts">
 
-<title>Installing LineageOS on an OnePlus </title>
+<title> Maintenance on the Ventoux, part 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -155,14 +121,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Installing LineageOS on an OnePlus <i class="fa-solid fa-mobile-screen-button" aria-label="mobile-screen-button"></i></h1>
+      <h1 class="title"><i class="fa-solid fa-bicycle" aria-label="bicycle"></i> Maintenance on the Ventoux, part 3</h1>
                   <div>
         <div class="description">
-          Moving to an ungoogled-ROM
+          Replacing for better parts
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">linux</div>
+                <div class="quarto-category">bike</div>
                 <div class="quarto-category">DIY</div>
               </div>
                   </div>
@@ -181,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 18, 2024</p>
+        <p class="date">April 29, 2023</p>
       </div>
     </div>
     
@@ -197,16 +163,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#candidate-phone" id="toc-candidate-phone" class="nav-link active" data-scroll-target="#candidate-phone">Candidate phone</a></li>
-  <li><a href="#lineageos-on-the-one-plus-6t" id="toc-lineageos-on-the-one-plus-6t" class="nav-link" data-scroll-target="#lineageos-on-the-one-plus-6t">LineageOS on the One Plus 6T</a>
+  <li><a href="#ordering" id="toc-ordering" class="nav-link active" data-scroll-target="#ordering">Ordering</a></li>
+  <li><a href="#replacements-and-upgrades" id="toc-replacements-and-upgrades" class="nav-link" data-scroll-target="#replacements-and-upgrades">Replacements and upgrades</a>
   <ul class="collapse">
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#unlock-oem" id="toc-unlock-oem" class="nav-link" data-scroll-target="#unlock-oem">Unlock OEM</a></li>
-  <li><a href="#install-lineage-recovery" id="toc-install-lineage-recovery" class="nav-link" data-scroll-target="#install-lineage-recovery">Install lineage recovery</a></li>
+  <li><a href="#receiving-parcel" id="toc-receiving-parcel" class="nav-link" data-scroll-target="#receiving-parcel">Receiving parcel</a></li>
+  <li><a href="#transmission" id="toc-transmission" class="nav-link" data-scroll-target="#transmission">Transmission</a>
+  <ul class="collapse">
+  <li><a href="#chainring" id="toc-chainring" class="nav-link" data-scroll-target="#chainring">Chainring</a></li>
+  <li><a href="#rear-derailleur" id="toc-rear-derailleur" class="nav-link" data-scroll-target="#rear-derailleur">Rear derailleur</a></li>
+  <li><a href="#cassette-and-chain" id="toc-cassette-and-chain" class="nav-link" data-scroll-target="#cassette-and-chain">Cassette and chain</a></li>
   </ul></li>
-  <li><a href="#aftermath" id="toc-aftermath" class="nav-link" data-scroll-target="#aftermath">Aftermath</a></li>
-  <li><a href="#edit-android-14" id="toc-edit-android-14" class="nav-link" data-scroll-target="#edit-android-14">Edit: Android 14</a></li>
-  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s next?</a></li>
+  <li><a href="#rear-brake" id="toc-rear-brake" class="nav-link" data-scroll-target="#rear-brake">Rear Brake</a>
+  <ul class="collapse">
+  <li><a href="#tires" id="toc-tires" class="nav-link" data-scroll-target="#tires">Tires</a></li>
+  </ul></li>
+  <li><a href="#final-result-for-now" id="toc-final-result-for-now" class="nav-link" data-scroll-target="#final-result-for-now">Final result (for now)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -217,100 +189,152 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Following the previous attempt (successful) of installing the <strong>LineageOS</strong> <a href="../2023-11-16_lineagesos-s5/">described here</a>, I decided to really change my previous phone from 2018 which last security update was 2020-06-01. The hardware was still working, but the lack of updates was really annoying, stuck with Android 10 and all security holes.</p>
-<section id="candidate-phone" class="level2">
-<h2 class="anchored" data-anchor-id="candidate-phone">Candidate phone</h2>
-<p>My sister had a One Plus 6T in a drawer collecting dust. She wiped it and gave it to me, nice!</p>
-</section>
-<section id="lineageos-on-the-one-plus-6t" class="level2">
-<h2 class="anchored" data-anchor-id="lineageos-on-the-one-plus-6t">LineageOS on the One Plus 6T</h2>
-<p><strong>LineageOS</strong> supports so many (and old) <a href="https://wiki.lineageos.org/devices/">devices</a> it’s amazing. The One Plus 6T corresponds to the <a href="https://wiki.lineageos.org/devices/fajita/">fajita</a> release and builds are <a href="https://download.lineageos.org/devices/fajita/builds">here</a>.</p>
-<section id="installation" class="level3">
-<h3 class="anchored" data-anchor-id="installation">Installation</h3>
-<p>The 8-steps instructions are clearly described in the <a href="https://wiki.lineageos.org/devices/fajita/install/">wiki</a>.</p>
-<p>Using the OxygenOS from OnePlus, I had to update from Android 10 to 11 as asked.</p>
-<p>After activating the USB debugging, I had to add my login to the <code>plugdev</code> group while it was not necessary for the Samsung S5.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">usermod</span> <span class="at">-aG</span> plugdev login</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Had to restart the laptop, check you are part of this group with <code>id</code>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Of note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>All commands are run as <code>root</code>.</p>
-</div>
-</div>
-</section>
-<section id="unlock-oem" class="level3">
-<h3 class="anchored" data-anchor-id="unlock-oem">Unlock OEM</h3>
-<p>After rebooting in proprietary recovery:</p>
-<p><a href="restart_bootloader.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="restart_bootloader.jpg" height="300"></a></p>
-<p>The following commands:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastboot</span> devices</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fastboot</span> oem unlock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>are super fast:</p>
-<p><img src="cli_unlock.jpg" height="150"></p>
-<p>Result:</p>
-<p><a href="oem_unlock.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="oem_unlock.jpg" height="300"></a></p>
-</section>
-<section id="install-lineage-recovery" class="level3">
-<h3 class="anchored" data-anchor-id="install-lineage-recovery">Install lineage recovery</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastboot</span> flash boot.img</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="cli_recovery.jpg" class="img-fluid"></p>
-<p>Check that after rebooting in recovery mode that you have the <strong>LineageOS</strong> recovery:</p>
-<p><a href="recovery_adb.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="recovery_adb.jpg" height="300"></a></p>
-<p>Then select <strong>Apply update</strong> on the phone using volume Up/Down and Power to confirm. On the laptop, <em>sideload</em> the main lineage image, 2 accessories and <a href="https://github.com/MindTheGapps/13.0.0-arm64/releases/tag/MindTheGapps-13.0.0-arm64-20231025_200931">MindtheGapps</a> if you want to keep Google Play.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Watch out
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To use the right architecture and Android version (<code>13</code> here).</p>
-</div>
-</div>
-<p>I am not sure what the <code>dtbo</code> and <code>vbmeta</code> images actually are but I did follow all steps.</p>
-<p><a href="wipe_sideload.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="wipe_sideload.jpg" height="300"></a></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload lineage-20.0-20240116-nightly-fajita-signed.zip </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload dtbo.img </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload vbmeta.img </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">adb</span> <span class="at">-d</span> sideload MindTheGapps-13.0.0-arm64-20231025_200931.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><a href="install_mind_the_gapps.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="install_mind_the_gapps.jpg" height="300"></a></p>
-<p>and reboot system.</p>
-</section>
-</section>
-<section id="aftermath" class="level2">
-<h2 class="anchored" data-anchor-id="aftermath">Aftermath</h2>
-<p>We started from Android 11, now we have 13. And we continue receiving updates (already one a week after this installation). Everything is working. The only annoying part is the Fingerprint reader which success reading rate is around 50%. Don’t know what is wrong, the sensor or the software treating information.</p>
-<p>The bank apps are working, Luxtrust and so on as one friend was telling me that un-rooted ROM prevents usage of these apps.</p>
-<p>While installing messaging apps, it was interesting to see the different levels of security for restoring/transferring accounts.</p>
+<p>After some years, the bike is really a good commuter and brings much joy. However, like every machine it needs maintenance. And this offers chances for better spare items. Especially, the <strong>Sora</strong> series from Shimano is cheap but show some clear weaknesses to cold, salt and water. They got rusty and not so pleasant to use, so today we need better:</p>
 <ul>
-<li><strong>Signal</strong> It is not allowed to have the app working on both phones using the same phone number. It makes sense, even if I have only Wifi on the old phone, it could be used to send messages but not with Signal. A procedure is proposed to transfer the content (contacts / messages / groups) from the old -&gt; new phone using Bluetooth. It worked perfectly. Of note, all linked Signal Desktop were un-linked and I had to re-link them using the new phone.</li>
-<li><strong>Telegram</strong> Very little security. On the new phone, installed the app, received a confirmation by SMS and that’s it. All chats were restored, and the old phone can still be used along with the Desktop apps.</li>
-<li><a href="https://simplex.chat/"><strong>Simplex Chat</strong></a> This messaging app is nice as it does not require any account. Transferring data was feasible, I had to archive an archive with a passphrase, copy over this file and restore the database after unlocking it with the passphrase.</li>
+<li>brakes</li>
+<li>derailleur</li>
 </ul>
-<p>Each boot is showing this warning, I gladly ignore.</p>
-<p><a href="warning-bootloader.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="warning-bootloader.jpg" height="300"></a></p>
+<p>Like my famous Danish friend, who I quote frequently, says:</p>
+<blockquote class="blockquote">
+<p>Who needs better products than a 105?</p>
+</blockquote>
+<p>I must mention, he actually uses a SRAM derailleur, but let’s say he is right, the 105 are very nice products. I know them from my gravel and several years later they do work nicely.</p>
+<section id="ordering" class="level2">
+<h2 class="anchored" data-anchor-id="ordering">Ordering</h2>
+<table class="table-striped table-hover table">
+<caption>bike24.de Order March 2023</caption>
+<colgroup>
+<col style="width: 5%">
+<col style="width: 14%">
+<col style="width: 59%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Qty</th>
+<th>Item No.</th>
+<th>Description</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>SHI371053</td>
+<td>Shimano 105 BR-R7000 Brake Caliper - rear</td>
+<td>38.98 EUR</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>SSP527134</td>
+<td>Shimano Road Shift Cable Set - Stainless Steel</td>
+<td>9.74 EUR</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>SSP526727</td>
+<td>Shimano Brake Cable Set Road Stainless Steel</td>
+<td>11.69 EUR</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>SRA131571</td>
+<td>SRAM PowerGlide Chainring 130mm - 39 teeth</td>
+<td>16.56 EUR</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>SHI196481</td>
+<td>Shimano CS-HG400-9 Cassette 9-speed, Ratio/teeth: 11-25</td>
+<td>24.36 EUR</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>KMC107578</td>
+<td>KMC X9 Chain - 9-speed - silver/grey</td>
+<td>14.61 EUR</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>SHI111662</td>
+<td>Shimano Deore RD-M592-SGS Shadow Rear</td>
+<td>38.98 EUR</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="edit-android-14" class="level2">
-<h2 class="anchored" data-anchor-id="edit-android-14">Edit: Android 14</h2>
-<p>LineageOS offered on 2024-02-16 the upgrade to Android 14, called <a href="https://lineageos.org/Changelog-28/">LineageOS version <strong>21</strong></a>. I did it, and it was smooth. No data loss, no settings lost. The phone is still working fine. I followed the <a href="https://wiki.lineageos.org/devices/fajita/upgrade/">instructions</a> for <code>adb sideload</code> and it worked.</p>
+<section id="replacements-and-upgrades" class="level1">
+<h1>Replacements and upgrades</h1>
+<section id="receiving-parcel" class="level2">
+<h2 class="anchored" data-anchor-id="receiving-parcel">Receiving parcel</h2>
+<p><a href="IMG_20230329_080907.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="IMG_20230329_080907.jpg" height="300"></a></p>
 </section>
-<section id="whats-next" class="level2">
-<h2 class="anchored" data-anchor-id="whats-next">What’s next?</h2>
-<p>Getting rid of Google Play. Or Google account altogether. Next goal is to try <a href="https://calyxos.org/">CalyxOS</a> and the <strong>Aurora store</strong>. I have restored some security with <strong>LineageOS</strong> but no privacy since I kept Google Play.</p>
+<section id="transmission" class="level2">
+<h2 class="anchored" data-anchor-id="transmission">Transmission</h2>
+<p>Let’s change everything in the transmission to start on fresh good basis.</p>
+<section id="chainring" class="level3">
+<h3 class="anchored" data-anchor-id="chainring">Chainring</h3>
+<p>Since SRAM and Shimano are compatible, I give a try to SRAM for the chainring. Looks light and neat.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="signal-2023-04-29-15-50-51-477.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="New SRAM chainring"><img src="signal-2023-04-29-15-50-51-477.jpg" height="300" alt="New SRAM chainring" class="figure-img"></a></p>
+<figcaption>New SRAM chainring</figcaption>
+</figure>
+</div>
+</section>
+<section id="rear-derailleur" class="level3">
+<h3 class="anchored" data-anchor-id="rear-derailleur">Rear derailleur</h3>
+<p>Derailleur, I didn’t know what to get, I went for the <em>Deore</em> as I did 8,000 km with it on another bike and it stills work perfectly. The length of the derailleur, I picked a bit at random. Worth noting I am using a bottom-tube lever without indexing so I can pick a MTB derailleur without problem. Switching gear is done with some <em>feeling</em>, without precise intervals.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="signal-2023-04-29-15-44-56-450.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3" title="Sora/Deore derailleur"><img src="signal-2023-04-29-15-44-56-450.jpg" height="300" alt="Sora/Deore derailleur" class="figure-img"></a></p>
+<figcaption>Sora/Deore derailleur</figcaption>
+</figure>
+</div>
+</section>
+<section id="cassette-and-chain" class="level3">
+<h3 class="anchored" data-anchor-id="cassette-and-chain">Cassette and chain</h3>
+<p>Chain was a KMC, recommended by the usual Danish friend[^1].</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="signal-2023-04-29-16-06-19-997.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4" title="Cassette, old and new"><img src="signal-2023-04-29-16-06-19-997.jpg" height="300" alt="Cassette, old and new" class="figure-img"></a></p>
+<figcaption>Cassette, old and new</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="rear-brake" class="level2">
+<h2 class="anchored" data-anchor-id="rear-brake">Rear Brake</h2>
+<p>The front brake will come later, installing the 105 was almost identical as the Sora, except the obvious quality differences as seen on the picture. Manipulating the spring and its tension also shows how cheap the Sora is.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="signal-2023-04-29-15-02-31-005.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="Sora/105 caliper"><img src="signal-2023-04-29-15-02-31-005.jpg" height="300" alt="Sora/105 caliper" class="figure-img"></a></p>
+<figcaption>Sora/105 caliper</figcaption>
+</figure>
+</div>
+<section id="tires" class="level3">
+<h3 class="anchored" data-anchor-id="tires">Tires</h3>
+<p>Listening to some advice online, I tried the <strong>Continental 4 seasons</strong>. Very disappointing product that last actually 8 seasons. Expensive, I got multiple punctures, not great stuff. Pros were:</p>
+<ul>
+<li>Easy to un/mount (luckily with the numerous punctures)</li>
+<li>Safe under rain condition</li>
+</ul>
+<p>Now using <strong>GP5000</strong> and the first winter proved them to be safe, efficient and I got <strong>zero</strong> puncture.</p>
+</section>
+</section>
+<section id="final-result-for-now" class="level2">
+<h2 class="anchored" data-anchor-id="final-result-for-now">Final result (for now)</h2>
+<p><a href="IMG_20230430_101157.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="IMG_20230430_101157.jpg" height="300"></a></p>
+<p>[^1]. Of note, the KMC chain did a great job. Lasted one year but a rough winter season. Got worn up to 60%.</p>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-2">New SRAM chainring</span>
+<span class="glightbox-desc lightbox-desc-3">Sora/Deore derailleur</span>
+<span class="glightbox-desc lightbox-desc-4">Cassette, old and new</span>
+<span class="glightbox-desc lightbox-desc-5">Sora/105 caliper</span>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -739,7 +763,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -490,25 +490,39 @@
     "text": "Conclusion\nReading help pages help!"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ginolhac’s blog",
+    "objectID": "posts/2023-03-06_vertical-faceting/index.html",
+    "href": "posts/2023-03-06_vertical-faceting/index.html",
+    "title": "Vertical faceting",
     "section": "",
-    "text": "Denmark, ginolhac\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCreating modules with Easybuild \n\n\n\n\n\n\nlinux\n\n\nHPC\n\n\n\nGetting rid of conda/mamba/venv\n\n\n\n\n\nMar 25, 2024\n\n\n9 min\n\n\n\n\n\n\n\n\n\n\n\n\nInstalling LineageOS on an OnePlus \n\n\n\n\n\n\nlinux\n\n\nDIY\n\n\n\nMoving to an ungoogled-ROM\n\n\n\n\n\nJan 18, 2024\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nr2u for faster continuous integration\n\n\n\n\n\n\nR\n\n\nCI/CD\n\n\n\n\n\n\n\n\n\nJan 9, 2024\n\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\n\nExtract substrings from characters\n\n\n\n\n\n\nbioinfo\n\n\nR\n\n\n\n\n\n\n\n\n\nNov 27, 2023\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nInstalling LineageOS on an old  S5\n\n\n\n\n\n\nlinux\n\n\nDIY\n\n\n\nFlashing an ungoogled-ROM\n\n\n\n\n\nNov 14, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\n Maps Games\n\n\n\n\n\n\nbike\n\n\n\nIncentive to explore new places \n\n\n\n\n\nOct 9, 2023\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nResume long parallel jobs\n\n\n\n\n\n\nhpc\n\n\nbioinfo\n\n\n\n\n\n\n\n\n\nOct 2, 2023\n\n\n11 min\n\n\n\n\n\n\n\n\n\n\n\n\nDeploying  and  packages\n\n\n\n\n\n\npython\n\n\nR\n\n\nCI/CD\n\n\n\nwith  Gitlab Continuous Integration\n\n\n\n\n\nSep 14, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nInstall Archlinux\n\n\n\n\n\n\nlinux\n\n\n\nMoving away from Ubuntu\n\n\n\n\n\nSep 11, 2023\n\n\n10 min\n\n\n\n\n\n\n\n\n\n\n\n\nTesting Snakemake template\n\n\n\n\n\n\npython\n\n\nworkflow managers\n\n\nCI/CD\n\n\n\nusing Gitlab Continuous Integration\n\n\n\n\n\nSep 7, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nStarting to learn Rust\n\n\n\n\n\n\nRust\n\n\n\nTrimming UMI\n\n\n\n\n\nAug 17, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nSame dot sizes\n\n\n\n\n\n\nR\n\n\ndataviz\n\n\n\n\n\n\n\n\n\nMay 17, 2023\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nVertical faceting\n\n\n\n\n\n\nR\n\n\ndataviz\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nCrop Circles\n\n\n\n\n\n\nR\n\n\npackages\n\n\n\n\n\n\n\n\n\nFeb 20, 2023\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\n{targets} demos\n\n\n\n\n\n\nR\n\n\nworkflow managers\n\n\npackages\n\n\n\nA marvelous workflow manager for \n\n\n\n\n\nFeb 5, 2023\n\n\n15 min\n\n\n\n\n\n\n\n\n\n\n\n\n Rebuilding the Ventoux, part 2\n\n\n\n\n\n\nbike\n\n\nDIY\n\n\n\nReplacing the bottom bracket and more\n\n\n\n\n\nJul 14, 2020\n\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\n\n Rebuilding the Ventoux, part 1\n\n\n\n\n\n\nbike\n\n\nDIY\n\n\n\nLock-down project: learning basic bike mechanics\n\n\n\n\n\nApr 17, 2020\n\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\n\nLaTex modern CV\n\n\n\n\n\n\nacademia\n\n\n\nHow to setup latex using tinytex\n\n\n\n\n\nMar 26, 2018\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nhome surveillance monitored via telegram\n\n\n\n\n\n\nPython\n\n\nDIY\n\n\nRasPI\n\n\n\nusing telepot and the NoIR camera\n\n\n\n\n\nJan 27, 2018\n\n\n10 min\n\n\n\n\n\n\n\n\n\n\n\n\ntweening a Poisson distribution\n\n\n\n\n\n\nR\n\n\nanimation\n\n\n\nusing tweenr and ggplot2\n\n\n\n\n\nDec 8, 2016\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nteething\n\n\n\n\n\n\nR\n\n\nanimation\n\n\n\nCompare teething for two kids\n\n\n\n\n\nJul 31, 2016\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nwinter is coming\n\n\n\n\n\n\nbike\n\n\n\nsnow on bike\n\n\n\n\n\nJan 25, 2015\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "The question is: how can we plot one variable for faceting vertically?\nAnd bonus, since we want through time the plot of very different measurements, we must have a free y-scale."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Github\n  \n  \n    \n     Mastodon\n  \n\n      \n\n\nI am working at the University of Luxembourg; in the Departement of Life Sciences and Medecine, providing services to the researchers.\n— Acknowledgment provided by acknowledge-the-climate-crisis.org\nImage of the 🌏 🌡️ 1850-2023 from ShowYourStripes"
+    "objectID": "posts/2023-03-06_vertical-faceting/index.html#tldr",
+    "href": "posts/2023-03-06_vertical-faceting/index.html#tldr",
+    "title": "Vertical faceting",
+    "section": "TL;DR",
+    "text": "TL;DR\nUse either:\n\nThe dir = \"v\" argument of facet_wrap()\nThe rows = vars(variable) argument of facet_grid()"
   },
   {
-    "objectID": "about.html#licence",
-    "href": "about.html#licence",
-    "title": "About",
-    "section": "Licence",
-    "text": "Licence\n  This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License except for the borrowed and mentioned with proper source: statements."
+    "objectID": "posts/2023-03-06_vertical-faceting/index.html#demo",
+    "href": "posts/2023-03-06_vertical-faceting/index.html#demo",
+    "title": "Vertical faceting",
+    "section": "Demo",
+    "text": "Demo\nWe will use a file from the Aranet4 sensor using the mobile app provided by the company. This sensor measures 4 parameters every 2 to 10 minutes which are:\n\nCO2, using the infrared absorption property of greenhouse gases like carbon dioxide.\nTemperature in Celsius degrees.\nRelative humidity (in %).\nAtmospheric pressure in _h Pa_. This latter variable is exported but displayed on the device, we will skip it.\n\nThe CO2 measurement is performed as follows (from the user manual):\n\n\n\nCO2 aranet\n\n\nAccording to the file extension, it is a comma-separated values. But if you look at the file with a text editor, you will see that values are surrounded by double quotes and number are using commas for decimal separator. Moreover, the dates are not in a standard format unfortunately. But it is a real life example data.\nreadr will detect the double quotes and deal with it automatically but the other issues needs to be fixed:\n\nFor the Time(dd/mm/yyyy) column, the datetime format is specified.\nFor the number decimals as commas, you need to set the locale to locale(decimal_mark = \",\")\nSkip the last column (Atmospheric Pressure) as we won’t plot it.\n\n\naranet &lt;- read_csv(\"https://biostat2.uni.lu/practicals/data/Gino_2022-08-14T22_53_06+0200.csv\",\n                   col_types = cols(`Time(dd/mm/yyyy)` = col_datetime(format = \"%d/%m/%Y %H:%M:%S\")),\n                   locale = locale(decimal_mark = \",\"),\n                   col_select = -`Atmospheric pressure(hPa)`) |&gt; \n  rename(Time = `Time(dd/mm/yyyy)`)\naranet\n\n# A tibble: 4,033 × 4\n   Time                `Carbon dioxide(ppm)` `Temperature(°C)`\n   &lt;dttm&gt;                              &lt;dbl&gt;             &lt;dbl&gt;\n 1 2022-07-31 22:53:43                   457              24  \n 2 2022-07-31 22:58:43                   444              24.1\n 3 2022-07-31 23:03:43                   457              24  \n 4 2022-07-31 23:08:43                   444              24  \n 5 2022-07-31 23:13:43                   445              24  \n 6 2022-07-31 23:18:43                   454              24.1\n 7 2022-07-31 23:23:43                   432              24.1\n 8 2022-07-31 23:28:43                   442              24.1\n 9 2022-07-31 23:33:43                   469              24  \n10 2022-07-31 23:38:43                   455              24  \n# ℹ 4,023 more rows\n# ℹ 1 more variable: `Relative humidity(%)` &lt;dbl&gt;"
+  },
+  {
+    "objectID": "posts/2023-03-06_vertical-faceting/index.html#reshape-the-variables-in-the-long-format",
+    "href": "posts/2023-03-06_vertical-faceting/index.html#reshape-the-variables-in-the-long-format",
+    "title": "Vertical faceting",
+    "section": "Reshape the variables in the long format",
+    "text": "Reshape the variables in the long format\n\naranet |&gt;\n  pivot_longer(cols = -Time,\n               names_to = \"measure\",\n               values_to = \"value\") -&gt; aranet_long\naranet_long\n\n# A tibble: 12,099 × 3\n   Time                measure              value\n   &lt;dttm&gt;              &lt;chr&gt;                &lt;dbl&gt;\n 1 2022-07-31 22:53:43 Carbon dioxide(ppm)  457  \n 2 2022-07-31 22:53:43 Temperature(°C)       24  \n 3 2022-07-31 22:53:43 Relative humidity(%)  49  \n 4 2022-07-31 22:58:43 Carbon dioxide(ppm)  444  \n 5 2022-07-31 22:58:43 Temperature(°C)       24.1\n 6 2022-07-31 22:58:43 Relative humidity(%)  49  \n 7 2022-07-31 23:03:43 Carbon dioxide(ppm)  457  \n 8 2022-07-31 23:03:43 Temperature(°C)       24  \n 9 2022-07-31 23:03:43 Relative humidity(%)  49  \n10 2022-07-31 23:08:43 Carbon dioxide(ppm)  444  \n# ℹ 12,089 more rows"
+  },
+  {
+    "objectID": "posts/2023-03-06_vertical-faceting/index.html#plot-the-values-per-time-and-facet-per-measurement",
+    "href": "posts/2023-03-06_vertical-faceting/index.html#plot-the-values-per-time-and-facet-per-measurement",
+    "title": "Vertical faceting",
+    "section": "Plot the values per Time and facet per measurement",
+    "text": "Plot the values per Time and facet per measurement\nMeasurement are one of the 3 variables: CO2 ppm, Temp and Relative Humidity.\nIn the facet command, you should free the y-axis with scales = \"free_y\"\nWe want variables in rows. Either facet_wrap() dir argument or facet_grid() rows = do the job.\n\nfacet_wrap() solution\nThe key part is to change the dir argument for vertical\n\nggplot(aranet_long, aes(x = Time, y = value)) +\n  geom_line() +\n  facet_wrap(vars(measure), scales = \"free_y\",\n             # panel titles next to the y axis\n             strip.position = \"bottom\", # use left for mimicking facet_grid below\n             dir = \"v\") +\n  scale_x_datetime(breaks = scales::date_breaks(\"1 day\"),\n                   date_labels = \"%b %d\") +\n  labs(x = NULL, y = NULL) +\n  theme_minimal(14)\n\n\n\n\n\n\n\n\n\n\nfacet_grid() solution\nfaacet_grid() is designed for two variables faceting, but we can omit one.\nThe key part is to use only the `rows`` argument for vertical panels.\n\nggplot(aranet_long, aes(x = Time, y = value)) +\n  geom_line() +\n  facet_grid(rows = vars(measure), scales = \"free_y\",\n             # panel titles next to the y axis\n             switch = \"y\") +\n  scale_x_datetime(breaks = scales::date_breaks(\"1 day\"),\n                   date_labels = \"%b %d\") +\n  labs(x = NULL, y = NULL) +\n  theme_minimal(14)"
   },
   {
     "objectID": "karate/index.html",
@@ -581,39 +595,67 @@
     "text": "Karate (1995)\n\n\n\n\nSong\nAuthor\n\n\n\n\nIf You Can Hold Your Breath\nPete DeStefano\n\n\nEvery Sister\nPhilip Tanimura\n\n\nCaffeine or Me?\nPhilip Tanimura"
   },
   {
-    "objectID": "posts/2023-03-06_vertical-faceting/index.html",
-    "href": "posts/2023-03-06_vertical-faceting/index.html",
-    "title": "Vertical faceting",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "The question is: how can we plot one variable for faceting vertically?\nAnd bonus, since we want through time the plot of very different measurements, we must have a free y-scale."
+    "text": "Github\n  \n  \n    \n     Mastodon\n  \n\n      \n\n\nI am working at the University of Luxembourg; in the Departement of Life Sciences and Medecine, providing services to the researchers.\n— Acknowledgment provided by acknowledge-the-climate-crisis.org\nImage of the 🌏 🌡️ 1850-2023 from ShowYourStripes"
   },
   {
-    "objectID": "posts/2023-03-06_vertical-faceting/index.html#tldr",
-    "href": "posts/2023-03-06_vertical-faceting/index.html#tldr",
-    "title": "Vertical faceting",
-    "section": "TL;DR",
-    "text": "TL;DR\nUse either:\n\nThe dir = \"v\" argument of facet_wrap()\nThe rows = vars(variable) argument of facet_grid()"
+    "objectID": "about.html#licence",
+    "href": "about.html#licence",
+    "title": "About",
+    "section": "Licence",
+    "text": "Licence\n  This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License except for the borrowed and mentioned with proper source: statements."
   },
   {
-    "objectID": "posts/2023-03-06_vertical-faceting/index.html#demo",
-    "href": "posts/2023-03-06_vertical-faceting/index.html#demo",
-    "title": "Vertical faceting",
-    "section": "Demo",
-    "text": "Demo\nWe will use a file from the Aranet4 sensor using the mobile app provided by the company. This sensor measures 4 parameters every 2 to 10 minutes which are:\n\nCO2, using the infrared absorption property of greenhouse gases like carbon dioxide.\nTemperature in Celsius degrees.\nRelative humidity (in %).\nAtmospheric pressure in _h Pa_. This latter variable is exported but displayed on the device, we will skip it.\n\nThe CO2 measurement is performed as follows (from the user manual):\n\n\n\nCO2 aranet\n\n\nAccording to the file extension, it is a comma-separated values. But if you look at the file with a text editor, you will see that values are surrounded by double quotes and number are using commas for decimal separator. Moreover, the dates are not in a standard format unfortunately. But it is a real life example data.\nreadr will detect the double quotes and deal with it automatically but the other issues needs to be fixed:\n\nFor the Time(dd/mm/yyyy) column, the datetime format is specified.\nFor the number decimals as commas, you need to set the locale to locale(decimal_mark = \",\")\nSkip the last column (Atmospheric Pressure) as we won’t plot it.\n\n\naranet &lt;- read_csv(\"https://biostat2.uni.lu/practicals/data/Gino_2022-08-14T22_53_06+0200.csv\",\n                   col_types = cols(`Time(dd/mm/yyyy)` = col_datetime(format = \"%d/%m/%Y %H:%M:%S\")),\n                   locale = locale(decimal_mark = \",\"),\n                   col_select = -`Atmospheric pressure(hPa)`) |&gt; \n  rename(Time = `Time(dd/mm/yyyy)`)\naranet\n\n# A tibble: 4,033 × 4\n   Time                `Carbon dioxide(ppm)` `Temperature(°C)`\n   &lt;dttm&gt;                              &lt;dbl&gt;             &lt;dbl&gt;\n 1 2022-07-31 22:53:43                   457              24  \n 2 2022-07-31 22:58:43                   444              24.1\n 3 2022-07-31 23:03:43                   457              24  \n 4 2022-07-31 23:08:43                   444              24  \n 5 2022-07-31 23:13:43                   445              24  \n 6 2022-07-31 23:18:43                   454              24.1\n 7 2022-07-31 23:23:43                   432              24.1\n 8 2022-07-31 23:28:43                   442              24.1\n 9 2022-07-31 23:33:43                   469              24  \n10 2022-07-31 23:38:43                   455              24  \n# ℹ 4,023 more rows\n# ℹ 1 more variable: `Relative humidity(%)` &lt;dbl&gt;"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ginolhac’s blog",
+    "section": "",
+    "text": "Denmark, ginolhac\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCreating modules with Easybuild \n\n\n\n\n\n\nlinux\n\n\nHPC\n\n\n\nGetting rid of conda/mamba/venv\n\n\n\n\n\nMar 25, 2024\n\n\n9 min\n\n\n\n\n\n\n\n\n\n\n\n\nInstalling LineageOS on an OnePlus \n\n\n\n\n\n\nlinux\n\n\nDIY\n\n\n\nMoving to an ungoogled-ROM\n\n\n\n\n\nJan 18, 2024\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nr2u for faster continuous integration\n\n\n\n\n\n\nR\n\n\nCI/CD\n\n\n\n\n\n\n\n\n\nJan 9, 2024\n\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\n\nExtract substrings from characters\n\n\n\n\n\n\nbioinfo\n\n\nR\n\n\n\n\n\n\n\n\n\nNov 27, 2023\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nInstalling LineageOS on an old  S5\n\n\n\n\n\n\nlinux\n\n\nDIY\n\n\n\nFlashing an ungoogled-ROM\n\n\n\n\n\nNov 14, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\n Maps Games\n\n\n\n\n\n\nbike\n\n\n\nIncentive to explore new places \n\n\n\n\n\nOct 9, 2023\n\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\n\nResume long parallel jobs\n\n\n\n\n\n\nhpc\n\n\nbioinfo\n\n\n\n\n\n\n\n\n\nOct 2, 2023\n\n\n11 min\n\n\n\n\n\n\n\n\n\n\n\n\nDeploying  and  packages\n\n\n\n\n\n\npython\n\n\nR\n\n\nCI/CD\n\n\n\nwith  Gitlab Continuous Integration\n\n\n\n\n\nSep 14, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nInstall Archlinux\n\n\n\n\n\n\nlinux\n\n\n\nMoving away from Ubuntu\n\n\n\n\n\nSep 11, 2023\n\n\n10 min\n\n\n\n\n\n\n\n\n\n\n\n\nTesting Snakemake template\n\n\n\n\n\n\npython\n\n\nworkflow managers\n\n\nCI/CD\n\n\n\nusing Gitlab Continuous Integration\n\n\n\n\n\nSep 7, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nStarting to learn Rust\n\n\n\n\n\n\nRust\n\n\n\nTrimming UMI\n\n\n\n\n\nAug 17, 2023\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nSame dot sizes\n\n\n\n\n\n\nR\n\n\ndataviz\n\n\n\n\n\n\n\n\n\nMay 17, 2023\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\n Maintenance on the Ventoux, part 3\n\n\n\n\n\n\nbike\n\n\nDIY\n\n\n\nReplacing for better parts\n\n\n\n\n\nApr 29, 2023\n\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\n\nVertical faceting\n\n\n\n\n\n\nR\n\n\ndataviz\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\n\nCrop Circles\n\n\n\n\n\n\nR\n\n\npackages\n\n\n\n\n\n\n\n\n\nFeb 20, 2023\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\n{targets} demos\n\n\n\n\n\n\nR\n\n\nworkflow managers\n\n\npackages\n\n\n\nA marvelous workflow manager for \n\n\n\n\n\nFeb 5, 2023\n\n\n15 min\n\n\n\n\n\n\n\n\n\n\n\n\n Rebuilding the Ventoux, part 2\n\n\n\n\n\n\nbike\n\n\nDIY\n\n\n\nReplacing the bottom bracket and more\n\n\n\n\n\nJul 14, 2020\n\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\n\n Rebuilding the Ventoux, part 1\n\n\n\n\n\n\nbike\n\n\nDIY\n\n\n\nLock-down project: learning basic bike mechanics\n\n\n\n\n\nApr 17, 2020\n\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\n\nLaTex modern CV\n\n\n\n\n\n\nacademia\n\n\n\nHow to setup latex using tinytex\n\n\n\n\n\nMar 26, 2018\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nhome surveillance monitored via telegram\n\n\n\n\n\n\nPython\n\n\nDIY\n\n\nRasPI\n\n\n\nusing telepot and the NoIR camera\n\n\n\n\n\nJan 27, 2018\n\n\n10 min\n\n\n\n\n\n\n\n\n\n\n\n\ntweening a Poisson distribution\n\n\n\n\n\n\nR\n\n\nanimation\n\n\n\nusing tweenr and ggplot2\n\n\n\n\n\nDec 8, 2016\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nteething\n\n\n\n\n\n\nR\n\n\nanimation\n\n\n\nCompare teething for two kids\n\n\n\n\n\nJul 31, 2016\n\n\n5 min\n\n\n\n\n\n\n\n\n\n\n\n\nwinter is coming\n\n\n\n\n\n\nbike\n\n\n\nsnow on bike\n\n\n\n\n\nJan 25, 2015\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/2023-03-06_vertical-faceting/index.html#reshape-the-variables-in-the-long-format",
-    "href": "posts/2023-03-06_vertical-faceting/index.html#reshape-the-variables-in-the-long-format",
-    "title": "Vertical faceting",
-    "section": "Reshape the variables in the long format",
-    "text": "Reshape the variables in the long format\n\naranet |&gt;\n  pivot_longer(cols = -Time,\n               names_to = \"measure\",\n               values_to = \"value\") -&gt; aranet_long\naranet_long\n\n# A tibble: 12,099 × 3\n   Time                measure              value\n   &lt;dttm&gt;              &lt;chr&gt;                &lt;dbl&gt;\n 1 2022-07-31 22:53:43 Carbon dioxide(ppm)  457  \n 2 2022-07-31 22:53:43 Temperature(°C)       24  \n 3 2022-07-31 22:53:43 Relative humidity(%)  49  \n 4 2022-07-31 22:58:43 Carbon dioxide(ppm)  444  \n 5 2022-07-31 22:58:43 Temperature(°C)       24.1\n 6 2022-07-31 22:58:43 Relative humidity(%)  49  \n 7 2022-07-31 23:03:43 Carbon dioxide(ppm)  457  \n 8 2022-07-31 23:03:43 Temperature(°C)       24  \n 9 2022-07-31 23:03:43 Relative humidity(%)  49  \n10 2022-07-31 23:08:43 Carbon dioxide(ppm)  444  \n# ℹ 12,089 more rows"
+    "objectID": "posts/2023-04-29_ventoux-3/index.html",
+    "href": "posts/2023-04-29_ventoux-3/index.html",
+    "title": " Maintenance on the Ventoux, part 3",
+    "section": "",
+    "text": "After some years, the bike is really a good commuter and brings much joy. However, like every machine it needs maintenance. And this offers chances for better spare items. Especially, the Sora series from Shimano is cheap but show some clear weaknesses to cold, salt and water. They got rusty and not so pleasant to use, so today we need better:\nLike my famous Danish friend, who I quote frequently, says:\nI must mention, he actually uses a SRAM derailleur, but let’s say he is right, the 105 are very nice products. I know them from my gravel and several years later they do work nicely."
   },
   {
-    "objectID": "posts/2023-03-06_vertical-faceting/index.html#plot-the-values-per-time-and-facet-per-measurement",
-    "href": "posts/2023-03-06_vertical-faceting/index.html#plot-the-values-per-time-and-facet-per-measurement",
-    "title": "Vertical faceting",
-    "section": "Plot the values per Time and facet per measurement",
-    "text": "Plot the values per Time and facet per measurement\nMeasurement are one of the 3 variables: CO2 ppm, Temp and Relative Humidity.\nIn the facet command, you should free the y-axis with scales = \"free_y\"\nWe want variables in rows. Either facet_wrap() dir argument or facet_grid() rows = do the job.\n\nfacet_wrap() solution\nThe key part is to change the dir argument for vertical\n\nggplot(aranet_long, aes(x = Time, y = value)) +\n  geom_line() +\n  facet_wrap(vars(measure), scales = \"free_y\",\n             # panel titles next to the y axis\n             strip.position = \"bottom\", # use left for mimicking facet_grid below\n             dir = \"v\") +\n  scale_x_datetime(breaks = scales::date_breaks(\"1 day\"),\n                   date_labels = \"%b %d\") +\n  labs(x = NULL, y = NULL) +\n  theme_minimal(14)\n\n\n\n\n\n\n\n\n\n\nfacet_grid() solution\nfaacet_grid() is designed for two variables faceting, but we can omit one.\nThe key part is to use only the `rows`` argument for vertical panels.\n\nggplot(aranet_long, aes(x = Time, y = value)) +\n  geom_line() +\n  facet_grid(rows = vars(measure), scales = \"free_y\",\n             # panel titles next to the y axis\n             switch = \"y\") +\n  scale_x_datetime(breaks = scales::date_breaks(\"1 day\"),\n                   date_labels = \"%b %d\") +\n  labs(x = NULL, y = NULL) +\n  theme_minimal(14)"
+    "objectID": "posts/2023-04-29_ventoux-3/index.html#ordering",
+    "href": "posts/2023-04-29_ventoux-3/index.html#ordering",
+    "title": " Maintenance on the Ventoux, part 3",
+    "section": "Ordering",
+    "text": "Ordering\n\nbike24.de Order March 2023\n\n\n\n\n\n\n\n\nQty\nItem No.\nDescription\nPrice\n\n\n\n\n1\nSHI371053\nShimano 105 BR-R7000 Brake Caliper - rear\n38.98 EUR\n\n\n1\nSSP527134\nShimano Road Shift Cable Set - Stainless Steel\n9.74 EUR\n\n\n1\nSSP526727\nShimano Brake Cable Set Road Stainless Steel\n11.69 EUR\n\n\n1\nSRA131571\nSRAM PowerGlide Chainring 130mm - 39 teeth\n16.56 EUR\n\n\n1\nSHI196481\nShimano CS-HG400-9 Cassette 9-speed, Ratio/teeth: 11-25\n24.36 EUR\n\n\n1\nKMC107578\nKMC X9 Chain - 9-speed - silver/grey\n14.61 EUR\n\n\n1\nSHI111662\nShimano Deore RD-M592-SGS Shadow Rear\n38.98 EUR"
+  },
+  {
+    "objectID": "posts/2023-04-29_ventoux-3/index.html#receiving-parcel",
+    "href": "posts/2023-04-29_ventoux-3/index.html#receiving-parcel",
+    "title": " Maintenance on the Ventoux, part 3",
+    "section": "Receiving parcel",
+    "text": "Receiving parcel"
+  },
+  {
+    "objectID": "posts/2023-04-29_ventoux-3/index.html#transmission",
+    "href": "posts/2023-04-29_ventoux-3/index.html#transmission",
+    "title": " Maintenance on the Ventoux, part 3",
+    "section": "Transmission",
+    "text": "Transmission\nLet’s change everything in the transmission to start on fresh good basis.\n\nChainring\nSince SRAM and Shimano are compatible, I give a try to SRAM for the chainring. Looks light and neat.\n\n\n\nNew SRAM chainring\n\n\n\n\nRear derailleur\nDerailleur, I didn’t know what to get, I went for the Deore as I did 8,000 km with it on another bike and it stills work perfectly. The length of the derailleur, I picked a bit at random. Worth noting I am using a bottom-tube lever without indexing so I can pick a MTB derailleur without problem. Switching gear is done with some feeling, without precise intervals.\n\n\n\nSora/Deore derailleur\n\n\n\n\nCassette and chain\nChain was a KMC, recommended by the usual Danish friend[^1].\n\n\n\nCassette, old and new"
+  },
+  {
+    "objectID": "posts/2023-04-29_ventoux-3/index.html#rear-brake",
+    "href": "posts/2023-04-29_ventoux-3/index.html#rear-brake",
+    "title": " Maintenance on the Ventoux, part 3",
+    "section": "Rear Brake",
+    "text": "Rear Brake\nThe front brake will come later, installing the 105 was almost identical as the Sora, except the obvious quality differences as seen on the picture. Manipulating the spring and its tension also shows how cheap the Sora is.\n\n\n\nSora/105 caliper\n\n\n\nTires\nListening to some advice online, I tried the Continental 4 seasons. Very disappointing product that last actually 8 seasons. Expensive, I got multiple punctures, not great stuff. Pros were:\n\nEasy to un/mount (luckily with the numerous punctures)\nSafe under rain condition\n\nNow using GP5000 and the first winter proved them to be safe, efficient and I got zero puncture."
+  },
+  {
+    "objectID": "posts/2023-04-29_ventoux-3/index.html#final-result-for-now",
+    "href": "posts/2023-04-29_ventoux-3/index.html#final-result-for-now",
+    "title": " Maintenance on the Ventoux, part 3",
+    "section": "Final result (for now)",
+    "text": "Final result (for now)\n\n[^1]. Of note, the KMC chain did a great job. Lasted one year but a rough winter season. Got worn up to 60%.\n\n\n\nNew SRAM chainring\nSora/Deore derailleur\nCassette, old and new\nSora/105 caliper"
   },
   {
     "objectID": "posts/2023-02-05_targets-demos/index.html",
