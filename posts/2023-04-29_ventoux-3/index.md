@@ -10,6 +10,18 @@ categories:
   - DIY
 ---
 
+::: {.callout-note}
+
+## Post series
+
+This post belongs to a series about the **Ventoux**:
+
+- [Maintenance 1](../2020-04-27_ventoux-1/index.html) on the 2020-04-27
+- [Maintenance 2](../2020-07-14_ventoux-2/index.html) on the 2020-07-14
+- [Maintenance 3](index.html) this post
+
+:::
+
 After some years, the bike is really a good commuter and brings much joy.
 However, like every machine it needs maintenance. And this offers chances for better spare items.
 Especially, the **Sora** series from Shimano is cheap but show some clear weaknesses to cold, salt and water.

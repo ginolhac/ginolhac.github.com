@@ -10,6 +10,18 @@ categories:
   - DIY
 ---
 
+::: {.callout-note}
+
+## Post series
+
+This post belongs to a series about the **Ventoux**:
+
+- [Maintenance 1](../2020-04-27_ventoux-1/index.html) on the 2020-04-27
+- [Maintenance 2](index.html) this post
+- [Maintenance 3](../2023-04-29_ventoux-3/index.html) on the 2023-04-29
+
+:::
+
 # Issues arising
 
 ## The bottom bracket

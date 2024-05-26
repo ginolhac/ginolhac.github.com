@@ -9,6 +9,18 @@ categories:
   - DIY
 ---
 
+::: {.callout-note}
+
+## Post series
+
+This post belongs to a series about the **Ventoux**:
+
+- [Maintenance 1](index.html) this post
+- [Maintenance 2](../2020-07-14_ventoux-2/index.html) on the 2020-07-14
+- [Maintenance 3](../2023-04-29_ventoux-3/index.html) on the 2023-04-29
+
+:::
+
 Many people started a project during the lock-downs due to covid-19
 pandemic. In Luxembourg, we got only one and it triggered my long due
 bike project. I had two goals, 1) learn basic bike mechanics 2) restore
