@@ -21,7 +21,7 @@ During one teaching class, one student had a **Lenovo Carbon X1** and while help
 and liked it a lot. The not shiny screen looked good and 14 inches is an ideal compromise.
 Turns out it is also quite compact and weight less than the XPS13!
 
-I ordered high specs and with Ubuntu to be sure components worked nicely. Especially some webcam model is not supported [as reported before](https://wiki.archlinux.org/title/Talk:Lenovo_ThinkPad_X1_Carbon_(Gen_12). The screen is LED 1920x1200 which is just fine for work.
+I ordered high specs and with Ubuntu to be sure components worked nicely. Especially some webcam model is not supported [as reported before](https://wiki.archlinux.org/title/Talk:Lenovo_ThinkPad_X1_Carbon_(Gen_12)). The screen is LED 1920x1200 which is just fine for work.
 
 
 ## Install Arch Linux
