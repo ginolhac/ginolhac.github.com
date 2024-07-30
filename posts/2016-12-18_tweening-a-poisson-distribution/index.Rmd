@@ -2,7 +2,7 @@
 title: "tweening a Poisson distribution"
 author: "Aurélien Ginolhac"
 date: "2016-12-08"
-slug: tweening a Poisson distribution
+image: poisson.gif
 execute: 
   freeze: true
 description: "using tweenr and ggplot2"
@@ -39,4 +39,4 @@ gganimate(p, title_frame = FALSE, ani.width = 600, ani.height = 450, interval = 
 ```
 
 
-![](/images/poisson.gif)
+![](poisson.gif)

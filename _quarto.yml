@@ -1,8 +1,7 @@
 project:
   type: website
   render:
-    - "*.qmd"
-    - "*.md"
+    - "*md"
     - "!drafts/"
 
 website:

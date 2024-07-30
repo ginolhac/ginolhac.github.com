@@ -17,7 +17,10 @@ Imports:
   knitr,
   ragg,
   rmarkdown,
-  tidyverse
+  dplyr,
+  readr,
+  ggplot2,
+  tidyr
 Encoding: UTF-8
 Language: en-US
 RoxygenNote: 7.2.3

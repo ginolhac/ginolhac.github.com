@@ -10,7 +10,10 @@ categories: [R, dataviz]
 
 ```{r}
 #| include: false
-library(tidyverse)
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
 ```
 
 
