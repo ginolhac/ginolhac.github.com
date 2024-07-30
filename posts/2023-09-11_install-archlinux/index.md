@@ -56,9 +56,11 @@ To expand on point 2-4, during lock-downs, sharing screen through the madness of
 For point 5. for example {{< fa brands r-project >}} version `4.3.0` was released in [April 2023](https://cran.r-project.org/bin/windows/base/old/). Using _Ubuntu_ version _dev_ `23.10` in September 2023  I was still stuck with {{< fa brands r-project >}} `4.2.2` from October 2022.
 I know I could set up `ppa` repository of some users but with `snap` it became all too far from the great `apt` system I enjoyed for long.
 
-Turns out I need a [rolling release](https://en.wikipedia.org/wiki/Rolling_release) ditribution.
+Turns out I need a [rolling release](https://en.wikipedia.org/wiki/Rolling_release) distribution.
 
 ## Archlinux
+
+**I since installed Arch on a new machine, see updated [post](../2024-07-29_x1-archlinux/)**
 
 ### The `pkg.tar.xz` world
 
