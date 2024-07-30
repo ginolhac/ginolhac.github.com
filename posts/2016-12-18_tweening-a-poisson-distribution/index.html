@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aurélien Ginolhac">
-<meta name="dcterms.date" content="2020-07-14">
-<meta name="description" content="Replacing the bottom bracket and more">
+<meta name="dcterms.date" content="2016-12-08">
+<meta name="description" content="using tweenr and ggplot2">
 
-<title> Rebuilding the Ventoux, part 2</title>
+<title>tweening a Poisson distribution</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -42,13 +76,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
-<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -123,15 +179,15 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title"><i class="fa-solid fa-bicycle" aria-label="bicycle"></i> Rebuilding the Ventoux, part 2</h1>
+      <h1 class="title">tweening a Poisson distribution</h1>
                   <div>
         <div class="description">
-          Replacing the bottom bracket and more
+          using tweenr and ggplot2
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">bike</div>
-                <div class="quarto-category">DIY</div>
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">animation</div>
               </div>
                   </div>
   </div>
@@ -149,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 14, 2020</p>
+        <p class="date">December 8, 2016</p>
       </div>
     </div>
     
@@ -165,228 +221,44 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#issues-arising" id="toc-issues-arising" class="nav-link active" data-scroll-target="#issues-arising">Issues arising</a>
-  <ul class="collapse">
-  <li><a href="#the-bottom-bracket" id="toc-the-bottom-bracket" class="nav-link" data-scroll-target="#the-bottom-bracket">The bottom bracket</a></li>
-  <li><a href="#chainring-and-derailleur" id="toc-chainring-and-derailleur" class="nav-link" data-scroll-target="#chainring-and-derailleur">Chainring and derailleur</a></li>
-  <li><a href="#handle-bar-and-tape" id="toc-handle-bar-and-tape" class="nav-link" data-scroll-target="#handle-bar-and-tape">Handle bar and tape</a>
-  <ul class="collapse">
-  <li><a href="#installing-a-new-transmission" id="toc-installing-a-new-transmission" class="nav-link" data-scroll-target="#installing-a-new-transmission">Installing a new transmission</a></li>
-  <li><a href="#note-about-the-front-derailleur" id="toc-note-about-the-front-derailleur" class="nav-link" data-scroll-target="#note-about-the-front-derailleur">Note about the front derailleur</a></li>
-  </ul></li>
-  <li><a href="#got-the-bottom-bracket-out" id="toc-got-the-bottom-bracket-out" class="nav-link" data-scroll-target="#got-the-bottom-bracket-out">Got the bottom bracket out!</a>
-  <ul class="collapse">
-  <li><a href="#the-homemade-bb-tool" id="toc-the-homemade-bb-tool" class="nav-link" data-scroll-target="#the-homemade-bb-tool">The homemade BB tool</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#outcome" id="toc-outcome" class="nav-link" data-scroll-target="#outcome">Outcome</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#with-gganimate-and-tweenr" id="toc-with-gganimate-and-tweenr" class="nav-link active" data-scroll-target="#with-gganimate-and-tweenr">with gganimate and tweenr</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="with-gganimate-and-tweenr" class="level1">
+<h1>with gganimate and tweenr</h1>
+<p>using <span class="math inline">\(\lambda\)</span> from 5 to 55 with a step of 5.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tweenr) <span class="co"># devtools::install_github("thomasp85/tweenr")</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">crossing</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>),</span>
+<span id="cb1-6"><a href="#cb1-6"></a>         <span class="fu">tibble</span>(<span class="at">lambda =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">55</span>, <span class="dv">5</span>)))) <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="fu">mutate</span>(<span class="at">dpoi =</span> <span class="fu">dpois</span>(x, <span class="at">lambda =</span> lambda)) <span class="ot">-&gt;</span> poi_df</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>my_list <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="fu">unique</span>(poi_df<span class="sc">$</span>lambda), <span class="sc">~</span> <span class="fu">filter</span>(poi_df, lambda <span class="sc">==</span> .x) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>())</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">tween_states</span>(my_list, <span class="at">tweenlength =</span> <span class="dv">7</span>, <span class="at">statelength =</span> <span class="dv">1</span>, <span class="at">ease =</span> <span class="st">"cubic-in-out"</span>, <span class="at">nframes =</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  </span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, dpoi, <span class="at">frame =</span> .frame)) <span class="sc">+</span> </span>
+<span id="cb1-14"><a href="#cb1-14"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">width =</span> <span class="fl">2.0</span>) <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="fu">theme_classic</span>(<span class="dv">16</span>) <span class="ot">-&gt;</span> p</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="fu">gganimate</span>(p, <span class="at">title_frame =</span> <span class="cn">FALSE</span>, <span class="at">ani.width =</span> <span class="dv">600</span>, <span class="at">ani.height =</span> <span class="dv">450</span>, <span class="at">interval =</span> <span class="fl">0.1</span>, <span class="at">filename =</span> <span class="st">"poisson.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-Post series
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This post belongs to a series about the <strong>Ventoux</strong>:</p>
-<ul>
-<li><a href="../2020-04-27_ventoux-1/index.html">Maintenance 1</a> on the 2020-04-27</li>
-<li><a href="index.html">Maintenance 2</a> this post</li>
-<li><a href="../2023-04-29_ventoux-3/index.html">Maintenance 3</a> on the 2023-04-29</li>
-<li><a href="../2023-09-17_ventoux-4/index.html">Maintenance 4</a> on the 2023-09-17</li>
-</ul>
-</div>
-</div>
-<section id="issues-arising" class="level1 page-columns page-full">
-<h1>Issues arising</h1>
-<section id="the-bottom-bracket" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="the-bottom-bracket">The bottom bracket</h2>
-<p>After riding the bike daily a few months, it started to present some problems. Most annoying and concerning: the <strong>bottom bracket</strong>. This piece is at the bottom of the frame, exposed to water splash and contains the axle attached to the pedals.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="bb.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Creator: Chris catchpole"><img src="bb.jpg" height="300" alt="Creator: Chris catchpole" class="figure-img"></a></p>
-<figcaption>Creator: Chris catchpole</figcaption>
-</figure>
-</div>
-<p>The role of bottom brackets is to transmit the pedaling force to the chainring: quite important!</p>
-<p>It was wobbling and I knew nothing about replacing it, nor just removing it (which turned out to be the critical problem!). It was obvious it was rusty because of its age and the location. Another issue is to find the <em>right model</em>. A bottom bracket is less than 20 euros but which one is compatible 30 years later with mine? My trustful Danish friend advised me wisely to look into the <a href="https://www.sheldonbrown.com">Sheldon Brown</a> <a href="https://www.sheldonbrown.com/bbsize.html#shimano">bottom bracket database</a>.</p>
-
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p><a href="https://www.sheldonbrown.com">Sheldon Brown</a> looks like a wonderful man whose tireless collection of information was so valuable that beyond his death, friends continue to maintain it online. Kudos to him and them.</p>
-</div></div><p>Dimensions from France, Italy, UK are all reported and I managed to find out that the Shimano BB-UN55 should fit (and it did).</p>
-<table class="table-striped table-hover caption-top table">
-<caption>Second Command to bike24.de (2020-07-14)</caption>
-<colgroup>
-<col style="width: 75%">
-<col style="width: 14%">
-<col style="width: 10%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Quantity</th>
-<th>Price</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>PTO147795 Park Tool CT-3.2 Chain Tool</td>
-<td>1</td>
-<td>34.40</td>
-</tr>
-<tr class="even">
-<td>PTO111383 Park Tool BBT-22 Bottom Bracket Remover</td>
-<td>1</td>
-<td>19.65</td>
-</tr>
-<tr class="odd">
-<td>SHI123592 Shimano BB-UN55 Bottom Bracket JIS Square</td>
-<td>1</td>
-<td>13.75</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="chainring-and-derailleur" class="level2">
-<h2 class="anchored" data-anchor-id="chainring-and-derailleur">Chainring and derailleur</h2>
-<p>So far I had cleaned up the original chainring and derailleur Exage models.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="signal-2020-05-21-191317.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Exage 1991 items"><img src="signal-2020-05-21-191317.jpg" height="300" alt="Exage 1991 items" class="figure-img"></a></p>
-<figcaption>Exage 1991 items</figcaption>
-</figure>
-</div>
-<p>But the large chainring with its enormous 52T was too big for a commute bike. Derailleur was working ok, but I was also curious to install one, even if I had no experience. No derailleur hanger to be seen, it was directly screwed in the frame. Did a try with a Sora basic derailleur purchase.</p>
-</section>
-<section id="handle-bar-and-tape" class="level2">
-<h2 class="anchored" data-anchor-id="handle-bar-and-tape">Handle bar and tape</h2>
-<p>Since I need to order those transmission items, I took the opportunity to also changed the handle bar. I was already happy with a gravel bike which handle bar was fairly large (compare to road bike). The price was reasonable and it was worth also learning about the stem, headset config, dismantle and remounting all this.</p>
-<table class="table-striped table-hover caption-top table">
-<caption>Third command to bike24.de (2020-08-01)</caption>
-<colgroup>
-<col style="width: 75%">
-<col style="width: 14%">
-<col style="width: 10%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Quantity</th>
-<th>Price</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>XLC ST-M15 Comp 31.8 Stem Base Angel - Length: 35° - 60 mm</td>
-<td>1 14,74 EUR</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>XLC ST-L03 Ahead-Adapter for Threaded Forks</td>
-<td>1</td>
-<td>13,75 EUR</td>
-</tr>
-<tr class="odd">
-<td>Control Tech One Handlebar Width: 44cm</td>
-<td>1</td>
-<td>24,57 EUR</td>
-</tr>
-<tr class="even">
-<td>Deda Handlebar Tape Color: Gun Barrel Grey</td>
-<td>1</td>
-<td>7,86 EUR</td>
-</tr>
-<tr class="odd">
-<td>Deda Handlebar Tape Color: Night Black</td>
-<td>1</td>
-<td>7,86 EUR</td>
-</tr>
-<tr class="even">
-<td>FSA Spacer Polycarbonate 1 1/8” (1 pcs) Color: red</td>
-<td>1</td>
-<td>0,88 EUR</td>
-</tr>
-<tr class="odd">
-<td>Shimano CS-HG400-9 Cassette 9-speed Ratio/teeth: 11-32</td>
-<td>1</td>
-<td>18,67 EUR</td>
-</tr>
-<tr class="even">
-<td>Shimano Sora Chainring for FC-3503 - 3x9-speed - black 39 teeth</td>
-<td>1</td>
-<td>11,79 EUR</td>
-</tr>
-<tr class="odd">
-<td>Gebhardt Chainring Bolt Niro Length: 5,4 mm</td>
-<td>5</td>
-<td>14,50 EUR</td>
-</tr>
-<tr class="even">
-<td>Shimano Sora RD-R3000-GS Rear Derailleur 3x9 medium</td>
-<td>1</td>
-<td>22,60 EUR</td>
-</tr>
-</tbody>
-</table>
-<section id="installing-a-new-transmission" class="level3">
-<h3 class="anchored" data-anchor-id="installing-a-new-transmission">Installing a new transmission</h3>
-<p>I postponed the bottom bracket replacement as it was really stuck. The handle bar though was easy enough, placing the tape took me a long time because I was carefully all steps of the necessary Calvin Jones YouTube videos. The chainring I wanted only one, it is easier to maintain and it makes not much sense for a commute bike to have more. I chose a number of teeth in between my 2 current ones. I picked arbitrary 39 teeth, was a good pick. The derailleur, I knew the frame can handle cassettes of 7 speeds. But the lowest I found online was 9! I did a try and thanks to the magic of steel, I could enlarge the frame a bit and it fits. Derailleur went screwed on the frame as the original one and looked ok. The main issue was the number of links to keep on the 9S chain. I did a bit random, followed Calvin Jones advice but was not so great.</p>
-<p>The derailleur was too much under tension I now observe.</p>
-</section>
-<section id="note-about-the-front-derailleur" class="level3">
-<h3 class="anchored" data-anchor-id="note-about-the-front-derailleur">Note about the front derailleur</h3>
-<p>Concerning the front derailleur, I removed everything. See here a close-up:</p>
-<p><a href="IMG_20200819_084455.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="IMG_20200819_084455.jpg" height="300"></a></p>
-<p>However, I had a big crash one day, chain got suddenly stuck and I felt badly. I never understood what happened. A Russian friend advice me to install back the <strong>chain guide</strong> from the front derailleur. So I did and 4 years later this issue never happened again. I keep the front derailleur installed but removed the cable and even the lever.</p>
-</section>
-</section>
-<section id="got-the-bottom-bracket-out" class="level2">
-<h2 class="anchored" data-anchor-id="got-the-bottom-bracket-out">Got the bottom bracket out!</h2>
-<p>Removing the pedals is easy but then it looks like this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="IMG_20200713_130943.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="BB closeup"><img src="IMG_20200713_130943.jpg" height="300" alt="BB closeup" class="figure-img"></a></p>
-<figcaption>BB closeup</figcaption>
-</figure>
-</div>
-<p>See the amount of rust and how little margin there is for a bottom bracket removal tool. It never worked, despite using WD40 and forcing a lot. A better tool was needed.</p>
-<section id="the-homemade-bb-tool" class="level3">
-<h3 class="anchored" data-anchor-id="the-homemade-bb-tool">The homemade BB tool</h3>
-<p>My step dad was working in a steel foundry. I described the problem and <strong>Sheldon Brown</strong> (yes again this amazing man) adviced a third option to remove rusty BB fro the <em>inside</em>. My step dad then welded a long steel bar to a heating tube with a tight bolt. It was amazing and thanks to him, I got it out!</p>
-</section>
-<section id="setup" class="level3">
-<h3 class="anchored" data-anchor-id="setup">Setup</h3>
-<p>Once in place, it looked like this. The non transmission part, I attached a wrench to block it on the frame.</p>
-<p><a href="IMG_20200801_172022.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="IMG_20200801_172022.jpg" height="500"></a></p>
-<p>Then I followed my step-dad advice, don’t push like mad but hammer it, the shocks will make it. He was right.</p>
-<p>The BB cup, moving in motion</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="VID_20200801_172029.mp4"></video></div>
-</section>
-<section id="outcome" class="level3">
-<h3 class="anchored" data-anchor-id="outcome">Outcome</h3>
-<p>Check out this damned piece of rust !</p>
-<p><a href="IMG_20200801_172423_1.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="IMG_20200801_172423_1.jpg" height="300"></a></p>
-<p>The new bottom bracket once in place with the tool to screw it:</p>
-<p><a href="IMG_20200801_175920.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="IMG_20200801_175920.jpg" height="400"></a></p>
-<p>What a journey, that was a massive amount of work and stress but was worth it!</p>
-<p><a href="IMG_20200808_132840.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="IMG_20200808_132840.jpg" height="400"></a></p>
+<p><img src="poisson.gif" class="img-fluid"></p>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -826,39 +698,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>videojs(video_shortcode_videojs_video1);</script>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
