@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aurélien Ginolhac">
+<meta name="dcterms.date" content="2024-07-24">
+<meta name="description" content="From Voyager 1 and 2 spacecrafts">
+
+<title>Decoding images of the Golden Record</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../karate/index.html"> <i class="bi bi-music" role="img">
+</i> 
+<span class="menu-text">Karate tabs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ginolhac"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Decoding images of the Golden Record</h1>
+                  <div>
+        <div class="description">
+          From Voyager 1 and 2 spacecrafts
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aurélien Ginolhac </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 24, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#images" id="toc-images" class="nav-link active" data-scroll-target="#images">Images</a></li>
+  <li><a href="#published-code" id="toc-published-code" class="nav-link" data-scroll-target="#published-code">Published code</a>
+  <ul class="collapse">
+  <li><a href="#highlights" id="toc-highlights" class="nav-link" data-scroll-target="#highlights">Highlights</a></li>
+  </ul></li>
+  <li><a href="#music-source" id="toc-music-source" class="nav-link" data-scroll-target="#music-source">Music source</a></li>
+  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">Preprocessing</a>
+  <ul class="collapse">
+  <li><a href="#reading-the-sound-track-in" id="toc-reading-the-sound-track-in" class="nav-link" data-scroll-target="#reading-the-sound-track-in">Reading the sound track in <i class="fa-brands fa-r-project" aria-label="r-project"></i></a></li>
+  <li><a href="#normalizing-both-channels-signal" id="toc-normalizing-both-channels-signal" class="nav-link" data-scroll-target="#normalizing-both-channels-signal">Normalizing both channels signal</a></li>
+  <li><a href="#removing-the-noisy-tone" id="toc-removing-the-noisy-tone" class="nav-link" data-scroll-target="#removing-the-noisy-tone">Removing the noisy tone</a></li>
+  <li><a href="#save-a-fst-file-for-fast-and-efficient-slicing" id="toc-save-a-fst-file-for-fast-and-efficient-slicing" class="nav-link" data-scroll-target="#save-a-fst-file-for-fast-and-efficient-slicing">Save a <code>fst</code> file for fast and efficient slicing</a></li>
+  </ul></li>
+  <li><a href="#decoding-images-from-sound-signal" id="toc-decoding-images-from-sound-signal" class="nav-link" data-scroll-target="#decoding-images-from-sound-signal">Decoding images from sound signal</a>
+  <ul class="collapse">
+  <li><a href="#find-peaks-that-separate-images-per-channel" id="toc-find-peaks-that-separate-images-per-channel" class="nav-link" data-scroll-target="#find-peaks-that-separate-images-per-channel">Find peaks that separate images per channel</a></li>
+  <li><a href="#the-calibration-circle" id="toc-the-calibration-circle" class="nav-link" data-scroll-target="#the-calibration-circle">The calibration circle <i class="fa-solid fa-circle" aria-label="circle"></i></a></li>
+  <li><a href="#more-examples" id="toc-more-examples" class="nav-link" data-scroll-target="#more-examples">More examples</a></li>
+  </ul></li>
+  <li><a href="#color-images" id="toc-color-images" class="nav-link" data-scroll-target="#color-images">Color images</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#copyright-pictures" id="toc-copyright-pictures" class="nav-link" data-scroll-target="#copyright-pictures">Copyright pictures</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+
+<p>In 1977, two spacecrafts named <strong>Voyager 1 and 2</strong> were launched from Earth to explore mostly Jupiter and Saturn for Voyager 1 and Uranus and Neptune for Voyager 2. Today, they are more than 24 billions kilometers from us, reaching the interstellar space in 2012. Recently (in June 2024), <strong>Voyager 1</strong> and the scientists were able to communicate again and get data from 4 instruments.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="record-diagram.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The Golden Record. Credit NASA/JPL"><img src="record-diagram.jpg" class="img-fluid figure-img" alt="The Golden Record. Credit NASA/JPL"></a></p>
+<figcaption>The Golden Record. Credit NASA/JPL</figcaption>
+</figure>
+</div>
+<section id="images" class="level2">
+<h2 class="anchored" data-anchor-id="images">Images</h2>
+<p>The <a href="https://voyager.jpl.nasa.gov/golden-record/whats-on-the-record/images/">NASA dedicated page</a> provides 48 images but states that 115 images are encoded in analog form. According to the NASA the rest of the images cannot be seen due to copyright restrictions:</p>
+<blockquote class="blockquote">
+<p>Due to copyright restrictions, only a subset of the images on the Golden Record are displayed above.</p>
+</blockquote>
+<p>See below two examples, the calibration circle that the alien should first see if they decode it correctly and an astronaut.</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="calibration-circle_31325346536_o.gif" class="lightbox" data-gallery="first-gallery" title="Calibration circle"><img src="calibration-circle_31325346536_o.gif" class="img-fluid figure-img" alt="Calibration circle"></a></p>
+<figcaption>Calibration circle</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="astronaut-in-space_30620956564_o.gif" class="lightbox" data-gallery="first-gallery" title="An Astronaut in space"><img src="astronaut-in-space_30620956564_o.gif" class="img-fluid figure-img" alt="An Astronaut in space"></a></p>
+<figcaption>An Astronaut in space</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>So what about the rest of the pictures? With the audio of the Long Play vinyl, we could see the rest.</p>
+</section>
+<section id="published-code" class="level2">
+<h2 class="anchored" data-anchor-id="published-code">Published code</h2>
+<p>On <a href="https://github.com/search?q=voyager%20golden%20record&amp;type=repositories">Github</a> there are many people who already achieved this decoding. More than 28 repositories dedicated to this.</p>
+<p>Languages-wise, nothing was done in <i class="fa-brands fa-r-project" aria-label="r-project"></i> which motivates me.</p>
+<section id="highlights" class="level3">
+<h3 class="anchored" data-anchor-id="highlights">Highlights</h3>
+<ul>
+<li><p>Most people are referring to this <a href="https://boingboing.net/2017/09/05/how-to-decode-the-images-on-th.html">2017 article</a> by <strong>Ron Barry</strong> that is stellar. Passionate reading and full of information.</p></li>
+<li><p><strong>Marc Baeuerle</strong> did an amazing <a href="https://goldenrecord.netlify.app/">web app</a> that decodes live the MP3 audio.</p></li>
+<li><p><strong>Brandon Moore</strong> did in <i class="fa-brands fa-python" aria-label="python"></i> an easy to understand <a href="https://github.com/amazing-rando/voyager-decoder/blob/master/voyager-decoder.py">script</a> and also uploaded his extracted images. It was my main source of guidance.</p></li>
+</ul>
+</section>
+</section>
+<section id="music-source" class="level2">
+<h2 class="anchored" data-anchor-id="music-source">Music source</h2>
+<p><strong>Ozma Records</strong> proposes the <a href="https://ozmarecords.com/pages/voyager">Vinyl Set</a> with a link the music tracks <a href="https://soundcloud.com/user-482195982/voyager-golden-record-sampler-1">on SoundCloud</a>.</p>
+<p>Both the <a href="https://soundcloud.com/user-482195982/voyager-golden-record-encoded-images">MP3 (17.7 MB)</a> and <a href="https://archive.org/details/voyager_images_384khz">WAV (1.4 GB)</a> format are available on the Internet. Watch out that the sample rate is different, 44.1kHz and 384kHz respectively.</p>
+<p>One funny thing is that one can <em>listen</em> to the sound of encoded images and it is not that bad after the first noisy tone.</p>
+</section>
+<section id="preprocessing" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="preprocessing">Preprocessing</h2>
+<p>Key process is all about detecting peaks.</p>
+<p>One first step is that remove the noisy tone which was also a peak detection procedure.</p>
+<p><strong>Brandon Moore</strong> loaded the full signal in memory, then iterate on both left and right channel, then iterate for each image. I took his approach but using the great feature of <a href="https://github.com/fstpackage/fst#random-access"><strong>random access</strong></a> of the <a href="https://github.com/fstpackage/fst"><code>{fst}</code></a> package. Once we have the start and end of each image, one can slice from the <em>Fast Serialize data frame</em> full file really fast (it is also multi-threaded).</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><a href="https://github.com/fstpackage/fst/raw/develop/man/figures/fst.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://github.com/fstpackage/fst/raw/develop/man/figures/fst.png" class="img-fluid"></a></p>
+</div></div><p>Hence, once the noisy tone is removed, we save a <code>fst</code> table with 2 columns, one per audio channel and indexed by the frames.</p>
+<section id="reading-the-sound-track-in" class="level3">
+<h3 class="anchored" data-anchor-id="reading-the-sound-track-in">Reading the sound track in <i class="fa-brands fa-r-project" aria-label="r-project"></i></h3>
+<p>This is something I had zero experience before. Of course a <i class="fa-brands fa-r-project" aria-label="r-project"></i> package can do it, <a href="https://cran.r-project.org/web/packages/tuneR/"><code>{tuneR}</code></a> turns out to do a perfect job.</p>
+<ul>
+<li>Signal is returned as the 32bits float numbers we directly need</li>
+<li>Both channels neatly identified</li>
+<li>Sampling rate is clearly available in the object</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>voy <span class="ot">&lt;-</span>tuneR<span class="sc">::</span><span class="fu">readWave</span>(<span class="st">"data/384kHzStereo.wav"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>rate <span class="ot">&lt;-</span> voy<span class="sc">@</span>samp.rate</span>
+<span id="cb1-3"><a href="#cb1-3"></a>voy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The returned object is a <a href="https://adv-r.hadley.nz/s4.html">S4</a>, somehow a list with sub-setting operator being <code>@</code>, enough to know for our purposes.</p>
+<pre><code>Wave Object
+    Number of Samples:      181960704
+    Duration (seconds):     473.86
+    Samplingrate (Hertz):   384000
+    Channels (Mono/Stereo): Stereo
+    PCM (integer format):   FALSE
+    Bit (8/16/24/32/64):    32 </code></pre>
+<p>Meaning, the first 10 numbers of the <strong>left</strong> channel can be obtained with:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>voy<span class="sc">@</span>left[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code> [1] -4.122257e-04 -3.578663e-04  6.604195e-05  4.304647e-04  3.132820e-04 -2.198219e-04 -6.819963e-04 -6.568432e-04
+ [9] -1.866817e-04  3.117323e-04</code></pre>
+<ul>
+<li>The length of this recording in minutes:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>(<span class="fu">length</span>(voy<span class="sc">@</span>left) <span class="sc">/</span> rate) <span class="sc">/</span> <span class="dv">60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[1] 7.8976</code></pre>
+<ul>
+<li>We can also look at the density of those numbers:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="at">left =</span> voy<span class="sc">@</span>left,</span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="at">right =</span> voy<span class="sc">@</span>right</span>
+<span id="cb7-4"><a href="#cb7-4"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">sample_n</span>(<span class="fl">10e6</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>               <span class="at">names_to =</span> <span class="st">"channel"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">fill =</span> channel, <span class="at">colour =</span> channel)) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="signal-densities.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="signal-densities.png" class="img-fluid"></a></p>
+<p>Centered around zero and within a range of -0.5 to 0.5.</p>
+</section>
+<section id="normalizing-both-channels-signal" class="level3">
+<h3 class="anchored" data-anchor-id="normalizing-both-channels-signal">Normalizing both channels signal</h3>
+<p>By divided by the maximum absolute signal:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>left_channel <span class="ot">&lt;-</span> voy<span class="sc">@</span>left <span class="sc">/</span> <span class="fu">max</span>(<span class="fu">abs</span>(voy<span class="sc">@</span>left))</span>
+<span id="cb8-2"><a href="#cb8-2"></a>right_channel <span class="ot">&lt;-</span> voy<span class="sc">@</span>right <span class="sc">/</span> <span class="fu">max</span>(<span class="fu">abs</span>(voy<span class="sc">@</span>left))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Same density plot after normalization:</p>
+<p><a href="after-normalization.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="after-normalization.png" class="img-fluid"></a></p>
+<p>Now data range from -1 to 1.</p>
+</section>
+<section id="removing-the-noisy-tone" class="level3">
+<h3 class="anchored" data-anchor-id="removing-the-noisy-tone">Removing the noisy tone</h3>
+<p>Using the procedure from <strong>Brandon Moore</strong>, within the first 30 seconds, get the first bottom peak of the tone with some tweaks.</p>
+<p>First, get a sub-sample[^10,000 values are enough to see the shape, saves plotting time] of 30s of the left channel and visualize it:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>first_30s <span class="ot">&lt;-</span> left_channel[<span class="dv">1</span><span class="sc">:</span>(<span class="dv">30</span> <span class="sc">*</span> rate)]</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">tibble</span>(<span class="at">y =</span> first_30s,</span>
+<span id="cb9-3"><a href="#cb9-3"></a>       <span class="at">x =</span> <span class="fu">seq_along</span>(first_30s)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="co"># save plotting time by random sub-sampling</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">sample_n</span>(<span class="fl">1e4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span>  <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(.<span class="dv">02</span>, <span class="fl">0.02</span>)),</span>
+<span id="cb9-9"><a href="#cb9-9"></a>                     <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(\(x) x <span class="sc">/</span> rate, <span class="at">name =</span> <span class="st">"Time (sec)"</span>)) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Samples"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11"></a>       <span class="at">y =</span> <span class="st">"Wave values"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12"></a>       <span class="at">title =</span> <span class="st">"First 30 seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="first-30s.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="first-30s.png" class="img-fluid"></a></p>
+<p>From this plot, we see the noisy tone with a large range of data until 10 seconds, than the different pictures, more details later.</p>
+<p><strong>Moore</strong> was using a <a href="https://github.com/amazing-rando/voyager-decoder/blob/b89ffdcba27eb09f392a562ea4e6cb574add7316/voyager-decoder.py#L53">fixed threshold</a> and the Python function <code>scipy.find_peaks()</code>.</p>
+<p>We will be using the function <code>findPeaks()</code> from <a href="https://cran.r-project.org/web/packages/pracma/"><code>{pracma}</code></a> that works identically to its <i class="fa-brands fa-python" aria-label="python"></i> equivalent.</p>
+<p>Let’s detect from the 5% more extreme bottom values:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>bottom_tone_peaks <span class="ot">&lt;-</span> <span class="fu">findpeaks</span>(<span class="sc">-</span>first_30s, <span class="at">minpeakheight =</span> <span class="fu">max</span>(<span class="sc">-</span>first_30s) <span class="sc">-</span> <span class="fu">quantile</span>(first_30s, <span class="fl">0.95</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">as_tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>V1</code> is value, <code>V2</code> index, <code>V3</code> and <code>V4</code> are start/end as seen below:</p>
+<pre><code># A tibble: 736 × 4
+      V1      V2      V3      V4
+   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 0.872 1436425 1436406 1436429
+ 2 0.757 1439660 1439644 1439664
+ 3 0.819 1443401 1443385 1443404
+ 4 0.766 1446618 1446604 1446621
+ 5 0.815 1449819 1449793 1449823
+ 6 0.796 1452997 1452976 1453000
+ 7 0.926 1456150 1456127 1456154
+ 8 0.814 1459294 1459278 1459298
+ 9 0.915 1462440 1462422 1462443
+10 0.817 1465596 1465574 1465599</code></pre>
+<p>The peak we are looking for the last row which index is in the column <code>V2</code>.</p>
+<p>Let’s zoom in the end of the noise tone and highlight the bottom peaks and the one we want.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">tibble</span>(<span class="at">y =</span> first_30s,</span>
+<span id="cb12-2"><a href="#cb12-2"></a>       <span class="at">x =</span> <span class="fu">seq_along</span>(first_30s)) <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">slice</span>(<span class="dv">3612000</span><span class="sc">:</span><span class="dv">3890660</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">filter</span>(bottom_tone_peaks, V2 <span class="sc">&gt;</span> <span class="dv">3612000</span>),</span>
+<span id="cb12-7"><a href="#cb12-7"></a>             <span class="fu">aes</span>(<span class="at">x =</span> V2, <span class="at">y =</span> <span class="sc">-</span>V1),</span>
+<span id="cb12-8"><a href="#cb12-8"></a>             <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">slice_tail</span>(bottom_tone_peaks, <span class="at">n =</span> <span class="dv">1</span>),</span>
+<span id="cb12-10"><a href="#cb12-10"></a>             <span class="fu">aes</span>(<span class="at">x =</span> V2, <span class="at">y =</span> <span class="sc">-</span>V1),</span>
+<span id="cb12-11"><a href="#cb12-11"></a>             <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">stroke =</span> <span class="dv">2</span>,</span>
+<span id="cb12-12"><a href="#cb12-12"></a>             <span class="at">colour =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span>  <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(.<span class="dv">02</span>, <span class="fl">0.02</span>)),</span>
+<span id="cb12-14"><a href="#cb12-14"></a>                     <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(\(x) x <span class="sc">/</span> rate, <span class="at">name =</span> <span class="st">"Time (sec)"</span>)) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"samples"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16"></a>       <span class="at">y =</span> <span class="st">"Wave values"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17"></a>       <span class="at">title =</span> <span class="st">"Zooming in the noise tone end"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="end-noise-tone.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="end-noise-tone.png" class="img-fluid"></a></p>
+<p>In red, the 5% bottom peaks, circled in purple the last one around 9.9 seconds. Afterwards, the pictures encoding starts.</p>
+</section>
+<section id="save-a-fst-file-for-fast-and-efficient-slicing" class="level3">
+<h3 class="anchored" data-anchor-id="save-a-fst-file-for-fast-and-efficient-slicing">Save a <code>fst</code> file for fast and efficient slicing</h3>
+<p>First we remove the noise tone, then we save a tibble of both channels as a <code>fst</code> file:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>fst<span class="sc">::</span><span class="fu">write_fst</span>(<span class="fu">tibble</span>(<span class="at">left =</span> left_channel[<span class="sc">-</span><span class="fu">seq_len</span>(<span class="fu">slice_tail</span>(bottom_tone_peaks, <span class="at">n =</span> <span class="dv">1</span>)<span class="sc">$</span>V2)],</span>
+<span id="cb13-2"><a href="#cb13-2"></a>                      <span class="at">right =</span> right_channel[<span class="sc">-</span><span class="fu">seq_len</span>(<span class="fu">slice_tail</span>(bottom_tone_peaks, <span class="at">n =</span> <span class="dv">1</span>)<span class="sc">$</span>V2)]),</span>
+<span id="cb13-3"><a href="#cb13-3"></a>               <span class="st">"channels_no_tone.fst"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Reading for example the left channel from disk takes less than 0.5 seconds:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">system.time</span>(left_channel_no_noise <span class="ot">&lt;-</span> fst<span class="sc">::</span><span class="fu">read_fst</span>(<span class="st">"channels_no_tone.fst"</span>, <span class="at">columns =</span> <span class="st">"left"</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1"></a>fstcore package v0.9.18</span>
+<span id="cb15-2"><a href="#cb15-2"></a>(OpenMP detected, using 14 threads)</span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a>   user  system elapsed </span>
+<span id="cb15-5"><a href="#cb15-5"></a>  0.285   1.853   0.427 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>but to be able to slice from this file the image one by one, we need to know where each starts and per channel.</p>
+</section>
+</section>
+<section id="decoding-images-from-sound-signal" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="decoding-images-from-sound-signal">Decoding images from sound signal</h2>
+<p>As said before, it is about detecting peaks:</p>
+<ul>
+<li>Peaks that separate images</li>
+<li>For each image, peaks that separate lines</li>
+</ul>
+<p>Then:</p>
+<ul>
+<li>Each line is stacked in a matrix</li>
+<li>Values are converted to pixel values 0-255</li>
+<li>Rendered as image</li>
+</ul>
+<section id="find-peaks-that-separate-images-per-channel" class="level3">
+<h3 class="anchored" data-anchor-id="find-peaks-that-separate-images-per-channel">Find peaks that separate images per channel</h3>
+<p>And we save the results as <code>rds</code> files.</p>
+<p>Peaks are again defined as the 5% most extreme peaks and we had a minimum distance between peaks, value from <strong>Brandon Moore</strong>: sampling rate divided by 5.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>left_channel_no_noise <span class="ot">&lt;-</span> fst<span class="sc">::</span><span class="fu">read_fst</span>(<span class="st">"channels_no_tone.fst"</span>, <span class="at">columns =</span> <span class="st">"left"</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>()</span>
+<span id="cb16-2"><a href="#cb16-2"></a>img_index_left <span class="ot">&lt;-</span> <span class="fu">findpeaks</span>(left_channel_no_noise,</span>
+<span id="cb16-3"><a href="#cb16-3"></a>                            <span class="at">minpeakheight =</span> <span class="fu">max</span>(left_channel_no_noise) <span class="sc">-</span> <span class="fu">quantile</span>(left_channel_no_noise, <span class="fl">0.95</span>),</span>
+<span id="cb16-4"><a href="#cb16-4"></a>                            <span class="at">minpeakdistance =</span> rate <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">arrange</span>(V2)</span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="co"># free some memory</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="fu">rm</span>(left_channel_no_noise)</span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="fu">gc</span>()</span>
+<span id="cb16-10"><a href="#cb16-10"></a></span>
+<span id="cb16-11"><a href="#cb16-11"></a>right_channel_no_noise <span class="ot">&lt;-</span> fst<span class="sc">::</span><span class="fu">read_fst</span>(<span class="st">"channels_no_tone.fst"</span>, <span class="at">columns =</span> <span class="st">"right"</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>()</span>
+<span id="cb16-12"><a href="#cb16-12"></a></span>
+<span id="cb16-13"><a href="#cb16-13"></a>img_index_right <span class="ot">&lt;-</span> <span class="fu">findpeaks</span>(right_channel_no_noise,</span>
+<span id="cb16-14"><a href="#cb16-14"></a>                             <span class="at">minpeakheight =</span> <span class="fu">max</span>(right_channel_no_noise) <span class="sc">-</span> <span class="fu">quantile</span>(right_channel_no_noise, <span class="fl">0.95</span>),</span>
+<span id="cb16-15"><a href="#cb16-15"></a>                             <span class="at">minpeakdistance =</span> rate <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-16"><a href="#cb16-16"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb16-17"><a href="#cb16-17"></a>  <span class="fu">arrange</span>(V2)</span>
+<span id="cb16-18"><a href="#cb16-18"></a></span>
+<span id="cb16-19"><a href="#cb16-19"></a><span class="fu">rm</span>(right_channel_no_noise)</span>
+<span id="cb16-20"><a href="#cb16-20"></a><span class="fu">gc</span>()</span>
+<span id="cb16-21"><a href="#cb16-21"></a><span class="co"># Save the images indexes</span></span>
+<span id="cb16-22"><a href="#cb16-22"></a><span class="fu">saveRDS</span>(img_index_left<span class="sc">$</span>V2, <span class="st">"left_img_index.rds"</span>)</span>
+<span id="cb16-23"><a href="#cb16-23"></a><span class="fu">saveRDS</span>(img_index_right<span class="sc">$</span>V2, <span class="st">"right_img_index.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can check those splits for let’s say the first 3 images on the left channel:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># get tone index to represent real samples/time in audio file</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>noisy_tone_index <span class="ot">&lt;-</span> <span class="fu">slice_tail</span>(bottom_tone_peaks, <span class="at">n =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(V2)</span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">tibble</span>(<span class="at">y =</span> fst<span class="sc">::</span><span class="fu">read_fst</span>(<span class="st">"channels_no_tone.fst"</span>, </span>
+<span id="cb17-4"><a href="#cb17-4"></a>                         <span class="at">columns =</span> <span class="st">"left"</span>, </span>
+<span id="cb17-5"><a href="#cb17-5"></a>                         <span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">7600000</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(),</span>
+<span id="cb17-6"><a href="#cb17-6"></a>       <span class="at">x =</span> <span class="fu">seq_along</span>(y) <span class="sc">+</span> noisy_tone_index) <span class="sc">|&gt;</span> </span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">sample_n</span>(<span class="fl">1e5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a>  <span class="fu">geom_vline</span>(<span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">readRDS</span>(<span class="st">"left_img_index.rds"</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]) <span class="sc">+</span> noisy_tone_index,</span>
+<span id="cb17-11"><a href="#cb17-11"></a>             <span class="fu">aes</span>(<span class="at">xintercept =</span> x),</span>
+<span id="cb17-12"><a href="#cb17-12"></a>             <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span>  <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(.<span class="dv">02</span>, <span class="fl">0.02</span>)),</span>
+<span id="cb17-14"><a href="#cb17-14"></a>                     <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(\(x) x <span class="sc">/</span> rate, <span class="at">name =</span> <span class="st">"Time (sec)"</span>)) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"samples"</span>,</span>
+<span id="cb17-16"><a href="#cb17-16"></a>       <span class="at">y =</span> <span class="st">"Wave values"</span>,</span>
+<span id="cb17-17"><a href="#cb17-17"></a>       <span class="at">title =</span> <span class="st">"Finding image indexes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="check-idx-3-images.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="check-idx-3-images.png" class="img-fluid"></a></p>
+<p>From now, we will work with 3 files on disk:</p>
+<ul>
+<li>The main <code>fst</code> file that contains 2 columns, left/right audio 32bits floats without the leading noise tone (2.7GB)</li>
+<li>Index of the start of images for the <strong>left</strong> channel: <code>left_img_index.rds</code> (450B)</li>
+<li>Index of the start of images for the <strong>right</strong> channel: <code>right_img_index.rds</code> (454B)</li>
+</ul>
+</section>
+<section id="the-calibration-circle" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="the-calibration-circle">The calibration circle <i class="fa-solid fa-circle" aria-label="circle"></i></h3>
+<p>This is the first image of the left channel, meant to help aliens finding the right parameters to read the golden record.</p>
+<p>Let’s create two routines to</p>
+<ol type="1">
+<li>Slice the right signal of the desired image</li>
+<li>Find lines for one image</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># default to the calibration circle</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>extract_img_signal <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">channel =</span> <span class="st">"left"</span>, <span class="at">index =</span> <span class="dv">1</span>) {</span>
+<span id="cb18-3"><a href="#cb18-3"></a>  channel <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(channel, <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"right"</span>))</span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="cf">if</span> (index <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">|</span> index <span class="sc">&gt;</span> <span class="dv">78</span> <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.numeric</span>(index)) <span class="fu">stop</span>(<span class="st">"image index must be a positive integer &lt; 78"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5"></a>  fst<span class="sc">::</span><span class="fu">read_fst</span>(<span class="st">"channels_no_tone.fst"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6"></a>                              <span class="at">columns =</span> channel,</span>
+<span id="cb18-7"><a href="#cb18-7"></a>                              <span class="at">from =</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(channel, <span class="st">"_img_index.rds"</span>))[index],</span>
+<span id="cb18-8"><a href="#cb18-8"></a>                              <span class="at">to =</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(channel, <span class="st">"_img_index.rds"</span>))[index <span class="sc">+</span> <span class="dv">1</span>])[[channel]]</span>
+<span id="cb18-9"><a href="#cb18-9"></a></span>
+<span id="cb18-10"><a href="#cb18-10"></a>}</span>
+<span id="cb18-11"><a href="#cb18-11"></a>img_signal <span class="ot">&lt;-</span> <span class="fu">extract_img_signal</span>()</span>
+<span id="cb18-12"><a href="#cb18-12"></a></span>
+<span id="cb18-13"><a href="#cb18-13"></a></span>
+<span id="cb18-14"><a href="#cb18-14"></a>find_row_indexes <span class="ot">&lt;-</span> <span class="cf">function</span>(img_signal) {</span>
+<span id="cb18-15"><a href="#cb18-15"></a>  <span class="co"># threshold obtained thanks to amazing-rando</span></span>
+<span id="cb18-16"><a href="#cb18-16"></a>  <span class="co"># https://github.com/amazing-rando/voyager-decoder/blob/master/voyager-decoder.py</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a>  <span class="fu">findpeaks</span>(img_signal,</span>
+<span id="cb18-18"><a href="#cb18-18"></a>            <span class="at">minpeakheight =</span> <span class="fl">0.05</span>,</span>
+<span id="cb18-19"><a href="#cb18-19"></a>            <span class="at">minpeakdistance =</span> rate <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb18-20"><a href="#cb18-20"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb18-21"><a href="#cb18-21"></a>    <span class="fu">arrange</span>(V2)</span>
+<span id="cb18-22"><a href="#cb18-22"></a>}</span>
+<span id="cb18-23"><a href="#cb18-23"></a></span>
+<span id="cb18-24"><a href="#cb18-24"></a>row_index <span class="ot">&lt;-</span> <span class="fu">find_row_indexes</span>(img_signal) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Again the <code>row_index</code> is a 4-columns tibble where <code>V2</code> is the index of start of each image line.</p>
+<p>Check those indexes</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">tibble</span>(<span class="at">y =</span> img_signal,</span>
+<span id="cb19-2"><a href="#cb19-2"></a>       <span class="at">x =</span> <span class="fu">seq_along</span>(img_signal)) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">filter</span>(x <span class="sc">&lt;</span> <span class="fl">1.5e6</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">sample_n</span>(<span class="fl">1e5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">geom_vline</span>(<span class="at">data =</span> <span class="fu">filter</span>(row_index, V2 <span class="sc">&lt;</span> <span class="fl">1.5e6</span>),</span>
+<span id="cb19-8"><a href="#cb19-8"></a>             <span class="fu">aes</span>(<span class="at">xintercept =</span> V2),</span>
+<span id="cb19-9"><a href="#cb19-9"></a>             <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span>  <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(.<span class="dv">02</span>, <span class="fl">0.02</span>)),</span>
+<span id="cb19-11"><a href="#cb19-11"></a>                     <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(\(x) x <span class="sc">/</span> rate, <span class="at">name =</span> <span class="st">"Time (sec)"</span>)) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"samples"</span>,</span>
+<span id="cb19-14"><a href="#cb19-14"></a>       <span class="at">y =</span> <span class="st">"Wave values"</span>,</span>
+<span id="cb19-15"><a href="#cb19-15"></a>       <span class="at">title =</span> <span class="st">"Finding row indexes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="column-page">
+<p><a href="circle-idx.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="circle-idx.png" class="img-fluid"></a></p>
+</div>
+<p>As <strong>Ron Barry</strong> was <a href="https://boingboing.net/2017/09/05/how-to-decode-the-images-on-th.html">writing</a> for his Figure 6:</p>
+<blockquote class="blockquote">
+<p>You can clearly SEE the circle in the rendering</p>
+</blockquote>
+<p>From 1 sec to 3.5 the circle is indeed visible in the signal. For this first image, we have 6.06 seconds of audio (<code>{.r} row_index$V2[nrow(row_index)] - row_index$V2[1]) / rate</code>)</p>
+<section id="building-the-image-line-by-line" class="level4">
+<h4 class="anchored" data-anchor-id="building-the-image-line-by-line">Building the image line by line</h4>
+<p>Again, we write a function using the constants discovered empirically by <strong>Brandon Moore</strong>. The <code>THICKNESS</code> where he repeated each line 15 lines did not prove to be useful, so this is skipped here.</p>
+<p>However, his <strong>clipping</strong> of extreme values and <strong>rescaling</strong> to 0-255 values were really good and implemented in <i class="fa-brands fa-r-project" aria-label="r-project"></i>.</p>
+<p>The cleaning of the signal was done based on the densities.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>fill_img_matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(img_signal, <span class="at">remove_noise =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>  row_index <span class="ot">&lt;-</span> <span class="fu">find_row_indexes</span>(img_signal) </span>
+<span id="cb20-4"><a href="#cb20-4"></a>  SCANWIDTH <span class="ot">&lt;-</span> <span class="dv">3000</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  BORDERS <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>  img_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> (SCANWIDTH), <span class="at">ncol =</span> <span class="fu">length</span>(row_index<span class="sc">$</span>V2) <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> BORDERS <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb20-7"><a href="#cb20-7"></a>  </span>
+<span id="cb20-8"><a href="#cb20-8"></a>  mat_col <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="cf">for</span> (row_signal <span class="cf">in</span> row_index<span class="sc">$</span>V2[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, (<span class="fu">length</span>(row_index<span class="sc">$</span>V2) <span class="sc">-</span> <span class="dv">10</span>)<span class="sc">:</span><span class="fu">length</span>(row_index<span class="sc">$</span>V2))]) {</span>
+<span id="cb20-10"><a href="#cb20-10"></a>    line <span class="ot">&lt;-</span> img_signal[row_signal<span class="sc">:</span>(row_signal <span class="sc">+</span> SCANWIDTH <span class="sc">-</span> <span class="dv">1</span>)]</span>
+<span id="cb20-11"><a href="#cb20-11"></a>    <span class="co">#message("line ", mat_col, " ", mean(line), " mode ", max(density(line)$y))</span></span>
+<span id="cb20-12"><a href="#cb20-12"></a>    img_data[, mat_col] <span class="ot">&lt;-</span> line</span>
+<span id="cb20-13"><a href="#cb20-13"></a>    mat_col <span class="ot">&lt;-</span> mat_col <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb20-14"><a href="#cb20-14"></a>  }</span>
+<span id="cb20-15"><a href="#cb20-15"></a>  <span class="cf">if</span> (remove_noise) {</span>
+<span id="cb20-16"><a href="#cb20-16"></a>    <span class="co"># get the mode of all lines, and 80% of data.</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a>    <span class="co"># on the left side, real signal while above we get only noise with flat signals.</span></span>
+<span id="cb20-18"><a href="#cb20-18"></a>    mean_mode <span class="ot">&lt;-</span> <span class="fu">apply</span>(img_data, <span class="dv">2</span>, \(x) <span class="fu">max</span>(<span class="fu">density</span>(x)<span class="sc">$</span>y)) <span class="sc">|&gt;</span></span>
+<span id="cb20-19"><a href="#cb20-19"></a>      <span class="fu">quantile</span>(<span class="fl">0.8</span>)</span>
+<span id="cb20-20"><a href="#cb20-20"></a>    genuine_lines <span class="ot">&lt;-</span> <span class="fu">apply</span>(img_data, <span class="dv">2</span>, \(x) <span class="fu">max</span>(<span class="fu">density</span>(x)<span class="sc">$</span>y) <span class="sc">&lt;</span> mean_mode)</span>
+<span id="cb20-21"><a href="#cb20-21"></a>    </span>
+<span id="cb20-22"><a href="#cb20-22"></a>    </span>
+<span id="cb20-23"><a href="#cb20-23"></a>    <span class="co"># clean up columns that contains no real signal</span></span>
+<span id="cb20-24"><a href="#cb20-24"></a>    img_data <span class="ot">&lt;-</span> img_data[, genuine_lines]</span>
+<span id="cb20-25"><a href="#cb20-25"></a>  }</span>
+<span id="cb20-26"><a href="#cb20-26"></a>  </span>
+<span id="cb20-27"><a href="#cb20-27"></a>  <span class="co"># clip extreme values</span></span>
+<span id="cb20-28"><a href="#cb20-28"></a>  low <span class="ot">&lt;-</span> <span class="fu">quantile</span>(img_data, <span class="fl">0.02</span>)</span>
+<span id="cb20-29"><a href="#cb20-29"></a>  high <span class="ot">&lt;-</span> <span class="fu">quantile</span>(img_data, <span class="fl">0.98</span>)</span>
+<span id="cb20-30"><a href="#cb20-30"></a>  img_data[img_data <span class="sc">&lt;</span> low] <span class="ot">&lt;-</span> low</span>
+<span id="cb20-31"><a href="#cb20-31"></a>  img_data[img_data <span class="sc">&gt;</span> high] <span class="ot">&lt;-</span> high</span>
+<span id="cb20-32"><a href="#cb20-32"></a>  <span class="co"># rescale for 0 - 255</span></span>
+<span id="cb20-33"><a href="#cb20-33"></a>  img_data <span class="ot">&lt;-</span> <span class="dv">255</span> <span class="sc">-</span> ((img_data <span class="sc">-</span> low) <span class="sc">/</span> (high <span class="sc">-</span> low)) <span class="sc">*</span> <span class="dv">255</span></span>
+<span id="cb20-34"><a href="#cb20-34"></a>  img_data</span>
+<span id="cb20-35"><a href="#cb20-35"></a>}</span>
+<span id="cb20-36"><a href="#cb20-36"></a></span>
+<span id="cb20-37"><a href="#cb20-37"></a><span class="co"># for grey images, we can remove noise, but for colors it shifted the 3 RGB</span></span>
+<span id="cb20-38"><a href="#cb20-38"></a>img_data <span class="ot">&lt;-</span> <span class="fu">fill_img_matrix</span>(img_signal, <span class="at">remove_noise =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-39"><a href="#cb20-39"></a></span>
+<span id="cb20-40"><a href="#cb20-40"></a></span>
+<span id="cb20-41"><a href="#cb20-41"></a></span>
+<span id="cb20-42"><a href="#cb20-42"></a><span class="co"># plot with rotation</span></span>
+<span id="cb20-43"><a href="#cb20-43"></a><span class="fu">image</span>(<span class="fu">t</span>(img_data), <span class="at">col =</span> <span class="fu">gray.colors</span>(<span class="dv">255</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><i class="fa-brands fa-r-project" aria-label="r-project"></i> base natively supports to convert a matrix of values to an image:</p>
+<p><a href="calibration-circle.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="calibration-circle.png" class="img-fluid"></a></p>
+<p>Looks good enough, but we can also use <code>{ggplot2}</code> to do the plotting with <code>geom_raster()</code>.</p>
+<p>since we have defined functions, we can write a pipeline to read any images from any channel:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">extract_img_signal</span>(<span class="at">channel =</span> <span class="st">"left"</span>, <span class="at">index =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">fill_img_matrix</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">row_number</span>(), <span class="at">.before =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>x,</span>
+<span id="cb21-6"><a href="#cb21-6"></a>               <span class="at">names_to =</span> <span class="st">"y"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7"></a>               <span class="at">names_prefix =</span> <span class="st">"V"</span>,</span>
+<span id="cb21-8"><a href="#cb21-8"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">y =</span> as.integer),</span>
+<span id="cb21-9"><a href="#cb21-9"></a>               <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="ot">-&gt;</span> img_longer</span>
+<span id="cb21-10"><a href="#cb21-10"></a>img_longer <span class="sc">|&gt;</span> </span>
+<span id="cb21-11"><a href="#cb21-11"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(y, x, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12"></a>  <span class="fu">geom_raster</span>() <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">transform =</span> <span class="st">"reverse"</span>) <span class="sc">+</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"grey30"</span>) <span class="sc">+</span></span>
+<span id="cb21-15"><a href="#cb21-15"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="calibration-circle-ggplot2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="calibration-circle-ggplot2.png" class="img-fluid"></a></p>
+</section>
+<section id="densities-of-signal" class="level4">
+<h4 class="anchored" data-anchor-id="densities-of-signal">Densities of signal</h4>
+<p>Removing “noise” it is really difficult. <strong>Moore</strong> has some hard-coded threshold. I went for again a quantile approach after comparing different slices of signal.</p>
+<p>For example, let’s not remove the “noise” for the circle:</p>
+<p>Same code as before for a <code>ggpplot2</code> output but with:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>...</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">fill_img_matrix</span>(<span class="at">remove_noise =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="calibration-circle-ggplot2-noise.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="calibration-circle-ggplot2-noise.png" class="img-fluid"></a></p>
+<p>The of the images is not meaningful. Let’s see the signal profile per slice:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">filter</span>(img_longer, y <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">280</span>, <span class="dv">300</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, value)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(<span class="fu">factor</span>(y)), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb23-5"><a href="#cb23-5"></a></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="fu">filter</span>(img_longer, y <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">100</span>,  <span class="dv">200</span>, <span class="dv">280</span>, <span class="dv">300</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(<span class="fu">factor</span>(y)), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb23-10"><a href="#cb23-10"></a><span class="co"># for each line, what is the mode of its values</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>img_longer <span class="sc">|&gt;</span> </span>
+<span id="cb23-12"><a href="#cb23-12"></a>  <span class="fu">summarise</span>(<span class="at">mode =</span> <span class="fu">max</span>(<span class="fu">density</span>(value)<span class="sc">$</span>y), <span class="at">.by =</span> y) <span class="sc">|&gt;</span> </span>
+<span id="cb23-13"><a href="#cb23-13"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(mode)) <span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">quantile</span>(mode, <span class="fl">0.95</span>)), <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><a href="circle-densities-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="circle-densities-1.png" class="img-fluid"></a></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><a href="circle-densities-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="circle-densities-2.png" class="img-fluid"></a></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><a href="circle-densities-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="circle-densities-3.png" class="img-fluid"></a></p>
+</div>
+</div>
+</div>
+<p>We see that <em>noise</em> has higher values (based on the <strong>mode</strong>), so we remove lines with mode in the most 20% extreme.</p>
+</section>
+</section>
+<section id="more-examples" class="level3">
+<h3 class="anchored" data-anchor-id="more-examples">More examples</h3>
+<p>Images 3 to 6 on the <strong>left</strong> signal:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="dv">3</span><span class="sc">:</span><span class="dv">6</span> <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">set_names</span>(<span class="at">nm =</span> \(x) <span class="fu">paste0</span>(<span class="st">"left"</span>, x)) <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">imap</span>(\(img_index, i) {</span>
+<span id="cb24-4"><a href="#cb24-4"></a>    <span class="fu">message</span>(<span class="st">"extracting image "</span>, i)</span>
+<span id="cb24-5"><a href="#cb24-5"></a>    <span class="fu">extract_img_signal</span>(<span class="at">channel =</span> <span class="st">"left"</span>, <span class="at">index =</span> img_index) <span class="sc">|&gt;</span> </span>
+<span id="cb24-6"><a href="#cb24-6"></a>      <span class="fu">fill_img_matrix</span>(<span class="at">remove_noise =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-7"><a href="#cb24-7"></a>      <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb24-8"><a href="#cb24-8"></a>      <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">row_number</span>(), <span class="at">.before =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-9"><a href="#cb24-9"></a>      <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>x,</span>
+<span id="cb24-10"><a href="#cb24-10"></a>                   <span class="at">names_to =</span> <span class="st">"y"</span>,</span>
+<span id="cb24-11"><a href="#cb24-11"></a>                   <span class="at">names_prefix =</span> <span class="st">"V"</span>,</span>
+<span id="cb24-12"><a href="#cb24-12"></a>                   <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">y =</span> as.integer),</span>
+<span id="cb24-13"><a href="#cb24-13"></a>                   <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-14"><a href="#cb24-14"></a>      <span class="fu">mutate</span>(<span class="at">img =</span> i)</span>
+<span id="cb24-15"><a href="#cb24-15"></a>  }, <span class="at">.progress =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-16"><a href="#cb24-16"></a>  <span class="co"># join all tibbles in the longer format</span></span>
+<span id="cb24-17"><a href="#cb24-17"></a>  <span class="fu">list_rbind</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb24-18"><a href="#cb24-18"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(y, x, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb24-19"><a href="#cb24-19"></a>  <span class="fu">geom_raster</span>() <span class="sc">+</span></span>
+<span id="cb24-20"><a href="#cb24-20"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">transform =</span> <span class="st">"reverse"</span>) <span class="sc">+</span></span>
+<span id="cb24-21"><a href="#cb24-21"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"grey30"</span>) <span class="sc">+</span></span>
+<span id="cb24-22"><a href="#cb24-22"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(img), <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb24-23"><a href="#cb24-23"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb24-24"><a href="#cb24-24"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="left-4-images.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="left-4-images.png" class="img-fluid"></a></p>
+<p>On the right channel, still images 3 to 6:</p>
+<p><a href="right-4-images.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="right-4-images.png" class="img-fluid"></a></p>
+</section>
+</section>
+<section id="color-images" class="level2">
+<h2 class="anchored" data-anchor-id="color-images">Color images</h2>
+<p>Still a work in progress due to misalignment between the 3 color channels: Red, Green, Blue.</p>
+<p>For example the Sun spectra is on the left channel in images 8, 9 and 10. Each matrix of 0-255 values are then bundle in <code>rgb()</code> and displayed with <code>rasterImage()</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">set_names</span>(<span class="at">nm =</span> \(x) <span class="fu">paste0</span>(<span class="st">"l"</span>, x)) <span class="sc">|&gt;</span> </span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">imap</span>(\(img_index, i) {</span>
+<span id="cb25-4"><a href="#cb25-4"></a>    <span class="fu">message</span>(<span class="st">"extracting image "</span>, i)</span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="fu">extract_img_signal</span>(<span class="at">channel =</span> <span class="st">"left"</span>, <span class="at">index =</span> img_index) <span class="sc">|&gt;</span> </span>
+<span id="cb25-6"><a href="#cb25-6"></a>      <span class="fu">fill_img_matrix</span>(<span class="at">remove_noise =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb25-7"><a href="#cb25-7"></a>  }, <span class="at">.progress =</span> <span class="cn">TRUE</span>) <span class="ot">-&gt;</span> sun_spectra</span>
+<span id="cb25-8"><a href="#cb25-8"></a></span>
+<span id="cb25-9"><a href="#cb25-9"></a><span class="co"># tailor down matrices to the minimum one</span></span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="fu">map_int</span>(sun_spectra, ncol) <span class="sc">|&gt;</span> <span class="fu">min</span>() <span class="ot">-&gt;</span> min_col</span>
+<span id="cb25-11"><a href="#cb25-11"></a></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="co"># rgb idea from baptiste https://stackoverflow.com/a/11306342/1395352</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a>spectra <span class="ot">&lt;-</span> <span class="fu">rgb</span>(sun_spectra[[<span class="dv">1</span>]][, <span class="fu">seq</span>(<span class="dv">1</span>, min_col)], </span>
+<span id="cb25-14"><a href="#cb25-14"></a>               sun_spectra[[<span class="dv">2</span>]][, <span class="fu">seq</span>(<span class="dv">1</span>, min_col)], </span>
+<span id="cb25-15"><a href="#cb25-15"></a>               sun_spectra[[<span class="dv">3</span>]][, <span class="fu">seq</span>(<span class="dv">1</span>, min_col)], </span>
+<span id="cb25-16"><a href="#cb25-16"></a>               <span class="at">maxColorValue =</span> <span class="dv">255</span>)</span>
+<span id="cb25-17"><a href="#cb25-17"></a><span class="fu">dim</span>(spectra) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">nrow</span>(sun_spectra[[<span class="dv">1</span>]]), min_col)</span>
+<span id="cb25-18"><a href="#cb25-18"></a></span>
+<span id="cb25-19"><a href="#cb25-19"></a><span class="co"># rasterImage</span></span>
+<span id="cb25-20"><a href="#cb25-20"></a><span class="co"># https://stackoverflow.com/a/62135604/1395352</span></span>
+<span id="cb25-21"><a href="#cb25-21"></a><span class="fu">plot.new</span>()</span>
+<span id="cb25-22"><a href="#cb25-22"></a><span class="fu">rasterImage</span>(spectra, <span class="at">interpolate =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb25-23"><a href="#cb25-23"></a>            <span class="at">xleft =</span> <span class="dv">0</span>, <span class="at">xright =</span> <span class="dv">1</span>, <span class="at">ytop =</span> <span class="dv">0</span>, <span class="at">ybottom =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="sun-spectra.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="sun-spectra.png" class="img-fluid"></a></p>
+<p>Compare to the original picture, it could be better:</p>
+<p><a href="solar-spectrum_30992778240_o.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="solar-spectrum_30992778240_o.gif" class="img-fluid"></a></p>
+</section>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<ul>
+<li><strong>Ron Barry</strong> for inspiring article.</li>
+<li><strong>Brandon Moore</strong> for easy to follow <i class="fa-brands fa-python" aria-label="python"></i> code.</li>
+<li>Baptiste for creating <code>rgb</code> images.</li>
+<li>Hadley Wickham for the <code>tidyverse</code>.</li>
+<li>The <i class="fa-brands fa-r-project" aria-label="r-project"></i> community for being welcoming and fruitful discussions.</li>
+</ul>
+</section>
+<section id="copyright-pictures" class="level2">
+<h2 class="anchored" data-anchor-id="copyright-pictures">Copyright pictures</h2>
+<p>Pictures are copyrighted by the <strong>NASA/JPL</strong> and from the <a href="https://voyager.jpl.nasa.gov/golden-record/golden-record-cover/">NASA Voyager site</a>. JPL stands for <strong>Jet Propulsion Laboratory</strong>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ginolhac\.github\.io");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="ginolhac/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2024, Aurélien Ginolhac</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

@@ -424,18 +424,36 @@ In case of stuck at <code>"Loading ramdisk"</code>
 </ul>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1"></a><span class="ex">gsettings</span> set org.gnome.desktop.wm.preferences audible-bell false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Config <code>jotta-cli</code>. follow dedicated AUR article <a href="https://docs.jottacloud.com/en/articles/5996448-jottacloud-cli-for-linux-aur-package">at jottacloud.com</a></li>
+<li><p>Config <code>jotta-cli</code>. follow dedicated AUR article <a href="https://docs.jottacloud.com/en/articles/5996448-jottacloud-cli-for-linux-aur-package">at jottacloud.com</a></p></li>
+<li><p>Automatically change <code>keyring</code> password with <code>user</code> password</p></li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note: This only affects the default <strong>keyring</strong>.</p>
+</div>
+</div>
+<p>Append <code>password optional pam_gnome_keyring.so</code> to <code>/etc/pam.d/passwd</code>:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="ex">...</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="ex">password</span>    optional    pam_gnome_keyring.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="leds-constantly-on" class="level3">
 <h3 class="anchored" data-anchor-id="leds-constantly-on">LEDS constantly on</h3>
+<p><strong>FIXME</strong> create a <code>service</code></p>
 <p>create as root a file <code>/etc/profile.d/disable-leds.sh</code> which contains:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="ex">!#/bin/bash</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="co"># lenovo laptops have working mute mic/speaker keys</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="co"># but leds are constant on. Disable leds at startup</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="bu">echo</span> off <span class="op">&gt;</span> /sys/class/sound/ctl-led/mic/mode</span>
-<span id="cb21-7"><a href="#cb21-7"></a><span class="bu">echo</span> off <span class="op">&gt;</span> /sys/class/sound/ctl-led/speaker/mode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a><span class="ex">!#/bin/bash</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="co"># lenovo laptops have working mute mic/speaker keys</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="co"># but leds are constant on. Disable leds at startup</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="bu">echo</span> off <span class="op">&gt;</span> /sys/class/sound/ctl-led/mic/mode</span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="bu">echo</span> off <span class="op">&gt;</span> /sys/class/sound/ctl-led/speaker/mode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="managing-ssh-key" class="level3">
 <h3 class="anchored" data-anchor-id="managing-ssh-key">Managing SSH key</h3>
@@ -454,9 +472,9 @@ In case of stuck at <code>"Loading ramdisk"</code>
 <section id="managing-pgp-key" class="level3">
 <h3 class="anchored" data-anchor-id="managing-pgp-key">Managing PGP key</h3>
 <p>Export both pub and secret from one machine:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a><span class="ex">gpg</span> <span class="at">--list-secret-keys</span> <span class="at">--keyid-format</span> LONG <span class="co"># to get the ID</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="ex">gpg</span> <span class="at">--export-secret-keys</span> <span class="at">-a</span> 2835D53DC2D201D3 <span class="op">&gt;</span> gpg-sc.asc</span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="ex">gpg</span> <span class="at">--export</span> <span class="at">-a</span> 2835D53DC2D201D3 <span class="op">&gt;</span> gpg-pub.asc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a><span class="ex">gpg</span> <span class="at">--list-secret-keys</span> <span class="at">--keyid-format</span> LONG <span class="co"># to get the ID</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="ex">gpg</span> <span class="at">--export-secret-keys</span> <span class="at">-a</span> 2835D53DC2D201D3 <span class="op">&gt;</span> gpg-sc.asc</span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="ex">gpg</span> <span class="at">--export</span> <span class="at">-a</span> 2835D53DC2D201D3 <span class="op">&gt;</span> gpg-pub.asc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then import on the new machine with <code>gpg --import</code> each file</p>
 </section>
 <section id="fingerprint" class="level3">
@@ -466,7 +484,7 @@ In case of stuck at <code>"Loading ramdisk"</code>
 <p>Check it is listed with <code>fprintd-list yourlogin</code></p>
 <p>And test it manually with <code>fprintd-verify</code></p>
 <p>Add to <code>sudo /etc/pam.d/gdm-fingerprint</code> on top the following line:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a><span class="ex">auth</span>            sufficient      pam_fprintd.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="ex">auth</span>            sufficient      pam_fprintd.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>the next login in GDM offers the fingerprint. The <strong>keyring</strong> stills need to be open with a password</p>
 </section>
 </section>
@@ -476,10 +494,10 @@ In case of stuck at <code>"Loading ramdisk"</code>
 <li>Test the <strong>Xe driver</strong></li>
 </ul>
 <p>with the current kernel (<code>6.10.2.arch1-1</code>), when heavy multi-threading is happening (<code>pak::pak("polars")</code> for example), the X server freeze and only a hard reboot works. Booting on <code>linu-lts</code> is fine (<code>6.6.42-1</code>).</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="ex">$</span> lspci <span class="at">-nn</span> <span class="kw">|</span> <span class="fu">grep</span> VGA</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="ex">00:02.0</span> VGA compatible controller <span class="pp">[</span><span class="ss">0300</span><span class="pp">]</span>: Intel Corporation Meteor Lake-P [Intel Graphics] <span class="pp">[</span><span class="ss">8086:7d45</span><span class="pp">]</span> <span class="er">(</span><span class="fu">rev</span> 08<span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="ex">$</span> lspci <span class="at">-nn</span> <span class="kw">|</span> <span class="fu">grep</span> VGA</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="ex">00:02.0</span> VGA compatible controller <span class="pp">[</span><span class="ss">0300</span><span class="pp">]</span>: Intel Corporation Meteor Lake-P [Intel Graphics] <span class="pp">[</span><span class="ss">8086:7d45</span><span class="pp">]</span> <span class="er">(</span><span class="fu">rev</span> 08<span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Meaning according to <a href="https://wiki.archlinux.org/title/Intel_graphics">Arch wiki</a> I should add the following Kernel parameters</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="ex">...</span> i915.force_probe=!7d45 xe.force_probe=7d45</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1"></a><span class="ex">...</span> i915.force_probe=!7d45 xe.force_probe=7d45</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Fingerprint for opening the <code>keyring</code> and/or <code>sudo</code> commands?</li>
 </ul>
@@ -926,7 +944,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
