@@ -285,7 +285,23 @@ gsettings set org.gnome.desktop.wm.preferences audible-bell false
 
 - Config `jotta-cli`. follow dedicated AUR article [at jottacloud.com](https://docs.jottacloud.com/en/articles/5996448-jottacloud-cli-for-linux-aur-package)
 
+
+- Automatically change `keyring` password with `user` password
+
+::: callout-note
+Note: This only affects the default **keyring**.
+:::
+
+Append `password optional pam_gnome_keyring.so` to `/etc/pam.d/passwd`:
+
+``` bash
+...
+password	optional	pam_gnome_keyring.so
+```
+
 ### LEDS constantly on
+
+**FIXME** create a `service`
 
 create as root a file `/etc/profile.d/disable-leds.sh` which contains:
 
@@ -299,6 +315,8 @@ echo off > /sys/class/sound/ctl-led/mic/mode
 echo off > /sys/class/sound/ctl-led/speaker/mode
 
 ```
+
+
 
 ### Managing SSH key
 
