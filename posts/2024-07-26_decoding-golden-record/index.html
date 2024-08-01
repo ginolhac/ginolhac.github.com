@@ -351,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="removing-the-noisy-tone" class="level3">
 <h3 class="anchored" data-anchor-id="removing-the-noisy-tone">Removing the noisy tone</h3>
 <p>Using the procedure from <strong>Brandon Moore</strong>, within the first 30 seconds, get the first bottom peak of the tone with some tweaks.</p>
-<p>First, get a sub-sample[^10,000 values are enough to see the shape, saves plotting time] of 30s of the left channel and visualize it:</p>
+<p>First, get a sub-sample <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> of 30s of the left channel and visualize it:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>first_30s <span class="ot">&lt;-</span> left_channel[<span class="dv">1</span><span class="sc">:</span>(<span class="dv">30</span> <span class="sc">*</span> rate)]</span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="fu">tibble</span>(<span class="at">y =</span> first_30s,</span>
 <span id="cb9-3"><a href="#cb9-3"></a>       <span class="at">x =</span> <span class="fu">seq_along</span>(first_30s)) <span class="sc">|&gt;</span> </span>
@@ -545,12 +545,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>You can clearly SEE the circle in the rendering</p>
 </blockquote>
-<p>From 1 sec to 3.5 the circle is indeed visible in the signal. For this first image, we have 6.06 seconds of audio (<code>{.r} row_index$V2[nrow(row_index)] - row_index$V2[1]) / rate</code>)</p>
+<p>From 1 sec to 3.5 the circle is indeed visible in the signal. For this first image, we have 6.06 seconds of audio (<code>row_index$V2[nrow(row_index)] - row_index$V2[1]) / rate</code>)</p>
 <section id="building-the-image-line-by-line" class="level4">
 <h4 class="anchored" data-anchor-id="building-the-image-line-by-line">Building the image line by line</h4>
 <p>Again, we write a function using the constants discovered empirically by <strong>Brandon Moore</strong>. The <code>THICKNESS</code> where he repeated each line 15 lines did not prove to be useful, so this is skipped here.</p>
 <p>However, his <strong>clipping</strong> of extreme values and <strong>rescaling</strong> to 0-255 values were really good and implemented in <i class="fa-brands fa-r-project" aria-label="r-project"></i>.</p>
-<p>The cleaning of the signal was done based on the densities.</p>
+<p>The cleaning of the signal was done based on the <a href="#densities">densities</a>.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>fill_img_matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(img_signal, <span class="at">remove_noise =</span> <span class="cn">TRUE</span>) {</span>
 <span id="cb20-2"><a href="#cb20-2"></a></span>
 <span id="cb20-3"><a href="#cb20-3"></a>  row_index <span class="ot">&lt;-</span> <span class="fu">find_row_indexes</span>(img_signal) </span>
@@ -616,8 +616,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-16"><a href="#cb21-16"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><a href="calibration-circle-ggplot2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="calibration-circle-ggplot2.png" class="img-fluid"></a></p>
 </section>
-<section id="densities-of-signal" class="level4">
-<h4 class="anchored" data-anchor-id="densities-of-signal">Densities of signal</h4>
+<section id="densities" class="level4">
+<h4 class="anchored" data-anchor-id="densities">Densities of signal</h4>
 <p>Removing “noise” it is really difficult. <strong>Moore</strong> has some hard-coded threshold. I went for again a quantile approach after comparing different slices of signal.</p>
 <p>For example, let’s not remove the “noise” for the circle:</p>
 <p>Same code as before for a <code>ggpplot2</code> output but with:</p>
@@ -740,7 +740,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>10,000 values are enough to see the shape, saves plotting time. 100,000 were a good compromise too.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1177,7 +1183,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
