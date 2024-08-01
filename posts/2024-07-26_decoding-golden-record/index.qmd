@@ -163,7 +163,7 @@ Now data range from -1 to 1.
 
 Using the procedure from **Brandon Moore**, within the first 30 seconds, get the first bottom peak of the tone with some tweaks.
 
-First, get a sub-sample[^10,000 values are enough to see the shape, saves plotting time] of 30s of the left channel and visualize it:
+First, get a sub-sample [^1] of 30s of the left channel and visualize it:
 
 ```{.r}
 first_30s <- left_channel[1:(30 * rate)]
@@ -413,7 +413,7 @@ As **Ron Barry** was [writing](https://boingboing.net/2017/09/05/how-to-decode-t
 >  You can clearly SEE the circle in the rendering
 
 From 1 sec to 3.5 the circle is indeed visible in the signal. 
-For this first image, we have 6.06 seconds of audio (`{.r} row_index$V2[nrow(row_index)] - row_index$V2[1]) / rate`)
+For this first image, we have 6.06 seconds of audio (`row_index$V2[nrow(row_index)] - row_index$V2[1]) / rate`)
 
 #### Building the image line by line
 
@@ -422,7 +422,7 @@ The `THICKNESS` where he repeated each line 15 lines did not prove to be useful,
 
 However, his **clipping** of extreme values and **rescaling** to 0-255 values were really good and implemented in {{< fa brands r-project >}}.
 
-The cleaning of the signal was done based on the densities.
+The cleaning of the signal was done based on the [densities](#densities).
 
 ```{.r}
 fill_img_matrix <- function(img_signal, remove_noise = TRUE) {
@@ -500,7 +500,7 @@ img_longer |>
 ![](calibration-circle-ggplot2.png)
 
 
-#### Densities of signal
+#### Densities of signal {#densities}
 
 Removing "noise" it is really difficult. **Moore** has some hard-coded threshold.
 I went for again a quantile approach after comparing different slices of signal.
@@ -639,3 +639,4 @@ Compare to the original picture, it could be better:
 Pictures are copyrighted by the **NASA/JPL** and from the [NASA Voyager site](https://voyager.jpl.nasa.gov/golden-record/golden-record-cover/). JPL stands for **Jet Propulsion Laboratory**.
 
 
+ [^1]: 10,000 values are enough to see the shape, saves plotting time. 100,000 were a good compromise too.
