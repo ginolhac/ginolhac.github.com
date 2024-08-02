@@ -301,19 +301,41 @@ password	optional	pam_gnome_keyring.so
 
 ### LEDS constantly on
 
-**FIXME** create a `service`
+Create a `service` with `systemd` to disable at startup the leds of the mic/speaker keys.
+Keys are functioning well, just the led status is wrong.
 
-create as root a file `/etc/profile.d/disable-leds.sh` which contains:
+- Create as `root` a script `/usr/bin/disable-leds` which contains:
 
 ``` bash
-!#/bin/bash
+#!/bin/sh
 
 # lenovo laptops have working mute mic/speaker keys
 # but leds are constant on. Disable leds at startup
 
 echo off > /sys/class/sound/ctl-led/mic/mode
 echo off > /sys/class/sound/ctl-led/speaker/mode
+```
 
+- Create as `root` the service in `/usr/lib/systemd/system/disable-leds.service`
+
+``` bash
+[Unit]
+Description=Disable Lenovo faulty always on mic/speaker keys
+After=xdg-user-dirs-update.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/disable-leds
+
+[Install]
+WantedBy=multi-user.target
+```
+
+
+- Create the symbolic link as `root`:
+
+``` bash
+ln -s /usr/lib/systemd/system/disable-leds.service /etc/systemd/system/multi-user.target.wants/
 ```
 
 
@@ -369,7 +391,7 @@ the next login in GDM offers the fingerprint. The **keyring** stills need to be 
 Test the **Xe driver** as in the [Arch wiki](https://wiki.archlinux.org/title/Intel_graphics#Testing_the_new_experimental_Xe_driver)
 
 with the current kernel (`6.10.2.arch1-1`), when heavy multi-threading is happening (`pak::pak("polars")` for example), 
-the X server freeze and only a hard reboot works. Booting on `linu-lts` is fine (`6.6.42-1`).
+the X server freeze and only a hard reboot works. Booting on `linux-lts` is fine (`6.6.42-1`).
 
 - Install dev `mesa` with `yay mesa-git`
 
@@ -391,7 +413,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet i915.force_probe=!7d45 xe.force_pro
 After reboot, check the module is loaded:
 
 ``` bash
-$lsmod | grep "^video"
+$ lsmod | grep "^video"
 
 videobuf2_vmalloc      20480  1 uvcvideo
 videobuf2_memops       16384  1 videobuf2_vmalloc
