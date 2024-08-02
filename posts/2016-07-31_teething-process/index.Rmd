@@ -12,7 +12,7 @@ categories:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
+library(dplyr)
 ```
 
 Teething can be tough for kids, and so for the parents. For our first kid, it was actually pretty painful.
@@ -23,7 +23,7 @@ Then, I wanted to see how synchronize the second kid would be with the first one
 This was an old input, now I would use the [datapasta](https://github.com/milesmcbain/datapasta) rstudio addin by Miles Mc Bain to get a `tribble` from any spreadsheet.
 
 ```{r}
-
+#| eval: true
 tibble::tribble(
       ~kid,        ~date,                ~teeth,
    "Anouk", "2014-03-31", "incisive inf cent D",
@@ -72,9 +72,9 @@ count(teeth, kid)
 
 
 
-https://en.wikipedia.org/wiki/Dental_notation
+From [Wikipedia: Dental notation](https://en.wikipedia.org/wiki/Dental_notation)
 
-```
+``` cell-output-stdout
 Primary Dentition
         upper right - 5             upper left - 6
              55 54 53 52 51 | 61 62 63 64 65 
@@ -96,6 +96,7 @@ Primary Dentition
 
 
 ```{r}
+#| eval: false
 teeth %>%
   mutate(date = parse_date(date),
          t_teeth = word(teeth, 1),
@@ -118,7 +119,8 @@ teeth_tp %>%
 
 ## Animate
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
 library(gganimate)
 teeth_tp %>%
    group_by(kid) %>%
