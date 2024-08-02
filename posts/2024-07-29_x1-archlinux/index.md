@@ -364,25 +364,48 @@ auth            sufficient      pam_fprintd.so
 
 the next login in GDM offers the fingerprint. The **keyring** stills need to be open with a password
 
+### Xe Intel Arc driver
 
-
-## TODO
-
-- Test the **Xe driver**
+Test the **Xe driver** as in the [Arch wiki](https://wiki.archlinux.org/title/Intel_graphics#Testing_the_new_experimental_Xe_driver)
 
 with the current kernel (`6.10.2.arch1-1`), when heavy multi-threading is happening (`pak::pak("polars")` for example), 
 the X server freeze and only a hard reboot works. Booting on `linu-lts` is fine (`6.6.42-1`).
+
+- Install dev `mesa` with `yay mesa-git`
+
+- Fetch PCI ID
 
 ``` bash
 $ lspci -nn | grep VGA
 00:02.0 VGA compatible controller [0300]: Intel Corporation Meteor Lake-P [Intel Graphics] [8086:7d45] (rev 08)
 ```
 
-Meaning according to [Arch wiki](https://wiki.archlinux.org/title/Intel_graphics) I should add the following Kernel parameters
+- Add the following Kernel parameters in `/etc/default/grub` after `quiet`
 
 ``` bash
-... i915.force_probe=!7d45 xe.force_probe=7d45
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet i915.force_probe=!7d45 xe.force_probe=7d45"
 ```
+
+- Regenerate **GRUB** config with `grub-mkconfig -o /boot/grub/grub.cfg`
+
+After reboot, check the module is loaded:
+
+``` bash
+$lsmod | grep "^video"
+
+videobuf2_vmalloc      20480  1 uvcvideo
+videobuf2_memops       16384  1 videobuf2_vmalloc
+videobuf2_v4l2         40960  1 uvcvideo
+videodev              393216  4 videobuf2_v4l2,uvcvideo
+videobuf2_common       94208  4 videobuf2_vmalloc,videobuf2_v4l2,uvcvideo,videobuf2_memops
+video                  77824  3 thinkpad_acpi,xe,i915
+```
+
+**`xe,i915`** in the last line.
+
+## TODO
+
+- Ideapad with this [GNOME extension](https://github.com/laurento/gnome-shell-extension-ideapad)
 
 - Fingerprint for opening the `keyring` and/or `sudo` commands?
 
