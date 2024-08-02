@@ -44,7 +44,7 @@ This sensor measures 4 parameters every 2 to 10 minutes which are:
 
 The **CO**<sub>2</sub> measurement is performed as follows (from the user manual):
 
-![CO2 aranet](https://i.imgur.com/zLq7HuB.png)
+![CO2 aranet](aranet.png)
 
 According to the file extension, it is a comma-separated values. 
 But if you look at the file with a text editor, you will see that values are surrounded by double quotes and number are
@@ -59,7 +59,7 @@ Moreover, the dates are not in a standard format unfortunately. But it is a real
 
 
 ```{r}
-aranet <- read_csv("https://biostat2.uni.lu/practicals/data/Gino_2022-08-14T22_53_06+0200.csv",
+aranet <- read_csv("Gino_2022-08-14T22_53_06+0200.csv",
                    col_types = cols(`Time(dd/mm/yyyy)` = col_datetime(format = "%d/%m/%Y %H:%M:%S")),
                    locale = locale(decimal_mark = ","),
                    col_select = -`Atmospheric pressure(hPa)`) |> 
