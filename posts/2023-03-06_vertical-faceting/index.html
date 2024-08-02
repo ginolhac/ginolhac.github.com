@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <strong>CO</strong><sub>2</sub> measurement is performed as follows (from the user manual):</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://i.imgur.com/zLq7HuB.png" class="img-fluid figure-img"></p>
+<p><img src="aranet.png" class="img-fluid figure-img"></p>
 <figcaption>CO2 aranet</figcaption>
 </figure>
 </div>
@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Skip the last column (Atmospheric Pressure) as we won’t plot it.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>aranet <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://biostat2.uni.lu/practicals/data/Gino_2022-08-14T22_53_06+0200.csv"</span>,</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>aranet <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Gino_2022-08-14T22_53_06+0200.csv"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2"></a>                   <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="st">`</span><span class="at">Time(dd/mm/yyyy)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_datetime</span>(<span class="at">format =</span> <span class="st">"%d/%m/%Y %H:%M:%S"</span>)),</span>
 <span id="cb1-3"><a href="#cb1-3"></a>                   <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">","</span>),</span>
 <span id="cb1-4"><a href="#cb1-4"></a>                   <span class="at">col_select =</span> <span class="sc">-</span><span class="st">`</span><span class="at">Atmospheric pressure(hPa)</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>

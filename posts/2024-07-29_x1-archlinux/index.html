@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -220,6 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#managing-ssh-key" id="toc-managing-ssh-key" class="nav-link" data-scroll-target="#managing-ssh-key">Managing SSH key</a></li>
   <li><a href="#managing-pgp-key" id="toc-managing-pgp-key" class="nav-link" data-scroll-target="#managing-pgp-key">Managing PGP key</a></li>
   <li><a href="#fingerprint" id="toc-fingerprint" class="nav-link" data-scroll-target="#fingerprint">Fingerprint</a></li>
+  <li><a href="#xe-intel-arc-driver" id="toc-xe-intel-arc-driver" class="nav-link" data-scroll-target="#xe-intel-arc-driver">Xe Intel Arc driver</a></li>
   </ul></li>
   <li><a href="#todo" id="toc-todo" class="nav-link" data-scroll-target="#todo">TODO</a></li>
   </ul></li>
@@ -487,19 +488,40 @@ Note
 <div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="ex">auth</span>            sufficient      pam_fprintd.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>the next login in GDM offers the fingerprint. The <strong>keyring</strong> stills need to be open with a password</p>
 </section>
+<section id="xe-intel-arc-driver" class="level3">
+<h3 class="anchored" data-anchor-id="xe-intel-arc-driver">Xe Intel Arc driver</h3>
+<p>Test the <strong>Xe driver</strong> as in the <a href="https://wiki.archlinux.org/title/Intel_graphics#Testing_the_new_experimental_Xe_driver">Arch wiki</a></p>
+<p>with the current kernel (<code>6.10.2.arch1-1</code>), when heavy multi-threading is happening (<code>pak::pak("polars")</code> for example), the X server freeze and only a hard reboot works. Booting on <code>linu-lts</code> is fine (<code>6.6.42-1</code>).</p>
+<ul>
+<li><p>Install dev <code>mesa</code> with <code>yay mesa-git</code></p></li>
+<li><p>Fetch PCI ID</p></li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="ex">$</span> lspci <span class="at">-nn</span> <span class="kw">|</span> <span class="fu">grep</span> VGA</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="ex">00:02.0</span> VGA compatible controller <span class="pp">[</span><span class="ss">0300</span><span class="pp">]</span>: Intel Corporation Meteor Lake-P [Intel Graphics] <span class="pp">[</span><span class="ss">8086:7d45</span><span class="pp">]</span> <span class="er">(</span><span class="fu">rev</span> 08<span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Add the following Kernel parameters in <code>/etc/default/grub</code> after <code>quiet</code></li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1"></a><span class="va">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="op">=</span><span class="st">"loglevel=3 quiet i915.force_probe=!7d45 xe.force_probe=7d45"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Regenerate <strong>GRUB</strong> config with <code>grub-mkconfig -o /boot/grub/grub.cfg</code></li>
+</ul>
+<p>After reboot, check the module is loaded:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1"></a><span class="va">$lsmod</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"^video"</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="ex">videobuf2_vmalloc</span>      20480  1 uvcvideo</span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="ex">videobuf2_memops</span>       16384  1 videobuf2_vmalloc</span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="ex">videobuf2_v4l2</span>         40960  1 uvcvideo</span>
+<span id="cb27-6"><a href="#cb27-6"></a><span class="ex">videodev</span>              393216  4 videobuf2_v4l2,uvcvideo</span>
+<span id="cb27-7"><a href="#cb27-7"></a><span class="ex">videobuf2_common</span>       94208  4 videobuf2_vmalloc,videobuf2_v4l2,uvcvideo,videobuf2_memops</span>
+<span id="cb27-8"><a href="#cb27-8"></a><span class="ex">video</span>                  77824  3 thinkpad_acpi,xe,i915</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><code>xe,i915</code></strong> in the last line.</p>
+</section>
 </section>
 <section id="todo" class="level2">
 <h2 class="anchored" data-anchor-id="todo">TODO</h2>
 <ul>
-<li>Test the <strong>Xe driver</strong></li>
-</ul>
-<p>with the current kernel (<code>6.10.2.arch1-1</code>), when heavy multi-threading is happening (<code>pak::pak("polars")</code> for example), the X server freeze and only a hard reboot works. Booting on <code>linu-lts</code> is fine (<code>6.6.42-1</code>).</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="ex">$</span> lspci <span class="at">-nn</span> <span class="kw">|</span> <span class="fu">grep</span> VGA</span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="ex">00:02.0</span> VGA compatible controller <span class="pp">[</span><span class="ss">0300</span><span class="pp">]</span>: Intel Corporation Meteor Lake-P [Intel Graphics] <span class="pp">[</span><span class="ss">8086:7d45</span><span class="pp">]</span> <span class="er">(</span><span class="fu">rev</span> 08<span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Meaning according to <a href="https://wiki.archlinux.org/title/Intel_graphics">Arch wiki</a> I should add the following Kernel parameters</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1"></a><span class="ex">...</span> i915.force_probe=!7d45 xe.force_probe=7d45</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Fingerprint for opening the <code>keyring</code> and/or <code>sudo</code> commands?</li>
+<li><p>Ideapad with this <a href="https://github.com/laurento/gnome-shell-extension-ideapad">GNOME extension</a></p></li>
+<li><p>Fingerprint for opening the <code>keyring</code> and/or <code>sudo</code> commands?</p></li>
 </ul>
 <p>Might not be a good idea.</p>
 
@@ -944,7 +966,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
