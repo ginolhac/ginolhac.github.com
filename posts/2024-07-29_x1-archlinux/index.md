@@ -393,7 +393,7 @@ Test the **Xe driver** as in the [Arch wiki](https://wiki.archlinux.org/title/In
 with the current kernel (`6.10.2.arch1-1`), when heavy multi-threading is happening (`pak::pak("polars")` for example), 
 the X server freeze and only a hard reboot works. Booting on `linux-lts` is fine (`6.6.42-1`).
 
-- Install dev `mesa` with `yay mesa-git`
+- Install dev `mesa` with `yay mesa`
 
 - Fetch PCI ID
 
