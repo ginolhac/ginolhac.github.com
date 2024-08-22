@@ -512,7 +512,7 @@ Note
 <p>Test the <strong>Xe driver</strong> as in the <a href="https://wiki.archlinux.org/title/Intel_graphics#Testing_the_new_experimental_Xe_driver">Arch wiki</a></p>
 <p>with the current kernel (<code>6.10.2.arch1-1</code>), when heavy multi-threading is happening (<code>pak::pak("polars")</code> for example), the X server freeze and only a hard reboot works. Booting on <code>linux-lts</code> is fine (<code>6.6.42-1</code>).</p>
 <ul>
-<li><p>Install dev <code>mesa</code> with <code>yay mesa-git</code></p></li>
+<li><p>Install dev <code>mesa</code> with <code>yay mesa</code></p></li>
 <li><p>Fetch PCI ID</p></li>
 </ul>
 <div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1"></a><span class="ex">$</span> lspci <span class="at">-nn</span> <span class="kw">|</span> <span class="fu">grep</span> VGA</span>
@@ -985,7 +985,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
