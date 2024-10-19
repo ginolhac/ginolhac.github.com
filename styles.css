@@ -12,5 +12,9 @@
 
 .cell-output {
   background-color: #f4f4f4;
+}
+
+pre code:not(.sourceCode) {
+  background-color: #f1f3f5;
   border-radius: 4px;
 }
