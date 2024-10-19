@@ -74,7 +74,7 @@ count(teeth, kid)
 
 From [Wikipedia: Dental notation](https://en.wikipedia.org/wiki/Dental_notation)
 
-``` cell-output-stdout
+``` {.cell-output .cell-output-stdout}
 Primary Dentition
         upper right - 5             upper left - 6
              55 54 53 52 51 | 61 62 63 64 65 

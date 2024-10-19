@@ -20,13 +20,14 @@ This post belongs to a series about the **Ventoux**:
 - [Maintenance 2](../2020-07-14_ventoux-2/index.html) on the 2020-07-14
 - [Maintenance 3](../2023-04-29_ventoux-3/index.html) on the 2023-04-29
 - [Maintenance 4](index.html) this post
+- [Maintenance 5](../2024-10-13_ventoux-5/index.html) on the 2024-10-13
 
 :::
 
 ## Headset
 
 In 2020, the headset was serviced minimally and without much knowledge by me.
-After unmounting the headset, I cleaned all little balls (lost one!) and mounted back 
+After un-mounting the headset, I cleaned all little balls (lost one!) and mounted back 
 with new grease. 
 
 
