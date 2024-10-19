@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aurélien Ginolhac">
-<meta name="dcterms.date" content="2016-07-31">
-<meta name="description" content="Compare teething for two kids">
+<meta name="dcterms.date" content="2024-10-13">
+<meta name="description" content="Worn out rims. Bad weather is worth many kilometers">
 
-<title>teething</title>
+<title> Maintenance on the Ventoux, part 5</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -76,6 +42,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -150,15 +121,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">teething</h1>
+      <h1 class="title"><i class="fa-solid fa-bicycle" aria-label="bicycle"></i> Maintenance on the Ventoux, part 5</h1>
                   <div>
         <div class="description">
-          Compare teething for two kids
+          Worn out rims. Bad weather is worth many kilometers
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">R</div>
-                <div class="quarto-category">animation</div>
+                <div class="quarto-category">bike</div>
+                <div class="quarto-category">DIY</div>
               </div>
                   </div>
   </div>
@@ -176,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 31, 2016</p>
+        <p class="date">October 13, 2024</p>
       </div>
     </div>
     
@@ -192,9 +163,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#input-data" id="toc-input-data" class="nav-link active" data-scroll-target="#input-data">Input data</a></li>
-  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a></li>
-  <li><a href="#animate" id="toc-animate" class="nav-link" data-scroll-target="#animate">Animate</a></li>
+  <li><a href="#wheels" id="toc-wheels" class="nav-link active" data-scroll-target="#wheels">Wheels</a></li>
+  <li><a href="#rust" id="toc-rust" class="nav-link" data-scroll-target="#rust">Rust</a></li>
+  <li><a href="#mirror" id="toc-mirror" class="nav-link" data-scroll-target="#mirror">Mirror</a></li>
   </ul>
 </nav>
     </div>
@@ -205,124 +176,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Teething can be tough for kids, and so for the parents. For our first kid, it was actually pretty painful. Then, I wanted to see how synchronize the second kid would be with the first one.</p>
-<section id="input-data" class="level2">
-<h2 class="anchored" data-anchor-id="input-data">Input data</h2>
-<p>This was an old input, now I would use the <a href="https://github.com/milesmcbain/datapasta">datapasta</a> rstudio addin by Miles Mc Bain to get a <code>tribble</code> from any spreadsheet.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
-<span id="cb1-2"><a href="#cb1-2"></a>      <span class="sc">~</span>kid,        <span class="sc">~</span>date,                <span class="sc">~</span>teeth,</span>
-<span id="cb1-3"><a href="#cb1-3"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-03-31"</span>, <span class="st">"incisive inf cent D"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-04-18"</span>, <span class="st">"incisive inf cent G"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-07-02"</span>, <span class="st">"incisive sup cent D"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-06-09"</span>, <span class="st">"incisive sup cent G"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-07-03"</span>,  <span class="st">"incisive sup lat G"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-07-26"</span>,  <span class="st">"incisive sup lat D"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-08-12"</span>,  <span class="st">"incisive inf lat D"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-10-12"</span>,  <span class="st">"incisive inf lat G"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-01-04"</span>,        <span class="st">"prem 1 sup G"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-01-11"</span>,        <span class="st">"prem 1 sup G"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-01-11"</span>,        <span class="st">"prem 1 inf D"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-02-01"</span>,        <span class="st">"prem 1 inf D"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-02-01"</span>,        <span class="st">"canine sup G"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-02-12"</span>,        <span class="st">"canine sup D"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-03-28"</span>,        <span class="st">"canine inf D"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-04-04"</span>,        <span class="st">"canine inf G"</span>, <span class="co"># imputed data</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-10-15"</span>,        <span class="st">"prem 2 inf G"</span>,</span>
-<span id="cb1-20"><a href="#cb1-20"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-10-15"</span>,        <span class="st">"prem 2 inf D"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21"></a>   <span class="st">"Anouk"</span>, <span class="st">"2015-12-21"</span>,        <span class="st">"prem 2 sup D"</span>,</span>
-<span id="cb1-22"><a href="#cb1-22"></a>   <span class="st">"Anouk"</span>, <span class="st">"2016-03-01"</span>,        <span class="st">"prem 2 sup G"</span>,</span>
-<span id="cb1-23"><a href="#cb1-23"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-05-11"</span>, <span class="st">"incisive inf cent D"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-05-18"</span>, <span class="st">"incisive inf cent G"</span>,</span>
-<span id="cb1-25"><a href="#cb1-25"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-07-11"</span>, <span class="st">"incisive sup cent D"</span>,</span>
-<span id="cb1-26"><a href="#cb1-26"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-07-25"</span>, <span class="st">"incisive sup cent G"</span>,</span>
-<span id="cb1-27"><a href="#cb1-27"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-08-03"</span>, <span class="st">"incisive sup lat D"</span>,</span>
-<span id="cb1-28"><a href="#cb1-28"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-08-04"</span>, <span class="st">"incisive inf lat D"</span>,</span>
-<span id="cb1-29"><a href="#cb1-29"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-08-04"</span>, <span class="st">"incisive inf lat G"</span>,</span>
-<span id="cb1-30"><a href="#cb1-30"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-08-23"</span>, <span class="st">"incisive sup lat G"</span>,</span>
-<span id="cb1-31"><a href="#cb1-31"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-09-30"</span>,        <span class="st">"prem 1 inf D"</span>,</span>
-<span id="cb1-32"><a href="#cb1-32"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-09-20"</span>,        <span class="st">"prem 1 inf G"</span>,</span>
-<span id="cb1-33"><a href="#cb1-33"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-10-22"</span>,        <span class="st">"prem 1 sup D"</span>,</span>
-<span id="cb1-34"><a href="#cb1-34"></a>   <span class="st">"Irène"</span>, <span class="st">"2017-10-20"</span>,        <span class="st">"prem 1 sup G"</span>,</span>
-<span id="cb1-35"><a href="#cb1-35"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-04-04"</span>,        <span class="st">"canine sup D"</span>,</span>
-<span id="cb1-36"><a href="#cb1-36"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-04-28"</span>,        <span class="st">"canine inf D"</span>,</span>
-<span id="cb1-37"><a href="#cb1-37"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-05-15"</span>,        <span class="st">"canine sup G"</span>,</span>
-<span id="cb1-38"><a href="#cb1-38"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-05-25"</span>,        <span class="st">"prem 2 inf G"</span>,</span>
-<span id="cb1-39"><a href="#cb1-39"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-06-01"</span>,        <span class="st">"canine inf G"</span>,</span>
-<span id="cb1-40"><a href="#cb1-40"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-06-07"</span>,        <span class="st">"prem 2 inf D"</span>,</span>
-<span id="cb1-41"><a href="#cb1-41"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-09-04"</span>,        <span class="st">"prem 2 sup D"</span>) <span class="ot">-&gt;</span> teeth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">count</span>(teeth, kid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  kid       n
-  &lt;chr&gt; &lt;int&gt;
-1 Anouk    20
-2 Irène    19</code></pre>
+<div class="callout-title-container flex-fill">
+Post series
 </div>
 </div>
-<p>From <a href="https://en.wikipedia.org/wiki/Dental_notation">Wikipedia: Dental notation</a></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource cell-output cell-output-stdout number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>Primary Dentition</span>
-<span id="cb4-2"><a href="#cb4-2"></a>        upper right - 5             upper left - 6</span>
-<span id="cb4-3"><a href="#cb4-3"></a>             55 54 53 52 51 | 61 62 63 64 65 </span>
-<span id="cb4-4"><a href="#cb4-4"></a>          R --------------------------------- L</span>
-<span id="cb4-5"><a href="#cb4-5"></a>             85 84 83 82 81 | 71 72 73 74 75 </span>
-<span id="cb4-6"><a href="#cb4-6"></a>        lower right - 8             lower left - 7</span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a> I - incisor</span>
-<span id="cb4-9"><a href="#cb4-9"></a> C - canine</span>
-<span id="cb4-10"><a href="#cb4-10"></a> P - premolar</span>
-<span id="cb4-11"><a href="#cb4-11"></a> M - molar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-body-container callout-body">
+<p>This post belongs to a series about the <strong>Ventoux</strong>:</p>
+<ul>
+<li><a href="../2020-04-27_ventoux-1/index.html">Maintenance 1</a> on the 2020-04-27</li>
+<li><a href="../2020-07-14_ventoux-2/index.html">Maintenance 2</a> on the 2020-07-14</li>
+<li><a href="../2023-04-29_ventoux-3/index.html">Maintenance 3</a> on the 2023-04-29</li>
+<li><a href="../2023-09-17_ventoux-4/index.html">Maintenance 4</a> on the 2023-09-17</li>
+<li><a href="index.html">Maintenance 5</a> this post</li>
+</ul>
+</div>
+</div>
+<section id="wheels" class="level2">
+<h2 class="anchored" data-anchor-id="wheels">Wheels</h2>
+<p>Four years and a half passed and I was monitoring the rim state of wheels. Especially the rear one. The brake pads are getting worn out at an alarming speed in bad conditions. Such as Fall with rain, pieces of dead leaves and other debris. Brake pads are cheap and okay-ish to change quickly. But the counterpart is that the rim is also getting worn out fast.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="brake-before.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="brake-before.jpeg" class="quarto-figure quarto-figure-center figure-img" height="300"></a></p>
+</figure>
+</div>
+<p>The warning sign is telling that a little pin hole must remain visible. See below the new versus current rim state:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="rim_old_new.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="rim_old_new.jpeg" class="quarto-figure quarto-figure-center figure-img" height="300"></a></p>
+</figure>
+</div>
+<p>I bought exactly the same set of Shimano wheels: R501 219,98 euros.</p>
+<p>Was 103 euros in April 2020. Here it is from a local shop but still inflation is quite interesting to witness.</p>
 </section>
-<section id="plotting" class="level2">
-<h2 class="anchored" data-anchor-id="plotting">Plotting</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>teeth <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">parse_date</span>(date),</span>
-<span id="cb5-3"><a href="#cb5-3"></a>         <span class="at">t_teeth =</span> <span class="fu">word</span>(teeth, <span class="dv">1</span>),</span>
-<span id="cb5-4"><a href="#cb5-4"></a>         <span class="at">age =</span> <span class="fu">case_when</span>(kid <span class="sc">==</span> <span class="st">"Anouk"</span> <span class="sc">~</span> date <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"20130828"</span>),</span>
-<span id="cb5-5"><a href="#cb5-5"></a>                         kid <span class="sc">==</span> <span class="st">"Irène"</span> <span class="sc">~</span> date <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"20160922"</span>)),</span>
-<span id="cb5-6"><a href="#cb5-6"></a>         <span class="at">age2 =</span> <span class="fu">as.numeric</span>(age) <span class="sc">/</span> <span class="dv">365</span>) <span class="ot">-&gt;</span> teeth_tp</span>
-<span id="cb5-7"><a href="#cb5-7"></a>teeth_tp <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">group_by</span>(kid) <span class="sc">%&gt;%</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">arrange</span>(age) <span class="sc">%&gt;%</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">mutate</span>(<span class="at">n_teeth =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-11"><a href="#cb5-11"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age2, <span class="at">y =</span> n_teeth, <span class="at">colour =</span> kid), <span class="at">width =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> t_teeth)) <span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a>  <span class="fu">theme_bw</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"age (years)"</span>,</span>
-<span id="cb5-17"><a href="#cb5-17"></a>       <span class="at">y =</span> <span class="st">"# teeth"</span>,</span>
-<span id="cb5-18"><a href="#cb5-18"></a>       <span class="at">shape =</span> <span class="st">"type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="rust" class="level2">
+<h2 class="anchored" data-anchor-id="rust">Rust</h2>
+<p>Another concern, due to the age of this bike, is the rust. Painting is gone in many places and steel is rusting. It affects the look, of which I don’t care but some critical connections are concerning like this one:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="rust.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="rust.jpeg" class="quarto-figure quarto-figure-center figure-img" height="300"></a></p>
+</figure>
+</div>
+<p>Lot of tension due to my weight plus the rear brake forces, so I went to see the local bike shop who advice me to scratch this damaged yellow paint and put some anti-rust treatment. I bough this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="hammerite.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="hammerite.jpeg" class="quarto-figure quarto-figure-center figure-img" height="300"></a></p>
+</figure>
+</div>
+<p>After scratching and applying the product, it takes time to dry:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="rust-drying.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="rust-drying.jpeg" class="quarto-figure quarto-figure-center figure-img" height="300"></a></p>
+</figure>
+</div>
+<p>While it dries, I changed the rear wheel, keeping the same tube, tyre and cassette.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="wheels.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="wheels.jpeg" class="quarto-figure quarto-figure-center figure-img" height="300"></a></p>
+</figure>
+</div>
+<p>The freewheel comes with the Shimano set, the more difficult was to fit again the Continental GP5000 that I poorly bought tube less version. Very stiff but I managed.</p>
+<p>Once dried, I changed the brake pads and here the final result:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="brake-done.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="brake-done.jpeg" class="quarto-figure quarto-figure-center figure-img" height="300"></a></p>
+</figure>
 </div>
 </section>
-<section id="animate" class="level2">
-<h2 class="anchored" data-anchor-id="animate">Animate</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(gganimate)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>teeth_tp <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>   <span class="fu">group_by</span>(kid) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>   <span class="fu">arrange</span>(age) <span class="sc">%&gt;%</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>   <span class="fu">mutate</span>(<span class="at">n_teeth =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-6"><a href="#cb6-6"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age2, <span class="at">y =</span> n_teeth, <span class="at">colour =</span> kid)) <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>   <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>   <span class="co"># to try transition_reveal()</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>   <span class="fu">transition_reveal</span>(kid, n_teeth) <span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>   <span class="co">#ease_aes("linear") +</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>   <span class="fu">shadow_trail</span>() <span class="sc">+</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> t_teeth), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a>   <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values =</span> wesanderson<span class="sc">::</span><span class="fu">wes_palette</span>(<span class="st">"GrandBudapest1"</span>)[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]) <span class="sc">+</span> </span>
-<span id="cb6-15"><a href="#cb6-15"></a>   <span class="fu">theme_bw</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"age (years)"</span>,</span>
-<span id="cb6-17"><a href="#cb6-17"></a>        <span class="at">y =</span> <span class="st">"# teeth"</span>,</span>
-<span id="cb6-18"><a href="#cb6-18"></a>        <span class="at">shape =</span> <span class="st">"type"</span>) <span class="ot">-&gt;</span> tp</span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="fu">animate</span>(tp, <span class="at">nframes =</span> <span class="dv">60</span>)</span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="fu">anim_save</span>(<span class="st">"teething.gif"</span>, <span class="fu">last_animation</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="mirror" class="level2">
+<h2 class="anchored" data-anchor-id="mirror">Mirror</h2>
+<p>I have some mirrors on other bikes, and for commuting my daily distance it is not really needed. But, I am giving this a try. After one week, I like it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="mirror.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="mirror.jpeg" class="quarto-figure quarto-figure-center figure-img" height="300"></a></p>
+</figure>
 </div>
-<p><img src="teething.gif" class="img-fluid"></p>
+<p>Because the weight on one side of the handle bar is also a bit annoying, so let’s see with more experience how it feels.</p>
 
 
 </section>
@@ -764,6 +697,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
