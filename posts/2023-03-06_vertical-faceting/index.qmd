@@ -30,7 +30,7 @@ Use either:
 
 ## Demo
 
-We will use a file from the [Aranet4](https://aranet4.com/) sensor using the mobile app provided by the company.
+We will use a file from the [Aranet4](https://aranet.com/en/home/products/aranet4-home) sensor using the mobile app provided by the company.
 This sensor measures 4 parameters every 2 to 10 minutes which are:
 
 -   **CO**<sub>2</sub>, using the infrared absorption property of greenhouse gases like carbon dioxide.

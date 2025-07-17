@@ -14,7 +14,7 @@ date: "2014-07-26"
 
 This page is dedicated to tabs from the band [karate](https://en.wikipedia.org/wiki/Karate_(band)) made by fans. These tabs
 came from the original website (today offline) made by **Willem Holthuis**.  
-[Geoff Farina](https://www.geofffarina.com/) is the Karate's guitarist, many thanks to him for writing such nice songs.
+[Geoff Farina](https://music.depaul.edu/faculty-staff/faculty-a-z/Pages/geoff-farina.aspx) is the Karate's guitarist, many thanks to him for writing such nice songs.
 Have fun playing the incredible music made by
 Karate and please feel free to correct the tabs by sending an email to his author if you find
 any mistakes or new interpretations.
@@ -130,8 +130,5 @@ Song | Author
 [Caffeine or Me?](/tabs/caffeine_or_me.txt) | Philip Tanimura
 
 
-[southern]: http://shop.southern.com/karate/
-[willem]: http://www.xs4all.nl/%7Eholthuw/home/home.htm
-[geoff]: http://www.geofffarina.com
 
 ---

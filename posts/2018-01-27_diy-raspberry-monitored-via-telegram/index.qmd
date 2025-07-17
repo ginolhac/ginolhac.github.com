@@ -32,7 +32,7 @@ I bought a [Pi3 starter budget kit](https://www.kubii.fr/fr/kits-raspberry-pi/19
 
 Additionally, I purchased:
 
-- [Pi camera NoIR](https://www.raspberrypi.org/products/pi-noir-camera-v2/)
+- [Pi camera NoIR](https://www.raspberrypi.org/products/)
 
 Was hoping to get some decent pictures / videos with low light. Turned out that IR leds are needed. That goes in the [TODO](#TODO) section.
 
@@ -46,7 +46,7 @@ I won't go into details, I mostly followed the instructions in this [tutorial](h
 
 ### download raspbian lite
 
-Since I have no screen, no keyboard and the pi comes with a WiFi controller, the **stretch lite** is sufficient. Image can be found at [raspberrypi.org](https://www.raspberrypi.org/downloads/raspbian/)
+Since I have no screen, no keyboard and the pi comes with a WiFi controller, the **stretch lite** is sufficient. Image can be found at [raspberrypi.org](https://www.raspberrypi.com/software/)
 
 
 ### format SD card
