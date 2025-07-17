@@ -17,7 +17,7 @@ website:
       - about.qmd
       - icon: github
         href: https://github.com/ginolhac
-  page-footer: "Copyright 2024, Aurélien Ginolhac" 
+  page-footer: "Copyright 2025, Aurélien Ginolhac" 
 
 format:
   html:
