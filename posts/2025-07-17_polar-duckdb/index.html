@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aurélien Ginolhac">
+<meta name="dcterms.date" content="2025-07-17">
+<meta name="description" content="When data is larger than the laptop memory">
+
+<title>Tidypolars and duckplyr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2cd88b842f3556f70e7132508a5c4eca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-11e2fa7fe6e88e29b8cad70d8b59ec9a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../karate/index.html"> <i class="bi bi-music" role="img">
+</i> 
+<span class="menu-text">Karate tabs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ginolhac"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Tidypolars and duckplyr</h1>
+                  <div>
+        <div class="description">
+          When data is larger than the laptop memory
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">Rust</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aurélien Ginolhac </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 17, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-are-the-main-actors" id="toc-what-are-the-main-actors" class="nav-link active" data-scroll-target="#what-are-the-main-actors">What are the main actors?</a></li>
+  <li><a href="#storing-data-efficiently" id="toc-storing-data-efficiently" class="nav-link" data-scroll-target="#storing-data-efficiently">Storing data efficiently</a>
+  <ul class="collapse">
+  <li><a href="#the-parquet-format" id="toc-the-parquet-format" class="nav-link" data-scroll-target="#the-parquet-format">The Parquet format</a></li>
+  <li><a href="#polars" id="toc-polars" class="nav-link" data-scroll-target="#polars">Polars</a></li>
+  </ul></li>
+  <li><a href="#what-is-data-wrangling" id="toc-what-is-data-wrangling" class="nav-link" data-scroll-target="#what-is-data-wrangling">What is data wrangling?</a>
+  <ul class="collapse">
+  <li><a href="#main-operations-on-tables" id="toc-main-operations-on-tables" class="nav-link" data-scroll-target="#main-operations-on-tables">Main operations on tables</a></li>
+  </ul></li>
+  <li><a href="#tidypolars" id="toc-tidypolars" class="nav-link" data-scroll-target="#tidypolars">{tidypolars}</a>
+  <ul class="collapse">
+  <li><a href="#computing-with-polars" id="toc-computing-with-polars" class="nav-link" data-scroll-target="#computing-with-polars">Computing with polars</a></li>
+  <li><a href="#optimized-versus-naive-plan" id="toc-optimized-versus-naive-plan" class="nav-link" data-scroll-target="#optimized-versus-naive-plan">Optimized versus naive plan</a></li>
+  <li><a href="#benchmark-polars-dplyr-base" id="toc-benchmark-polars-dplyr-base" class="nav-link" data-scroll-target="#benchmark-polars-dplyr-base">Benchmark polars, dplyr, base <i class="fa-brands fa-r-project" aria-label="r-project"></i></a></li>
+  </ul></li>
+  <li><a href="#duckplyr" id="toc-duckplyr" class="nav-link" data-scroll-target="#duckplyr">Duckplyr</a>
+  <ul class="collapse">
+  <li><a href="#duckplyr-example-using-explain-compute" id="toc-duckplyr-example-using-explain-compute" class="nav-link" data-scroll-target="#duckplyr-example-using-explain-compute">Duckplyr example, using <code>explain()</code> / <code>compute()</code></a></li>
+  </ul></li>
+  <li><a href="#full-benchmark-polars-duckdb-dplyr" id="toc-full-benchmark-polars-duckdb-dplyr" class="nav-link" data-scroll-target="#full-benchmark-polars-duckdb-dplyr">Full benchmark polars, duckdb, dplyr</a>
+  <ul class="collapse">
+  <li><a href="#cpu-usage" id="toc-cpu-usage" class="nav-link" data-scroll-target="#cpu-usage">CPU usage</a></li>
+  </ul></li>
+  <li><a href="#large-data-ihec-matrix" id="toc-large-data-ihec-matrix" class="nav-link" data-scroll-target="#large-data-ihec-matrix">Large data: IHEC matrix</a>
+  <ul class="collapse">
+  <li><a href="#creation-of-parquet-files" id="toc-creation-of-parquet-files" class="nav-link" data-scroll-target="#creation-of-parquet-files">Creation of parquet files</a></li>
+  <li><a href="#ihec-benchmark-results" id="toc-ihec-benchmark-results" class="nav-link" data-scroll-target="#ihec-benchmark-results">IHEC benchmark results</a></li>
+  </ul></li>
+  <li><a href="#fst-is-a-drop-in-replacement-for-flat-files" id="toc-fst-is-a-drop-in-replacement-for-flat-files" class="nav-link" data-scroll-target="#fst-is-a-drop-in-replacement-for-flat-files"><code>{fst}</code> is a drop-in replacement for flat files</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments 🙏 👏</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+
+<p>Working with <em>large</em> data could be common but what means large? To me, it means when it does not work anymore on my laptop. The first answer to this problem could be to move the computation to <a href="https://hpc.uni.lu">HPC</a>.</p>
+<p>That is a classic complain about <i class="fa-brands fa-r-project" aria-label="r-project"></i>: <em>everything is loaded in memory</em>. However modern data storage formats and analysis frameworks allow to overcome this limitation.</p>
+<section id="what-are-the-main-actors" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-the-main-actors">What are the main actors?</h3>
+<p>For the <strong>data storage format</strong>, we will see the <a href="https://parquet.apache.org/"><strong>parquet format</strong></a> which is column-oriented but with row groups. Also the <a href="https://www.fstpackage.org/"><code>{fst}</code></a> is a fast, easy and flexible way to serialize data frames.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="img/parquet-logo.png" height="200"><br>
+</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="img/fst-logo.png" height="200"><br>
+</p>
+</div>
+</div>
+</div>
+<p>For the analysis frameworks, two tools are converging in the syntax of <code>{dplyr}</code> but based on very different infrastructures: <strong>polars</strong> and <strong>DuckDB</strong> resulting respectively in <code>{tidypolars}</code> and <code>{duckplyr}</code>.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="img/tidypolars-logo.png" height="200"><br>
+</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="img/duckplyr-logo.png" height="200"><br>
+</p>
+</div>
+</div>
+</div>
+</section>
+<section id="storing-data-efficiently" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="storing-data-efficiently">Storing data efficiently</h2>
+<p>Most of files we are using are <strong>text</strong> files, where data consists of observations on each line and column are separated by any kind of delimiters. Those are called <strong>flat files</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>First line can be the header, sometimes comments are lines that start with <code>#</code> or <code>%</code> everything can happen, and one needs to actually look at the file beginning to have an idea about the delimiter, comments and header<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<section id="unstructured-files" class="level4">
+<h4 class="anchored" data-anchor-id="unstructured-files">Unstructured files</h4>
+<p>Below is an example of a <strong>tab-separated values</strong> (<code>.tsv</code>) with a header. The different columns are color-coded in VSCode but the actual file isn’t.</p>
+<p><a href="img/tsv.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="img/tsv.png" class="img-fluid"></a></p>
+<p>People might be more familiar with <code>.csv</code> where the delimiter is not a <code>\t</code> but a comma. However, it is harder to see the different columns with a naked eye, decimals in Europe is a big problem and text field of sentences for example cannot contain actual commas. For all those reasons, I think TAB despite the unstructured way is the best delimiter.</p>
+<p>The main problems of those files are:</p>
+<ul>
+<li>Data types unknown</li>
+<li>Slow parsing</li>
+<li>Row-oriented (full file needed)</li>
+<li>Delimiters of all kinds</li>
+<li>Madness of <code>.csv</code> with <code>;</code> (often to be read with <code>*_csv2()</code> functions)</li>
+<li>Metadata absent or as comments <code>#</code>/<code>%</code></li>
+</ul>
+</section>
+<section id="semi-structured" class="level4">
+<h4 class="anchored" data-anchor-id="semi-structured">Semi-structured</h4>
+<p>JSON files, thanks to their nested name/value pairs present some improvements to the previous files.</p>
+<p>Here is the file <code>renv.lock</code> that records project <i class="fa-brands fa-r-project" aria-label="r-project"></i> packages. <img src="img/json.png" class="img-fluid"></p>
+<p>The improvements are:</p>
+<ul>
+<li>Data types can be encoded</li>
+<li>So we can validate entries</li>
+<li>Machines can parse easier variable/values</li>
+<li>Human can still have a glance</li>
+</ul>
+<p>Still those files are very long, and not optimized for large data.</p>
+</section>
+<section id="the-parquet-format" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="the-parquet-format">The Parquet format</h3>
+<p>In order to be really efficient for machines to read and process fast large data, a farewell to human-readable text files is mandatory. Hence, the machines must not spend time <em>guessing</em> the data types<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. The full documentation at <em>Apache</em> is <a href="https://parquet.apache.org/docs/">here</a>. Their own <a href="https://parquet.apache.org/docs/overview/">introduction</a> is:</p>
+<blockquote class="blockquote">
+<p>Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. It provides high performance compression and encoding schemes to handle complex data in bulk and is supported in many programming language and analytics tools.</p>
+</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Goal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Reduce Input/Output operations</li>
+<li>Enable parallelization</li>
+<li>Smart compression</li>
+</ul>
+</div>
+</div>
+<p>For this, the structure is that data is stored both <strong>columnar</strong> AND <strong>row</strong> format using <em>Groups</em>. Having data easily We will exemplified later the effect of the row group, but for column is mainly allows to extract easily only the relevant parts.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For data analysis, we always subset data, usually in memory.</p>
+<p>Structured data with informative metadata allows to only load what is needed</p>
+</div>
+</div>
+<ul>
+<li><p><strong>Metadata</strong> associated. This allows to store schema with data types and a footer with summary statistics (min/max/number) of observations for each row-group. This will efficiently discard some row groups that don’t match predicate.</p></li>
+<li><p><strong>Compression</strong>: for repetitive character elements, an approach like <strong>factors</strong> in <i class="fa-brands fa-r-project" aria-label="r-project"></i> is used. Meaning that are re-encoded as integers with unique values used for a dictionary correspondences (like <code>levels</code>). Moreover, a Run-Length encoding (RLe) is used to higher compression as depicted below:</p></li>
+</ul>
+<section id="run-length-encoding-for-compression" class="level4">
+<h4 class="anchored" data-anchor-id="run-length-encoding-for-compression">Run-length encoding for compression</h4>
+<p>If one unique value appears several times consecutively, instead of registering an integers this number of times, we compact with this integer and another for the number of repeats.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/rle-dict.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="img/rle-dict.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
+</section>
+<section id="parquet-structure" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="parquet-structure">Parquet structure</h4>
+<p>The columnar structure is represented below in orange. Each column has its data type registered in metadata along with some idea about the distribution for numeric data and missing values. This structure is also what <code>{fst}</code> described later has. However, the <strong>parquet</strong> format also has a structure for rows. They are grouped by a certain number (impact of this parameter later) where the metadata also stored for numeric some summary statistics: minimum, maximum, missing values etc.</p>
+<div class="column-page-inset-left">
+<p><img src="img/parquet_structure.svg" class="img-fluid quarto-figure quarto-figure-center"><br>
+</p>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Example of rna-seq output file by <code>{DESeq2}</code></p>
+</div></div></section>
+<section id="skip-loading-useless-data" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="skip-loading-useless-data">Skip loading useless data</h4>
+<p>Now let’s imagine from the large table of <em>rna-seq</em> results like above, we want to filter gene names with an adjusted p-values &lt; 0.001 and a basal mean expression &gt; 5000.</p>
+<p>The <code>{dplyr}</code> code for this could be:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rna_seq_result, padj <span class="sc">&lt;</span> <span class="fl">0.001</span>, baseMean <span class="sc">&gt;</span> <span class="dv">5000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Using a parquet file, this means that we need only 3 columns out of 7. Hence, most the data don’t even need to be retrieved from disk. Moreover, since we have predicate for the rows and pre-computed information about each row group, some can be discarded and also not read. This is the case for the Row Group 1 in the example below, since the maximum of <code>baseMean</code> is inferior to 5000 and we want only genes with a baseMean &gt; 5000.</p>
+<div class="column-page-inset-left">
+<p><img src="img/parquet_filtering.svg" class="img-fluid quarto-figure quarto-figure-center"><br>
+</p>
+</div>
+</section>
+</section>
+<section id="polars" class="level3">
+<h3 class="anchored" data-anchor-id="polars">Polars</h3>
+<p><a href="https://pola.rs/"><strong>Polars</strong></a> is a lightning fast Data Frame library written in <a href="https://www.rust-lang.org/">Rust</a>. <strong>Rust</strong> is a popular compiled language I <a href="../posts/2023-08-17_starting-learning-rust/">started to learn</a> 2 years ago. Even if I did not progress much, I still keep interest, and it was obvious to enjoy seeing a data frame library using Rust.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="img/polars-logo.png" height="200"><br>
+</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="img/rust-logo-blk.svg" height="150"><br>
+</p>
+</div>
+</div>
+</div>
+<p><strong>Polars</strong> is supplied as:</p>
+<ul>
+<li>a <i class="fa-brands fa-r-project" aria-label="r-project"></i> <a href="https://pola-rs.github.io/r-polars/">package</a></li>
+<li>Javascript</li>
+<li><i class="fa-brands fa-python" aria-label="python"></i> Python.</li>
+</ul>
+<p>With the following promises:</p>
+<ul>
+<li><strong>Fast</strong> thanks to Rust itself and parallel execution</li>
+<li><strong>Out of Core</strong> API allows you to process without requiring all your data to be in memory</li>
+<li><strong>Intuitive API</strong> queries are internally reordered in the most efficient way</li>
+<li><strong>Adheres to a strict schema</strong>, the data-types are known in advance thanks to parquet for example</li>
+</ul>
+<section id="syntax" class="level4">
+<h4 class="anchored" data-anchor-id="syntax">Syntax</h4>
+<p>This example is from the documentation of the <i class="fa-brands fa-r-project" aria-label="r-project"></i> package:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> pl<span class="sc">$</span><span class="fu">scan_csv</span>(<span class="st">"iris.csv"</span>)<span class="sc">$</span><span class="fu">filter</span>(pl<span class="sc">$</span><span class="fu">col</span>(<span class="st">"Sepal.Length"</span>) <span class="sc">&gt;</span> <span class="dv">5</span>)<span class="sc">$</span><span class="fu">group_by</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Species"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">.maintain_order =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)<span class="sc">$</span><span class="fu">agg</span>(pl<span class="sc">$</span><span class="fu">all</span>()<span class="sc">$</span><span class="fu">sum</span>())</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the query plan and collect the result as a Polars DataFrame</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> q<span class="sc">$</span><span class="fu">collect</span>()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; shape: (3, 5)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ┌────────────┬──────────────┬─────────────┬──────────────┬─────────────┐</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ Species    ┆ Sepal.Length ┆ Sepal.Width ┆ Petal.Length ┆ Petal.Width │</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ ---        ┆ ---          ┆ ---         ┆ ---          ┆ ---         │</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ str        ┆ f64          ┆ f64         ┆ f64          ┆ f64         │</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ╞════════════╪══════════════╪═════════════╪══════════════╪═════════════╡</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ setosa     ┆ 116.9        ┆ 81.7        ┆ 33.2         ┆ 6.1         │</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ versicolor ┆ 281.9        ┆ 131.8       ┆ 202.9        ┆ 63.3        │</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ virginica  ┆ 324.5        ┆ 146.2       ┆ 273.1        ┆ 99.6        │</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; └────────────┴──────────────┴─────────────┴──────────────┴─────────────┘</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Even if it is efficient, the syntax is a bit convoluted for my taste. Hopefully someone, Etienne Bacher, came with a wrapper.</p>
+</section>
+</section>
+</section>
+<section id="what-is-data-wrangling" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-is-data-wrangling">What is data wrangling?</h2>
+<p>Before looking at Etienne’s work, here is a reminder of what is data wrangling, basics of data analysis. Some key operations on tables are mandatory. Those basics are reminded here by Lise Vaudor:</p>
+<p><a href="img/dplyr_schema_vaudor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="img/dplyr_schema_vaudor.png" class="img-fluid"></a></p>
+<section id="main-operations-on-tables" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="main-operations-on-tables">Main operations on tables</h3>
+<p>Since 2014, the <code>{dplyr}</code> syntax is intuitive and of the key arguments (with <code>{ggplot2}</code>) for the tidyverse success.</p>
+<p>Below we want to remove missing data from the bill measurements of the <a href="https://allisonhorst.github.io/palmerpenguins/index.html">penguins</a> dataset<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Then we want to compute the ratios of length by depth of bills. Last, we want summary statistics: mean and standard deviation per the Species of those ratios.</p>
+<p>The code using the native pipe (<code>|&gt;</code>) that chains operations come with some natural verb (functions)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 344 penguins with 8 columns</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="fu">starts_with</span>(<span class="st">"bill"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_len <span class="sc">/</span> bill_dep) <span class="sc">|&gt;</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mratio =</span> <span class="fu">mean</span>(bill_ratio), </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sdratio =</span> <span class="fu">sd</span>(bill_ratio),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">.by =</span> species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    species   mratio   sdratio</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    Adelie <span class="fl">2.119726</span> <span class="fl">0.1545937</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>    Gentoo <span class="fl">3.175592</span> <span class="fl">0.1708280</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Chinstrap <span class="fl">2.653756</span> <span class="fl">0.1468944</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Main operations scheme by <a href="https://github.com/lvaudor">Lise Vaudor</a></p>
+</div></div></section>
+</section>
+<section id="tidypolars" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="tidypolars">{tidypolars}</h2>
+<p><strong>Polars</strong> is great but with the <code>{dplyr}</code> syntax it would be perfect. This is <code>{tidypolars}</code> is achieving thanks to <a href="https://www.etiennebacher.com/">Etienne Bacher</a>. He made a package wrapper around <strong>Polars</strong> to keep the <a href="https://dplyr.tidyverse.org/"><code>{dplyr}</code></a> syntax without any changes. Fallback to materialize data if some functions in <strong>polars</strong> are not available.</p>
+<p><a href="img/tidypolars-logo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="img/tidypolars-logo.png" height="150"></a></p>
+<p>Example with a table of 11,506,035 rows × 15 columns, read as a <a href="https://tidypolars.etiennebacher.com/articles/tidypolars">LazyFrame</a>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> <span class="ot">&lt;-</span> <span class="st">"2024-06-28_all_sp_exons.parquet"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_parquet_polars</span>(sp_exons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>polars LazyFrame
+ $explain(): Show the optimized query plan.
+
+Naive plan:
+Parquet SCAN [2024-06-28_all_sp_exons.parquet]
+PROJECT */15 COLUMNS</code></pre>
+<p>Computing has not happened yet: takes no time, polars returns the plan of operations delaying the actual computation.</p>
+<p>See now with some real filtering, select and summarisation, how the plan is modified accordingly but still nothing is computed and it appears instantly.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_parquet_polars</span>(sp_exons) <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Symbol <span class="sc">!=</span> <span class="st">"SOD2"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(Start, cell, Length, Symbol, contrast, logFC, FDR) <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarise</span>(<span class="at">logFC =</span> <span class="fu">mean</span>(logFC), <span class="at">.by =</span> <span class="fu">c</span>(cell, contrast)) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(cell, contrast)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>SORT BY [col("cell"), col("contrast")]
+  AGGREGATE
+    [when([(col("logFC").null_count().cast(Unknown(Float))) &gt; (dyn float: 0.0)]).then(null.cast(Boolean).strict_cast(Float64)).otherwise(col("logFC").mean()).alias("logFC")] BY [col("cell"), col("contrast")] FROM
+     SELECT [col("Start"), col("cell"), col("Length"), col("Symbol"), col("contrast"), col("logFC"), col("FDR")] FROM
+      FILTER [(col("Symbol")) != (String(SOD2))] FROM
+        Parquet SCAN [2024-06-28_all_sp_exons.parquet]
+        PROJECT */15 COLUMNS</code></pre>
+<section id="computing-with-polars" class="level3">
+<h3 class="anchored" data-anchor-id="computing-with-polars">Computing with polars</h3>
+<p>To trigger the computation, one can use either <code>compute()</code> or <code>as_tibble()</code> to materialize the result:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>[...] <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">logFC =</span> <span class="fu">mean</span>(logFC), </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">.by =</span> <span class="fu">c</span>(cell, contrast)) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(cell, contrast) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compute</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>shape: (15, 3)
+┌───────┬─────────────┬───────────┐
+│ cell  ┆ contrast    ┆ logFC     │
+│ ---   ┆ ---         ┆ ---       │
+│ str   ┆ str         ┆ f64       │
+╞═══════╪═════════════╪═══════════╡
+│ Hep3B ┆ sp_exon_h2  ┆ 0.000468  │
+│ Hep3B ┆ sp_exon_h24 ┆ 0.000475  │
+│ Hep3B ┆ sp_exon_h48 ┆ -0.001407 │
+│ Hep3B ┆ sp_exon_h6  ┆ -0.000721 │
+│ Hep3B ┆ sp_exon_h72 ┆ -0.003017 │
+│ …     ┆ …           ┆ …         │
+│ HuH7  ┆ sp_exon_h2  ┆ -0.000518 │
+│ HuH7  ┆ sp_exon_h24 ┆ -0.000881 │
+│ HuH7  ┆ sp_exon_h48 ┆ -0.004082 │
+│ HuH7  ┆ sp_exon_h6  ┆ -0.000891 │
+│ HuH7  ┆ sp_exon_h72 ┆ -0.002297 │
+└───────┴─────────────┴───────────┘</code></pre>
+<p>This special output with head/tail of <code>DataFrame</code> is directly from <strong>polars</strong>, data dimension and column types are reported like in tibbles.</p>
+</section>
+<section id="optimized-versus-naive-plan" class="level3">
+<h3 class="anchored" data-anchor-id="optimized-versus-naive-plan">Optimized versus naive plan</h3>
+<p>Since nothing is computing unless you actively asked for him, this delay allows <strong>polars</strong> to reorganize your queries. The <em>naive</em> plan is yours, and appears just translated in polars code but in the same order.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>[...] <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain</span>(<span class="at">optimized =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>SORT BY [col("cell"), col("contrast")]
+  AGGREGATE
+    [when([(col("logFC").null_count().cast(Unknown(Float))) &gt; (dyn float: 0.0)]).then(null.cast(Boolean).strict_cast(Float64)).otherwise(col("logFC").mean()).alias("logFC")] BY [col("cell"), col("contrast")] FROM
+     SELECT [col("Start"), col("cell"), col("Length"), col("Symbol"), col("contrast"), col("logFC"), col("FDR")] FROM
+      FILTER [(col("Symbol")) != (String(SOD2))] FROM
+        Parquet SCAN [2024-06-28_all_sp_exons.parquet]
+        PROJECT */15 COLUMNS</code></pre>
+<p>However, you don’t plan things the best way, and some steps can be reordered for efficiency. Actually, this is what <strong>polars</strong> does by default, and here you can observe it:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>[...] <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain</span>(<span class="at">optimized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>SORT BY [col("cell"), col("contrast")]
+  AGGREGATE
+    [when([(col("logFC").null_count().cast(Unknown(Float))) &gt; (dyn float: 0.0)]).then(null.cast(Boolean).strict_cast(Float64)).otherwise(col("logFC").mean()).alias("logFC")] BY [col("cell"), col("contrast")] FROM
+    simple π 3/4 ["cell", "contrast", "logFC"]
+      Parquet SCAN [2024-06-28_all_sp_exons.parquet]
+      PROJECT 4/15 COLUMNS
+      SELECTION: [(col("Symbol")) != (String(SOD2))]</code></pre>
+<p>Only <strong>4</strong> columns needed, SOD2 can be dropped, so it is best to start by <em>not</em> loading unnecessary columns, rows that are not meaningful for the query.</p>
+</section>
+<section id="benchmark-polars-dplyr-base" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="benchmark-polars-dplyr-base">Benchmark polars, dplyr, base <i class="fa-brands fa-r-project" aria-label="r-project"></i></h3>
+<p>So is it actually faster using this parquet format and fancy data frame framework?</p>
+<p>The answer is <strong>yes</strong>! Below I compare<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> the same code (even identical syntax for <code>{tidypolars}</code> and <code>{dplyr}</code> by design). On the way to read in data is change, in <code>dplyr_csv</code> we use <code>{readr}</code> on the data as CSV and for base <i class="fa-brands fa-r-project" aria-label="r-project"></i> we keep the parquet file with the great <a href="https://github.com/r-lib/nanoparquet"><code>{nanoparquet}</code></a> as <code>read.csv()</code> has no decompress mode.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>bench<span class="sc">::</span><span class="fu">mark</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tidypolars =</span> {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scan_parquet_polars</span>(<span class="st">"2024-06-28_all_sp_exons.parquet"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(Symbol <span class="sc">!=</span> <span class="st">"SOD2"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(Start, cell, Length, Symbol, contrast, logFC, FDR) <span class="sc">|&gt;</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">logFC =</span> <span class="fu">mean</span>(logFC), <span class="at">.by =</span> <span class="fu">c</span>(cell, contrast)) <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(cell, contrast) <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_tibble</span>() <span class="co"># &lt;- this triggers computation</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>   <span class="at">tidypolars_csv =</span> {</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scan_csv_polars</span>(<span class="st">"2024-06-28_all_sp_exons.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>      [...]</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">tidypolars_csv_gz =</span> {</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scan_csv_polars</span>(<span class="st">"2024-06-28_all_sp_exons.csv.gz"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    [...]</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">dplyr =</span> {</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    nanoparquet<span class="sc">::</span><span class="fu">read_parquet</span>(<span class="st">"2024-06-28_all_sp_exons.parquet"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>      [...]</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">dplyr_csv =</span> {</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_csv</span>(<span class="st">"2024-06-28_all_sp_exons.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>      [...]</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">dplyr_csv_gz =</span> {</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_csv</span>(<span class="st">"2024-06-28_all_sp_exons.csv.gz"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>      [...]</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">base =</span> {</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    nanoparquet<span class="sc">::</span><span class="fu">read_parquet</span>(<span class="st">"2024-06-28_all_sp_exons.parquet"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">subset</span>(Symbol <span class="sc">!=</span> <span class="st">"SOD2"</span>) <span class="ot">-&gt;</span> sod2</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>    sod2[, <span class="fu">c</span>(<span class="st">"Start"</span>, <span class="st">"cell"</span>, <span class="st">"Length"</span>, <span class="st">"Symbol"</span>, <span class="st">"contrast"</span>, <span class="st">"logFC"</span>, <span class="st">"FDR"</span>)] <span class="sc">|&gt;</span> </span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aggregate</span>(logFC <span class="sc">~</span> cell <span class="sc">+</span> contrast, <span class="at">data =</span> _, <span class="at">FUN =</span> mean) <span class="ot">-&gt;</span> sod2</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    sod2[<span class="fu">order</span>(sod2<span class="sc">$</span>cell, sod2<span class="sc">$</span>contrast), ] <span class="sc">|&gt;</span> </span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_tibble</span>()</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">base_csv =</span> {</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read.csv</span>(<span class="st">"2024-06-28_all_sp_exons.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">subset</span>(Symbol <span class="sc">!=</span> <span class="st">"SOD2"</span>) <span class="ot">-&gt;</span> sod2</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>    sod2[, <span class="fu">c</span>(<span class="st">"Start"</span>, <span class="st">"cell"</span>, <span class="st">"Length"</span>, <span class="st">"Symbol"</span>, <span class="st">"contrast"</span>, <span class="st">"logFC"</span>, <span class="st">"FDR"</span>)] <span class="sc">|&gt;</span> </span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aggregate</span>(logFC <span class="sc">~</span> cell <span class="sc">+</span> contrast, <span class="at">data =</span> _, <span class="at">FUN =</span> mean) <span class="ot">-&gt;</span> sod2</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>    sod2[<span class="fu">order</span>(sod2<span class="sc">$</span>cell, sod2<span class="sc">$</span>contrast), ] <span class="sc">|&gt;</span> </span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_tibble</span>()</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">iterations =</span> <span class="dv">10</span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="benchmark-results6" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="benchmark-results6">Benchmark results<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></h4>
+<div class="column-page-inset-left">
+<p><a href="img/bench8-time.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="img/bench8-time.png" class="img-fluid"></a></p>
+</div>
+<p>Mind that x-axis is log-scaled. The file format does matter, and decompressing takes time. Except for parquet which is compressed but somehow its internal structure just allow speeding up things. Then, the tooling is also important, <code>{dplyr}</code> was already a great improvement to R base, but <strong>polars</strong> offers such a great speed increase!</p>
+<p>For the memory usage, the plot below is not giving the real picture as the RAM usage of <strong>polars</strong> is not included. Still it is far less than the one regular <i class="fa-brands fa-r-project" aria-label="r-project"></i> packages occupied. Again, <code>{dplyr}</code> was really a game changer, already 10 years ago.</p>
+<div class="column-page-inset-left">
+<p><a href="img/bench8-mem.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="img/bench8-mem.png" class="img-fluid"></a></p>
+</div>
+</section>
+</section>
+</section>
+<section id="duckplyr" class="level2">
+<h2 class="anchored" data-anchor-id="duckplyr">Duckplyr</h2>
+<p><a href="img/duckplyr-logo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="img/duckplyr-logo.png" height="150"></a></p>
+<p><a href="https://duckdb.org/"><strong>DuckDB</strong></a> is a server-less database FOSS. While meant to be used with SQL, the same approach as <code>{tidypolars}</code> came from the Posit/Cynkra people and a wrapper using <code>{dplyr}</code> syntax was developed. It is <code>{duckplyr}</code> and the <a href="https://duckplyr.tidyverse.org/">documentation</a> is great.</p>
+<p>It allows:</p>
+<ul>
+<li>Fast SQL translation</li>
+<li>Query Optimizer</li>
+<li>Multi-threaded</li>
+<li>Nice options for <a href="https://duckplyr.tidyverse.org/articles/prudence.html">fallback</a> when functions are not compatible:
+<ul>
+<li>Raise error</li>
+<li>Load in memory to use <code>{dplyr}</code></li>
+<li>Load in memory <strong>if</strong> small enough</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tweak RAM threshold manually
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code># default is 49.7 Gib</code> on my laptop</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">db_exec</span>(<span class="st">"PRAGMA memory_limit = '40GiB'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Example of message that come when some functions are not supported:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>The duckplyr package is configured to fall back to dplyr when it encounters an incompatibility. Fallback</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>events can be collected and uploaded <span class="cf">for</span> analysis to guide future development. By default, data will be</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>collected but no data will be uploaded.</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>ℹ Automatic fallback uploading is not controlled and therefore disabled, see duckplyr<span class="sc">::</span>fallback.</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>✔ Number of reports ready <span class="cf">for</span> upload<span class="sc">:</span> <span class="fl">3.</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>→ Review with duckplyr<span class="sc">::</span><span class="fu">fallback_review</span>(), upload with duckplyr<span class="sc">::</span><span class="fu">fallback_upload</span>().</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>ℹ Configure automatic uploading with <span class="st">`</span><span class="at">duckplyr::fallback_config()</span><span class="st">`</span>.</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>✔ Overwriting dplyr methods with duckplyr methods.</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ℹ Turn off with duckplyr<span class="sc">::</span><span class="fu">methods_restore</span>().</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="fu">read_csv_duckdb</span>(<span class="st">"2024-06-28_all_sp_exons.csv"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> Materialization would result <span class="cf">in</span> more than <span class="dv">66666</span> rows. Use <span class="fu">collect</span>() or <span class="fu">as_tibble</span>() to materialize.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="duckplyr-example-using-explain-compute" class="level3">
+<h3 class="anchored" data-anchor-id="duckplyr-example-using-explain-compute">Duckplyr example, using <code>explain()</code> / <code>compute()</code></h3>
+<p>Like <strong>polars</strong> DuckDB delays computation and optimizes queries.</p>
+<p><code>explain()</code> returns this lengthy chain of actions:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>┌───────────────────────────┐</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>│          ORDER_BY         │</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>│    ────────────────────   │</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>│   read_csv_auto.cell ASC  │</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>│ read_csv_auto.contrast ASC│</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>└─────────────┬─────────────┘</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>┌─────────────┴─────────────┐</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>│         PROJECTION        │</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>│    ────────────────────   │</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>│            cell           │</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>│          contrast         │</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>│           logFC           │</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>│                           │</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>│       ~5724898 Rows       │</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>└─────────────┬─────────────┘</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>┌─────────────┴─────────────┐</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>│       HASH_GROUP_BY       │</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>│    ────────────────────   │</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>│          Groups:          │</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>│             #0            │</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>│             #1            │</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>│                           │</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>│        Aggregates:        │</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>│          sum(#2)          │</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>│          avg(#3)          │</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>│                           │</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>│       ~5724898 Rows       │</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>└─────────────┬─────────────┘</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>┌─────────────┴─────────────┐</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>│         PROJECTION        │</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>│    ────────────────────   │</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>│            cell           │</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>│          contrast         │</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>│ CASE  WHEN ((logFC IS NULL│</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>│   )) THEN (1) ELSE 0 END  │</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>│           logFC           │</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>│                           │</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>│       ~5724898 Rows       │</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>└─────────────┬─────────────┘</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>┌─────────────┴─────────────┐</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>│         PROJECTION        │</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>│    ────────────────────   │</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>│             #1            │</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>│             #2            │</span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>│             #3            │</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>│                           │</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>│       ~5724898 Rows       │</span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>└─────────────┬─────────────┘</span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>┌─────────────┴─────────────┐</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>│           FILTER          │</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>│    ────────────────────   │</span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>│ "r_base::!="(Symbol, 'SOD2│</span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>│             ')            │</span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>│                           │</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>│       ~5724898 Rows       │</span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>└─────────────┬─────────────┘</span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>┌─────────────┴─────────────┐</span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>│       READ_CSV_AUTO       │</span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>│    ────────────────────   │</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>│         Function:         │</span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>│       READ_CSV_AUTO       │</span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>│                           │</span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>│        Projections:       │</span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>│           Symbol          │</span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>│            cell           │</span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>│          contrast         │</span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>│           logFC           │</span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>│                           │</span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>│       ~28624492 Rows      │</span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a>└───────────────────────────┘</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>that were reordered to optimizes the actions.</p>
+<p>When you run some code, adding <code>compute()</code> triggers computation and you can observe the <code>DuckDB %</code> progressing like in this animation:</p>
+<p><a href="img/duckplyr-sp_exons.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="img/duckplyr-sp_exons.gif" class="img-fluid"></a></p>
+<p>Now we can compare <strong>polars</strong> and <strong>DuckDB</strong> throught their own wrappers.</p>
+</section>
+</section>
+<section id="full-benchmark-polars-duckdb-dplyr" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="full-benchmark-polars-duckdb-dplyr">Full benchmark polars, duckdb, dplyr</h2>
+<p>This is always a bit unfair, since it is specific to the tested pipelines. For me, <strong>polars</strong> was the fastest but it could be <strong>DuckDB</strong> [for others like <a href="https://blog.schochastics.net/posts/2025-03-10_practical-benchmark-duckplyr/index.html">David Schoch</a>.</p>
+<div class="page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p class="page-columns page-full"><a href="img/bench11-time.png" class="lightbox page-columns page-full" data-gallery="quarto-lightbox-gallery-9"><img src="img/bench11-time.png" class="img-fluid quarto-figure quarto-figure-center figure-img column-page-inset-left"></a></p>
+</figure>
+</div>
+</div>
+<p>Whatever tool we use, the same effect of the format is observed.</p>
+<section id="cpu-usage" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="cpu-usage">CPU usage</h3>
+<p>We can confirm that polars/DuckDB are multi-threaded compare to <code>{dplyr}</code>.</p>
+<div class="column-page-inset-left quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<section id="dplyr" class="level4 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<h4 class="anchored" data-anchor-id="dplyr">dplyr</h4>
+<p><a href="img/cpu-usage-dplyr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="img/cpu-usage-dplyr.png" class="img-fluid"></a></p>
+</section>
+<section id="duckplyr-1" class="level4 quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<h4 class="anchored" data-anchor-id="duckplyr-1">duckplyr</h4>
+<p><a href="img/cpu-usage-duckplyr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="img/cpu-usage-duckplyr.png" class="img-fluid"></a></p>
+</section>
+</div>
+</div>
+</section>
+</section>
+<section id="large-data-ihec-matrix" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="large-data-ihec-matrix">Large data: IHEC matrix</h2>
+<p>This larger data is from the [IHEC consortium](https://ihec-epigenomes.org/. And I wanted to test the impact of the number of row groups. Also, it has many columns where usually we test for many rows.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Numbers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>rows: 2,639,750</p></li>
+<li><p>columns: 1,570</p></li>
+<li><p>compressed tsv: 234MB</p></li>
+<li><p>Non binarized matrix: 3.5GB</p></li>
+</ul>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/ihec-thumbnail.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="File head lines"><img src="img/ihec-thumbnail.png" class="img-fluid figure-img" alt="File head lines"></a></p>
+<figcaption>File head lines</figcaption>
+</figure>
+</div>
+<section id="creation-of-parquet-files" class="level3">
+<h3 class="anchored" data-anchor-id="creation-of-parquet-files">Creation of parquet files</h3>
+<p>However, and first of all, how can we create a parquet file when all we have is a flat file? Yes, a parquet will allow to analyse larger-than-memory data but how to obtain this fancy file when the memory does not allow to read in it for converting into a parquet file?</p>
+<section id="high-performace-computer" class="level4">
+<h4 class="anchored" data-anchor-id="high-performace-computer">High-Performace Computer</h4>
+<p>This is one approach, also admitting that we are stuck with the need of a larger memory,</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"IHEC_Mat_Bin.txt.gz"</span>, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  nanoparquet<span class="sc">::</span><span class="fu">write_parquet</span>(<span class="st">"IHEC_Mat_Bin.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This code Takes ~ 15 mins and 60 - 150GB RAM usage.</p>
+</section>
+<section id="laptop-with-lazyframe" class="level4">
+<h4 class="anchored" data-anchor-id="laptop-with-lazyframe">Laptop with LazyFrame</h4>
+<p>Hopefully, the <strong>real</strong> solution is actually to use fancy tool to create fancy files.</p>
+<p>The following was faster (took 3.19 mins) and only ~ 18GB RAM</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polars)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidypolars)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_csv_polars</span>(<span class="st">"IHEC_Mat_Bin.txt.gz"</span>, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">separator =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sink_parquet</span>(<span class="st">"IHEC_Mat_Bin_2.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, I have 3 files:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Different number of row groups
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Binarized matrix with <code>{nanoparquet}</code>, 11 row groups</li>
+<li>Binarized matrix with <code>{tidypolars}</code>, 501 row groups</li>
+<li>Full matrix with <code>{tidypolars}</code>, 866 row groups</li>
+</ul>
+</div>
+</div>
+<p>How this different number of row groups affect the performances? Intuitively, larger number of rows per group should allow to skip larger chunk of data.</p>
+</section>
+</section>
+<section id="ihec-benchmark-results" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="ihec-benchmark-results">IHEC benchmark results</h3>
+<p>For this benchmark, I also added for <code>{dplyr}</code> to work either on the TSV or the <code>{fst}</code> format just out of curiosity.</p>
+<div class="column-page-inset-left">
+<p><a href="img/bench_ihec-time.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="img/bench_ihec-time.png" class="img-fluid"></a></p>
+</div>
+<ul>
+<li>Row group sizes matter! And larger sizes are actually slowing down the performance in this specific case.</li>
+<li><code>{duckplyr}</code> and <code>{tidypolars}</code> reacts differently to this change in size. The First appreciate smaller size, the second larger.</li>
+<li>It is unclear right now if it is worth testing it for your own data this size. It was already surprising that <code>{nanoparquet}</code> and <strong>polars</strong> has some different default values for creating parquet files.</li>
+<li><code>{dplyr}</code> on parquet files exploding my (despite large 60GB) RAM! The classic TSV worked but was slooooowww.</li>
+<li><code>{fst}</code> is just GREAT! But I cheated and optimized myself the data reading by providing the right column selection to <code>read_fst()</code>. Other tools do it for you.</li>
+</ul>
+<p>The memory usage is again biased, one should see that classic TSV triggers &gt; 9GB of RAM usage</p>
+<div class="column-page-inset-left">
+<p><a href="img/bench_ihec-mem.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="img/bench_ihec-mem.png" class="img-fluid"></a></p>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>The IHEC matrix is from <a href="https://ihec-epigenomes.org/">this international Epigenome Project</a>. 866 row groups is the non-binarised matrix.</p>
+</div></div></section>
+</section>
+<section id="fst-is-a-drop-in-replacement-for-flat-files" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="fst-is-a-drop-in-replacement-for-flat-files"><code>{fst}</code> is a drop-in replacement for flat files</h2>
+<p>This package was <a href="../2024-07-26_decoding-golden-record/index.html#preprocessing">already praised here</a></p>
+<p><a href="img/fst-logo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="img/fst-logo.png" height="150"></a></p>
+<p>This <a href="https://github.com/fstpackage/fst/"><i class="fa-brands fa-r-project" aria-label="r-project"></i> package</a> allows:</p>
+<ul>
+<li>Multi-threaded compression/decompression
+<ul>
+<li>Smaller file sizes without time cost to access</li>
+</ul></li>
+<li>Random access to both columns and rows (rows: only indexes)</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For more complex pipelines, <strong>parquet</strong> allows row groups skipping and query optimizer</p>
+<p>Here, the column selection was done manually first in <code>read_fst()</code></p>
+</div>
+</div>
+<ul>
+<li>Exists for Python <i class="fa-brands fa-python" aria-label="python"></i> and Julia</li>
+<li>Thanks to the <a href="https://github.com/fstpackage/fstlib">fstlib</a> written in C++</li>
+<li>But is not that language agnostic like parquet!</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>For <i class="fa-brands fa-r-project" aria-label="r-project"></i>, more complex objects can be stored in <a href="https://github.com/qsbase/qs2"><code>{qs2}</code></a></p>
+</div></div></section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>File format has tremendous importance whatever languages you are using</li>
+<li>If parquet is intimidating, <code>{fst}</code> is already a great replacement for tables</li>
+<li>Modern tool framework like <code>polars</code> and <code>duckdb</code> offers:
+<ul>
+<li>Analysing larger-than-memory datasets</li>
+<li>Fast (query optimizer + multithreaded)</li>
+<li>Available for Python, R already</li>
+</ul></li>
+<li>Great wrappers around the <code>dplyr</code> syntax
+<ul>
+<li><code>tidypolars</code></li>
+<li><code>duckplyr</code></li>
+<li>Almost cost-less drop-in replacement</li>
+</ul></li>
+</ul>
+</section>
+<section id="acknowledgments" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments 🙏 👏</h2>
+<ul>
+<li><strong>Etienne Bacher</strong> <code>{tidypolars}</code></li>
+<li><strong>Kirill Müller</strong> <code>{duckplyr}</code></li>
+<li><strong>Boudewijn Braams</strong> Databricks</li>
+<li><strong>Lise Vaudor</strong></li>
+</ul>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>On the contrary, relational databases stored in different tables are not <em>flat</em>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Sadly, sometimes files come with the wrong file extension and crazy content. For example, <a href="https://www.services-rte.com/en/view-data-published-by-rte.html">RTE</a> was used to provide <code>.xls</code> files that not Excel but csv and with each day of the year patched under one another, making the parsing challenging.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><code>{readr}</code> functions for example look at the first 1000 rows by default to infer the data types of each column. It can also guess the delimiter but it is always important to check what was guessed and assess it.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>This popular dataset now made it to the <i class="fa-brands fa-r-project" aria-label="r-project"></i> base since May 2025 with <a href="https://www.jumpingrivers.com/blog/whats-new-r45/">version 4.5.0</a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Benchmark is from the great package <a href="https://bench.r-lib.org/"><code>{bench}</code></a> by Jim Hester.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Legend tweaks using the awesome package <a href="https://github.com/teunbrand/legendry"><code>{legendry}</code></a> by Teun van den Brand.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ginolhac\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<script src="https://utteranc.es/client.js" repo="ginolhac/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Aurélien Ginolhac</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

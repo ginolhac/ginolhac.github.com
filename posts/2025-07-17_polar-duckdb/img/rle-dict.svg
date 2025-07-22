@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="106.587mm"
+   height="57.493mm"
+   viewBox="0 0 106.587 57.493"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="rle-dict.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.8671212"
+     inkscape:cx="224.26677"
+     inkscape:cy="65.745389"
+     inkscape:window-width="1951"
+     inkscape:window-height="1242"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect15"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path13" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect13"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect11"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect9"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect7"
+       is_visible="true"
+       lpeversion="1" />
+    <rect
+       x="186.59831"
+       y="84.40522"
+       width="92.078423"
+       height="18.13666"
+       id="rect3" />
+    <rect
+       x="212.40817"
+       y="101.14675"
+       width="200.20082"
+       height="177.18121"
+       id="rect2" />
+    <rect
+       x="212.40817"
+       y="101.14675"
+       width="204.73499"
+       height="187.64465"
+       id="rect5" />
+    <rect
+       x="186.59831"
+       y="84.40522"
+       width="92.078423"
+       height="18.13666"
+       id="rect6" />
+    <rect
+       x="212.40817"
+       y="101.14675"
+       width="200.54961"
+       height="174.73973"
+       id="rect7" />
+    <rect
+       x="212.40817"
+       y="101.14675"
+       width="200.54961"
+       height="174.73973"
+       id="rect11" />
+    <rect
+       x="186.59831"
+       y="84.40522"
+       width="94.519897"
+       height="51.619724"
+       id="rect8" />
+    <rect
+       x="186.59831"
+       y="84.40522"
+       width="94.519897"
+       height="51.619724"
+       id="rect12" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-50.788631,-22.861137)">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-21.526202,5.0264542)"
+       id="text2"
+       style="font-weight:300;font-size:16px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2);shape-padding:0.348782;display:inline;fill:#2d00ff;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linejoin:round;stroke-opacity:1"><tspan
+         x="297.40723"
+         y="115.49609"
+         id="tspan2">ABC
+</tspan><tspan
+         x="297.16504"
+         y="135.49609"
+         id="tspan4">BCD
+</tspan><tspan
+         x="297.52051"
+         y="155.49609"
+         id="tspan5">CDE
+</tspan><tspan
+         x="298.21582"
+         y="175.49609"
+         id="tspan6">DEF
+</tspan><tspan
+         x="297.98535"
+         y="195.49609"
+         id="tspan37">EFG
+</tspan><tspan
+         x="296.87207"
+         y="215.49609"
+         id="tspan38">FGH
+</tspan><tspan
+         x="299.23926"
+         y="235.49609"
+         id="tspan39">GHI
+</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,0.52916663,1.0583333)"
+       id="text3"
+       style="font-weight:300;font-size:16px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3);display:inline;fill:#2d00ff;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linejoin:round;stroke-opacity:1"><tspan
+         x="191.02734"
+         y="98.404297"
+         id="tspan41"><tspan
+           style="font-weight:normal;-inkscape-font-specification:Roboto;fill:#1a1a1a"
+           id="tspan40">Only unique</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,10.752973,5.0264542)"
+       id="text4"
+       style="font-weight:300;font-size:16px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect5);shape-padding:0.348782;display:inline;fill:#2d00ff;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linejoin:round;stroke-opacity:1"><tspan
+         x="299.67383"
+         y="115.49609"
+         id="tspan42">ABC
+</tspan><tspan
+         x="299.67383"
+         y="135.49609"
+         id="tspan43">ABC
+</tspan><tspan
+         x="299.78711"
+         y="155.49609"
+         id="tspan44">CDE
+</tspan><tspan
+         x="299.67383"
+         y="175.49609"
+         id="tspan45">ABC
+</tspan><tspan
+         x="299.78711"
+         y="195.49609"
+         id="tspan46">CDE
+</tspan><tspan
+         x="299.78711"
+         y="215.49609"
+         id="tspan47">CDE
+</tspan><tspan
+         x="300.48242"
+         y="235.49609"
+         id="tspan48">DEF
+</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,60.325032,1.0583333)"
+       id="text5"
+       style="font-weight:300;font-size:16px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect6);display:inline;fill:#2d00ff;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linejoin:round;stroke-opacity:1"><tspan
+         x="199.00781"
+         y="98.404297"
+         id="tspan50"><tspan
+           style="font-weight:normal;-inkscape-font-specification:Roboto;fill:#1a1a1a"
+           id="tspan49">Repeated</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,34.036321,5.0264542)"
+       id="text6"
+       style="font-weight:300;font-size:16px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect7);shape-padding:0.348782;display:inline;fill:#2d00ff;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linejoin:round;stroke-opacity:1"><tspan
+         x="308.24512"
+         y="115.49609"
+         id="tspan51">0
+</tspan><tspan
+         x="308.24512"
+         y="135.49609"
+         id="tspan52">0
+</tspan><tspan
+         x="308.24512"
+         y="155.49609"
+         id="tspan53">1
+</tspan><tspan
+         x="308.24512"
+         y="175.49609"
+         id="tspan54">0
+</tspan><tspan
+         x="308.24512"
+         y="195.49609"
+         id="tspan55">1
+</tspan><tspan
+         x="308.24512"
+         y="215.49609"
+         id="tspan56">1
+</tspan><tspan
+         x="308.24512"
+         y="235.49609"
+         id="tspan57">2</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 51.401006,28.515101 H 72.348991"
+       id="path7"
+       inkscape:path-effect="#path-effect7"
+       inkscape:original-d="M 51.401006,28.515101 H 72.348991"
+       transform="translate(0.52916663,1.0583333)" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 51.401006,28.515101 H 72.348991"
+       id="path8"
+       inkscape:path-effect="#path-effect9"
+       inkscape:original-d="M 51.401006,28.515101 H 72.348991"
+       transform="translate(0.52916663,1.0583333)" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 51.401006,28.515101 H 72.348991"
+       id="path9"
+       inkscape:path-effect="#path-effect11"
+       inkscape:original-d="M 51.401006,28.515101 H 72.348991"
+       transform="matrix(3.0572689,0,0,1,-69.76234,1.0583333)" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,64.19884,5.0264542)"
+       id="text11"
+       style="font-weight:300;font-size:16px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect11);shape-padding:0.348782;display:inline;fill:#2d00ff;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linejoin:round;stroke-opacity:1"><tspan
+         x="302.27246"
+         y="115.49609"
+         id="tspan58">0,2
+</tspan><tspan
+         x="308.24512"
+         y="135.49609"
+         id="tspan59">1
+</tspan><tspan
+         x="308.24512"
+         y="155.49609"
+         id="tspan60">0
+</tspan><tspan
+         x="302.27246"
+         y="175.49609"
+         id="tspan61">1,2
+</tspan><tspan
+         x="308.24512"
+         y="195.49609"
+         id="tspan62">2</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#ConcaveTriangle)"
+       d="M 51.401006,28.515101 H 72.348991"
+       id="path11"
+       inkscape:path-effect="#path-effect13"
+       inkscape:original-d="M 51.401006,28.515101 H 72.348991"
+       transform="matrix(0.62114535,0,0,1,67.695458,21.258956)" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#ConcaveTriangle)"
+       d="M 51.401006,28.515101 H 72.348991"
+       id="path14"
+       inkscape:path-effect="#path-effect15"
+       inkscape:original-d="M 51.401006,28.515101 H 72.348991"
+       transform="matrix(0.89318665,-0.18359807,-0.08676402,0.99622889,76.895414,30.966597)" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,54.837168,47.112807)"
+       id="text7"
+       style="font-weight:300;font-size:16px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect8);display:inline;fill:#2d00ff;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linejoin:round;stroke-opacity:1"><tspan
+         x="198.58105"
+         y="98.404297"
+         id="tspan64"><tspan
+           style="fill:#000000"
+           id="tspan63">Dictionary
+</tspan></tspan><tspan
+         x="203.89746"
+         y="118.4043"
+         id="tspan66"><tspan
+           style="fill:#000000"
+           id="tspan65">(factors)</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,84.999687,36.0003)"
+       id="text12"
+       style="font-weight:300;font-size:16px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect12);display:inline;fill:#2d00ff;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linejoin:round;stroke-opacity:1"><tspan
+         x="195.94824"
+         y="98.404297"
+         id="tspan68"><tspan
+           style="fill:#000000"
+           id="tspan67">Run-length
+</tspan></tspan><tspan
+         x="201.63184"
+         y="118.4043"
+         id="tspan70"><tspan
+           style="fill:#000000"
+           id="tspan69">encoding</tspan></tspan></text>
+  </g>
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Aurelien Ginolhac</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:prohibits
+           rdf:resource="http://creativecommons.org/ns#CommercialUse" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
