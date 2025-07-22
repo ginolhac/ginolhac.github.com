@@ -6,7 +6,7 @@ image: omar-flores.jpg
 image-height: "100px"
 categories: 
   - linux
-  - HPC
+  - hpc
 format:
   html: 
     code-line-numbers: false
