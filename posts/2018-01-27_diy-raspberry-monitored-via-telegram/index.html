@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2cd88b842f3556f70e7132508a5c4eca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fc8d3d93f0a84b7619e1f8ff6eb63d42.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-11e2fa7fe6e88e29b8cad70d8b59ec9a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3179e6fb0158adebef16bafe6565b59e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -118,7 +119,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -275,45 +277,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="install-raspbian" class="level3">
 <h3 class="anchored" data-anchor-id="install-raspbian">install raspbian</h3>
 <p>Ensure your SD card is the second disk (<code>/dev/disk2</code>), otherwise <strong>do</strong> adapt to the correct one!</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">unzip</span> 2017-11-29-raspbian-stretch-lite.zip</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">sudo</span> dd bs=1m if=2017-11-29-raspbian-stretch-lite.img of=/dev/rdisk2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">unzip</span> 2017-11-29-raspbian-stretch-lite.zip</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">sudo</span> dd bs=1m if=2017-11-29-raspbian-stretch-lite.img of=/dev/rdisk2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="enable-ssh" class="level3">
 <h3 class="anchored" data-anchor-id="enable-ssh">enable ssh</h3>
 <p>Once copied, you can enable <strong>ssh</strong> by creating an empty file at the SD card root</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="bu">cd</span> /Volumes/boot/</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">touch</span> ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="bu">cd</span> /Volumes/boot/</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">touch</span> ssh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="enable-wifi" class="level3">
 <h3 class="anchored" data-anchor-id="enable-wifi">enable wifi</h3>
 <p>In order to connect to the pi without screen / keyboard, <strong>wifi</strong> needs to be configured right away. At the same location (<code>/Volumes/boot</code>) add a file named <code>wpa_supplicant.conf</code></p>
 <p>which contains:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="va">network</span><span class="op">=</span>{</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="va">network</span><span class="op">=</span>{</span>
 <span id="cb3-2"><a href="#cb3-2"></a>        <span class="va">ssid</span><span class="op">=</span><span class="st">"your_network_ssid"</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>        <span class="va">psk</span><span class="op">=</span><span class="st">"xxx"</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a>        <span class="va">key_mgmt</span><span class="op">=</span>WPA-PSK</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="er">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Of note, I recently acquired a pi <strong>zeroWH</strong>, for which I had to add 3 lines (<a href="https://raspberrypi.stackexchange.com/questions/75039/can-t-get-auto-wifi-connection-to-work-on-pi-zero-w-on-boot">StackExchange question</a>).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="va">ctrl_interface</span><span class="op">=</span>DIR=/var/run/wpa_supplicant <span class="va">GROUP</span><span class="op">=</span>netdev</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="va">ctrl_interface</span><span class="op">=</span>DIR=/var/run/wpa_supplicant <span class="va">GROUP</span><span class="op">=</span>netdev</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="va">update_config</span><span class="op">=</span>1</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="va">country</span><span class="op">=</span>FR</span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="va">network</span><span class="op">=</span>{</span>
 <span id="cb4-5"><a href="#cb4-5"></a>        <span class="va">ssid</span><span class="op">=</span><span class="st">"your_network_ssid"</span></span>
 <span id="cb4-6"><a href="#cb4-6"></a>        <span class="va">psk</span><span class="op">=</span><span class="st">"xxx"</span></span>
 <span id="cb4-7"><a href="#cb4-7"></a>        <span class="va">key_mgmt</span><span class="op">=</span>WPA-PSK</span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="er">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="connect-to-pi" class="level3">
 <h3 class="anchored" data-anchor-id="connect-to-pi">connect to pi</h3>
 <p>once the raspberrypi booted, try to find its IP</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">nmap</span> <span class="at">-sn</span> 192.168.1.0/24</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">nmap</span> <span class="at">-sn</span> 192.168.1.0/24</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which gives:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">Starting</span> Nmap 7.60 <span class="er">(</span> <span class="ex">https://nmap.org</span> <span class="kw">)</span> <span class="ex">at</span> 2017-12-08 22:44 CET</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">Starting</span> Nmap 7.60 <span class="er">(</span> <span class="ex">https://nmap.org</span> <span class="kw">)</span> <span class="ex">at</span> 2017-12-08 22:44 CET</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="ex">Nmap</span> scan report for 192.168.1.27</span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="ex">Host</span> is up <span class="er">(</span><span class="ex">0.0071s</span> latency<span class="kw">)</span><span class="bu">.</span></span>
 <span id="cb6-4"><a href="#cb6-4"></a><span class="ex">Nmap</span> scan report for 192.168.1.254</span>
 <span id="cb6-5"><a href="#cb6-5"></a><span class="ex">Host</span> is up <span class="er">(</span><span class="ex">0.0048s</span> latency<span class="kw">)</span><span class="bu">.</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="ex">Nmap</span> done: 256 IP addresses <span class="er">(</span><span class="ex">2</span> hosts up<span class="kw">)</span> <span class="ex">scanned</span> in 11.71 seconds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="ex">Nmap</span> done: 256 IP addresses <span class="er">(</span><span class="ex">2</span> hosts up<span class="kw">)</span> <span class="ex">scanned</span> in 11.71 seconds</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>192.168.1.254</code> was the rooter, so pi was assigned <code>192.168.1.27</code></p>
 <p><code>ssh pi@192.168.1.27</code> works.</p>
 <p>you can also assign a fixed IP to your pi</p>
@@ -339,9 +341,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="compilation" class="level4">
 <h4 class="anchored" data-anchor-id="compilation">compilation</h4>
 <p>see from here https://motion-project.github.io/motion_build.html</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">wget</span> https://github.com/Motion-Project/motion/releases/download/release-4.1.1/pi_stretch_motion_4.1.1-1_armhf.deb</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">wget</span> https://github.com/Motion-Project/motion/releases/download/release-4.1.1/pi_stretch_motion_4.1.1-1_armhf.deb</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="fu">sudo</span> apt-get install gdebi-core</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">sudo</span> gdebi pi_stretch_motion_4.1.1-1_armhf.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">sudo</span> gdebi pi_stretch_motion_4.1.1-1_armhf.deb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="run-motion" class="level3">
@@ -395,15 +397,15 @@ diff2html -i file ../public/motion.diff -F test.html
 <section id="install-telepot" class="level3">
 <h3 class="anchored" data-anchor-id="install-telepot">install telepot</h3>
 <p>back on the pi, install <code>telepot</code> with <code>pip</code>, assuming you installed <code>python</code> and <code>pip</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">pip</span> install telepot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">pip</span> install telepot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="test-sending-message" class="level3">
 <h3 class="anchored" data-anchor-id="test-sending-message">test sending message</h3>
 <section id="get-the-bot-id" class="level4">
 <h4 class="anchored" data-anchor-id="get-the-bot-id">get the bot id</h4>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> telepot</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> telepot</span>
 <span id="cb9-2"><a href="#cb9-2"></a>bot <span class="op">=</span> telepot.Bot(<span class="st">'your-token'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>bot.getMe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3"></a>bot.getMe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>returns <code>{u'username': u'mybot', u'first_name': u'cat tracker', u'is_bot': True, u'id': 00000008}</code></p>
 </section>
 <section id="get-your-telegram-id" class="level4">
@@ -412,9 +414,9 @@ diff2html -i file ../public/motion.diff -F test.html
 <li>send a messages from telegram to <code>mybot</code></li>
 <li>fetch your message on the pi</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
 <span id="cb10-2"><a href="#cb10-2"></a>response <span class="op">=</span> bot.getUpdates()</span>
-<span id="cb10-3"><a href="#cb10-3"></a>pprint(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3"></a>pprint(response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>your id appears, such as: <strong>u’id’: 00000004</strong></p>
 </section>
 <section id="basic-tests" class="level4">
@@ -431,13 +433,13 @@ diff2html -i file ../public/motion.diff -F test.html
 <section id="create-commands-for-the-bot" class="level4">
 <h4 class="anchored" data-anchor-id="create-commands-for-the-bot">create commands for the bot</h4>
 <p>After sending <code>/setcommands</code> to the <code>BotFather</code>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="bu">time</span> <span class="at">-</span> Returns current time on pi</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="bu">time</span> <span class="at">-</span> Returns current time on pi</span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="ex">check</span> <span class="at">-</span> Returns status of the camera</span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="ex">status</span> <span class="at">-</span> Returns status of motion</span>
 <span id="cb11-4"><a href="#cb11-4"></a><span class="ex">pause</span> <span class="at">-</span> Pauses the motion detection</span>
 <span id="cb11-5"><a href="#cb11-5"></a><span class="ex">resume</span> <span class="at">-</span> Resumes motion detection</span>
 <span id="cb11-6"><a href="#cb11-6"></a><span class="ex">snapshot</span> <span class="at">-</span> Returns current image</span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="ex">video</span> <span class="at">-</span> Returns last recorded video</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="ex">video</span> <span class="at">-</span> Returns last recorded video</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Of note, it doesn’t prevent the bot to receive other commands, it just helps to display commands and select them in telegram.</p>
 </section>
 <section id="python-script-that-listen" class="level4">
@@ -449,7 +451,7 @@ diff2html -i file ../public/motion.diff -F test.html
 <li>I failed to restrict the bot to communicate only with me. Might not be a big deal, but the code <code>if chat_id != 00000008</code> is not working.</li>
 <li>the webcontrol was set in the <em>RAW</em> mode. Then the retrieved text can be directly send to your telegram account</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#!/usr/bin/python2.7</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#!/usr/bin/python2.7</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="im">import</span> datetime</span>
 <span id="cb12-4"><a href="#cb12-4"></a><span class="im">import</span> telepot</span>
@@ -500,14 +502,14 @@ diff2html -i file ../public/motion.diff -F test.html
 <span id="cb12-49"><a href="#cb12-49"></a><span class="bu">print</span> <span class="st">'I am listening ...'</span></span>
 <span id="cb12-50"><a href="#cb12-50"></a></span>
 <span id="cb12-51"><a href="#cb12-51"></a><span class="cf">while</span> <span class="dv">1</span>:</span>
-<span id="cb12-52"><a href="#cb12-52"></a>    time.sleep(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-52"><a href="#cb12-52"></a>    time.sleep(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now if the both <code>listen_bot.py</code> and <code>motion -c ~/motion/motion.conf</code> are running, the system should work.</p>
 </section>
 <section id="sending-scripts" class="level4">
 <h4 class="anchored" data-anchor-id="sending-scripts">sending scripts</h4>
 <p>they are called in the <code>motion.conf</code> file.</p>
 <p>first, <code>send_detection.py</code></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#!/usr/bin/python2.7</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#!/usr/bin/python2.7</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="im">import</span> telepot</span>
 <span id="cb13-4"><a href="#cb13-4"></a><span class="im">import</span> sys</span>
@@ -524,9 +526,9 @@ diff2html -i file ../public/motion.diff -F test.html
 <span id="cb13-15"><a href="#cb13-15"></a></span>
 <span id="cb13-16"><a href="#cb13-16"></a>bot.sendPhoto(<span class="dv">0000000</span><span class="er">4</span>, photo<span class="op">=</span><span class="bu">open</span>(pic, <span class="st">'rb'</span>), caption<span class="op">=</span>cap)</span>
 <span id="cb13-17"><a href="#cb13-17"></a></span>
-<span id="cb13-18"><a href="#cb13-18"></a>exit(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-18"><a href="#cb13-18"></a>exit(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>second, <code>send_message.py</code></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#!/usr/bin/python2.7</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#!/usr/bin/python2.7</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="im">import</span> telepot</span>
 <span id="cb14-4"><a href="#cb14-4"></a><span class="im">import</span> sys</span>
@@ -535,7 +537,7 @@ diff2html -i file ../public/motion.diff -F test.html
 <span id="cb14-7"><a href="#cb14-7"></a></span>
 <span id="cb14-8"><a href="#cb14-8"></a>text <span class="op">=</span> sys.argv[<span class="dv">1</span>]</span>
 <span id="cb14-9"><a href="#cb14-9"></a></span>
-<span id="cb14-10"><a href="#cb14-10"></a>bot.sendMessage(<span class="dv">0000000</span><span class="er">4</span>, text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-10"><a href="#cb14-10"></a>bot.sendMessage(<span class="dv">0000000</span><span class="er">4</span>, text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="run-scripts-at-startup" class="level4">
 <h4 class="anchored" data-anchor-id="run-scripts-at-startup">run scripts at startup</h4>
@@ -545,7 +547,7 @@ diff2html -i file ../public/motion.diff -F test.html
 <p>I am now using <code>systemd</code>. Cleaner and safer.</p>
 <p>Here, the following is working, but I am sure this is the right way to do, so use we care.</p>
 <p>add the file <code>listen.service</code> in the folder <code>/etc/systemd/system</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource .bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="ex">[Unit]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource .bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="ex">[Unit]</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="va">Description</span><span class="op">=</span>Listen <span class="ex">to</span> foo telegram bot</span>
 <span id="cb15-3"><a href="#cb15-3"></a><span class="va">After</span><span class="op">=</span>network.target</span>
 <span id="cb15-4"><a href="#cb15-4"></a></span>
@@ -558,7 +560,7 @@ diff2html -i file ../public/motion.diff -F test.html
 <span id="cb15-11"><a href="#cb15-11"></a><span class="va">User</span><span class="op">=</span>motion</span>
 <span id="cb15-12"><a href="#cb15-12"></a></span>
 <span id="cb15-13"><a href="#cb15-13"></a><span class="ex">[Install]</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a><span class="va">WantedBy</span><span class="op">=</span>multi-user.target</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="va">WantedBy</span><span class="op">=</span>multi-user.target</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>now as example, you can check the <strong>status</strong> of this new service <code>listen</code></p>
 <pre><code>pi@raspberrypi:/etc/systemd/system $ service listen status
 ● listen.service - Listen to foo telegram bot
@@ -579,11 +581,11 @@ Jun 19 20:52:17 raspberrypi python2.7[502]: Got command: /time</code></pre>
 <ul>
 <li>point the usual conf file towards the tweaked version in your home</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource .bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1"></a><span class="bu">cd</span> /etc/motion</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource .bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1"></a><span class="bu">cd</span> /etc/motion</span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="fu">mv</span> motion.conf motion.conf.bak</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">ln</span> <span class="at">-s</span> /home/pi/motion/motion.conf .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">ln</span> <span class="at">-s</span> /home/pi/motion/motion.conf .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>be sure to have the correct smblink</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource .bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="ex">motion.conf</span> <span class="at">-</span><span class="op">&gt;</span> /home/pi/motion/motion.conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource .bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="ex">motion.conf</span> <span class="at">-</span><span class="op">&gt;</span> /home/pi/motion/motion.conf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="screenshots" class="level4">
@@ -686,13 +688,14 @@ Jun 19 20:52:17 raspberrypi python2.7[502]: Got command: /time</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

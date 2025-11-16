@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2cd88b842f3556f70e7132508a5c4eca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fc8d3d93f0a84b7619e1f8ff6eb63d42.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-11e2fa7fe6e88e29b8cad70d8b59ec9a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3179e6fb0158adebef16bafe6565b59e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -118,7 +119,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -212,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="input-data">Input data</h2>
 <p>This was an old input, now I would use the <a href="https://github.com/milesmcbain/datapasta">datapasta</a> rstudio addin by Miles Mc Bain to get a <code>tribble</code> from any spreadsheet.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
 <span id="cb1-2"><a href="#cb1-2"></a>      <span class="sc">~</span>kid,        <span class="sc">~</span>date,                <span class="sc">~</span>teeth,</span>
 <span id="cb1-3"><a href="#cb1-3"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-03-31"</span>, <span class="st">"incisive inf cent D"</span>,</span>
 <span id="cb1-4"><a href="#cb1-4"></a>   <span class="st">"Anouk"</span>, <span class="st">"2014-04-18"</span>, <span class="st">"incisive inf cent G"</span>,</span>
@@ -252,10 +254,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-38"><a href="#cb1-38"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-05-25"</span>,        <span class="st">"prem 2 inf G"</span>,</span>
 <span id="cb1-39"><a href="#cb1-39"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-06-01"</span>,        <span class="st">"canine inf G"</span>,</span>
 <span id="cb1-40"><a href="#cb1-40"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-06-07"</span>,        <span class="st">"prem 2 inf D"</span>,</span>
-<span id="cb1-41"><a href="#cb1-41"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-09-04"</span>,        <span class="st">"prem 2 sup D"</span>) <span class="ot">-&gt;</span> teeth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-41"><a href="#cb1-41"></a>   <span class="st">"Irène"</span>, <span class="st">"2018-09-04"</span>,        <span class="st">"prem 2 sup D"</span>) <span class="ot">-&gt;</span> teeth</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">count</span>(teeth, kid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">count</span>(teeth, kid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   kid       n
@@ -265,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>From <a href="https://en.wikipedia.org/wiki/Dental_notation">Wikipedia: Dental notation</a></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource cell-output cell-output-stdout number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>Primary Dentition</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource cell-output cell-output-stdout number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>Primary Dentition</span>
 <span id="cb4-2"><a href="#cb4-2"></a>        upper right - 5             upper left - 6</span>
 <span id="cb4-3"><a href="#cb4-3"></a>             55 54 53 52 51 | 61 62 63 64 65 </span>
 <span id="cb4-4"><a href="#cb4-4"></a>          R --------------------------------- L</span>
@@ -275,12 +277,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-8"><a href="#cb4-8"></a> I - incisor</span>
 <span id="cb4-9"><a href="#cb4-9"></a> C - canine</span>
 <span id="cb4-10"><a href="#cb4-10"></a> P - premolar</span>
-<span id="cb4-11"><a href="#cb4-11"></a> M - molar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-11"><a href="#cb4-11"></a> M - molar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="plotting" class="level2">
 <h2 class="anchored" data-anchor-id="plotting">Plotting</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>teeth <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>teeth <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">parse_date</span>(date),</span>
 <span id="cb5-3"><a href="#cb5-3"></a>         <span class="at">t_teeth =</span> <span class="fu">word</span>(teeth, <span class="dv">1</span>),</span>
 <span id="cb5-4"><a href="#cb5-4"></a>         <span class="at">age =</span> <span class="fu">case_when</span>(kid <span class="sc">==</span> <span class="st">"Anouk"</span> <span class="sc">~</span> date <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"20130828"</span>),</span>
@@ -297,13 +299,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-15"><a href="#cb5-15"></a>  <span class="fu">theme_bw</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
 <span id="cb5-16"><a href="#cb5-16"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"age (years)"</span>,</span>
 <span id="cb5-17"><a href="#cb5-17"></a>       <span class="at">y =</span> <span class="st">"# teeth"</span>,</span>
-<span id="cb5-18"><a href="#cb5-18"></a>       <span class="at">shape =</span> <span class="st">"type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-18"><a href="#cb5-18"></a>       <span class="at">shape =</span> <span class="st">"type"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="animate" class="level2">
 <h2 class="anchored" data-anchor-id="animate">Animate</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(gganimate)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(gganimate)</span>
 <span id="cb6-2"><a href="#cb6-2"></a>teeth_tp <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>   <span class="fu">group_by</span>(kid) <span class="sc">%&gt;%</span></span>
 <span id="cb6-4"><a href="#cb6-4"></a>   <span class="fu">arrange</span>(age) <span class="sc">%&gt;%</span></span>
@@ -322,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-17"><a href="#cb6-17"></a>        <span class="at">y =</span> <span class="st">"# teeth"</span>,</span>
 <span id="cb6-18"><a href="#cb6-18"></a>        <span class="at">shape =</span> <span class="st">"type"</span>) <span class="ot">-&gt;</span> tp</span>
 <span id="cb6-19"><a href="#cb6-19"></a><span class="fu">animate</span>(tp, <span class="at">nframes =</span> <span class="dv">60</span>)</span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="fu">anim_save</span>(<span class="st">"teething.gif"</span>, <span class="fu">last_animation</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="fu">anim_save</span>(<span class="st">"teething.gif"</span>, <span class="fu">last_animation</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="teething.gif" class="img-fluid"></p>
 
@@ -381,13 +383,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

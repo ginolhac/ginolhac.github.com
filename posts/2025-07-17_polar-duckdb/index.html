@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2cd88b842f3556f70e7132508a5c4eca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fc8d3d93f0a84b7619e1f8ff6eb63d42.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-11e2fa7fe6e88e29b8cad70d8b59ec9a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3179e6fb0158adebef16bafe6565b59e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -123,7 +124,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -316,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Goal
+<span class="screen-reader-only">Note</span>Goal
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -370,7 +372,7 @@ Tip
 <h4 class="anchored" data-anchor-id="skip-loading-useless-data">Skip loading useless data</h4>
 <p>Now let’s imagine from the large table of <em>rna-seq</em> results like above, we want to filter gene names with an adjusted p-values &lt; 0.001 and a basal mean expression &gt; 5000.</p>
 <p>The <code>{dplyr}</code> code for this could be:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rna_seq_result, padj <span class="sc">&lt;</span> <span class="fl">0.001</span>, baseMean <span class="sc">&gt;</span> <span class="dv">5000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rna_seq_result, padj <span class="sc">&lt;</span> <span class="fl">0.001</span>, baseMean <span class="sc">&gt;</span> <span class="dv">5000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Using a parquet file, this means that we need only 3 columns out of 7. Hence, most the data don’t even need to be retrieved from disk. Moreover, since we have predicate for the rows and pre-computed information about each row group, some can be discarded and also not read. This is the case for the Row Group 1 in the example below, since the maximum of <code>baseMean</code> is inferior to 5000 and we want only genes with a baseMean &gt; 5000.</p>
 <div class="column-page-inset-left">
 <p><img src="img/parquet_filtering.svg" class="img-fluid quarto-figure quarto-figure-center"><br>
@@ -409,7 +411,7 @@ Tip
 <section id="syntax" class="level4">
 <h4 class="anchored" data-anchor-id="syntax">Syntax</h4>
 <p>This example is from the documentation of the <i class="fa-brands fa-r-project" aria-label="r-project"></i> package:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> pl<span class="sc">$</span><span class="fu">scan_csv</span>(<span class="st">"iris.csv"</span>)<span class="sc">$</span><span class="fu">filter</span>(pl<span class="sc">$</span><span class="fu">col</span>(<span class="st">"Sepal.Length"</span>) <span class="sc">&gt;</span> <span class="dv">5</span>)<span class="sc">$</span><span class="fu">group_by</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> pl<span class="sc">$</span><span class="fu">scan_csv</span>(<span class="st">"iris.csv"</span>)<span class="sc">$</span><span class="fu">filter</span>(pl<span class="sc">$</span><span class="fu">col</span>(<span class="st">"Sepal.Length"</span>) <span class="sc">&gt;</span> <span class="dv">5</span>)<span class="sc">$</span><span class="fu">group_by</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Species"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">.maintain_order =</span> <span class="cn">TRUE</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)<span class="sc">$</span><span class="fu">agg</span>(pl<span class="sc">$</span><span class="fu">all</span>()<span class="sc">$</span><span class="fu">sum</span>())</span>
@@ -427,7 +429,7 @@ Tip
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ setosa     ┆ 116.9        ┆ 81.7        ┆ 33.2         ┆ 6.1         │</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ versicolor ┆ 281.9        ┆ 131.8       ┆ 202.9        ┆ 63.3        │</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │ virginica  ┆ 324.5        ┆ 146.2       ┆ 273.1        ┆ 99.6        │</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; └────────────┴──────────────┴─────────────┴──────────────┴─────────────┘</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; └────────────┴──────────────┴─────────────┴──────────────┴─────────────┘</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Even if it is efficient, the syntax is a bit convoluted for my taste. Hopefully someone, Etienne Bacher, came with a wrapper.</p>
 </section>
 </section>
@@ -441,17 +443,17 @@ Tip
 <p>Since 2014, the <code>{dplyr}</code> syntax is intuitive and of the key arguments (with <code>{ggplot2}</code>) for the tidyverse success.</p>
 <p>Below we want to remove missing data from the bill measurements of the <a href="https://allisonhorst.github.io/palmerpenguins/index.html">penguins</a> dataset<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Then we want to compute the ratios of length by depth of bills. Last, we want summary statistics: mean and standard deviation per the Species of those ratios.</p>
 <p>The code using the native pipe (<code>|&gt;</code>) that chains operations come with some natural verb (functions)</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 344 penguins with 8 columns</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 344 penguins with 8 columns</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="fu">starts_with</span>(<span class="st">"bill"</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_len <span class="sc">/</span> bill_dep) <span class="sc">|&gt;</span> </span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mratio =</span> <span class="fu">mean</span>(bill_ratio), </span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sdratio =</span> <span class="fu">sd</span>(bill_ratio),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">.by =</span> species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    species   mratio   sdratio</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">.by =</span> species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    species   mratio   sdratio</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>    Adelie <span class="fl">2.119726</span> <span class="fl">0.1545937</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>    Gentoo <span class="fl">3.175592</span> <span class="fl">0.1708280</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Chinstrap <span class="fl">2.653756</span> <span class="fl">0.1468944</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Chinstrap <span class="fl">2.653756</span> <span class="fl">0.1468944</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Main operations scheme by <a href="https://github.com/lvaudor">Lise Vaudor</a></p>
@@ -462,8 +464,8 @@ Tip
 <p><strong>Polars</strong> is great but with the <code>{dplyr}</code> syntax it would be perfect. This is <code>{tidypolars}</code> is achieving thanks to <a href="https://www.etiennebacher.com/">Etienne Bacher</a>. He made a package wrapper around <strong>Polars</strong> to keep the <a href="https://dplyr.tidyverse.org/"><code>{dplyr}</code></a> syntax without any changes. Fallback to materialize data if some functions in <strong>polars</strong> are not available.</p>
 <p><a href="img/tidypolars-logo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="img/tidypolars-logo.png" height="150"></a></p>
 <p>Example with a table of 11,506,035 rows × 15 columns, read as a <a href="https://tidypolars.etiennebacher.com/articles/tidypolars">LazyFrame</a>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> <span class="ot">&lt;-</span> <span class="st">"2024-06-28_all_sp_exons.parquet"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_parquet_polars</span>(sp_exons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> <span class="ot">&lt;-</span> <span class="st">"2024-06-28_all_sp_exons.parquet"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_parquet_polars</span>(sp_exons)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>polars LazyFrame
  $explain(): Show the optimized query plan.
 
@@ -472,11 +474,11 @@ Parquet SCAN [2024-06-28_all_sp_exons.parquet]
 PROJECT */15 COLUMNS</code></pre>
 <p>Computing has not happened yet: takes no time, polars returns the plan of operations delaying the actual computation.</p>
 <p>See now with some real filtering, select and summarisation, how the plan is modified accordingly but still nothing is computed and it appears instantly.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_parquet_polars</span>(sp_exons) <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_parquet_polars</span>(sp_exons) <span class="sc">|&gt;</span> </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Symbol <span class="sc">!=</span> <span class="st">"SOD2"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(Start, cell, Length, Symbol, contrast, logFC, FDR) <span class="sc">|&gt;</span> </span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarise</span>(<span class="at">logFC =</span> <span class="fu">mean</span>(logFC), <span class="at">.by =</span> <span class="fu">c</span>(cell, contrast)) <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(cell, contrast)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(cell, contrast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>SORT BY [col("cell"), col("contrast")]
   AGGREGATE
     [when([(col("logFC").null_count().cast(Unknown(Float))) &gt; (dyn float: 0.0)]).then(null.cast(Boolean).strict_cast(Float64)).otherwise(col("logFC").mean()).alias("logFC")] BY [col("cell"), col("contrast")] FROM
@@ -487,11 +489,11 @@ PROJECT */15 COLUMNS</code></pre>
 <section id="computing-with-polars" class="level3">
 <h3 class="anchored" data-anchor-id="computing-with-polars">Computing with polars</h3>
 <p>To trigger the computation, one can use either <code>compute()</code> or <code>as_tibble()</code> to materialize the result:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>[...] <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>[...] <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">logFC =</span> <span class="fu">mean</span>(logFC), </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">.by =</span> <span class="fu">c</span>(cell, contrast)) <span class="sc">|&gt;</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(cell, contrast) <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compute</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compute</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>shape: (15, 3)
 ┌───────┬─────────────┬───────────┐
 │ cell  ┆ contrast    ┆ logFC     │
@@ -515,8 +517,8 @@ PROJECT */15 COLUMNS</code></pre>
 <section id="optimized-versus-naive-plan" class="level3">
 <h3 class="anchored" data-anchor-id="optimized-versus-naive-plan">Optimized versus naive plan</h3>
 <p>Since nothing is computing unless you actively asked for him, this delay allows <strong>polars</strong> to reorganize your queries. The <em>naive</em> plan is yours, and appears just translated in polars code but in the same order.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>[...] <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain</span>(<span class="at">optimized =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>[...] <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain</span>(<span class="at">optimized =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>SORT BY [col("cell"), col("contrast")]
   AGGREGATE
     [when([(col("logFC").null_count().cast(Unknown(Float))) &gt; (dyn float: 0.0)]).then(null.cast(Boolean).strict_cast(Float64)).otherwise(col("logFC").mean()).alias("logFC")] BY [col("cell"), col("contrast")] FROM
@@ -525,8 +527,8 @@ PROJECT */15 COLUMNS</code></pre>
         Parquet SCAN [2024-06-28_all_sp_exons.parquet]
         PROJECT */15 COLUMNS</code></pre>
 <p>However, you don’t plan things the best way, and some steps can be reordered for efficiency. Actually, this is what <strong>polars</strong> does by default, and here you can observe it:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>[...] <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain</span>(<span class="at">optimized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>[...] <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">explain</span>(<span class="at">optimized =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>SORT BY [col("cell"), col("contrast")]
   AGGREGATE
     [when([(col("logFC").null_count().cast(Unknown(Float))) &gt; (dyn float: 0.0)]).then(null.cast(Boolean).strict_cast(Float64)).otherwise(col("logFC").mean()).alias("logFC")] BY [col("cell"), col("contrast")] FROM
@@ -540,7 +542,7 @@ PROJECT */15 COLUMNS</code></pre>
 <h3 class="anchored" data-anchor-id="benchmark-polars-dplyr-base">Benchmark polars, dplyr, base <i class="fa-brands fa-r-project" aria-label="r-project"></i></h3>
 <p>So is it actually faster using this parquet format and fancy data frame framework?</p>
 <p>The answer is <strong>yes</strong>! Below I compare<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> the same code (even identical syntax for <code>{tidypolars}</code> and <code>{dplyr}</code> by design). On the way to read in data is change, in <code>dplyr_csv</code> we use <code>{readr}</code> on the data as CSV and for base <i class="fa-brands fa-r-project" aria-label="r-project"></i> we keep the parquet file with the great <a href="https://github.com/r-lib/nanoparquet"><code>{nanoparquet}</code></a> as <code>read.csv()</code> has no decompress mode.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>bench<span class="sc">::</span><span class="fu">mark</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>bench<span class="sc">::</span><span class="fu">mark</span>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tidypolars =</span> {</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scan_parquet_polars</span>(<span class="st">"2024-06-28_all_sp_exons.parquet"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(Symbol <span class="sc">!=</span> <span class="st">"SOD2"</span>) <span class="sc">|&gt;</span> </span>
@@ -586,7 +588,7 @@ PROJECT */15 COLUMNS</code></pre>
 <span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_tibble</span>()</span>
 <span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>  },</span>
 <span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">iterations =</span> <span class="dv">10</span></span>
-<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="benchmark-results6" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="benchmark-results6">Benchmark results<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></h4>
 <div class="column-page-inset-left">
@@ -622,16 +624,16 @@ PROJECT */15 COLUMNS</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tweak RAM threshold manually
+<span class="screen-reader-only">Tip</span>Tweak RAM threshold manually
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><code># default is 49.7 Gib</code> on my laptop</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">db_exec</span>(<span class="st">"PRAGMA memory_limit = '40GiB'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">db_exec</span>(<span class="st">"PRAGMA memory_limit = '40GiB'"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <p>Example of message that come when some functions are not supported:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>The duckplyr package is configured to fall back to dplyr when it encounters an incompatibility. Fallback</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>The duckplyr package is configured to fall back to dplyr when it encounters an incompatibility. Fallback</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>events can be collected and uploaded <span class="cf">for</span> analysis to guide future development. By default, data will be</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>collected but no data will be uploaded.</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>ℹ Automatic fallback uploading is not controlled and therefore disabled, see duckplyr<span class="sc">::</span>fallback.</span>
@@ -641,12 +643,12 @@ Tweak RAM threshold manually
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>✔ Overwriting dplyr methods with duckplyr methods.</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ℹ Turn off with duckplyr<span class="sc">::</span><span class="fu">methods_restore</span>().</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="fu">read_csv_duckdb</span>(<span class="st">"2024-06-28_all_sp_exons.csv"</span>)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> Materialization would result <span class="cf">in</span> more than <span class="dv">66666</span> rows. Use <span class="fu">collect</span>() or <span class="fu">as_tibble</span>() to materialize.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> Materialization would result <span class="cf">in</span> more than <span class="dv">66666</span> rows. Use <span class="fu">collect</span>() or <span class="fu">as_tibble</span>() to materialize.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="duckplyr-example-using-explain-compute" class="level3">
 <h3 class="anchored" data-anchor-id="duckplyr-example-using-explain-compute">Duckplyr example, using <code>explain()</code> / <code>compute()</code></h3>
 <p>Like <strong>polars</strong> DuckDB delays computation and optimizes queries.</p>
 <p><code>explain()</code> returns this lengthy chain of actions:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>┌───────────────────────────┐</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>┌───────────────────────────┐</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>│          ORDER_BY         │</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>│    ────────────────────   │</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>│   read_csv_auto.cell ASC  │</span>
@@ -715,7 +717,7 @@ Tweak RAM threshold manually
 <span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>│           logFC           │</span>
 <span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>│                           │</span>
 <span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>│       ~28624492 Rows      │</span>
-<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a>└───────────────────────────┘</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a>└───────────────────────────┘</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>that were reordered to optimizes the actions.</p>
 <p>When you run some code, adding <code>compute()</code> triggers computation and you can observe the <code>DuckDB %</code> progressing like in this animation:</p>
 <p><a href="img/duckplyr-sp_exons.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="img/duckplyr-sp_exons.gif" class="img-fluid"></a></p>
@@ -759,7 +761,7 @@ Tweak RAM threshold manually
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Numbers
+<span class="screen-reader-only">Note</span>Numbers
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -783,20 +785,20 @@ Numbers
 <section id="high-performace-computer" class="level4">
 <h4 class="anchored" data-anchor-id="high-performace-computer">High-Performace Computer</h4>
 <p>This is one approach, also admitting that we are stuck with the need of a larger memory,</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"IHEC_Mat_Bin.txt.gz"</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">"IHEC_Mat_Bin.txt.gz"</span>, </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  nanoparquet<span class="sc">::</span><span class="fu">write_parquet</span>(<span class="st">"IHEC_Mat_Bin.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  nanoparquet<span class="sc">::</span><span class="fu">write_parquet</span>(<span class="st">"IHEC_Mat_Bin.parquet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This code Takes ~ 15 mins and 60 - 150GB RAM usage.</p>
 </section>
 <section id="laptop-with-lazyframe" class="level4">
 <h4 class="anchored" data-anchor-id="laptop-with-lazyframe">Laptop with LazyFrame</h4>
 <p>Hopefully, the <strong>real</strong> solution is actually to use fancy tool to create fancy files.</p>
 <p>The following was faster (took 3.19 mins) and only ~ 18GB RAM</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polars)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(polars)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidypolars)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_csv_polars</span>(<span class="st">"IHEC_Mat_Bin.txt.gz"</span>, </span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">separator =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sink_parquet</span>(<span class="st">"IHEC_Mat_Bin_2.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sink_parquet</span>(<span class="st">"IHEC_Mat_Bin_2.parquet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then, I have 3 files:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -804,7 +806,7 @@ Numbers
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Different number of row groups
+<span class="screen-reader-only">Note</span>Different number of row groups
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -969,13 +971,14 @@ Warning
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

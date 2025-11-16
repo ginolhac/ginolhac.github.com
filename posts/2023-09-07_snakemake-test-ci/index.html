@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2cd88b842f3556f70e7132508a5c4eca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fc8d3d93f0a84b7619e1f8ff6eb63d42.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-11e2fa7fe6e88e29b8cad70d8b59ec9a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3179e6fb0158adebef16bafe6565b59e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -120,7 +121,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -238,15 +240,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div></div><p>Looking at how it is done in their <i class="fa-brands fa-github" aria-label="github"></i> <a href="https://github.com/snakemake-workflows/rna-seq-star-deseq2/blob/master/.github/workflows/main.yml">GitHub Action file</a>, the relevant part is:</p>
 <div class="column-page">
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test workflow (basic model, no batch_effects)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test workflow (basic model, no batch_effects)</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> snakemake/snakemake-github-action@v1.22.0</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="at">        </span><span class="fu">directory</span><span class="kw">:</span><span class="at"> .test</span></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="at">        </span><span class="fu">snakefile</span><span class="kw">:</span><span class="at"> workflow/Snakefile</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="st">"--configfile .test/config_basic/config.yaml --use-conda --show-failed-logs --cores 2 --conda-cleanup-pkgs cache"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="st">"--configfile .test/config_basic/config.yaml --use-conda --show-failed-logs --cores 2 --conda-cleanup-pkgs cache"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>They are doing more testing but with the same structure. The annoying part to me is the:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> snakemake/snakemake-github-action@v1.22.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> snakemake/snakemake-github-action@v1.22.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Because it abstracts the real pipeline, it works but it has some magic inside and even going through the <a href="https://github.com/snakemake/snakemake-github-action">repo</a> is not giving details.</p>
 <p>The same happens for <i class="fa-brands fa-r-project" aria-label="r-project"></i> with <code>{renv}</code> cache / restore, <code>quarto render</code> and publishing on GitHub pages like for this <a href="https://github.com/ginolhac/ginolhac.github.com/blob/main/.github/workflows/quarto-publish.yml">very blog</a>.</p>
 <p>But, some great things are useful, like the option <code>--show-failed-logs</code> that I didn’t know and that is especially relevant here.</p>
@@ -256,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="cicd-configuration"><i class="fa-brands fa-gitlab" aria-label="gitlab"></i> CI/CD configuration</h2>
 <p>As said, on GiLab, the Continuous Integration/Development has no magic recipes like on <i class="fa-brands fa-github" aria-label="github"></i>. One needs to declare every step.</p>
 <p>The content of the config <code>.gitlab-ci.yml</code> is:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">services</span><span class="kw">:</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> docker:dind</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="fu">variables</span><span class="kw">:</span></span>
@@ -289,9 +291,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-31"><a href="#cb3-31"></a></span>
 <span id="cb3-32"><a href="#cb3-32"></a><span class="at">  </span><span class="fu">tags</span><span class="kw">:</span></span>
 <span id="cb3-33"><a href="#cb3-33"></a><span class="at">    </span><span class="kw">-</span><span class="at"> shared-cache</span></span>
-<span id="cb3-34"><a href="#cb3-34"></a><span class="at">  </span><span class="fu">when</span><span class="kw">:</span><span class="at"> always</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="at">  </span><span class="fu">when</span><span class="kw">:</span><span class="at"> always</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>I abstracted the specificity of our <i class="fa-brands fa-gitlab" aria-label="gitlab"></i> Gitlab, suppressing this line:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--registry-mirror"</span><span class="kw">,</span><span class="at"> </span><span class="st">"https://docker-registry.lcsb.uni.lu"</span><span class="kw">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="at">      </span><span class="fu">command</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--registry-mirror"</span><span class="kw">,</span><span class="at"> </span><span class="st">"https://docker-registry.lcsb.uni.lu"</span><span class="kw">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Let’s break it down</p>
 <section id="docker-in-docker-dind-service" class="level4">
 <h4 class="anchored" data-anchor-id="docker-in-docker-dind-service">Docker in Docker (dind) service</h4>
@@ -331,11 +333,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>Without the cache, the download of the singularity brings the time to 6 minutes 26 seconds. See the additional pulling notification (line 4):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">[...]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">[...]</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="ex">$</span> snakemake <span class="at">--configfile</span> config_basic/config.yaml <span class="at">--snakefile</span> Snakefile_test <span class="at">-j1</span> <span class="at">--use-singularity</span> <span class="at">--show-failed-logs</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="ex">Building</span> DAG of jobs...</span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="ex">Pulling</span> singularity image docker://ginolhac/snake-rna-seq:0.7.</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="ex">[...]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="ex">[...]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="gitlab-repository" class="level2">
 <h2 class="anchored" data-anchor-id="gitlab-repository"><i class="fa-brands fa-gitlab" aria-label="gitlab"></i> Gitlab repository</h2>
@@ -396,13 +398,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2cd88b842f3556f70e7132508a5c4eca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fc8d3d93f0a84b7619e1f8ff6eb63d42.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-11e2fa7fe6e88e29b8cad70d8b59ec9a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3179e6fb0158adebef16bafe6565b59e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -121,7 +122,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -246,10 +248,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This is third laptop I am installing <strong>Arch linux</strong> on. A <a href="../2024-07-29_x1-archlinux/">previous post</a> was published.</p>
 <section id="fetch-and-check-iso" class="level3">
 <h3 class="anchored" data-anchor-id="fetch-and-check-iso">Fetch and check ISO</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://mirror.alwyzon.net/archlinux/iso/2024.07.01/archlinux-2024.07.01-x86_64.iso</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://mirror.alwyzon.net/archlinux/iso/2024.07.01/archlinux-2024.07.01-x86_64.iso</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="ex">curl</span> <span class="at">-O</span> https://mirror.alwyzon.net/archlinux/iso/2024.07.01/archlinux-2024.07.01-x86_64.iso.sig</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co"># check signature</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="ex">gpg</span> <span class="at">--keyserver-options</span> auto-key-retrieve <span class="at">--verify</span>  archlinux-2024.07.01-x86_64.iso.sig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="ex">gpg</span> <span class="at">--keyserver-options</span> auto-key-retrieve <span class="at">--verify</span>  archlinux-2024.07.01-x86_64.iso.sig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Works:</p>
 <pre><code>gpg: assuming signed data in 'archlinux-2024.07.01-x86_64.iso'
 gpg: Signature made Mon 01 Jul 2024 08:11:25 PM CEST
@@ -281,8 +283,8 @@ Primary key fingerprint: 3E80 CA1A 8B89 F69C BA57  D98A 76A5 EF90 5444 9A5C</cod
 <p>Followed the great guide from <a href="https://gist.github.com/mjnaderi/28264ce68f87f52f2cabb823a503e673">mjnaderi on Gist GH</a> with some modifications.</p>
 <p>Check the <code>efi</code> folder listed correctly and that <code>64</code> in firmware.</p>
 <p>Disk partitions:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">fdisk</span> /dev/nvme0n1</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">[...]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">fdisk</span> /dev/nvme0n1</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">[...]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Results after partioning.</p>
 <pre><code>Command (m for help): p
 
@@ -304,66 +306,66 @@ Device           Start         End     Sectors   Size Type
 <li>Format <code>/dev/nvme0n1p2</code> as ext4</li>
 </ul>
 <p>Then use <code>cryptsetup</code> for the main partition:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">cryptsetup</span> <span class="at">--use-random</span> luksFormat /dev/nvme0n1p3</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">cryptsetup</span> luksOpen /dev/nvme0n1p3 cryptlvm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">cryptsetup</span> <span class="at">--use-random</span> luksFormat /dev/nvme0n1p3</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">cryptsetup</span> luksOpen /dev/nvme0n1p3 cryptlvm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="create-lvm-volume-group" class="level4">
 <h4 class="anchored" data-anchor-id="create-lvm-volume-group">Create LVM volume group</h4>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">pvcreate</span> /dev/mapper/cryptlvm</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">vgcreate</span> vg0 /dev/mapper/cryptlvm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">pvcreate</span> /dev/mapper/cryptlvm</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">vgcreate</span> vg0 /dev/mapper/cryptlvm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="create-lvm-partitions" class="level4">
 <h4 class="anchored" data-anchor-id="create-lvm-partitions">Create LVM partitions</h4>
 <p>Previous install shows hat the root partition was a little small, so increase compare to <code>mjnaderi</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">lvcreate</span> <span class="at">--size</span> 300G vg0 <span class="at">--name</span> root </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">lvcreate</span> <span class="at">--size</span> 300G vg0 <span class="at">--name</span> root </span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="ex">lvcreate</span> <span class="at">-l</span> +100%FREE vg0 <span class="at">--name</span> home</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="ex">lvreduce</span> <span class="at">--size</span> <span class="at">-256M</span> vg0/home</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="ex">lvreduce</span> <span class="at">--size</span> <span class="at">-256M</span> vg0/home</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>then create <code>ext4</code> file systems on <code>root</code> and <code>home</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">mkfs.ext4</span> /dev/vg0/root</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">mkfs.ext4</span> /dev/vg0/home</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">mkfs.ext4</span> /dev/vg0/root</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">mkfs.ext4</span> /dev/vg0/home</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="mount-new-filesystems" class="level3">
 <h3 class="anchored" data-anchor-id="mount-new-filesystems">Mount new filesystems</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">mount</span> /dev/vg0/root /mnt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">mount</span> /dev/vg0/root /mnt</span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="fu">mount</span> <span class="at">--mkdir</span> /dev/nvme0n1p1 /mnt/efi</span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="fu">mount</span> <span class="at">--mkdir</span> /dev/nvme0n1p2 /mnt/boot</span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="fu">mount</span> <span class="at">--mkdir</span> /dev/vg0/home /mnt/home</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="fu">mount</span> <span class="at">--mkdir</span> /dev/vg0/home /mnt/home</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="install-the-base-system" class="level3">
 <h3 class="anchored" data-anchor-id="install-the-base-system">Install the base system</h3>
 <p>Plus some extras. For Intel CPUs the last one (for the module <code>microcode</code>)</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">pacstrap</span> <span class="at">-K</span> /mnt base linux linux-lts linux-firmware openssh less git vim sudo intel-ucode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">pacstrap</span> <span class="at">-K</span> /mnt base linux linux-lts linux-firmware openssh less git vim sudo intel-ucode</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="generate-fstab" class="level3">
 <h3 class="anchored" data-anchor-id="generate-fstab">Generate <code>fstab</code></h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="ex">genfstab</span> <span class="at">-U</span> /mnt <span class="op">&gt;&gt;</span> /mnt/etc/fstab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="ex">genfstab</span> <span class="at">-U</span> /mnt <span class="op">&gt;&gt;</span> /mnt/etc/fstab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="enter-the-new-system" class="level3">
 <h3 class="anchored" data-anchor-id="enter-the-new-system">Enter the new system</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="ex">arch-chroot</span> /mnt /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="ex">arch-chroot</span> /mnt /bin/bash</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="recreate-the-initramfs-image" class="level3">
 <h3 class="anchored" data-anchor-id="recreate-the-initramfs-image">Recreate the initramfs image:</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">mkinitcpio</span> <span class="at">-P</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">mkinitcpio</span> <span class="at">-P</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="setup-grub" class="level3">
 <h3 class="anchored" data-anchor-id="setup-grub">Setup GRUB</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="ex">pacman</span> <span class="at">-S</span> grub efibootmgr</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="ex">grub-install</span> <span class="at">--target</span><span class="op">=</span>x86_64-efi <span class="at">--efi-directory</span><span class="op">=</span>/efi <span class="at">--bootloader-id</span><span class="op">=</span>GRUB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="ex">pacman</span> <span class="at">-S</span> grub efibootmgr</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="ex">grub-install</span> <span class="at">--target</span><span class="op">=</span>x86_64-efi <span class="at">--efi-directory</span><span class="op">=</span>/efi <span class="at">--bootloader-id</span><span class="op">=</span>GRUB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In <code>/etc/default/grub</code> edit</p>
 <p><code>GRUB_CMDLINE_LINUX="cryptdevice=/dev/nvme0n1p3:cryptlvm root=/dev/vg0/root"</code></p>
 <p>and uncomment <code>GRUB_ENABLE_CRYTODISK=y</code></p>
 <p>Now generate the main GRUB configuration file:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="ex">grub-mkconfig</span> <span class="at">-o</span> /boot/grub/grub.cfg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="ex">grub-mkconfig</span> <span class="at">-o</span> /boot/grub/grub.cfg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In case of problem, the manual command to open the encrypted partition</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="ex">cryptsetup</span> luksOpen /dev/nvme0n1p3 cryptlvm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="ex">cryptsetup</span> luksOpen /dev/nvme0n1p3 cryptlvm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-In case of stuck at <code>"Loading ramdisk"</code>
+<span class="screen-reader-only">Important</span>In case of stuck at <code>"Loading ramdisk"</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -376,9 +378,9 @@ In case of stuck at <code>"Loading ramdisk"</code>
 <h2 class="anchored" data-anchor-id="reboot-to-your-session-text">Reboot to your session (text)</h2>
 <p>After decryption you can log in as yourself.</p>
 <p>Install GNOME and enable <code>gdm</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> gnome gdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> gnome gdm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And enable <strong>gdm</strong> service:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">sudo</span> systemctl enable gdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">sudo</span> systemctl enable gdm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="reboot-to-gnome" class="level2">
 <h2 class="anchored" data-anchor-id="reboot-to-gnome">Reboot to GNOME</h2>
@@ -421,11 +423,11 @@ In case of stuck at <code>"Loading ramdisk"</code>
 <li><p>Install from Github the <code>starship</code> prompt and <code>yay fd</code>: alternative to <code>find</code></p></li>
 <li><p>Missing nerd fonts (especially in RStudio, default is blurry serif font)</p></li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="ex">yay</span> <span class="at">-S</span> noto-fonts noto-fonts-emoji ttf-dejavu ttf-liberation ttf-meslo-nerd-font-powerlevel10k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="ex">yay</span> <span class="at">-S</span> noto-fonts noto-fonts-emoji ttf-dejavu ttf-liberation ttf-meslo-nerd-font-powerlevel10k</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Disable PC speaker</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1"></a><span class="ex">gsettings</span> set org.gnome.desktop.wm.preferences audible-bell false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1"></a><span class="ex">gsettings</span> set org.gnome.desktop.wm.preferences audible-bell false</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><p>Config <code>jotta-cli</code>. follow dedicated AUR article <a href="https://docs.jottacloud.com/en/articles/5996448-jottacloud-cli-for-linux-aur-package">at jottacloud.com</a></p></li>
 <li><p>Automatically change <code>keyring</code> password with <code>user</code> password</p></li>
@@ -444,25 +446,25 @@ Note
 </div>
 </div>
 <p>Append <code>password optional pam_gnome_keyring.so</code> to <code>/etc/pam.d/passwd</code>:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="ex">...</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="ex">password</span>    optional    pam_gnome_keyring.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="ex">...</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="ex">password</span>    optional    pam_gnome_keyring.so</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="leds-constantly-on" class="level3">
 <h3 class="anchored" data-anchor-id="leds-constantly-on">LEDS constantly on</h3>
 <p>Create a <code>service</code> with <code>systemd</code> to disable at startup the leds of the mic/speaker keys. Keys are functioning well, just the led status is wrong.</p>
 <ul>
 <li>Create as <code>root</code> a script <code>/usr/bin/disable-leds</code> which contains:</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">#!/bin/sh</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">#!/bin/sh</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a></span>
 <span id="cb22-3"><a href="#cb22-3"></a><span class="co"># lenovo laptops have working mute mic/speaker keys</span></span>
 <span id="cb22-4"><a href="#cb22-4"></a><span class="co"># but leds are constant on. Disable leds at startup</span></span>
 <span id="cb22-5"><a href="#cb22-5"></a></span>
 <span id="cb22-6"><a href="#cb22-6"></a><span class="bu">echo</span> off <span class="op">&gt;</span> /sys/class/sound/ctl-led/mic/mode</span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="bu">echo</span> off <span class="op">&gt;</span> /sys/class/sound/ctl-led/speaker/mode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="bu">echo</span> off <span class="op">&gt;</span> /sys/class/sound/ctl-led/speaker/mode</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Create as <code>root</code> the service in <code>/usr/lib/systemd/system/disable-leds.service</code></li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a><span class="ex">[Unit]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a><span class="ex">[Unit]</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a><span class="va">Description</span><span class="op">=</span>Disable <span class="ex">Lenovo</span> faulty always on mic/speaker keys</span>
 <span id="cb23-3"><a href="#cb23-3"></a><span class="va">After</span><span class="op">=</span>xdg-user-dirs-update.service</span>
 <span id="cb23-4"><a href="#cb23-4"></a></span>
@@ -471,11 +473,11 @@ Note
 <span id="cb23-7"><a href="#cb23-7"></a><span class="va">ExecStart</span><span class="op">=</span>/usr/bin/disable-leds</span>
 <span id="cb23-8"><a href="#cb23-8"></a></span>
 <span id="cb23-9"><a href="#cb23-9"></a><span class="ex">[Install]</span></span>
-<span id="cb23-10"><a href="#cb23-10"></a><span class="va">WantedBy</span><span class="op">=</span>multi-user.target</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-10"><a href="#cb23-10"></a><span class="va">WantedBy</span><span class="op">=</span>multi-user.target</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Create the symbolic link as <code>root</code>:</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ln</span> <span class="at">-s</span> /usr/lib/systemd/system/disable-leds.service /etc/systemd/system/multi-user.target.wants/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ln</span> <span class="at">-s</span> /usr/lib/systemd/system/disable-leds.service /etc/systemd/system/multi-user.target.wants/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="managing-ssh-key" class="level3">
 <h3 class="anchored" data-anchor-id="managing-ssh-key">Managing SSH key</h3>
@@ -494,9 +496,9 @@ Note
 <section id="managing-pgp-key" class="level3">
 <h3 class="anchored" data-anchor-id="managing-pgp-key">Managing PGP key</h3>
 <p>Export both pub and secret from one machine:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="ex">gpg</span> <span class="at">--list-secret-keys</span> <span class="at">--keyid-format</span> LONG <span class="co"># to get the ID</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="ex">gpg</span> <span class="at">--list-secret-keys</span> <span class="at">--keyid-format</span> LONG <span class="co"># to get the ID</span></span>
 <span id="cb25-2"><a href="#cb25-2"></a><span class="ex">gpg</span> <span class="at">--export-secret-keys</span> <span class="at">-a</span> 2835D53DC2D201D3 <span class="op">&gt;</span> gpg-sc.asc</span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="ex">gpg</span> <span class="at">--export</span> <span class="at">-a</span> 2835D53DC2D201D3 <span class="op">&gt;</span> gpg-pub.asc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="ex">gpg</span> <span class="at">--export</span> <span class="at">-a</span> 2835D53DC2D201D3 <span class="op">&gt;</span> gpg-pub.asc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then import on the new machine with <code>gpg --import</code> each file</p>
 </section>
 <section id="fingerprint" class="level3">
@@ -506,7 +508,7 @@ Note
 <p>Check it is listed with <code>fprintd-list yourlogin</code></p>
 <p>And test it manually with <code>fprintd-verify</code></p>
 <p>Add to <code>sudo /etc/pam.d/gdm-fingerprint</code> on top the following line:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1"></a><span class="ex">auth</span>            sufficient      pam_fprintd.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1"></a><span class="ex">auth</span>            sufficient      pam_fprintd.so</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>the next login in GDM offers the fingerprint. The <strong>keyring</strong> stills need to be open with a password</p>
 </section>
 <section id="xe-intel-arc-driver" class="level3">
@@ -517,24 +519,24 @@ Note
 <li><p>Install dev <code>mesa</code> with <code>yay mesa</code></p></li>
 <li><p>Fetch PCI ID</p></li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1"></a><span class="ex">$</span> lspci <span class="at">-nn</span> <span class="kw">|</span> <span class="fu">grep</span> VGA</span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="ex">00:02.0</span> VGA compatible controller <span class="pp">[</span><span class="ss">0300</span><span class="pp">]</span>: Intel Corporation Meteor Lake-P [Intel Graphics] <span class="pp">[</span><span class="ss">8086:7d45</span><span class="pp">]</span> <span class="er">(</span><span class="fu">rev</span> 08<span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1"></a><span class="ex">$</span> lspci <span class="at">-nn</span> <span class="kw">|</span> <span class="fu">grep</span> VGA</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="ex">00:02.0</span> VGA compatible controller <span class="pp">[</span><span class="ss">0300</span><span class="pp">]</span>: Intel Corporation Meteor Lake-P [Intel Graphics] <span class="pp">[</span><span class="ss">8086:7d45</span><span class="pp">]</span> <span class="er">(</span><span class="fu">rev</span> 08<span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Add the following Kernel parameters in <code>/etc/default/grub</code> after <code>quiet</code></li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1"></a><span class="va">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="op">=</span><span class="st">"loglevel=3 quiet i915.force_probe=!7d45 xe.force_probe=7d45"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1"></a><span class="va">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="op">=</span><span class="st">"loglevel=3 quiet i915.force_probe=!7d45 xe.force_probe=7d45"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Regenerate <strong>GRUB</strong> config with <code>grub-mkconfig -o /boot/grub/grub.cfg</code></li>
 </ul>
 <p>After reboot, check the module is loaded:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1"></a><span class="ex">$</span> lsmod <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"^video"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1"></a><span class="ex">$</span> lsmod <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"^video"</span></span>
 <span id="cb29-2"><a href="#cb29-2"></a></span>
 <span id="cb29-3"><a href="#cb29-3"></a><span class="ex">videobuf2_vmalloc</span>      20480  1 uvcvideo</span>
 <span id="cb29-4"><a href="#cb29-4"></a><span class="ex">videobuf2_memops</span>       16384  1 videobuf2_vmalloc</span>
 <span id="cb29-5"><a href="#cb29-5"></a><span class="ex">videobuf2_v4l2</span>         40960  1 uvcvideo</span>
 <span id="cb29-6"><a href="#cb29-6"></a><span class="ex">videodev</span>              393216  4 videobuf2_v4l2,uvcvideo</span>
 <span id="cb29-7"><a href="#cb29-7"></a><span class="ex">videobuf2_common</span>       94208  4 videobuf2_vmalloc,videobuf2_v4l2,uvcvideo,videobuf2_memops</span>
-<span id="cb29-8"><a href="#cb29-8"></a><span class="ex">video</span>                  77824  3 thinkpad_acpi,xe,i915</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="ex">video</span>                  77824  3 thinkpad_acpi,xe,i915</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><code>xe,i915</code></strong> in the last line.</p>
 </section>
 </section>
@@ -602,13 +604,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

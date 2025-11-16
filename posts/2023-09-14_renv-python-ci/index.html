@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2cd88b842f3556f70e7132508a5c4eca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fc8d3d93f0a84b7619e1f8ff6eb63d42.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-11e2fa7fe6e88e29b8cad70d8b59ec9a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3179e6fb0158adebef16bafe6565b59e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -120,7 +121,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -258,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>{renv}</code></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="sc">&gt;</span> renv<span class="sc">::</span><span class="fu">use_python</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="sc">&gt;</span> renv<span class="sc">::</span><span class="fu">use_python</span>()</span>
 <span id="cb1-2"><a href="#cb1-2"></a>Please select a version of Python to use with this project<span class="sc">:</span> </span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="dv">1</span><span class="sc">:</span> <span class="er">/</span>usr<span class="sc">/</span>bin<span class="sc">/</span>python3</span>
@@ -268,12 +270,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8"></a><span class="sc">-</span> Creating virtual environment <span class="st">'renv-python-3.11'</span> ... Done<span class="sc">!</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="sc">-</span> Updating Python packages ... Done<span class="sc">!</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a><span class="sc">-</span> Lockfile written to <span class="st">"renv.lock"</span>.</span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="sc">-</span> Activated Python <span class="dv">3</span>.<span class="fl">11.12</span> [virtualenv; .<span class="sc">/</span>renv<span class="sc">/</span>python<span class="sc">/</span>virtualenvs<span class="sc">/</span>renv<span class="sc">-</span>python<span class="fl">-3.11</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="sc">-</span> Activated Python <span class="dv">3</span>.<span class="fl">11.12</span> [virtualenv; .<span class="sc">/</span>renv<span class="sc">/</span>python<span class="sc">/</span>virtualenvs<span class="sc">/</span>renv<span class="sc">-</span>python<span class="fl">-3.11</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="installing-python-packages" class="level3">
 <h3 class="anchored" data-anchor-id="installing-python-packages">Installing Python packages</h3>
 <p>For example, installing <code>pandas</code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="sc">&gt;</span> reticulate<span class="sc">::</span><span class="fu">py_install</span>(<span class="st">"pandas"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="sc">&gt;</span> reticulate<span class="sc">::</span><span class="fu">py_install</span>(<span class="st">"pandas"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2"></a>Using virtual environment <span class="st">'/xxxx/xxxx/renv/python/virtualenvs/renv-python-3.11'</span> ...</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="sc">+</span> <span class="er">/</span>xxxx<span class="sc">/</span>xxxx<span class="sc">/</span>renv<span class="sc">/</span>python<span class="sc">/</span>virtualenvs<span class="sc">/</span>renv<span class="sc">-</span>python<span class="fl">-3.10</span><span class="sc">/</span>bin<span class="sc">/</span>python <span class="sc">-</span>m pip install <span class="sc">--</span>upgrade <span class="sc">--</span>no<span class="sc">-</span>user pandas</span>
 <span id="cb2-4"><a href="#cb2-4"></a>Collecting pandas</span>
@@ -301,13 +303,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-26"><a href="#cb2-26"></a>Downloading pytz<span class="dv">-2023</span>.<span class="fl">3.</span>post1<span class="sc">-</span>py2.py3<span class="sc">-</span>none<span class="sc">-</span><span class="fu">any.whl</span> (<span class="dv">502</span> kB)</span>
 <span id="cb2-27"><a href="#cb2-27"></a>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="fl">502.5</span><span class="sc">/</span><span class="fl">502.5</span> kB <span class="fl">10.5</span> MB<span class="sc">/</span>s eta <span class="dv">0</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
 <span id="cb2-28"><a href="#cb2-28"></a>Installing collected packages<span class="sc">:</span> pytz, tzdata, six, numpy, python<span class="sc">-</span>dateutil, pandas</span>
-<span id="cb2-29"><a href="#cb2-29"></a>Successfully installed numpy<span class="dv">-1</span>.<span class="fl">26.0</span> pandas<span class="dv">-2</span>.<span class="fl">1.0</span> python<span class="sc">-</span>dateutil<span class="dv">-2</span>.<span class="fl">8.2</span> pytz<span class="dv">-2023</span>.<span class="fl">3.</span>post1 six<span class="dv">-1</span>.<span class="fl">16.0</span> tzdata<span class="fl">-2023.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-29"><a href="#cb2-29"></a>Successfully installed numpy<span class="dv">-1</span>.<span class="fl">26.0</span> pandas<span class="dv">-2</span>.<span class="fl">1.0</span> python<span class="sc">-</span>dateutil<span class="dv">-2</span>.<span class="fl">8.2</span> pytz<span class="dv">-2023</span>.<span class="fl">3.</span>post1 six<span class="dv">-1</span>.<span class="fl">16.0</span> tzdata<span class="fl">-2023.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="snapshot" class="level3">
 <h3 class="anchored" data-anchor-id="snapshot">Snapshot</h3>
 <p>Now, register with <code>{renv}</code> what we have just installed.</p>
 <p>The main function <code>renv::snapshot()</code> will regiter <strong>both</strong> <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <i class="fa-brands fa-python" aria-label="python"></i> packages.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="sc">&gt;</span> renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="sc">&gt;</span> renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
 <span id="cb3-2"><a href="#cb3-2"></a>The following <span class="fu">package</span>(s) will be updated <span class="cf">in</span> the lockfile<span class="sc">:</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="co"># CRAN -----------------------------------------------------------------------</span></span>
@@ -324,47 +326,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-15"><a href="#cb3-15"></a><span class="sc">-</span> tzdata<span class="sc">==</span><span class="fl">2023.3</span></span>
 <span id="cb3-16"><a href="#cb3-16"></a></span>
 <span id="cb3-17"><a href="#cb3-17"></a>Do you want to proceed? [Y<span class="sc">/</span>n]<span class="sc">:</span> </span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="sc">-</span> Wrote Python packages to <span class="st">"/xxxx/xxxx/requirements.txt"</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="sc">-</span> Wrote Python packages to <span class="st">"/xxxx/xxxx/requirements.txt"</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Checking on the written files, <code>requirements.txt</code> is a rather simple text file:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>requirements.txt</strong></pre>
 </div>
-<div class="sourceCode" id="cb4" data-filename="requirements.txt"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="va">numpy</span><span class="op">=</span>=1.26.0</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="requirements.txt"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="va">numpy</span><span class="op">=</span>=1.26.0</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="va">pandas</span><span class="op">=</span>=2.1.0</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="ex">python-dateutil==2.8.2</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="va">pytz</span><span class="op">=</span>=2023.3.post1</span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="va">six</span><span class="op">=</span>=1.16.0</span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="va">tzdata</span><span class="op">=</span>=2023.3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="va">tzdata</span><span class="op">=</span>=2023.3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>renv.lock</code>, the <i class="fa-brands fa-python" aria-label="python"></i> relevant part:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>renv.lock</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="renv.lock"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">[...]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="renv.lock"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">[...]</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="st">"Python"</span><span class="ex">:</span> {</span>
 <span id="cb5-3"><a href="#cb5-3"></a>    <span class="st">"Version"</span><span class="ex">:</span> <span class="st">"3.11.12"</span>,</span>
 <span id="cb5-4"><a href="#cb5-4"></a>    <span class="st">"Type"</span><span class="ex">:</span> <span class="st">"virtualenv"</span>,</span>
 <span id="cb5-5"><a href="#cb5-5"></a>    <span class="st">"Name"</span><span class="ex">:</span> <span class="st">"./renv/python/virtualenvs/renv-python-3.11"</span></span>
 <span id="cb5-6"><a href="#cb5-6"></a>  <span class="er">}</span><span class="ex">,</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="ex">[...]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="ex">[...]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="quick-test" class="level3">
 <h3 class="anchored" data-anchor-id="quick-test">Quick test</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="sc">&gt;</span> pd <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">"pandas"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="sc">&gt;</span> pd <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">"pandas"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="sc">&gt;</span> pd<span class="sc">$</span><span class="fu">Series</span>(<span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">8</span>))</span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> </span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="dv">1</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="dv">1</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="rprofile" class="level3">
 <h3 class="anchored" data-anchor-id="rprofile"><code>.Rprofile</code></h3>
 <p>In theory, the sourced <code>.Rprofile</code> should only contains one necessary line generated by <code>renv</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="bu">source</span><span class="er">(</span><span class="st">"renv/activate.R"</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="bu">source</span><span class="er">(</span><span class="st">"renv/activate.R"</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>However, if you encountered issue with <i class="fa-brands fa-r-logo" aria-label="r-logo"></i> not finding the <i class="fa-brands fa-python" aria-label="python"></i> environment, it could be useful to have those env variables defined:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">Sys.setenv</span>(<span class="at">RETICULATE_MINICONDA_PATH =</span> <span class="st">"renv/python/virtualenvs/renv-python-3.11/"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">"renv/python/virtualenvs/renv-python-3.11/bin/python"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">Sys.setenv</span>(<span class="at">RETICULATE_MINICONDA_PATH =</span> <span class="st">"renv/python/virtualenvs/renv-python-3.11/"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>reticulate<span class="sc">::</span><span class="fu">use_python</span>(<span class="st">"renv/python/virtualenvs/renv-python-3.11/bin/python"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="ci-config" class="level2">
@@ -379,7 +381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="caching" class="level3">
 <h3 class="anchored" data-anchor-id="caching">Caching</h3>
 <p>The config is:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="at">    </span><span class="fu">key</span><span class="kw">:</span><span class="at"> $CI_JOB_NAME</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
 <span id="cb9-4"><a href="#cb9-4"></a><span class="at">      </span><span class="kw">-</span><span class="at"> _targets/</span></span>
@@ -387,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-6"><a href="#cb9-6"></a><span class="at">      </span><span class="kw">-</span><span class="at"> lectures_rendered/</span></span>
 <span id="cb9-7"><a href="#cb9-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> renv/python/virtualenvs/</span></span>
 <span id="cb9-8"><a href="#cb9-8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ${RENV_PATHS_CACHE}</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ${RENV_PATHS_LIBRARY}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ${RENV_PATHS_LIBRARY}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>_targets/</code> folder that contains the metadata and objects done by <code>{targets}</code>, necessary otherwise everything is redone each time.</li>
 <li><code>_site</code> output folder of the website, default name by <strong>quarto</strong>.</li>
@@ -397,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="building" class="level3">
 <h3 class="anchored" data-anchor-id="building">Building</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="at">  </span><span class="fu">before_script</span><span class="kw">:</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="at">  </span><span class="fu">before_script</span><span class="kw">:</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="at">    </span><span class="kw">-</span><span class="at"> Rscript -e "renv::restore()"</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span></span>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="at">    </span><span class="kw">-</span><span class="at"> ./run.R</span></span>
@@ -405,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-6"><a href="#cb10-6"></a><span class="at">    </span><span class="kw">-</span><span class="at"> quarto render</span></span>
 <span id="cb10-7"><a href="#cb10-7"></a><span class="at">  </span><span class="fu">tags</span><span class="kw">:</span></span>
 <span id="cb10-8"><a href="#cb10-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> shared-cache</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="at">  </span><span class="fu">when</span><span class="kw">:</span><span class="at"> always</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="at">  </span><span class="fu">when</span><span class="kw">:</span><span class="at"> always</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>./run.R</code> runs <code>targets::tar_make()</code></li>
 <li>The <strong>key part</strong> is this <code>source [venv]</code> line 5. It allows the next line with the <code>quarto</code> call to be aware of where is the <i class="fa-brands fa-python" aria-label="python"></i> install / packages <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
@@ -495,13 +497,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

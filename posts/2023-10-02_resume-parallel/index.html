@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2cd88b842f3556f70e7132508a5c4eca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-fc8d3d93f0a84b7619e1f8ff6eb63d42.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-11e2fa7fe6e88e29b8cad70d8b59ec9a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3179e6fb0158adebef16bafe6565b59e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -122,7 +123,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/avatar@2x.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -234,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="running-passive-jobs" class="level1">
 <h1>Running passive jobs</h1>
 <p>Let’s first see how to run a regular (non parallelized job) on our <a href="https://hpc-docs.uni.lu">HPC</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#!/bin/bash -l</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#!/bin/bash -l</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co">#SBATCH -N 1</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co">#SBATCH -J fq_dl</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co">#SBATCH --mail-type=begin,end,fail</span></span>
@@ -250,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14"></a></span>
 <span id="cb1-15"><a href="#cb1-15"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
 <span id="cb1-16"><a href="#cb1-16"></a></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="ex">fasterq-dump</span> <span class="at">--split-files</span> SRR8861487</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="ex">fasterq-dump</span> <span class="at">--split-files</span> SRR8861487</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Lines 1 to 9 are <a href="https://hpc-docs.uni.lu/slurm/#sbatch-directives-vs-cli-options"><code>slurm</code> directives</a>.</li>
 <li>Lines 11-13 are from the HPC team, line 13 is very important since <code>slurm</code> upgrade to version <strong>22.05</strong> (<code>srun</code> doesn’t inherit <code>-c</code>).</li>
@@ -282,19 +284,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="correspondences-umi---samples" class="level3">
 <h3 class="anchored" data-anchor-id="correspondences-umi---samples">Correspondences UMI - samples</h3>
 <p>For this task, of course we need to perform the barcode split for all 74 samples. The supplied correspondences between <a href="https://www.illumina.com/techniques/sequencing/ngs-library-prep/multiplexing/unique-molecular-identifiers.html">UMI</a> and names were in 96 lines files like:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">AACGTGAT</span>    P4_LyM_B1_1</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">AACGTGAT</span>    P4_LyM_B1_1</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="ex">AAACATCG</span>    P4_LyM_B1_2</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="ex">ATGCCTAA</span>    P4_LyM_B1_3</span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="ex">AGTGGTCA</span>    P4_LyM_B1_4</span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="ex">[...]</span></span>
 <span id="cb2-6"><a href="#cb2-6"></a><span class="ex">GATGAATC</span>    P4_LyM_B1_95</span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="ex">GCCAAGAC</span>    P4_LyM_B1_96</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="ex">GCCAAGAC</span>    P4_LyM_B1_96</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>On one side we have the SRA accession IDs from FASTQ filenames and on the other the UMI / sample names. To create the command lines, with use <i class="fa-brands fa-r-project" aria-label="r-project"></i> (only partial code shown) to match those</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">tibble</span>(<span class="at">barcodes =</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"resources/GSE110009_RAW/"</span>, <span class="at">glob =</span> <span class="st">"*.txt"</span>)) <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">tibble</span>(<span class="at">barcodes =</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"resources/GSE110009_RAW/"</span>, <span class="at">glob =</span> <span class="st">"*.txt"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">mutate</span>(<span class="at">GEO_Accession =</span> <span class="fu">str_extract</span>(barcodes, <span class="st">"GSM</span><span class="sc">\\</span><span class="st">d{7}"</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">right_join</span>(sra_table, <span class="fu">join_by</span>(GEO_Accession <span class="sc">==</span> <span class="st">`</span><span class="at">GEO_Accession (exp)</span><span class="st">`</span>)) <span class="ot">-&gt;</span> sra_geo</span>
-<span id="cb3-4"><a href="#cb3-4"></a>sra_geo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1"></a># A tibble: 74 × 32</span>
+<span id="cb3-4"><a href="#cb3-4"></a>sra_geo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1"></a># A tibble: 74 × 32</span>
 <span id="cb4-2"><a href="#cb4-2"></a>   barcodes      GEO_Accession Run   `Assay Type` AvgSpotLen   Bases BioProject BioSample   Bytes `Center Name`</span>
 <span id="cb4-3"><a href="#cb4-3"></a>   &lt;fs::path&gt;    &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;        </span>
 <span id="cb4-4"><a href="#cb4-4"></a> 1 …283_P3-N.txt GSM2976283    SRR6… RNA-Seq             300 7.09e10 PRJNA4325… SAMN0845… 3.58e10 GEO          </span>
@@ -312,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-16"><a href="#cb4-16"></a>#   `DATASTORE region` &lt;chr&gt;, Experiment &lt;chr&gt;, Instrument &lt;chr&gt;, LibraryLayout &lt;chr&gt;, LibrarySelection &lt;chr&gt;,</span>
 <span id="cb4-17"><a href="#cb4-17"></a>#   LibrarySource &lt;chr&gt;, Organism &lt;chr&gt;, Platform &lt;chr&gt;, ReleaseDate &lt;dttm&gt;, create_date &lt;dttm&gt;,</span>
 <span id="cb4-18"><a href="#cb4-18"></a>#   version &lt;dbl&gt;, `Sample Name` &lt;chr&gt;, source_name &lt;chr&gt;, `SRA Study` &lt;chr&gt;, disease_state &lt;chr&gt;, Type &lt;chr&gt;,</span>
-<span id="cb4-19"><a href="#cb4-19"></a>#   patient_disease &lt;chr&gt;, PATIENT_ID &lt;dbl&gt;, Tissue &lt;chr&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-19"><a href="#cb4-19"></a>#   patient_disease &lt;chr&gt;, PATIENT_ID &lt;dbl&gt;, Tissue &lt;chr&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="building-up-the-full-command-lines" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="building-up-the-full-command-lines">Building up the full command lines</h3>
@@ -325,25 +327,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption><code>glue</code> logo</figcaption>
 </figure>
 </div>
-</div></div><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>glue<span class="sc">::</span><span class="fu">glue_data</span>(sra_geo, </span>
+</div></div><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>glue<span class="sc">::</span><span class="fu">glue_data</span>(sra_geo, </span>
 <span id="cb5-2"><a href="#cb5-2"></a> <span class="st">"mkdir -p split_{Run}; srun -c 4 -n1 --cpu-bind=cores perl resources/s01.Barcode_UMI_QC_per1w_V2.pl {Run}/{Run}_1.fastq.gz {Run}/{Run}_2.fastq.gz {barcodes} split_{Run}"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">write_lines</span>(<span class="st">"xxxx/split_barcodes_cmd.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">write_lines</span>(<span class="st">"xxxx/split_barcodes_cmd.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>What we do here and to take the <code>tibble</code> and use an implementation of <a href="https://peps.python.org/pep-0498/">Literal String Interpolation</a> (<code>f strings</code> in <i class="fa-brands fa-python" aria-label="python"></i>). For every line, relevant column are inserted with the curly braces with the column name is used.</p>
 <p>Finally, the 74 lines file <code>split_barcodes_cmd.txt</code> looks like:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> split_SRR6662774<span class="kw">;</span> <span class="ex">srun</span> <span class="at">-c</span> 4 <span class="at">-n1</span> <span class="at">--cpu-bind</span><span class="op">=</span>cores perl resources/s01.Barcode_UMI_QC_per1w_V2.pl SRR6662774/SRR6662774_1.fastq.gz SRR6662774/SRR6662774_2.fastq.gz resources/GSE110009_RAW/GSM297628</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> split_SRR6662774<span class="kw">;</span> <span class="ex">srun</span> <span class="at">-c</span> 4 <span class="at">-n1</span> <span class="at">--cpu-bind</span><span class="op">=</span>cores perl resources/s01.Barcode_UMI_QC_per1w_V2.pl SRR6662774/SRR6662774_1.fastq.gz SRR6662774/SRR6662774_2.fastq.gz resources/GSE110009_RAW/GSM297628</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="ex">3_P3-N.txt</span> split_SRR6662774</span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="fu">mkdir</span> <span class="at">-p</span> split_SRR6662775<span class="kw">;</span> <span class="ex">srun</span> <span class="at">-c</span> 4 <span class="at">-n1</span> <span class="at">--cpu-bind</span><span class="op">=</span>cores perl resources/s01.Barcode_UMI_QC_per1w_V2.pl SRR6662775/SRR6662775_1.fastq.gz SRR6662775/SRR6662775_2.fastq.gz resources/GSE110009_RAW/GSM297628</span>
 <span id="cb6-4"><a href="#cb6-4"></a><span class="ex">4_P3-PT1.txt</span> split_SRR6662775</span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="ex">[...]</span> 70 more rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="ex">[...]</span> 70 more rows</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="get-parallel-to-handle-multiple-commands" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="get-parallel-to-handle-multiple-commands">Get parallel to handle multiple commands</h3>
 <p>The command <a href="https://en.wikipedia.org/wiki/Xargs"><code>xargs</code></a> is on all servers and is very useful to build on command lines.</p>
 <p>Something like this to update permissions on folders is handy:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">find</span> /path <span class="at">-type</span> d <span class="kw">|</span> <span class="fu">xargs</span> chmod g+w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">find</span> /path <span class="at">-type</span> d <span class="kw">|</span> <span class="fu">xargs</span> chmod g+w</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>However, even if there is the option <code>-P</code> it is not so easy to control how many tasks are run in parallel. The <code>parallel</code> command though is easier to learn, powerful but might not be installed on all HPC.</p>
 <p>See now the launcher for the passive job of treating the 74 created commands using <code>parallel</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#!/bin/bash -l</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#!/bin/bash -l</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co">#SBATCH -N 1</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="co">#SBATCH -J split-barcode</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="co">#SBATCH --mail-type=begin,end,fail</span></span>
@@ -362,13 +364,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-17"><a href="#cb8-17"></a><span class="ex">module</span> load lang/Perl</span>
 <span id="cb8-18"><a href="#cb8-18"></a></span>
 <span id="cb8-19"><a href="#cb8-19"></a><span class="ex">parallel</span> <span class="at">--delay</span> 0.2 <span class="at">--joblog</span> slurm_split-<span class="va">${SLURM_JOB_ID}</span> <span class="dt">\</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a>  <span class="at">-j</span> <span class="va">${SLURM_NTASKS}</span> <span class="st">"{}"</span> :::: split_barcodes_cmd.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-20"><a href="#cb8-20"></a>  <span class="at">-j</span> <span class="va">${SLURM_NTASKS}</span> <span class="st">"{}"</span> :::: split_barcodes_cmd.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="slurm-directives" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="slurm-directives">Slurm directives</h4>
 <p>The interesting change is that we ask for <strong>12</strong> tasks with <strong>each</strong> 4 cores (lines 6 &amp; 7). We must emphasise that we then request for <strong>48</strong> cores (see margin).</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">$</span> seff 1179214</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">$</span> seff 1179214</span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="ex">Job</span> ID: 1179214</span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="ex">Cluster:</span> aion</span>
 <span id="cb9-4"><a href="#cb9-4"></a><span class="ex">State:</span> COMPLETED <span class="er">(</span><span class="bu">exit</span> code 0<span class="kw">)</span></span>
@@ -378,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-8"><a href="#cb9-8"></a><span class="ex">CPU</span> Efficiency: 25.71% of 48-19:09:36 core-walltime</span>
 <span id="cb9-9"><a href="#cb9-9"></a><span class="ex">Job</span> Wall-clock time: 1-00:23:57</span>
 <span id="cb9-10"><a href="#cb9-10"></a><span class="ex">Memory</span> Utilized: 1.12 GB</span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="ex">Memory</span> Efficiency: 1.36% of 82.03 GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="ex">Memory</span> Efficiency: 1.36% of 82.03 GB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div><p>Line 17 is to have an updated Perl interpreter pre-compiled by our infrastructure.</p>
 </section>
 <section id="parallel-options" class="level4">
@@ -397,11 +399,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="joblog" class="level2">
 <h2 class="anchored" data-anchor-id="joblog">Joblog</h2>
 <p>The text log file from <code>parallel</code> looks like:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1"></a>Seq     Host    Starttime       JobRuntime      Send    Receive Exitval Signal  Command</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1"></a>Seq     Host    Starttime       JobRuntime      Send    Receive Exitval Signal  Command</span>
 <span id="cb11-2"><a href="#cb11-2"></a>9       :       1695819029.000    7482.000      0       4945    0       0       mkdir -p split_[...]</span>
 <span id="cb11-3"><a href="#cb11-3"></a>3       :       1695819023.000    7819.000      0       4932    0       0       mkdir -p split_[...]</span>
 <span id="cb11-4"><a href="#cb11-4"></a>1       :       1695819021.000   10040.000      0       4757    0       0       mkdir -p split_[...]</span>
-<span id="cb11-5"><a href="#cb11-5"></a>[...]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a href="#cb11-5"></a>[...]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We see that the first command took longer (10040 seconds) so finished third in the execution.</p>
 <p>Here the job took 24 hours and 23 minutes, no need to resume it, the booked time was sufficient.</p>
 </section>
@@ -412,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Regarding the software for mapping and the node used, we can afford to run <strong>4</strong> mapping in parallel (turns out 5 or 6 could have been done).</p>
 <section id="launcher-script-with-exported-bash-function" class="level2">
 <h2 class="anchored" data-anchor-id="launcher-script-with-exported-bash-function">Launcher script with exported BASH function</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#!/bin/bash -l</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#!/bin/bash -l</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="co">#SBATCH -N 1</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="co">#SBATCH -J map-barcode</span></span>
 <span id="cb12-4"><a href="#cb12-4"></a><span class="co">#SBATCH --mail-type=begin,end,fail</span></span>
@@ -441,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-27"><a href="#cb12-27"></a><span class="bu">export</span> <span class="at">-f</span> <span class="va">doit</span></span>
 <span id="cb12-28"><a href="#cb12-28"></a></span>
 <span id="cb12-29"><a href="#cb12-29"></a><span class="co">#parallel --delay 0.2 --joblog slurm_mapping-${SLURM_JOB_ID} -j ${SLURM_NTASKS} "doit {}" ::: split_SRR*/*/*R1.clean.fq.gz</span></span>
-<span id="cb12-30"><a href="#cb12-30"></a><span class="ex">parallel</span> <span class="at">--delay</span> 0.2 <span class="at">--resume</span> <span class="at">--joblog</span> slurm_mapping-1185148 <span class="at">-j</span> <span class="va">${SLURM_NTASKS}</span> <span class="st">"doit {}"</span> ::: split_SRR<span class="pp">*</span>/<span class="pp">*</span>/<span class="pp">*</span>R1.clean.fq.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-30"><a href="#cb12-30"></a><span class="ex">parallel</span> <span class="at">--delay</span> 0.2 <span class="at">--resume</span> <span class="at">--joblog</span> slurm_mapping-1185148 <span class="at">-j</span> <span class="va">${SLURM_NTASKS}</span> <span class="st">"doit {}"</span> ::: split_SRR<span class="pp">*</span>/<span class="pp">*</span>/<span class="pp">*</span>R1.clean.fq.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="slurm-directives-1" class="level3">
 <h3 class="anchored" data-anchor-id="slurm-directives-1">Slurm directives</h3>
 <p>Nothing much than last time except we adapt to a more intense job, more more cores by task so less tasks per node. The <code>--exclusive</code> is to book the entire node (to get hands on the full RAM: 218.75 GB)</p>
@@ -457,7 +459,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Export the function!
+<span class="screen-reader-only">Important</span>Export the function!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -483,8 +485,8 @@ Export the function!
 <section id="outcome" class="level3">
 <h3 class="anchored" data-anchor-id="outcome">Outcome</h3>
 <p>After 8 hours and 22 minutes, the last 1,131 mapping were done, giving the final mapping yes but also a complete job log:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">wc</span> slurm_mapping-1185148</span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="ex">7009</span>  70089 737229 slurm_mapping-1185148</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">wc</span> slurm_mapping-1185148</span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="ex">7009</span>  70089 737229 slurm_mapping-1185148</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>7,008 + header.</p>
 <p>Mapping took 48 + 8 = 56 hours and 22 minutes.</p>
 </section>
@@ -566,13 +568,14 @@ Export the function!
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
