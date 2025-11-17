@@ -42,7 +42,7 @@ It looks like this, 58 pages of tables:
 ![Result PDF](pdf-overview.png){fig-align="center"}
 
 
-## PDF scrapping
+## PDF scraping
 
 I have never needed to so those things but it was in my radar. This was the occasion.
 
