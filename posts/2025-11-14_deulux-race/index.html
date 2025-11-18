@@ -585,6 +585,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Interesting plot! For women, being in a club increase the performance in this race, shifting the densities to faster time. For men, the shape changes, faster time are more frequent for people club but the mode remain globally the same.</p>
+<p>We can compute the exact time shift, it requires some work with functional programming. Finding for which time values (in seconds) the density is the highest and convert it back to a <code>time</code></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>deulux <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">in_a_club =</span> <span class="sc">!</span><span class="fu">is.na</span>(Club)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">time_sec =</span> <span class="fu">as.numeric</span>(time)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">nest</span>(<span class="at">.by =</span> <span class="fu">c</span>(sex, in_a_club)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">dens =</span> <span class="fu">map</span>(data, \(x) <span class="fu">density</span>(x<span class="sc">$</span>time_sec)),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">mode_num =</span> <span class="fu">map_dbl</span>(dens, \(ds) ds<span class="sc">$</span>x[<span class="fu">which.max</span>(ds<span class="sc">$</span>y)]),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">mode =</span> hms<span class="sc">::</span><span class="fu">hms</span>(mode_num)) <span class="ot">-&gt;</span> time_modes</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>time_modes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 6
+  sex   in_a_club data               dens      mode_num mode         
+  &lt;chr&gt; &lt;lgl&gt;     &lt;list&gt;             &lt;list&gt;       &lt;dbl&gt; &lt;time&gt;       
+1 M     TRUE      &lt;tibble [487 × 8]&gt; &lt;density&gt;    2801. 46'40.850628"
+2 M     FALSE     &lt;tibble [312 × 8]&gt; &lt;density&gt;    2800. 46'39.968695"
+3 W     TRUE      &lt;tibble [275 × 8]&gt; &lt;density&gt;    3163. 52'43.126791"
+4 W     FALSE     &lt;tibble [250 × 8]&gt; &lt;density&gt;    3454. 57'33.610502"</code></pre>
+</div>
+</div>
+<p>Let’s check if those values fall at the right places:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>deulux <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">in_a_club =</span> <span class="sc">!</span><span class="fu">is.na</span>(Club)) <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">colour =</span> in_a_club)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_line</span>(<span class="at">stat =</span> <span class="st">"density"</span>) <span class="sc">+</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_vline</span>(<span class="at">data =</span> \(x) <span class="fu">filter</span>(x, dossard <span class="sc">==</span> <span class="dv">725</span>), <span class="fu">aes</span>(<span class="at">xintercept =</span> time),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>   <span class="co"># plot modes</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_vline</span>(<span class="at">data =</span> time_modes, <span class="fu">aes</span>(<span class="at">xintercept =</span> mode, <span class="at">colour =</span> in_a_club),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(sex), <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">""</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_bw</span>(<span class="dv">14</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It does, then we compute the differences:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>time_modes <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>   <span class="co"># remove the unnecessary columns with a predicate</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(<span class="sc">!</span><span class="fu">where</span>(is.list)) <span class="sc">|&gt;</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> sex,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_from =</span> in_a_club,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">"club_"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_from =</span> mode) <span class="sc">|&gt;</span> </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">time_shift =</span> club_TRUE <span class="sc">-</span> club_FALSE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  sex   club_TRUE     club_FALSE    time_shift       
+  &lt;chr&gt; &lt;time&gt;        &lt;time&gt;        &lt;drtn&gt;           
+1 M     46'40.850628" 46'39.968695"    0.8819329 secs
+2 W     52'43.126791" 57'33.610502" -290.4837106 secs</code></pre>
+</div>
+</div>
+<p>Striking result, for men, not even a second difference. But for women, that is 290 seconds faster, more than 4 minutes!</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
