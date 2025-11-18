@@ -17,6 +17,8 @@ format:
 library(dplyr)
 library(stringr)
 library(readr)
+library(tidyr)
+library(purrr)
 library(ggplot2)
 
 dl <- readRDS("deulux.rds")
@@ -243,8 +245,60 @@ deulux |>
 ```
 
 
+
+
 Interesting plot! For women, being in a club increase the performance in this race, shifting the densities to faster time.
 For men, the shape changes, faster time are more frequent for people club but the mode remain globally the same.
+
+We can compute the exact time shift, it requires some work with functional programming.
+Finding for which time values (in seconds) the density is the highest and convert it back to a `time`
+
+```{r}
+deulux |> 
+   mutate(in_a_club = !is.na(Club)) |> 
+   mutate(time_sec = as.numeric(time)) |> 
+   nest(.by = c(sex, in_a_club)) |> 
+   mutate(dens = map(data, \(x) density(x$time_sec)),
+          mode_num = map_dbl(dens, \(ds) ds$x[which.max(ds$y)]),
+          mode = hms::hms(mode_num)) -> time_modes
+time_modes
+```
+
+
+Let's check if those values fall at the right places:
+
+```{r}
+#| fig-width: 6
+#| fig-height: 8
+deulux |> 
+   mutate(in_a_club = !is.na(Club)) |> 
+   ggplot(aes(x = time, colour = in_a_club)) +
+   geom_line(stat = "density") + 
+   geom_vline(data = \(x) filter(x, dossard == 725), aes(xintercept = time),
+              color = "steelblue", linetype = "dashed") +
+   # plot modes
+   geom_vline(data = time_modes, aes(xintercept = mode, colour = in_a_club),
+              linetype = "dashed") +
+   facet_wrap(vars(sex), ncol = 1) +
+   labs(title = "",
+        y = "Density") +
+   theme_bw(14)
+```
+
+It does, then we compute the differences:
+
+```{r}
+time_modes |> 
+   # remove the unnecessary columns with a predicate
+   select(!where(is.list)) |> 
+   pivot_wider(id_cols = sex,
+               names_from = in_a_club,
+               names_prefix = "club_",
+               values_from = mode) |> 
+   mutate(time_shift = club_TRUE - club_FALSE)
+```
+
+Striking result, for men, not even a second difference. But for women, that is 290 seconds faster, more than 4 minutes!
 
 ## Conclusion
 
